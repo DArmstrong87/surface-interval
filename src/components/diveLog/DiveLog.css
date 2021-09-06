@@ -1,0 +1,22 @@
+.diveLogArticle {
+    display: flex;
+    margin: 0;
+}
+
+.diveLogHeading {
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logDive {
+    color: white;
+    border-radius: 10px;
+    border: 0px solid; 
+    padding: 5px;
+    background-color: rgba(37, 100, 160, 0.34);
+}
+
+.diveLogMain {
+    display: flex;
+}
