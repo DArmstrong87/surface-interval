@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "name": "Danny Armstrong",
+      "email": "lenzflare@gmail.com",
+      "id": 1
+    }
+  ],
+  "dives": [
+    {
+      "id": 1,
+      "date": "7/12/2018",
+      "userId": 1,
+      "location": "Kentucky",
+      "diveSite": "Pennyroyal Quarry",
+      "saltOrFresh": "Fresh",
+      "depth": 25,
+      "time": 25,
+      "comments": "First dive ever!"
+    },
+    {
+      "id": 2,
+      "date": "7/12/2018",
+      "userId": 1,
+      "location": "Kentucky",
+      "diveSite": "Pennyroyal Quarry",
+      "saltOrFresh": "Fresh",
+      "depth": 30,
+      "time": 30,
+      "comments": "Second dive! Used 10lb worht of weight in a 3mil wetsuit."
+    }
+  ]
+}

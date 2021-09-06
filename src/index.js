@@ -5,7 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import { SurfaceInterval } from './SurfaceInterval';
 import { BrowserRouter } from 'react-router-dom'
 
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
