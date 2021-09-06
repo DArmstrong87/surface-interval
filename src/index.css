@@ -23,6 +23,7 @@ code {
   margin-top: 10px;
   background-color: rgba(37, 100, 160, 0.75);
   width: 10em;
+  border-radius: 10px;
   text-align: center;
 
   /* Animation */
