@@ -22,7 +22,13 @@ export const NavBar = () => {
 				<Link className="navbar__link" to="/profile">Profile</Link>
 			</li>
 			<li className="navbar__item active">
-				<Link className="navbar__link" to="/profile">Logout</Link>
+				<Link className="navbar__link" to="#"
+					onClick={
+						() => {
+							localStorage.removeItem("si_user")
+						}
+					}
+				>Logout</Link>
 			</li>
 		</ul>
 	</>)
