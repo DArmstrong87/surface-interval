@@ -17,7 +17,7 @@ export const LogNewDive = () => {
 
     const currentDive = dives.length + 1
 
-    const diveCopy = {
+    const [diveCopy, setDive] = useState({
         userId: localStorage.getItem('si_user'),
         date: '',
         location: '',
@@ -25,9 +25,9 @@ export const LogNewDive = () => {
         freshOrSalt: '',
         depth: 0,
         time: 0
-    }
+    })
 
-    
+
 
     return (<>
         <article className='diveLogArticle'>
@@ -41,27 +41,52 @@ export const LogNewDive = () => {
                 <h2 className='diveLogHeading'>Dive {currentDive}</h2>
                 <fieldset>
                     <label for="date">Date </label>
-                    <input type="date" className='date' />
+                    <input type="date" className='date' onChange={(event) => {
+                        const copy = {...diveCopy}
+                        copy.date = event.target.value
+                        setDive(copy)
+                    }} />
                 </fieldset>
                 <fieldset>
                     <label for="location">Location</label>
-                    <input type="location" placeholder="City or Country" />
+                    <input type="location" placeholder="City or Country" onChange={(event) => {
+                        const copy = {...diveCopy}
+                        copy.location = event.target.value
+                        setDive(copy)
+                    }}/>
                 </fieldset>
                 <fieldset>
-                    <label for="location">Dive Site</label>
-                    <input type="location" placeholder="USS Kittiwake" />
+                    <label for="diveSite">Dive Site</label>
+                    <input type="diveSite" placeholder="USS Kittiwake" onChange={(event) => {
+                        const copy = {...diveCopy}
+                        copy.diveSite = event.target.value
+                        setDive(copy)
+                    }} />
                 </fieldset>
                 <fieldset className="fresh-salt-radios">
-                    <input type="radio" value="Fresh" />Fresh
-                    <input type="radio" value="Salt" />Salt
+                    <input type="radio" value="Fresh" onChange={(event) => {
+                        const copy = {...diveCopy}
+                        copy.freshOrSalt = event.target.value
+                        setDive(copy)
+                    }}/>Fresh
+                    <input type="radio" value="Salt" onChange={(event) => {
+                        const copy = {...diveCopy}
+                        copy.freshOrSalt = event.target.value
+                        setDive(copy)}}/>Salt
                 </fieldset>
                 <fieldset>
                     <label for="depth">Depth</label>
-                    <input type="number" />
+                    <input type="number" onChange={(event) => {
+                        const copy = {...diveCopy}
+                        copy.depth = parseInt(event.target.value)
+                        setDive(copy)}}/>
                 </fieldset>
                 <fieldset>
                     <label for="time">Time</label>
-                    <input type="number" />
+                    <input type="number" onChange={(event) => {
+                        const copy = {...diveCopy}
+                        copy.time = parseInt(event.target.value)
+                        setDive(copy)}}/>
                 </fieldset>
                 <fieldset>
                     <button type="submit">
