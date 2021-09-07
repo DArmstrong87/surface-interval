@@ -27,8 +27,8 @@ export const DiveList = () => {
                             <li className={dive.saltOrFresh === "Fresh" ? 'fresh' : 'salt'}><b>{dive.saltOrFresh} Water</b></li>
                             <li><b>Location:</b> {dive.location}</li>
                             <li><b>Dive Site:</b> {dive.diveSite}</li>
-                            <li><b>Depth:</b> {dive.depth}</li>
-                            <li><b>Time:</b> {dive.time} minutes</li>
+                            <li className={dive.depth > 60 ? 'deep' : ''}><b>Depth:</b> {dive.depth} feet</li>
+                            <li><b>Time:</b> {dive.time} min</li>
                             <li><b>Comments:</b> {dive.comments} </li>
                         </ul>
                     </div>
@@ -37,7 +37,6 @@ export const DiveList = () => {
                             <a href="/">Delete</a>
                         </div>
                     </section>
-
                 }
             )}
         </article>
