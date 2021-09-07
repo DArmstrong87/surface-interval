@@ -1,22 +1,95 @@
 .diveLogArticle {
     display: flex;
-    margin: 0;
+    margin: 0px 0px 30px 0px;
+    justify-content: center;
 }
 
 .diveLogHeading {
-    margin: auto;
+    display: flex;
+    align-items: center;
     flex-direction: column;
-    justify-content: center;
+    width: 100%;
 }
 
 .logDive {
     color: white;
     border-radius: 10px;
     border: 0px solid; 
-    padding: 5px;
-    background-color: rgba(37, 100, 160, 0.34);
+    padding: 10px;
+    background-color: rgba(37, 100, 160, 1);
+    border: 1px solid black;
+    width: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 3px 5px;
+    font-weight: bold;
+    font-size: 20px;
+    align-self: flex-end;
+    margin-right: 7%;
+    cursor: pointer;
+
+    animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
+    -webkit-animation: fadeIn linear 0.3s, slideLeft linear 0.2s;;
+    -moz-animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
+    -o-animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
+    -ms-animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
 }
 
 .diveLogMain {
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.diveLogEntry {
+    color: white;
+    border: 1px black solid;
+    width: 35%;
+    padding: 5px;
+    margin: 0px;
+    margin-bottom: 30px;
+    background-color: rgb(37, 100, 160, 0.75);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.diveNumber {
+    text-align: center;
+    margin: 0px;
+    color: orange;
+    text-transform: uppercase;
+}
+
+.diveList {
+    list-style-type: none;
+}
+
+.fresh {
+    background-color: rgb(0, 65, 139);
+    width: max-content;
+    list-style-type: '💧';
+}
+
+.salt {
+    background-color: darkcyan;
+    width: max-content;
+    list-style-type: '🌊';
+}
+
+.deep{
+    list-style-type: '⬇️';
+}
+
+.edit-delete {
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px 0px 0px 0px;
+}
+
+.edit-delete a{
+    border: none;
+    font-size: 1em;
+    background: none;
+    color:orange;
+    padding-right: 10px;
 }
