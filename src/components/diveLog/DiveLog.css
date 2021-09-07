@@ -25,7 +25,7 @@
     align-self: flex-end;
     margin-right: 7%;
     cursor: pointer;
-
+    
     animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
     -webkit-animation: fadeIn linear 0.3s, slideLeft linear 0.2s;;
     -moz-animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;

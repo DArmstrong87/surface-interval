@@ -13,13 +13,10 @@ export const DiveList = () => {
         },
         []
     )
-    const userDives = dives.filter(dive => {
-        const user = localStorage.getItem('si_user')
-        return dive.userId = user
-    })
+
     return (<>
         <article className='diveLogMain' key='article2'>
-            {userDives.map(
+            {dives.map(
                 (dive, index) => {
                     return <section className='diveLogEntry' key={`section--${dive.id}`}><div>
                         <h2 className='diveNumber'>Dive {index + 1}</h2>
