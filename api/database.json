@@ -8,37 +8,26 @@
   ],
   "dives": [
     {
-      "id": 1,
-      "date": "7/12/2018",
-      "userId": 1,
-      "location": "Kentucky",
-      "diveSite": "Pennyroyal Quarry",
-      "saltOrFresh": "Fresh",
-      "depth": 25,
-      "time": 25,
-      "comments": "First dive ever!"
+      "userId": "1",
+      "date": "2021-09-06",
+      "location": "ASDFA",
+      "diveSite": "ASDFASD",
+      "freshOrSalt": "Fresh",
+      "depth": 33,
+      "time": 33,
+      "comments": "ASDFS",
+      "id": 1
     },
     {
-      "id": 2,
-      "date": "7/12/2018",
-      "userId": 1,
-      "location": "Kentucky",
-      "diveSite": "Pennyroyal Quarry",
-      "saltOrFresh": "Fresh",
-      "depth": 30,
-      "time": 30,
-      "comments": "Second dive! Used 10lb worth of weight in a 3mil wetsuit."
-    },
-    {
-      "id": 3,
-      "date": "7/12/2018",
-      "userId": 1,
-      "location": "Kentucky",
-      "diveSite": "Pennyroyal Quarry",
-      "saltOrFresh": "Salt",
-      "depth": 61,
-      "time": 30,
-      "comments": "Second dive! Used 10lb worth of weight in a 3mil wetsuit."
+      "userId": "1",
+      "date": "2021-09-07",
+      "location": "ADSFAEF",
+      "diveSite": "AEFAEF",
+      "freshOrSalt": "Fresh",
+      "depth": 75,
+      "time": 33,
+      "comments": "AWEFAE",
+      "id": 2
     }
   ]
 }

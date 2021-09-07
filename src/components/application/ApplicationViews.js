@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { DiveLog } from "../diveLog/DiveLog"
+import { EditDive } from "../diveLog/EditDive"
 import { LogNewDive } from "../diveLog/LogNewDive"
 import { Gear } from "../gear/Gear"
 import { DiverProfile } from "../profile/DiverProfile"
@@ -24,6 +25,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route path="/logdive">
                 <LogNewDive />
+            </Route>
+            <Route path="/dives/edit/:diveId(\d+)">
+                <EditDive />
             </Route>
         </>)
 }
