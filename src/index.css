@@ -9,7 +9,7 @@ body {
   background-image: url('/src/images/si-bg.png');
   background-size: 100%;
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment:fixed;
   background-color: black;
 }
 
