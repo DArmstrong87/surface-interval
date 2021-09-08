@@ -33,10 +33,11 @@ export const DiveList = () => {
                 (dive, index) => {
                     return <section className='diveLogEntry' key={`section--${dive.id}`}><div>
                         <h2 className='diveNumber'>Dive {index + 1}</h2>
+                        <h6 className='diveDate'>{dive.date}</h6>
                         <ul className='diveList'>
-                            <li className={dive.freshOrSalt === "Fresh" ? 'fresh' : 'salt'}><b>{dive.freshOrSalt} Water</b></li>
                             <li><b>Location:</b> {dive.location}</li>
                             <li><b>Dive Site:</b> {dive.diveSite}</li>
+                            <li className={dive.freshOrSalt === "Fresh" ? 'fresh' : 'salt'}><b>{dive.freshOrSalt} Water</b></li>
                             <li className={dive.depth > 60 ? 'deep' : ''}><b>Depth:</b> {dive.depth} feet</li>
                             <li><b>Time:</b> {dive.time} min</li>
                             <li><b>Comments:</b> {dive.comments} </li>

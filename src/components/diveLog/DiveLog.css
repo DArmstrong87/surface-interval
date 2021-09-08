@@ -33,6 +33,10 @@
     -ms-animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
 }
 
+.logDive:hover{
+    background-color: orange;
+}
+
 .diveLogMain {
     display: flex;
     justify-content: space-around;
@@ -54,10 +58,15 @@
 }
 
 .diveNumber {
-    text-align: center;
     margin: 0px;
     color: orange;
     text-transform: uppercase;
+    text-align: center;
+}
+
+.diveDate{
+    text-align: center;
+    margin: 0px 0px 0px 0px;
 }
 
 .diveList {
@@ -92,4 +101,17 @@
     background: none;
     color:orange;
     padding-right: 10px;
+}
+
+.submitButton {
+    border-radius: 5px;
+    color: white;
+    background-color: orange;
+    font-size: 1em;
+    margin-right: 5px;
+}
+
+.cancelButton {
+    border-radius: 5px;
+    margin-left: 5px;
 }

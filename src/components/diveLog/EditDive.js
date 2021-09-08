@@ -5,8 +5,6 @@ import { getCurrentDive } from "../application/ApiManager";
 export const EditDive = () => {
     const history = useHistory()
     const { diveId } = useParams()
-    // const [currentDive, setCurrentDive] = useState({})
-
 
     const [currentDive, setDive] = useState({
         userId: parseInt(localStorage.getItem('si_user')),
@@ -67,7 +65,7 @@ export const EditDive = () => {
 
         <article className='diveFormContainer'>
             <section className='diveForm'>
-                <h2 className='diveLogHeading'>Dive {currentDive.id}</h2>
+                <h2 className='diveNumber'>Dive {currentDive.id}</h2>
                 <fieldset>
                     <label for="date">Date </label>
                     <input type="date" value={currentDive.date} className='date' onChange={(event) => {
@@ -78,7 +76,7 @@ export const EditDive = () => {
                 </fieldset>
                 <fieldset>
                     <label for="location">Location</label>
-                    <input type="location" value={currentDive.location} placeholder={currentDive.location} onChange={(event) => {
+                    <input type="location" value={currentDive.location} onChange={(event) => {
                         const copy = { ...currentDive }
                         copy.location = event.target.value
                         setDive(copy)
@@ -86,7 +84,7 @@ export const EditDive = () => {
                 </fieldset>
                 <fieldset>
                     <label for="diveSite">Dive Site</label>
-                    <input type="diveSite" placeholder={currentDive.diveSite} onChange={(event) => {
+                    <input type="diveSite" value={currentDive.diveSite} onChange={(event) => {
                         const copy = { ...currentDive }
                         copy.diveSite = event.target.value
                         setDive(copy)
@@ -107,7 +105,7 @@ export const EditDive = () => {
                 </fieldset>
                 <fieldset>
                     <label for="depth">Depth</label>
-                    <input type="number" placeholder={currentDive.depth} onChange={(event) => {
+                    <input type="number" value={currentDive.depth} onChange={(event) => {
                         const copy = { ...currentDive }
                         copy.depth = parseInt(event.target.value)
                         setDive(copy)
@@ -115,7 +113,7 @@ export const EditDive = () => {
                 </fieldset>
                 <fieldset>
                     <label for="time">Time</label>
-                    <input type="number" placeholder={currentDive.time} onChange={(event) => {
+                    <input type="number" value={currentDive.time} onChange={(event) => {
                         const copy = { ...currentDive }
                         copy.time = parseInt(event.target.value)
                         setDive(copy)
@@ -123,15 +121,20 @@ export const EditDive = () => {
                 </fieldset>
                 <fieldset>
                     <label for="comments">Comments</label>
-                    <textarea type="comments" placeholder={currentDive.comments} onChange={(event) => {
+                    <textarea type="comments" value={currentDive.comments} className="comments-box" rows="4" onChange={(event) => {
                         const copy = { ...currentDive }
                         copy.comments = event.target.value
                         setDive(copy)
                     }} />
                 </fieldset>
-                <fieldset>
-                    <button type="submit" onClick={saveDive}>
+                <fieldset className="submit-cancel-buttons">
+                    <button className="submitButton" type="submit" onClick={saveDive}>
                         Save Changes
+                    </button>
+                    <button className="cancelButton" onClick={() => {
+                        history.push('/divelog')
+                    }}>
+                        Cancel
                     </button>
                 </fieldset>
             </section>

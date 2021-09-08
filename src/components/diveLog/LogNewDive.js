@@ -70,7 +70,7 @@ export const LogNewDive = () => {
 
         <article className='diveFormContainer'>
             <section className='diveForm'>
-                <h2 className='diveLogHeading'>Dive {currentDive}</h2>
+                <h2 className='diveNumber'>Dive {currentDive}</h2>
                 <fieldset>
                     <label for="date">Date </label>
                     <input type="date" className='date' onChange={(event) => {
@@ -126,15 +126,20 @@ export const LogNewDive = () => {
                 </fieldset>
                 <fieldset>
                     <label for="comments">Comments</label>
-                    <textarea type="comments" onChange={(event) => {
+                    <textarea className="comments-box" rows="4" type="comments" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.comments = event.target.value
                         setDive(copy)
                     }} />
                 </fieldset>
-                <fieldset>
-                    <button type="submit" onClick={submitDive}>
+                <fieldset className="submit-cancel-buttons">
+                    <button className="submitButton" type="submit" onClick={submitDive}>
                         Submit
+                    </button>
+                    <button className="cancelButton" onClick={() => {
+                        history.push('/divelog')
+                    }}>
+                        Cancel
                     </button>
                 </fieldset>
             </section>

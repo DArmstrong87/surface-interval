@@ -9,25 +9,48 @@
   "dives": [
     {
       "userId": "1",
-      "date": "2021-09-06",
-      "location": "ASDFA",
-      "diveSite": "ASDFASD",
+      "date": "2021-09-07",
+      "location": "Kentucky",
+      "diveSite": "Pennyroyal",
       "freshOrSalt": "Fresh",
-      "depth": 33,
-      "time": 33,
-      "comments": "ASDFS",
+      "depth": 25,
+      "time": 25,
+      "comments": "First Dive Ever!",
       "id": 1
     },
     {
       "userId": "1",
       "date": "2021-09-07",
-      "location": "ADSFAEF",
-      "diveSite": "AEFAEF",
+      "location": "Kentucky",
+      "diveSite": "Pennyroyal",
       "freshOrSalt": "Fresh",
-      "depth": 75,
-      "time": 33,
-      "comments": "AWEFAE",
+      "depth": 35,
+      "time": 30,
+      "comments": "Second dive. 10lbs weight in 3mmm wetsuit.",
       "id": 2
+    },
+    {
+      "userId": "1",
+      "date": "2021-09-07",
+      "location": "Grand Cayman Islands",
+      "diveSite": "Deep Tunnels",
+      "freshOrSalt": "Salt",
+      "depth": 100,
+      "time": 60,
+      "comments": "Deep dive to some awesome swim-throughs.",
+      "id": 3
+    },
+    {
+      "userId": "1",
+      "date": "2021-09-07",
+      "location": "Grand Cayman Islands",
+      "diveSite": "USS Kittiwake",
+      "freshOrSalt": "Salt",
+      "depth": 60,
+      "time": 60,
+      "comments": "The Kittiwake was an amazing wreck dive!",
+      "id": 4
     }
-  ]
+  ],
+  "gear": []
 }

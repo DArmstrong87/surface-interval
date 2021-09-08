@@ -4,33 +4,28 @@
 }
 
 .diveForm {
-    display: flex;
-    flex-direction: column;
     border: 1px black solid;
-    width: 50%;
+    /* width: 50%; */
     color: white;
     padding: 5px;
-    margin: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 5%;
     background-color: rgb(37, 100, 160, 0.75);
     border-radius: 10px;
-    justify-content: center;
 }
 
 fieldset {
     display: flex;
     border: none;
-    justify-content: center;
+    /* justify-content: center; */
 }
 fieldset label {
-    float: left;
-    clear: right;
-    padding-right: 10px;
+    padding-right: 20px;
     text-align: right;
-    width: 20%;
+    width: 30%;
 }
 .fresh-salt-radios {
-    padding-right: 5px;
+    text-align: center;
+    justify-content: center;
 }
 
 input {
@@ -38,5 +33,13 @@ input {
 }
 
 .date {
-    width: 26%;
+    width: 60%;
+}
+
+.submit-cancel-buttons {
+    justify-content: center;
+}
+
+.comments-box {
+    width: 60%;
 }
