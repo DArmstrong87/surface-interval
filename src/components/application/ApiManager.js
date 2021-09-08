@@ -3,3 +3,7 @@ export const getMyDives = () => {
     return fetch(`http://localhost:8088/dives?&userId=${user}`)
         .then(res => res.json())
 }
+export const getCurrentDive = (id) => {
+    return fetch(`http://localhost:8088/dives/${id}`)
+        .then(res => res.json())
+}

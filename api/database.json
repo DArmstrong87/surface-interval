@@ -8,37 +8,49 @@
   ],
   "dives": [
     {
-      "id": 1,
-      "date": "7/12/2018",
-      "userId": 1,
+      "userId": "1",
+      "date": "2021-09-07",
       "location": "Kentucky",
-      "diveSite": "Pennyroyal Quarry",
-      "saltOrFresh": "Fresh",
+      "diveSite": "Pennyroyal",
+      "freshOrSalt": "Fresh",
       "depth": 25,
       "time": 25,
-      "comments": "First dive ever!"
+      "comments": "First Dive Ever!",
+      "id": 1
     },
     {
-      "id": 2,
-      "date": "7/12/2018",
-      "userId": 1,
+      "userId": "1",
+      "date": "2021-09-07",
       "location": "Kentucky",
-      "diveSite": "Pennyroyal Quarry",
-      "saltOrFresh": "Fresh",
-      "depth": 30,
+      "diveSite": "Pennyroyal",
+      "freshOrSalt": "Fresh",
+      "depth": 35,
       "time": 30,
-      "comments": "Second dive! Used 10lb worth of weight in a 3mil wetsuit."
+      "comments": "Second dive. 10lbs weight in 3mmm wetsuit.",
+      "id": 2
     },
     {
-      "id": 3,
-      "date": "7/12/2018",
-      "userId": 1,
-      "location": "Kentucky",
-      "diveSite": "Pennyroyal Quarry",
-      "saltOrFresh": "Salt",
-      "depth": 61,
-      "time": 30,
-      "comments": "Second dive! Used 10lb worth of weight in a 3mil wetsuit."
+      "userId": "1",
+      "date": "2021-09-07",
+      "location": "Grand Cayman Islands",
+      "diveSite": "Deep Tunnels",
+      "freshOrSalt": "Salt",
+      "depth": 100,
+      "time": 60,
+      "comments": "Deep dive to some awesome swim-throughs.",
+      "id": 3
+    },
+    {
+      "userId": "1",
+      "date": "2021-09-07",
+      "location": "Grand Cayman Islands",
+      "diveSite": "USS Kittiwake",
+      "freshOrSalt": "Salt",
+      "depth": 60,
+      "time": 60,
+      "comments": "The Kittiwake was an amazing wreck dive!",
+      "id": 4
     }
-  ]
+  ],
+  "gear": []
 }

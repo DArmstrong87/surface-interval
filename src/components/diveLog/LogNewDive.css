@@ -1,0 +1,45 @@
+.diveFormContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.diveForm {
+    border: 1px black solid;
+    /* width: 50%; */
+    color: white;
+    padding: 5px;
+    margin-bottom: 5%;
+    background-color: rgb(37, 100, 160, 0.75);
+    border-radius: 10px;
+}
+
+fieldset {
+    display: flex;
+    border: none;
+    /* justify-content: center; */
+}
+fieldset label {
+    padding-right: 20px;
+    text-align: right;
+    width: 30%;
+}
+.fresh-salt-radios {
+    text-align: center;
+    justify-content: center;
+}
+
+input {
+    padding: 3px;
+}
+
+.date {
+    width: 60%;
+}
+
+.submit-cancel-buttons {
+    justify-content: center;
+}
+
+.comments-box {
+    width: 60%;
+}

@@ -101,7 +101,7 @@ code {
 /* Slide Left */
 @keyframes slideLeft {
   0% {
-    transform: translateX(400%);
+    transform: translateX(800%);
   }
   100% {
     transform: translateX(0%);
@@ -109,7 +109,7 @@ code {
 }
 @-moz-keyframes slideLeft {
   0% {
-    transform: translateX(400%);
+    transform: translateX(800%);
   }
   100% {
     transform: translateX(0%);
@@ -117,7 +117,7 @@ code {
 }
 @-webkit-keyframes slideLeft {
   0% {
-    transform: translateX(400%);
+    transform: translateX(800%);
   }
   100% {
     transform: translateX(0%);
@@ -125,7 +125,7 @@ code {
 }
 @-o-keyframes slideLeft {
   0% {
-    transform: translateX(400%);
+    transform: translateX(800%);
   }
   100% {
     transform: translateX(0%);
@@ -133,7 +133,7 @@ code {
 }
 @-ms-keyframes slideLeft {
   0% {
-    transform: translateX(400%);
+    transform: translateX(800%);
   }
   100% {
     transform: translateX(0%);
