@@ -50,6 +50,17 @@
       "time": 60,
       "comments": "The Kittiwake was an amazing wreck dive!",
       "id": 4
+    },
+    {
+      "userId": "1",
+      "date": "2021-09-02",
+      "location": "Cozumel",
+      "diveSite": "Cathedral",
+      "freshOrSalt": "Salt",
+      "depth": 100,
+      "time": 50,
+      "comments": "Swim through some overhead environment.",
+      "id": 5
     }
   ],
   "gear": [
@@ -70,9 +81,8 @@
       "id": 1
     },
     {
-      "id": 2,
       "userId": 1,
-      "name": "Cold Water",
+      "name": "Cold Water Gear",
       "bcd": "TUSA Soverin Alpha BC",
       "regulator": "Sherwood Oasis",
       "octopus": "Sherwood",
@@ -83,7 +93,8 @@
       "computer": "Amphos Air",
       "exposureSuit": "Waterproof D9 Drysuit",
       "weight": 24,
-      "tank": "TO RENT"
+      "tank": "TO RENT",
+      "id": 2
     },
     {
       "userId": "1",

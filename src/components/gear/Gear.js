@@ -30,9 +30,10 @@ export const Gear = () => {
     }
 
     return (<>
-        <article className='diveLogArticle'>
-            <section className='diveLogHeading'>
-                <h2 className='moduleTitle'>Gear</h2>
+        <article className='gearArticle'>
+            <h2 className='gearTitle'>Gear</h2>
+            <section className="quip-button">
+                <h2 className="quip">Proper dive planning includes ensuring you have all the gear you need for the dive conditions.</h2>
                 <Link to="/addgear"><button className="logDive">
                     Create Gear Set<br />
                     🤿

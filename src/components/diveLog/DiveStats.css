@@ -1,0 +1,13 @@
+.diveStatsDiv {
+    display: flex;
+    justify-content: space-around;
+    margin: 0px 0% 0px 0%;
+    align-items: center;
+}
+
+.diveStats {
+    list-style-type: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0;
+}

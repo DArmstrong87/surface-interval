@@ -1,5 +1,6 @@
 .diveLogArticle {
     display: flex;
+    flex-direction: column;
     margin: 0px 0px 30px 0px;
     justify-content: center;
 }
@@ -22,8 +23,6 @@
     box-shadow: rgba(0, 0, 0, 0.5) 5px 3px 5px;
     font-weight: bold;
     font-size: 20px;
-    align-self: flex-end;
-    margin-right: 7%;
     cursor: pointer;
     
     animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
@@ -114,4 +113,9 @@
 .cancelButton {
     border-radius: 5px;
     margin-left: 5px;
+}
+
+.diveStatsDiv{
+    display: flex;
+    justify-content: space-evenly;
 }
