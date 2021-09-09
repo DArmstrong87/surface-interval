@@ -24,7 +24,7 @@
       "location": "Kentucky",
       "diveSite": "Pennyroyal",
       "freshOrSalt": "Fresh",
-      "depth": 35,
+      "depth": 40,
       "time": 30,
       "comments": "Second dive. 10lbs weight in 3mmm wetsuit.",
       "id": 2
@@ -52,5 +52,70 @@
       "id": 4
     }
   ],
-  "gear": []
+  "gear": [
+    {
+      "userId": 1,
+      "name": "Quarry",
+      "bcd": "TUSA Soverin Alpha BC",
+      "regulator": "Sherwood Oasis",
+      "octopus": "Sherwood",
+      "mask": "Genesis Triview",
+      "fins": "Sherwood Triton Pro",
+      "boots": "Bare 7mm Ultrawarmth Boots",
+      "console": "",
+      "computer": "Amphos Air",
+      "exposureSuit": "Akona 7mm Quantum Stretch Wetsuit",
+      "weight": 16,
+      "tank": "TO RENT",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Cold Water",
+      "bcd": "TUSA Soverin Alpha BC",
+      "regulator": "Sherwood Oasis",
+      "octopus": "Sherwood",
+      "mask": "Genesis Triview",
+      "fins": "Sherwood Triton Pro",
+      "boots": "Bare 7mm Ultrawarmth Boots",
+      "console": "",
+      "computer": "Amphos Air",
+      "exposureSuit": "Waterproof D9 Drysuit",
+      "weight": 24,
+      "tank": "TO RENT"
+    },
+    {
+      "userId": "1",
+      "name": "Tropical",
+      "bcd": "TUSA Soverin Alpha BC",
+      "regulator": "Sherwood Oasis",
+      "octopus": "Sherwood 2",
+      "mask": "Genesis Triview",
+      "fins": "Sherwood Triton Pro",
+      "boots": "Low Top",
+      "console": "",
+      "computer": "Amphos Air",
+      "exposureSuit": "TO RENT 3mm Shorty",
+      "weight": 12,
+      "tank": "TO RENT",
+      "id": 3
+    },
+    {
+      "userId": "1",
+      "name": "Ashley's Quarry Gear",
+      "bcd": "Tusa Tina",
+      "regulator": "Sherwood Oasis",
+      "octopus": "Sherwood",
+      "mask": "Purple one",
+      "fins": "Purple Durple",
+      "boots": "Smol",
+      "console": "Sherwood",
+      "computer": "Amphos",
+      "exposureSuit": "3mm Akona Smol",
+      "weight": 6,
+      "tank": "TO RENT",
+      "id": 4
+    }
+  ]
 }

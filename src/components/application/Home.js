@@ -7,7 +7,7 @@ export const Home = () => {
             <section id='home' className='homeSection'>
                 <h1 className='homeTitle'>Welcome to Surface Interval!</h1>
                 <p className='homeP'>A surface interval is the time spent between dives for the purpose of reducing residual nitrogen, logging the previous dive and planning for the next one.</p>
-                <p className='homeP'>Surface Interval tracks your dives, gear and certifications, allowing you to access it from anywhere.
+                <p className='homeP'>Surface Interval tracks your dives, gear and certifications, allowing you to access them from anywhere.
                 </p>
             </section>
         </article>
