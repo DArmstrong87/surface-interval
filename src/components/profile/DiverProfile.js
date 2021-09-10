@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getCurrentUser } from "../application/ApiManager";
 import "./DiverProfile.css"
 
 export const DiverProfile = () => {
+    const [user, setUser] = useState({})
+
+    useEffect(() =>
+        getCurrentUser()
+            .then((data) => setUser(data[0])
+            ), {}
+    )
+
     return (<>
         <article className='diveLogArticle'>
             <section className='diveLogHeading'>
@@ -12,7 +21,7 @@ export const DiverProfile = () => {
         <article className='diverProfileContainer'>
             <section className='diverStats'>
                 <ul>
-                    <li>Name</li>
+                    <li>{user.name}</li>
                     <li>Highest Cert Level: </li>
                     <li>Total Dives: </li>
                     <li>Most recent dive:</li>
