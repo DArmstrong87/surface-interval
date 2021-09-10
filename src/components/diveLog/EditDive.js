@@ -26,7 +26,7 @@ export const EditDive = () => {
         },
         [diveId]
     )
-    console.log(currentDive)
+
     const saveDive = (event) => {
         event.preventDefault()
         const updateDive = {
