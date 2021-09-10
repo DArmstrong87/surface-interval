@@ -31,6 +31,7 @@ export const DiverProfile = () => {
             </section>
             <div className="profilePic">
                 <img src="/images/da-upside-down.jpg" alt="profile pic" />
+                <button className="changeProfilePic">Change Profile Pic</button>
             </div>
         </article>
 

@@ -6,6 +6,8 @@
 .profilePic {
     width: 400px;
     height: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 .profilePic > img {
@@ -13,6 +15,12 @@
     max-height: 100%;
     border: 5px outset white;
 }
+
+.changeProfilePic{
+    justify-content: flex-end;
+    max-width: 100px;
+}
+
 
 .certCards {
     display: flex;
