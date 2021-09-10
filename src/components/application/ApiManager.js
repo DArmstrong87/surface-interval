@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react/cjs/react.development"
 
+export const getCurrentUser = () => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/users?&userId=${user}`)
+        .then(res => res.json())
+}
+
 export const getMyDives = () => {
     const user = localStorage.getItem('si_user')
     return fetch(`http://localhost:8088/dives?&userId=${user}`)

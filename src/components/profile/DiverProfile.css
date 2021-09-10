@@ -1,0 +1,43 @@
+.diverProfileContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.profilePic {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profilePic > img {
+    max-width: 100%;
+    max-height: 100%;
+    border: 5px outset white;
+}
+
+.changeProfilePic{
+    justify-content: flex-end;
+    max-width: 100px;
+}
+
+
+.certCards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.certCardContainer{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.certCard {
+    width: 400px;
+    height: 200px;
+    border: 5px outset white;
+    flex-basis: 33%;
+    margin-bottom: 30px;
+}
