@@ -52,7 +52,7 @@ export const GetDiveStats = () => {
     }
     useEffect(() => {
         const user = localStorage.getItem('si_user')
-        fetch(`http://localhost:8088/dives?&userId=${user}&_sort=date&_order=asc`)
+        fetch(`http://localhost:8088/dives?&userId=${user}&_sort=date&_order=desc`)
         .then(res => res.json())
         .then((data) => setRecent(data))
     }, []
