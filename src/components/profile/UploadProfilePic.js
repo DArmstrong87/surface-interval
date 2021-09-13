@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// import ReactDOM from "react-dom";
 import ImageUploading from "react-images-uploading";
 import { useState } from "react/cjs/react.development";
 import { getCurrentUser } from "../application/ApiManager";
@@ -8,12 +7,9 @@ import "./UploadProfilePic.css";
 export const ProfilePicUpload = () => {
   const [image, setImage] = useState([])
   const [user, setUser] = useState({})
-  const profilePic = user.profilePicUrl
-  console.log(user)
   const profilePatch = { "profilePicUrl": image[0]?.data_url }
   const maxNumber = 1;
-  const onChange = (imageList, addUpdateIndex) => {
-    console.log(imageList, addUpdateIndex);
+  const onChange = (imageList) => {
     setImage(imageList);
   };
 
@@ -22,8 +18,6 @@ export const ProfilePicUpload = () => {
       .then((data) => setUser(data[0])
       ), {}
   )
-
-
 
   const UpdateProfilePic = () => {
     const fetchOption = {
@@ -42,7 +36,6 @@ export const ProfilePicUpload = () => {
       )
   }
 
-  console.log(image)
   return (<section>
     {user.profilePicUrl === '' ?
       < div className="uploadButton" >
@@ -57,7 +50,6 @@ export const ProfilePicUpload = () => {
             imageList,
             onImageUpload,
             onImageUpdate,
-            onImageRemoveAll,
             onImageRemove,
             isDragging,
             dragProps
@@ -101,7 +93,6 @@ export const ProfilePicUpload = () => {
               onImageUpload,
               onImageUpdate,
               onImageRemove,
-              onImageRemoveAll,
               isDragging,
               dragProps
             }) => (
@@ -112,8 +103,6 @@ export const ProfilePicUpload = () => {
                     <img src={image.data_url} alt="profilePic" />
                     <div className="image-item__btn-wrapper">
                       <button onClick={UpdateProfilePic(image.data_url), onImageRemove(index)}>Save</button>
-                      <button onClick={() => onImageUpdate(index)}>Update</button>
-                      <button onClick={() => onImageRemove(index)}>Remove</button>
                     </div>
                   </div>
                 ))}
@@ -121,20 +110,14 @@ export const ProfilePicUpload = () => {
                   style={isDragging ? { color: "skyblue" } : null}
                   onClick={onImageUpload}
                   {...dragProps}
-                >
-                  Update
+                > Update
                 </button>
-                {/* &nbsp;
-            <button onClick={onImageRemoveAll}>Remove image</button> */}
               </div>
             )}
           </ImageUploading>
         </div >
       </div>
-
     }
-
-
   </section>
   );
 }
