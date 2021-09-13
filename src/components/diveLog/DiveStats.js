@@ -22,7 +22,7 @@ export const DiveStats = () => {
         },
         []
     )
-    console.log(diveStats.deepest)
+
     return (<>
         <section>
             {window.location.pathname === "/profile" ?

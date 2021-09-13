@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { getCurrentUser } from "../application/ApiManager";
+import React from "react";
 import { DiveStats } from "../diveLog/DiveStats";
 import "./DiverProfile.css"
 import { CertCardUpload } from "./UploadCertCards";
 import { ProfilePicUpload } from "./UploadProfilePic";
 
 export const DiverProfile = () => {
-    const [user, setUser] = useState([{}])
-
-    useEffect(() =>
-        getCurrentUser()
-            .then((data) => setUser(data[0])
-            ), []
-    )
 
     return (<>
         <article className='diveLogArticle'>

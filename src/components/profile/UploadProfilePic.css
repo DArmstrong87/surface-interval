@@ -61,11 +61,11 @@ button:hover{
 }
 
 .upload__image-wrapper{
-  margin: auto;
-  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
+}
+.upload__image-wrapper button{
+margin:auto;
 }
 
 .cardHeader {
@@ -81,4 +81,13 @@ button:hover{
 
 .addCard {
   padding: 10px;
+}
+
+.save-delete{
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.save-delete button {
+  width: 12em;
 }

@@ -76,7 +76,7 @@ export const CreateGearSet = () => {
                 </fieldset>
                     <h3>Essentials</h3>
                 <fieldset>
-                    <label for="BCD">BCD</label>
+                    <label>BCD</label>
                     <input type="BCD" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.bcd = event.target.value
@@ -84,7 +84,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Regulator">Regulator</label>
+                    <label>Regulator</label>
                     <input type="Regulator" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.regulator = event.target.value
@@ -92,7 +92,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Octopus">Octopus</label>
+                    <label>Octopus</label>
                     <input type="Octopus" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.octopus = event.target.value
@@ -100,7 +100,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Mask">Mask</label>
+                    <label>Mask</label>
                     <input type="Mask" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.mask = event.target.value
@@ -108,7 +108,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Fins">Fins</label>
+                    <label>Fins</label>
                     <input type="Fins" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.fins = event.target.value
@@ -116,7 +116,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Boots">Boots</label>
+                    <label>Boots</label>
                     <input type="Boots" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.boots = event.target.value
@@ -124,7 +124,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Computer">Computer</label>
+                    <label>Computer</label>
                     <input type="Computer" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.computer = event.target.value
@@ -132,7 +132,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Console">Console</label>
+                    <label>Console</label>
                     <input type="Console" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.console = event.target.value
@@ -140,7 +140,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Exposure-Suit">Exposure Suit</label>
+                    <label>Exposure Suit</label>
                     <input type="Exposure-Suit" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.exposureSuit = event.target.value
@@ -148,7 +148,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Weight">Weight</label>
+                    <label>Weight</label>
                     <input type="number" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.weight = event.target.value
@@ -156,7 +156,7 @@ export const CreateGearSet = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="Tank">Tank</label>
+                    <label>Tank</label>
                     <input type="Tank" onChange={(event) => {
                         const copy = { ...gearCopy }
                         copy.tank = event.target.value
