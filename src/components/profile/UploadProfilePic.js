@@ -59,9 +59,7 @@ export const ProfilePicUpload = () => {
                 <div key={index} className="profilePic">
                   <img src={image.data_url} alt="profilePic" />
                   <div className="image-item__btn-wrapper">
-                    <button onClick={UpdateProfilePic(image.data_url)}>Save</button>
-                    <button onClick={() => onImageUpdate(index)}>Update</button>
-                    <button onClick={() => onImageRemove(index)}>Remove</button>
+                    <button onClick={UpdateProfilePic(image.data_url)}>Update</button>
                   </div>
                 </div>
               ))}
@@ -90,7 +88,6 @@ export const ProfilePicUpload = () => {
             {({
               imageList,
               onImageUpload,
-              onImageUpdate,
               onImageRemove,
               isDragging,
               dragProps
