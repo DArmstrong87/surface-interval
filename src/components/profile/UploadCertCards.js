@@ -61,12 +61,14 @@ export const CertCardUpload = () => {
                     ), {}
             )
     }
+   
+
 
     return (<article>
 
         {certCards.length === 0 ?
 
-            <section className="certCardContainer" ><div>
+            <section className="certCards" ><div>
                 <h3 className="noCerts">No Certification Cards Uploaded</h3>
                 <ImageUploading
                     multiple
@@ -83,13 +85,13 @@ export const CertCardUpload = () => {
                         dragProps
                     }) => (
                         <div className="upload__image-wrapper">
-                        <div className="uploadButton"><button
-                            style={isDragging ? { color: "red" } : null}
-                            onClick={onImageUpload}
-                            {...dragProps}
-                        >
-                            Click or Drop <br />to Upload Card
-                        </button></div>
+                            <div className="uploadButton"><button
+                                style={isDragging ? { color: "red" } : null}
+                                onClick={onImageUpload}
+                                {...dragProps}
+                            >
+                                Click or Drop <br />to Upload Card
+                            </button></div>
                             {imageList.map((image, index) => (
                                 <div key={index} className="image-item">
                                     <img src={image.data_url} alt="" width="400" />
@@ -138,18 +140,21 @@ export const CertCardUpload = () => {
                         }) => (
 
                             <div className="certCards">
-                                <div><button
-                                    style={isDragging ? { color: "red" } : null}
-                                    onClick={onImageUpload}
-                                    {...dragProps}
-                                >
-                                    Add Card
-                                </button>
-                                </div>
+                                {imageList == 0 ?
+                                    <div><button className="addCard"
+                                        style={isDragging ? { color: "red" } : null}
+                                        onClick={onImageUpload}
+                                        {...dragProps}
+                                    >
+                                        Add Card
+                                    </button>
+                                    </div>
+                                    : ''
+                                }
                                 {imageList.map((image, index) => (
                                     <div key={index} className="certCards">
                                         <img src={image.data_url} alt="" width="400" />
-                                        <div className="">
+                                        <div className="image-item__btn-wrapper">
                                             <label for="Name">Certification</label>
                                             <input type="text" placeholder="Name" onChange={(event) => {
                                                 const copy = { ...certCard }
@@ -162,7 +167,7 @@ export const CertCardUpload = () => {
                                                 copy.dateIssued = event.target.value
                                                 setCert(copy)
                                             }} />
-                                            <button className="certCardButton" onClick={() => { UpdateProfilePic(image).then(onImageRemove(index)) }}>Save</button>
+                                            <button className="certCardButton" onClick={() => { UpdateProfilePic(image).then(onImageRemove(index)) }}>Save 💾</button>
                                             <button className="certButton" onClick={() => onImageRemove(index)}>Delete</button>
                                         </div>
                                     </div>
@@ -185,7 +190,7 @@ export const CertCardUpload = () => {
                             <img src={card.imageUrl} alt={`${certCard.name} Cert`} />
                         </div>
                         <p className="cardDetails"><i>Date Issued: {card.dateIssued}</i>
-                        <button onClick={() => { deleteCard(card.id) }}>Delete</button>
+                            <button onClick={() => { deleteCard(card.id) }}>Delete</button>
                         </p>
                     </div>
                     </>

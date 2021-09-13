@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+    color:white;
   }
 
 button {
@@ -75,5 +76,9 @@ button:hover{
 
 .uploadButton {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+}
+
+.addCard {
+  padding: 10px;
 }

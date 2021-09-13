@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "../application/ApiManager";
+import { DiveStats } from "../diveLog/DiveStats";
 import "./DiverProfile.css"
 import { CertCardUpload } from "./UploadCertCards";
 import { ProfilePicUpload } from "./UploadProfilePic";
@@ -21,19 +22,9 @@ export const DiverProfile = () => {
         </article>
 
         <article className='diverProfileContainer'>
-            <section className='diverStats'>
-                <ul>
-                    <li>{user.name}</li>
-                    <li>Highest Cert Level: </li>
-                    <li>Total Dives: </li>
-                    <li>Most recent dive:</li>
-                    <li>Deepest Dive</li>
-                    <li>Longest Dive</li>
-                </ul>
-            </section>
+            <DiveStats />
             <div className="profilePic">
                 <ProfilePicUpload />
-
             </div>
         </article>
 
