@@ -37,13 +37,6 @@ export const DiverProfile = () => {
             </div>
         </article>
 
-        {/* <div>
-            <button className="logDive">Upload Cert Card</button>
-        </div> */}
-
-        <article className="certCards">
-            <h2 className="moduleTitle">Certification Cards</h2>
         <CertCardUpload />
-        </article>
     </>)
 }

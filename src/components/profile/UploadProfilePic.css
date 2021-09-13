@@ -47,3 +47,6 @@ button:hover{
 .cardTitle {
   color: white;
 }
+.cardOverview button{
+  align-content: right;
+}
