@@ -96,13 +96,13 @@ export const CertCardUpload = () => {
                                 <div key={index} className="image-item">
                                     <img src={image.data_url} alt="" width="400" />
                                     <div className="image-item__btn-wrapper">
-                                        <label for="Name">Certification</label>
+                                        <label>Certification</label>
                                         <input type="text" placeholder="Name" onChange={(event) => {
                                             const copy = { ...certCard }
                                             copy.name = event.target.value
                                             setCert(copy)
                                         }} />
-                                        <label for="date">Date Issued:</label>
+                                        <label>Date Issued:</label>
                                         <input type="date" onChange={(event) => {
                                             const copy = { ...certCard }
                                             copy.dateIssued = event.target.value
@@ -156,13 +156,13 @@ export const CertCardUpload = () => {
                                     <div key={index} className="certCards">
                                         <img src={image.data_url} alt="" width="400" />
                                         <div key={`wrapper-${index}`} className="image-item__btn-wrapper">
-                                            <label for="Name">Certification</label>
+                                            <label>Certification</label>
                                             <input type="text" placeholder="Name" onChange={(event) => {
                                                 const copy = { ...certCard }
                                                 copy.name = event.target.value
                                                 setCert(copy)
                                             }} />
-                                            <label for="date">Date Issued:</label>
+                                            <label>Date Issued:</label>
                                             <input type="date" onChange={(event) => {
                                                 const copy = { ...certCard }
                                                 copy.dateIssued = event.target.value
