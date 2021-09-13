@@ -5,12 +5,12 @@ import { CertCardUpload } from "./UploadCertCards";
 import { ProfilePicUpload } from "./UploadProfilePic";
 
 export const DiverProfile = () => {
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState([{}])
 
     useEffect(() =>
         getCurrentUser()
             .then((data) => setUser(data[0])
-            ), {}
+            ), []
     )
 
     return (<>
@@ -37,9 +37,9 @@ export const DiverProfile = () => {
             </div>
         </article>
 
-        <div>
+        {/* <div>
             <button className="logDive">Upload Cert Card</button>
-        </div>
+        </div> */}
 
         <article className="certCards">
             <h2 className="moduleTitle">Certification Cards</h2>

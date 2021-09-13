@@ -1,6 +1,9 @@
 .uploadButton {
     text-align: right;
   }
+.certUploadButton {
+    text-align: left;
+  }
 
 .image-item {
     display: flex;
@@ -32,4 +35,15 @@ button:hover{
 }
 .certCardButton:hover{
   background-color: orange;
+}
+
+.noCerts {
+  color: white;
+}
+
+.cardDetails {
+  color: white;
+}
+.cardTitle {
+  color: white;
 }

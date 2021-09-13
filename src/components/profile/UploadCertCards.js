@@ -16,7 +16,7 @@ export const CertCardUpload = () => {
     useEffect(() =>
         getCurrentUser()
             .then((data) => setUser(data[0])
-            ), {}
+            ), []
     )
 
     useEffect(() =>
@@ -24,8 +24,6 @@ export const CertCardUpload = () => {
             .then((data) => setCards(data)
             ), []
     )
-
-
 
     const certCard = {
         userId: user.id,
@@ -69,14 +67,14 @@ export const CertCardUpload = () => {
     return (<section>
         {certCards.length === 0 ?
             < div className="certUploadButton" >
-                <h3>No Certification Cards Uploaded</h3>
+                <h3 className="noCerts">No Certification Cards Uploaded</h3>
                 <ImageUploading
                     multiple
                     value={image}
                     onChange={onChange}
                     maxNumber={maxNumber}
                     dataURLKey="data_url"
-                    >
+                >
                     {({
                         imageList,
                         onImageUpload,
@@ -90,19 +88,15 @@ export const CertCardUpload = () => {
                                 style={isDragging ? { color: "red" } : null}
                                 onClick={onImageUpload}
                                 {...dragProps}
-                                >
+                            >
                                 Click or <br />Drop here
                             </button>
-                            &nbsp;
-                            <button onClick={onImageRemoveAll}>Remove all images</button>
-                            {console.log('image', imageList)}
                             {imageList.map((image, index) => (
                                 <div key={index} className="image-item" debugger>
-                                    {console.log(imageList)}
-                                    <img src={image.data_url} alt="" width="100" />
+                                    <img src={image.data_url} alt="" width="400" />
                                     <div className="image-item__btn-wrapper">
-                                        <button className="certCardButton" onClick={UpdateProfilePic(image), onImageRemove(index)}>Update</button>
-                                        <button className="certButton" onClick={() => onImageRemove(index)}>Remove</button>
+                                        <button className="certCardButton" onClick={() => { UpdateProfilePic(image).then(onImageRemove(index)) }}>Save</button>
+                                        <button className="certButton" onClick={() => onImageRemove(index)}>Delete</button>
                                     </div>
                                 </div>
                             ))}
@@ -112,13 +106,7 @@ export const CertCardUpload = () => {
             </div>
             :
             <div className="profilePic">
-                {certCards.map(
-                    card => {
-                        return <><img src={card.imageUrl} alt="certCard" />
-                            <button onClick={() => { deleteCard(card.id) }}>Delete</button></>
-                    }
-                )}
-                < div className="uploadButton" >
+                < div className="certUploadButton" >
                     <ImageUploading
                         multiple
                         value={image}
@@ -129,15 +117,25 @@ export const CertCardUpload = () => {
                         {({
                             imageList,
                             onImageUpload,
-                            onImageRemoveAll,
+                            onImageRemove,
                             isDragging,
                             dragProps
                         }) => (
+
                             <div>
+                                <button
+                                    style={isDragging ? { color: "red" } : null}
+                                    onClick={onImageUpload}
+                                    {...dragProps}
+                                >
+                                    Add Card
+                                </button>
                                 {imageList.map((image, index) => (
-                                    <div key={index} className="profilePic">
+                                    <div key={index} className="image-item" debugger>
+                                        <img src={image.data_url} alt="" width="400" />
                                         <div className="image-item__btn-wrapper">
-                                            <button onClick={UpdateProfilePic(image), onImageRemoveAll(index)}>Save</button>
+                                            <button className="certCardButton" onClick={() => { UpdateProfilePic(image).then(onImageRemove(index)) }}>Save</button>
+                                            <button className="certButton" onClick={() => onImageRemove(index)}>Delete</button>
                                         </div>
                                     </div>
                                 ))}
@@ -151,6 +149,15 @@ export const CertCardUpload = () => {
                         )}
                     </ImageUploading>
                 </div >
+                {certCards.map(
+                    card => {
+                        return <><h3 className="cardTitle">{card.name}</h3>
+                            <p className="cardDetails">Date Issued: {card.dateIssued}</p>
+                            <img src={card.imageUrl} alt="certCard" />
+                            <button onClick={() => { deleteCard(card.id) }}>Delete</button></>
+                    }
+                )}
+
             </div>
         }
     </section>
