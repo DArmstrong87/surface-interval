@@ -19,7 +19,6 @@ export const ProfilePicUpload = () => {
       ), []
   )
 
-
   const UpdateProfilePic = () => {
     const fetchOption = {
       method: "PATCH",
@@ -55,7 +54,6 @@ export const ProfilePicUpload = () => {
             isDragging,
             dragProps
           }) => (
-            // write your building UI
             <div>
               {imageList.map((image, index) => (
                 <div key={index} className="profilePic">
@@ -97,12 +95,11 @@ export const ProfilePicUpload = () => {
               isDragging,
               dragProps
             }) => (
-              // write your building UI
               <div>
                 {imageList.map((image, index) => (
                   <div key={index} className="profilePic">
                     <div className="image-item__btn-wrapper">
-                      <button onClick={UpdateProfilePic(image.data_url), onImageRemove(index)}>Save</button>
+                      <button onClick={UpdateProfilePic(image.data_url) && onImageRemove(index)}>Save</button>
                     </div>
                   </div>
                 ))}

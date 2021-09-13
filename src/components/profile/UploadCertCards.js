@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ImageUploading from "react-images-uploading";
 import { useState } from "react/cjs/react.development";
-import { getCurrentUser, getMyCards, deleteCard } from "../application/ApiManager";
+import { getCurrentUser, getMyCards } from "../application/ApiManager";
 import "./UploadProfilePic.css";
 
 export const CertCardUpload = () => {
@@ -92,7 +92,7 @@ export const CertCardUpload = () => {
                                 Click or <br />Drop here
                             </button>
                             {imageList.map((image, index) => (
-                                <div key={index} className="image-item" debugger>
+                                <div key={index} className="image-item">
                                     <img src={image.data_url} alt="" width="400" />
                                     <div className="image-item__btn-wrapper">
                                         <button className="certCardButton" onClick={() => { UpdateProfilePic(image).then(onImageRemove(index)) }}>Save</button>
@@ -105,8 +105,8 @@ export const CertCardUpload = () => {
                 </ImageUploading>
             </div>
             :
-            <div className="profilePic">
-                < div className="certUploadButton" >
+            <div key="21341" className="profilePic">
+                < div key="123" className="certUploadButton" >
                     <ImageUploading
                         multiple
                         value={image}
@@ -131,7 +131,7 @@ export const CertCardUpload = () => {
                                     Add Card
                                 </button>
                                 {imageList.map((image, index) => (
-                                    <div key={index} className="image-item" debugger>
+                                    <div key={index} className="image-item">
                                         <img src={image.data_url} alt="" width="400" />
                                         <div className="image-item__btn-wrapper">
                                             <button className="certCardButton" onClick={() => { UpdateProfilePic(image).then(onImageRemove(index)) }}>Save</button>
@@ -151,7 +151,7 @@ export const CertCardUpload = () => {
                 </div >
                 {certCards.map(
                     card => {
-                        return <><h3 className="cardTitle">{card.name}</h3>
+                        return <><h3 className="cardTitle" >{card.name}</h3>
                             <p className="cardDetails">Date Issued: {card.dateIssued}</p>
                             <img src={card.imageUrl} alt="certCard" />
                             <button onClick={() => { deleteCard(card.id) }}>Delete</button></>
