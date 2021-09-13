@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "../application/ApiManager";
 import "./DiverProfile.css"
+import { ProfilePicUpload } from "./UploadProfilePic";
 
 export const DiverProfile = () => {
     const [user, setUser] = useState({})
@@ -30,8 +31,8 @@ export const DiverProfile = () => {
                 </ul>
             </section>
             <div className="profilePic">
-                <img src="/images/da-upside-down.jpg" alt="profile pic" />
-                <button className="changeProfilePic">Change Profile Pic</button>
+                <ProfilePicUpload />
+
             </div>
         </article>
 
