@@ -19,6 +19,7 @@ export const ProfilePicUpload = () => {
       ), {}
   )
 
+
   const UpdateProfilePic = () => {
     const fetchOption = {
       method: "PATCH",
@@ -100,7 +101,6 @@ export const ProfilePicUpload = () => {
               <div>
                 {imageList.map((image, index) => (
                   <div key={index} className="profilePic">
-                    <img src={image.data_url} alt="profilePic" />
                     <div className="image-item__btn-wrapper">
                       <button onClick={UpdateProfilePic(image.data_url), onImageRemove(index)}>Save</button>
                     </div>

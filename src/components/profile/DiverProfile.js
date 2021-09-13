@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "../application/ApiManager";
 import "./DiverProfile.css"
+import { CertCardUpload } from "./UploadCertCards";
 import { ProfilePicUpload } from "./UploadProfilePic";
 
 export const DiverProfile = () => {
@@ -42,12 +43,7 @@ export const DiverProfile = () => {
 
         <article className="certCards">
             <h2 className="moduleTitle">Certification Cards</h2>
-            <section className="certCardContainer">
-                <div className="certCard"></div>
-                <div className="certCard"></div>
-                <div className="certCard"></div>
-                <div className="certCard"></div>
-            </section>
+        <CertCardUpload />
         </article>
     </>)
 }

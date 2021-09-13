@@ -1,21 +1,35 @@
 .uploadButton {
-    font-family: sans-serif;
     text-align: right;
   }
-  .image-item {
+
+.image-item {
     display: flex;
     margin: 10px 0;
   }
-  .image-item__btn-wrapper {
+
+.image-item__btn-wrapper {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
   }
+
 button {
   background-color: rgba(37, 100, 160, 1);
   border-radius: 10px;
   color:white;
 }
 button:hover{
+  background-color: orange;
+}
+
+.certUploadButton{
+  text-align: left;
+}
+.certCardButton {
+  background-color: rgba(37, 100, 160, 1);
+  border-radius: 10px;
+  color:white;
+}
+.certCardButton:hover{
   background-color: orange;
 }
