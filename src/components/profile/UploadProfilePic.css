@@ -43,7 +43,10 @@ button:hover{
 
 .cardDetails {
   color: white;
+  padding-top: 5px;
   margin: 0;
+  display: flex;
+  justify-content: space-between;
 }
 .cardTitle {
   color: white;
@@ -58,6 +61,19 @@ button:hover{
 
 .upload__image-wrapper{
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadButton {
   display: flex;
   justify-content: center;
 }

@@ -79,11 +79,17 @@ export const CertCardUpload = () => {
                         imageList,
                         onImageUpload,
                         onImageRemove,
-                        onImageRemoveAll,
                         isDragging,
                         dragProps
                     }) => (
                         <div className="upload__image-wrapper">
+                        <div className="uploadButton"><button
+                            style={isDragging ? { color: "red" } : null}
+                            onClick={onImageUpload}
+                            {...dragProps}
+                        >
+                            Click or Drop <br />to Upload Card
+                        </button></div>
                             {imageList.map((image, index) => (
                                 <div key={index} className="image-item">
                                     <img src={image.data_url} alt="" width="400" />
@@ -105,13 +111,6 @@ export const CertCardUpload = () => {
                                     </div>
                                 </div>
                             ))}
-                            <button
-                                style={isDragging ? { color: "red" } : null}
-                                onClick={onImageUpload}
-                                {...dragProps}
-                            >
-                                Click or Drop <br />to Upload Card
-                            </button>
                         </div>
                     )}
                 </ImageUploading>
@@ -139,13 +138,14 @@ export const CertCardUpload = () => {
                         }) => (
 
                             <div className="certCards">
-                                <button
+                                <div><button
                                     style={isDragging ? { color: "red" } : null}
                                     onClick={onImageUpload}
                                     {...dragProps}
                                 >
                                     Add Card
                                 </button>
+                                </div>
                                 {imageList.map((image, index) => (
                                     <div key={index} className="certCards">
                                         <img src={image.data_url} alt="" width="400" />
@@ -175,18 +175,22 @@ export const CertCardUpload = () => {
             </section>
         }
         <section className="certCardContainer">
-        {certCards.map(
-            card => {
-                return <><div className="cardOverview"><h3 className="cardTitle" >{card.name}</h3>
-                    <p className="cardDetails">Date Issued: {card.dateIssued}</p>
-                    <div className="certCard">
-                        <img src={card.imageUrl} alt={`${certCard.name} Cert`} />
+            {certCards.map(
+                card => {
+                    return <><div className="cardOverview">
+                        <div className="cardHeader">
+                            <h2 className="cardTitle" >{card.name}</h2>
+                        </div>
+                        <div className="certCard">
+                            <img src={card.imageUrl} alt={`${certCard.name} Cert`} />
+                        </div>
+                        <p className="cardDetails"><i>Date Issued: {card.dateIssued}</i>
+                        <button onClick={() => { deleteCard(card.id) }}>Delete</button>
+                        </p>
                     </div>
-                    <button onClick={() => { deleteCard(card.id) }}>Delete</button>
-                </div>
-                </>
-            }
-        )}
+                    </>
+                }
+            )}
         </section>
     </article>
     );
