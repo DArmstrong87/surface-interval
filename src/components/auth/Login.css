@@ -23,3 +23,31 @@
     background-color: red;
     color: white;
 }
+
+.container--login {
+    text-align: center;
+    justify-content: center;
+}
+
+.login--field {
+    display: flex;
+    justify-content: center;
+}
+.login--field label{
+    width: 20%;
+    align-self: center;
+}
+
+.login--field button {
+    margin: auto;
+}
+.login--field h2{
+    margin: 0;
+}
+
+.link--register a {
+    color: skyblue;
+}
+.link--register a:hover {
+    color: orange;
+}
