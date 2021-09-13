@@ -1,16 +1,22 @@
 .uploadButton {
-    font-family: sans-serif;
     text-align: right;
   }
-  .image-item {
+.certUploadButton {
+    text-align: left;
+  }
+
+.image-item {
     display: flex;
     margin: 10px 0;
   }
-  .image-item__btn-wrapper {
+
+.image-item__btn-wrapper {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+    color:white;
   }
+
 button {
   background-color: rgba(37, 100, 160, 1);
   border-radius: 10px;
@@ -18,4 +24,61 @@ button {
 }
 button:hover{
   background-color: orange;
+}
+
+.certUploadButton{
+  text-align: left;
+}
+.certCardButton {
+  background-color: rgba(37, 100, 160, 1);
+  border-radius: 10px;
+  color:white;
+}
+.certCardButton:hover{
+  background-color: orange;
+}
+
+.noCerts {
+  color: white;
+}
+
+.cardDetails {
+  color: white;
+  padding-top: 5px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.cardTitle {
+  color: white;
+  margin: 0;
+}
+.cardOverview{
+  margin-bottom: 30px;
+}
+.cardOverview button{
+  align-content: right;
+}
+
+.upload__image-wrapper{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadButton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addCard {
+  padding: 10px;
 }

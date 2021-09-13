@@ -16,7 +16,7 @@ export const ProfilePicUpload = () => {
   useEffect(() =>
     getCurrentUser()
       .then((data) => setUser(data[0])
-      ), {}
+      ), []
   )
 
   const UpdateProfilePic = () => {
@@ -54,13 +54,12 @@ export const ProfilePicUpload = () => {
             isDragging,
             dragProps
           }) => (
-            // write your building UI
             <div>
               {imageList.map((image, index) => (
                 <div key={index} className="profilePic">
                   <img src={image.data_url} alt="profilePic" />
                   <div className="image-item__btn-wrapper">
-                    <button onClick={UpdateProfilePic(image.data_url), onImageRemove(index)}>Save</button>
+                    <button onClick={UpdateProfilePic(image.data_url)}>Save</button>
                     <button onClick={() => onImageUpdate(index)}>Update</button>
                     <button onClick={() => onImageRemove(index)}>Remove</button>
                   </div>
@@ -96,13 +95,11 @@ export const ProfilePicUpload = () => {
               isDragging,
               dragProps
             }) => (
-              // write your building UI
               <div>
                 {imageList.map((image, index) => (
                   <div key={index} className="profilePic">
-                    <img src={image.data_url} alt="profilePic" />
                     <div className="image-item__btn-wrapper">
-                      <button onClick={UpdateProfilePic(image.data_url), onImageRemove(index)}>Save</button>
+                      <button onClick={UpdateProfilePic(image.data_url) && onImageRemove(index)}>Save</button>
                     </div>
                   </div>
                 ))}
