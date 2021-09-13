@@ -43,10 +43,21 @@ button:hover{
 
 .cardDetails {
   color: white;
+  margin: 0;
 }
 .cardTitle {
   color: white;
+  margin: 0;
+}
+.cardOverview{
+  margin-bottom: 30px;
 }
 .cardOverview button{
   align-content: right;
+}
+
+.upload__image-wrapper{
+  margin: auto;
+  display: flex;
+  justify-content: center;
 }
