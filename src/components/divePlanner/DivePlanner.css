@@ -1,0 +1,38 @@
+.divePlannerHeading {
+    width: 50%;
+    background-color: rgb(37, 100, 160, 0.34);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 20px rgba(37, 100, 160, 0.34);
+    color: white;
+    margin:auto;
+    margin-bottom: 3em;
+    /* Animation */
+    animation: fadeIn linear 1s, floatUp linear 1s;
+    -webkit-animation: fadeIn linear 1s, floatUp linear 1s;
+    -moz-animation: fadeIn linear 1s, floatUp linear 1s;
+    -o-animation: fadeIn linear 1s, floatUp linear 1s;
+    -ms-animation: fadeIn linear 1s, floatUp linear 1s;
+}
+.divePlannerHeading h1 {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.divePlannerContainer {
+    width: 50%;
+    margin: auto;
+    background-color: rgba(37, 100, 160, 1);
+    border-radius: 10px;
+    padding: 10px;
+}
+.divePlannerContainer h2 {
+    text-align: center;
+    color: white;
+    margin: 0px 0px 1.5em 0px;
+}
+
+.inputs-flag{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
