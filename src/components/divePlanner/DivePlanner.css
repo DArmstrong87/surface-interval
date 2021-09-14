@@ -17,22 +17,3 @@
     text-align: center;
     margin-bottom: 0;
 }
-
-.divePlannerContainer {
-    width: 50%;
-    margin: auto;
-    background-color: rgba(37, 100, 160, 1);
-    border-radius: 10px;
-    padding: 10px;
-}
-.divePlannerContainer h2 {
-    text-align: center;
-    color: white;
-    margin: 0px 0px 1.5em 0px;
-}
-
-.inputs-flag{
-    display: flex;
-    justify-content: space-between;
-    color: white;
-}
