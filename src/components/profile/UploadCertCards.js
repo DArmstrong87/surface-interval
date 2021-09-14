@@ -62,8 +62,6 @@ export const CertCardUpload = () => {
             )
     }
    
-
-
     return (<article>
 
         {certCards.length === 0 ?
