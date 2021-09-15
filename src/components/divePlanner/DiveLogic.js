@@ -308,8 +308,8 @@ export const DiveStates = () => {
                     dive1.ssRequired === true && dive1.noDecoLimit === true ? '8 minutes' :
                     dive1.depth >! 0 ? 'No' : ''}
                 </li>
-                {dive1.noDecoLimit === true ? <li style={{color:'red'}}>
-                    No Deco Limit met or exceeded. This dive is highly discouraged. The No Deco Limit is exceeded by 5 minutes which requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
+                {dive1.noDecoLimit === true ? <li>
+                    <div className="noDecoLimit"><b>No Deco Limit:</b> met or exceeded. This dive is highly discouraged. The No Deco Limit is exceeded by 5 minutes which requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.</div>
                 </li> : ''}
             </ul>
             <p ref={diveRef} className="empty"></p>
