@@ -103,4 +103,10 @@
     display:'inline';
     background-color: rgb(253, 106, 106, 0.5);
     padding: 5px;
+    margin-top: 5px;
+}
+
+.ss {
+    margin-left: 10px;
+    text-decoration: underline;
 }

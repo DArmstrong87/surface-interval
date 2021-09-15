@@ -8,8 +8,8 @@ export const DiveStates = () => {
     })
 
     const [dive2, setDive2] = useState({
-        surfInt: 0,
-        resNitroTime: 0,
+        si: 0,
+        rnt: 0,
         depth: 0,
         abt: 0,
         tbt: 0,
@@ -18,8 +18,8 @@ export const DiveStates = () => {
         noDecoLimit: false
     })
     const [dive3, setDive3] = useState({
-        surfInt: 0,
-        resNitroTime: 0,
+        si: 0,
+        rnt: 0,
         depth: 0,
         abt: 0,
         tbt: 0,
@@ -28,17 +28,16 @@ export const DiveStates = () => {
         noDecoLimit: false
     })
 
-    console.log('dive0', dive0)
-    console.log('dive1', dive1)
     const dive = { ...dive0 }
     const abt = dive.abt
+    const tbt = dive.abt + dive.rnt
     const depth = dive.depth
-    const scroll = () => { diveRef.current.scrollIntoView({ behavior: 'smooth' }) };
     const setAndUpdate = (pg, ss, ndl, mod, dive) => {
         const setPG = (letter) => dive.pg = letter;
         const setSS = (boolean) => dive.ssRequired = boolean;
         const setNDL = (boolean) => dive.noDecoLimit = boolean;
         const minOverDeco = (num) => dive.minOverDeco = num;
+        const scroll = () => { diveRef.current.scrollIntoView({ behavior: 'smooth' }) };
         const setDive = (pg, ss, ndl, mod) => { setPG(pg); setSS(ss); setNDL(ndl); minOverDeco(mod) };
         setDive(pg, ss, ndl, mod); updateDive1(dive);
         scroll();
@@ -197,23 +196,23 @@ export const DiveStates = () => {
         else if (abt <= 29 && depth <= 80) { setAndUpdate('Q', true, false, (abt - 30), dive) }
         else if (abt > 29 && depth <= 80) { setAndUpdate('R', true, true, (abt - 30), dive) }
         // Depth <= 90
-        else if (abt <= 4 && depth <= 90) { setAndUpdate('A', false, false, (abt - 55), dive) }
-        else if (abt <= 7 && depth <= 90) { setAndUpdate('B', false, false, (abt - 55), dive) }
-        else if (abt <= 9 && depth <= 90) { setAndUpdate('C', false, false, (abt - 55), dive) }
-        else if (abt <= 10 && depth <= 90) { setAndUpdate('D', false, false, (abt - 55), dive) }
-        else if (abt <= 11 && depth <= 90) { setAndUpdate('E', false, false, (abt - 55), dive) }
-        else if (abt <= 12 && depth <= 90) { setAndUpdate('F', false, false, (abt - 55), dive) }
-        else if (abt <= 13 && depth <= 90) { setAndUpdate('G', false, false, (abt - 55), dive) }
-        else if (abt <= 15 && depth <= 90) { setAndUpdate('H', false, false, (abt - 55), dive) }
-        else if (abt <= 16 && depth <= 90) { setAndUpdate('I', false, false, (abt - 55), dive) }
-        else if (abt <= 17 && depth <= 90) { setAndUpdate('J', false, false, (abt - 55), dive) }
-        else if (abt <= 18 && depth <= 90) { setAndUpdate('K', false, false, (abt - 55), dive) }
-        else if (abt <= 19 && depth <= 90) { setAndUpdate('L', false, false, (abt - 55), dive) }
-        else if (abt <= 21 && depth <= 90) { setAndUpdate('M', false, false, (abt - 55), dive) }
-        else if (abt <= 22 && depth <= 90) { setAndUpdate('N', true, false, (abt - 55), dive) }
-        else if (abt <= 23 && depth <= 90) { setAndUpdate('O', true, false, (abt - 55), dive) }
-        else if (abt <= 24 && depth <= 90) { setAndUpdate('P', true, false, (abt - 55), dive) }
-        else if (abt > 24 && depth <= 90) { setAndUpdate('Q', true, true, (abt - 55), dive) }
+        else if (abt <= 4 && depth <= 90) { setAndUpdate('A', false, false, (abt - 25), dive) }
+        else if (abt <= 7 && depth <= 90) { setAndUpdate('B', false, false, (abt - 25), dive) }
+        else if (abt <= 9 && depth <= 90) { setAndUpdate('C', false, false, (abt - 25), dive) }
+        else if (abt <= 10 && depth <= 90) { setAndUpdate('D', false, false, (abt - 25), dive) }
+        else if (abt <= 11 && depth <= 90) { setAndUpdate('E', false, false, (abt - 25), dive) }
+        else if (abt <= 12 && depth <= 90) { setAndUpdate('F', false, false, (abt - 25), dive) }
+        else if (abt <= 13 && depth <= 90) { setAndUpdate('G', false, false, (abt - 25), dive) }
+        else if (abt <= 15 && depth <= 90) { setAndUpdate('H', false, false, (abt - 25), dive) }
+        else if (abt <= 16 && depth <= 90) { setAndUpdate('I', false, false, (abt - 25), dive) }
+        else if (abt <= 17 && depth <= 90) { setAndUpdate('J', false, false, (abt - 25), dive) }
+        else if (abt <= 18 && depth <= 90) { setAndUpdate('K', false, false, (abt - 25), dive) }
+        else if (abt <= 19 && depth <= 90) { setAndUpdate('L', false, false, (abt - 25), dive) }
+        else if (abt <= 21 && depth <= 90) { setAndUpdate('M', false, false, (abt - 25), dive) }
+        else if (abt <= 22 && depth <= 90) { setAndUpdate('N', true, false, (abt - 25), dive) }
+        else if (abt <= 23 && depth <= 90) { setAndUpdate('O', true, false, (abt - 25), dive) }
+        else if (abt <= 24 && depth <= 90) { setAndUpdate('P', true, false, (abt - 25), dive) }
+        else if (abt > 24 && depth <= 90) { setAndUpdate('Q', true, true, (abt - 25), dive) }
         // Depth <= 100
         else if (abt <= 3 && depth <= 100) { setAndUpdate('A', true, false, (abt - 20), dive) }
         else if (abt <= 6 && depth <= 100) { setAndUpdate('B', true, false, (abt - 20), dive) }
@@ -231,47 +230,47 @@ export const DiveStates = () => {
         else if (abt <= 19 && depth <= 100) { setAndUpdate('N', true, false, (abt - 20), dive) }
         else if (abt > 19 && depth <= 100) { setAndUpdate('O', true, true, dive) }
         // Depth <= 110
-        else if (abt <= 3 && depth <= 110) { setAndUpdate('A', true, false, dive) }
-        else if (abt <= 6 && depth <= 110) { setAndUpdate('B', true, false, dive) }
-        else if (abt <= 7 && depth <= 110) { setAndUpdate('C', true, false, dive) }
-        else if (abt <= 8 && depth <= 110) { setAndUpdate('D', true, false, dive) }
-        else if (abt <= 9 && depth <= 110) { setAndUpdate('E', true, false, dive) }
-        else if (abt <= 10 && depth <= 110) { setAndUpdate('F', true, false, dive) }
-        else if (abt <= 11 && depth <= 110) { setAndUpdate('G', true, false, dive) }
-        else if (abt <= 12 && depth <= 110) { setAndUpdate('H', true, false, dive) }
-        else if (abt <= 13 && depth <= 110) { setAndUpdate('I', true, false, dive) }
-        else if (abt <= 13 && depth <= 110) { setAndUpdate('J', true, false, dive) }
-        else if (abt <= 14 && depth <= 110) { setAndUpdate('K', true, false, dive) }
-        else if (abt <= 15 && depth <= 110) { setAndUpdate('L', true, false, dive) }
-        else if (abt > 15 && depth <= 110) { setAndUpdate('M', true, true, dive) }
+        else if (abt <= 3 && depth <= 110) { setAndUpdate('A', true, false, (abt - 16), dive) }
+        else if (abt <= 6 && depth <= 110) { setAndUpdate('B', true, false, (abt - 16), dive) }
+        else if (abt <= 7 && depth <= 110) { setAndUpdate('C', true, false, (abt - 16), dive) }
+        else if (abt <= 8 && depth <= 110) { setAndUpdate('D', true, false, (abt - 16), dive) }
+        else if (abt <= 9 && depth <= 110) { setAndUpdate('E', true, false, (abt - 16), dive) }
+        else if (abt <= 10 && depth <= 110) { setAndUpdate('F', true, false, (abt - 16), dive) }
+        else if (abt <= 11 && depth <= 110) { setAndUpdate('G', true, false, (abt - 16), dive) }
+        else if (abt <= 12 && depth <= 110) { setAndUpdate('H', true, false, (abt - 16), dive) }
+        else if (abt <= 13 && depth <= 110) { setAndUpdate('I', true, false, (abt - 16), dive) }
+        else if (abt <= 13 && depth <= 110) { setAndUpdate('J', true, false, (abt - 16), dive) }
+        else if (abt <= 14 && depth <= 110) { setAndUpdate('K', true, false, (abt - 16), dive) }
+        else if (abt <= 15 && depth <= 110) { setAndUpdate('L', true, false, (abt - 16), dive) }
+        else if (abt > 15 && depth <= 110) { setAndUpdate('M', true, true, (abt - 16), dive) }
         // Depth <= 120
-        else if (abt <= 3 && depth <= 120) { setAndUpdate('A', true, false, dive) }
-        else if (abt <= 5 && depth <= 120) { setAndUpdate('B', true, false, dive) }
-        else if (abt <= 6 && depth <= 120) { setAndUpdate('C', true, false, dive) }
-        else if (abt <= 7 && depth <= 120) { setAndUpdate('D', true, false, dive) }
-        else if (abt <= 8 && depth <= 120) { setAndUpdate('E', true, false, dive) }
-        else if (abt <= 9 && depth <= 120) { setAndUpdate('F', true, false, dive) }
-        else if (abt <= 10 && depth <= 120) { setAndUpdate('G', true, false, dive) }
-        else if (abt <= 11 && depth <= 120) { setAndUpdate('H', true, false, dive) }
-        else if (abt <= 11 && depth <= 120) { setAndUpdate('I', true, false, dive) }
-        else if (abt <= 12 && depth <= 120) { setAndUpdate('J', true, false, dive) }
-        else if (abt > 12 && depth <= 120) { setAndUpdate('K', true, true, dive) }
+        else if (abt <= 3 && depth <= 120) { setAndUpdate('A', true, false, (abt - 13), dive) }
+        else if (abt <= 5 && depth <= 120) { setAndUpdate('B', true, false, (abt - 13), dive) }
+        else if (abt <= 6 && depth <= 120) { setAndUpdate('C', true, false, (abt - 13), dive) }
+        else if (abt <= 7 && depth <= 120) { setAndUpdate('D', true, false, (abt - 13), dive) }
+        else if (abt <= 8 && depth <= 120) { setAndUpdate('E', true, false, (abt - 13), dive) }
+        else if (abt <= 9 && depth <= 120) { setAndUpdate('F', true, false, (abt - 13), dive) }
+        else if (abt <= 10 && depth <= 120) { setAndUpdate('G', true, false, (abt - 13), dive) }
+        else if (abt <= 11 && depth <= 120) { setAndUpdate('H', true, false, (abt - 13), dive) }
+        else if (abt <= 11 && depth <= 120) { setAndUpdate('I', true, false, (abt - 13), dive) }
+        else if (abt <= 12 && depth <= 120) { setAndUpdate('J', true, false, (abt - 13), dive) }
+        else if (abt > 12 && depth <= 120) { setAndUpdate('K', true, true, (abt - 13), dive) }
         // Depth <= 130
-        else if (abt <= 3 && depth <= 130) { setAndUpdate('A', true, false, dive) }
-        else if (abt <= 5 && depth <= 130) { setAndUpdate('B', true, false, dive) }
-        else if (abt <= 6 && depth <= 130) { setAndUpdate('C', true, false, dive) }
-        else if (abt <= 7 && depth <= 130) { setAndUpdate('D', true, false, dive) }
-        else if (abt <= 7 && depth <= 130) { setAndUpdate('E', true, false, dive) }
-        else if (abt <= 8 && depth <= 130) { setAndUpdate('F', true, false, dive) }
-        else if (abt <= 9 && depth <= 130) { setAndUpdate('G', true, false, dive) }
-        else if (abt > 9 && depth <= 130) { setAndUpdate('H', true, true, dive) }
+        else if (abt <= 3 && depth <= 130) { setAndUpdate('A', true, false, (abt - 10), dive) }
+        else if (abt <= 5 && depth <= 130) { setAndUpdate('B', true, false, (abt - 10), dive) }
+        else if (abt <= 6 && depth <= 130) { setAndUpdate('C', true, false, (abt - 10), dive) }
+        else if (abt <= 7 && depth <= 130) { setAndUpdate('D', true, false, (abt - 10), dive) }
+        else if (abt <= 7 && depth <= 130) { setAndUpdate('E', true, false, (abt - 10), dive) }
+        else if (abt <= 8 && depth <= 130) { setAndUpdate('F', true, false, (abt - 10), dive) }
+        else if (abt <= 9 && depth <= 130) { setAndUpdate('G', true, false, (abt - 10), dive) }
+        else if (abt > 9 && depth <= 130) { setAndUpdate('H', true, true, (abt - 10), dive) }
         // Depth <= 140
-        else if (abt <= 0 && depth <= 130) { setAndUpdate('A', true, false, dive) }
-        else if (abt <= 4 && depth <= 130) { setAndUpdate('B', true, false, dive) }
-        else if (abt <= 5 && depth <= 130) { setAndUpdate('C', true, false, dive) }
-        else if (abt <= 6 && depth <= 130) { setAndUpdate('D', true, false, dive) }
-        else if (abt <= 7 && depth <= 130) { setAndUpdate('E', true, false, dive) }
-        else if (abt > 6 && depth > 130) { setAndUpdate('F', true, true, dive) }
+        else if (abt <= 0 && depth <= 130) { setAndUpdate('A', true, false, (abt - 8), dive) }
+        else if (abt <= 4 && depth <= 130) { setAndUpdate('B', true, false, (abt - 8), dive) }
+        else if (abt <= 5 && depth <= 130) { setAndUpdate('C', true, false, (abt - 8), dive) }
+        else if (abt <= 6 && depth <= 130) { setAndUpdate('D', true, false, (abt - 8), dive) }
+        else if (abt <= 7 && depth <= 130) { setAndUpdate('E', true, false, (abt - 8), dive) }
+        else if (abt > 6 && depth > 130) { setAndUpdate('F', true, true, (abt - 8), dive) }
     }
 
 
@@ -307,22 +306,30 @@ export const DiveStates = () => {
                 </li>
                 <li>
                     Safety stop required:
-                    {dive1.ssRequired === true && dive1.noDecoLimit === false ? '3 minutes' :
+                    <div className="ss">{dive1.ssRequired === true && dive1.noDecoLimit === false ? '3 minutes' :
                         dive1.noDecoLimit === true && dive1.minOverDeco <= 5 ? '8 minutes' :
                             dive1.noDecoLimit === true && dive1.minOverDeco > 5 ? '15 minutes' :
-                                dive1.depth > !0 ? 'None' : ''}
+                                dive1.depth > 0 && dive1.ssRequired === false ? 'None' : ''}
+                    </div>
                 </li>
                 {dive1.minOverDeco < 0 ?
-                    <li>Minutes to no deco limit: {dive1.depth > 0 ? Math.abs(dive1.minOverDeco) : ''}</li> : ''
+                    <li>
+                        Minutes to no deco limit: {dive1.depth > 0 ? Math.abs(dive1.minOverDeco)
+                            : ''}
+                    </li> : ''
                 }
                 {dive1.minOverDeco > 0 ?
                     <><li>Min over no deco limit: {dive1.minOverDeco}</li>
                         <li>
-                            <div className="noDecoLimit"><b>No Deco Limit:</b> met or exceeded. This dive is highly discouraged. The No Deco Limit is exceeded by {dive1.minOverDeco} {dive1.minOverDeco === 1 ? 'minute' : 'minutes'} which requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.</div>
+                            <div className="noDecoLimit">
+                                <b>No Deco Limit exceeded.</b> This dive is highly discouraged. The No Deco Limit is exceeded by {dive1.minOverDeco} {dive1.minOverDeco === 1 ? 'minute' : 'minutes'} which requires an {dive1.minOverDeco <= 5 ? '8' : '15'} minute decompression stop (air supply permitting). The diver must remain out of the water for {dive1.minOverDeco <= 5 ? '6' : '24'} hours before the next dive.
+                            </div>
                         </li></>
                     : dive1.noDecoLimit === true && dive1.minOverDeco <= 0 ?
                         <li>
-                            <div className="noDecoLimit"><b>No Deco Limit:</b> met. This dive is highly discouraged. The dive time requires rounding up to the next pressure group, which meets the no deco limit. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.</div>
+                            <div className="noDecoLimit">
+                                <b>No Deco Limit met.</b> This dive is highly discouraged. The dive time requires rounding up to the next pressure group, which meets the no deco limit. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
+                            </div>
                         </li> : ''
                 }
             </ul>
