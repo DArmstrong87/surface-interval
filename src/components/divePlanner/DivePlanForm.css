@@ -1,10 +1,11 @@
 .divePlannerContainer {
     width: 50%;
     margin: auto;
-    background-color: rgba(37, 100, 160, 1);
+    background-color: rgba(37, 100, 160, 0.75);
     border: 1px solid black;
     border-radius: 10px;
     padding: 10px;
+    margin-bottom: 5em;
 }
 .divePlannerContainer h2 {
     text-align: center;
@@ -14,13 +15,37 @@
 
 .inputs-flag{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     color: white;
+}
+.inputs-flag input{
+    width: 5em;
+    padding: 0.5em;
+    margin-right: 0.5em;
+}
+.inputs-flag fieldset{
+    padding: 0.3em;
+    align-items: center;
+}
+.inputs-flag label {
+    width: 2em;
+    display: flex;
+    justify-content: right;
+    font-size: 1.5em;
+}
+.inputs-flag button {
+    font-size: 1.5em;
+    margin: 0.4em 1em 0 0;
+    justify-self: center;
+}
+
+.divePlanInputDiv{
+    align-items: center;
 }
 
 .diveFlagGreen{
-    box-shadow: 0px 0px 20px 5px greenyellow;
-    border: 0.3em greenyellow solid;
+    box-shadow: 0px 0px 20px 5px rgb(101, 233, 101);
+    border: 0.3em rgb(101, 233, 101) solid;
     width: 11em;
     height: 8em;
     overflow: hidden;
@@ -46,4 +71,31 @@
 .diveFlag img {
     width:100%;
     height:100%;
+}
+
+.empty{
+    padding-top: 50px;
+}
+
+.pg-box{
+    display: flex;
+    justify-content: center;
+    border: 2px solid white;
+    width: 1.5em;
+    height: 1.5em;
+    align-items: center;
+    font-size: 1.5em;
+    margin-left: 0.3em;
+    font-weight: bold;
+}
+
+.diveResults li{
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    font-size: 1.5em;
+}
+
+.noDecoLimit{
+    color: red;
 }

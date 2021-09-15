@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 export const DiveStates = () => {
     const [dive0, setDive0] = useState({})
@@ -33,12 +33,14 @@ export const DiveStates = () => {
     const dive = { ...dive0 }
     const abt = dive.abt
     const depth = dive.depth
+    const scroll = () => { diveRef.current.scrollIntoView({ behavior: 'smooth' }) };
     const setAndUpdate = (pg, ss, ndl, dive) => {
         const setPG = (letter) => dive.pg = letter;
         const setSS = (boolean) => dive.ssRequired = boolean;
         const setNDL = (boolean) => dive.noDecoLimit = boolean;
         const setDive = (pg, ss, ndl) => { setPG(pg); setSS(ss); setNDL(ndl) };
-        setDive(pg, ss, ndl); updateDive1(dive)
+        setDive(pg, ss, ndl); updateDive1(dive);
+        scroll();
     }
     const resetDives = () => {
         setDive0({ depth: 0, abt: 0 });
@@ -47,7 +49,7 @@ export const DiveStates = () => {
             ssRequired: false
         })
     }
-
+    const diveRef = useRef()
 
     const getPressureGroup = () => {
         // Depth <= 35
@@ -273,14 +275,14 @@ export const DiveStates = () => {
 
 
     return (<><section className="inputs-flag">
-        <div>
+        <div className="divePlanInputDiv">
             <fieldset>
                 <label>Depth</label>
                 <input type="number" value={dive0.depth} onChange={(event) => {
                     const dive = { ...dive0 }
                     dive.depth = parseInt(event.target.value)
                     setDive0(dive)
-                }} />ft
+                }} /> ft
             </fieldset>
             <fieldset>
                 <label>Time</label>
@@ -297,13 +299,20 @@ export const DiveStates = () => {
             <img src="https://media.istockphoto.com/photos/scuba-flag-waving-picture-id498827225?k=20&m=498827225&s=612x612&w=0&h=fKrkr7R3hWEvan9KJp4hlV4qJMKcVDBFwqrqOsopaw0=" width="200" />
         </div>
     </section>
-        {dive1.depth > 0 ?
-            <section>
-                <ul>
-                    <li>Pressure Group: {dive1.pg}</li>
-                    <li>Safety stop required: {dive1.ssRequired === true ? '3 minutes' : 'No'}</li>
-                </ul>
-            </section>
-            : ''}
+        <section>
+            <ul className="diveResults">
+                <li>Pressure Group: {dive1.depth > 0 ? <div className="pg-box">{dive1.pg}</div> : ''}
+                </li>
+                <li>
+                    Safety stop required: {dive1.ssRequired === true && dive1.noDecoLimit === false ? '3 minutes' :
+                    dive1.ssRequired === true && dive1.noDecoLimit === true ? '8 minutes' :
+                    dive1.depth >! 0 ? 'No' : ''}
+                </li>
+                {dive1.noDecoLimit === true ? <li style={{color:'red'}}>
+                    No Deco Limit met or exceeded. This dive is highly discouraged. The No Deco Limit is exceeded by 5 minutes which requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
+                </li> : ''}
+            </ul>
+            <p ref={diveRef} className="empty"></p>
+        </section>
     </>)
 }
