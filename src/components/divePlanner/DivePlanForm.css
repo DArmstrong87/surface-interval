@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-evenly;
     color: white;
+    align-items: center;
 }
 .inputs-flag input{
     width: 5em;
@@ -109,4 +110,8 @@
 .ss {
     margin-left: 10px;
     text-decoration: underline;
+}
+
+.nextDive {
+    font-size: 1.5em;
 }
