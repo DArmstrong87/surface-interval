@@ -16,6 +16,9 @@ export const NavBar = () => {
 				<Link className="navbar__link" to="/divelog">Dive Log</Link>
 			</li>
 			<li className="navbar__item active">
+				<Link className="navbar__link" to="/diveplanner">Dive Planner</Link>
+			</li>
+			<li className="navbar__item active">
 				<Link className="navbar__link" to="/gear">Gear</Link>
 			</li>
 			<li className="navbar__item active">
