@@ -1,14 +1,22 @@
 import React, { useRef, useState } from "react";
+/* 
+pg = pressure group ('A')
+rnt = residual nitrogen time (min)
+abt = actual bottom time (min)
+tbt = total bottom time (min)
+si = surface interval (min)
+spg = starting pressure group, pg of next dive at the end of the surface interval ('B')
+*/
 
 export const DiveStates = () => {
     // Dive States
-    const [dive0, updateDive0] = useState({ rnt: 0 })
+    const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     const [dive1, updateDive1] = useState({
         noDecoLimit: false,
         ssRequired: false,
         depth: 0,
         rnt: 0,
-        pg: ''
+        pg: '',
     })
     const [dive2, updateDive2] = useState({
         si: 0,
@@ -18,7 +26,8 @@ export const DiveStates = () => {
         tbt: 0,
         ssRequired: false,
         noDecoLimit: false,
-        pg: ''
+        pg: '',
+        spg: ''
     })
     const [dive3, updateDive3] = useState({
         si: 0,
@@ -28,7 +37,8 @@ export const DiveStates = () => {
         tbt: 0,
         ssRequired: false,
         noDecoLimit: false,
-        pg: ''
+        pg: '',
+        spg: ''
     })
 
     // Toggle States --> Form 2 --> Renders Dive 2 form to the page.
@@ -47,7 +57,7 @@ export const DiveStates = () => {
         toggleForm3(form)
     }
 
-    // Reset Forms -- Removes Dive 2 and 3 forms from the page.
+    // Reset Forms -- Removes Dive 2 and 3 forms from the page and toggles off forms 2 and 3.
     const resetForms = () => {
         const form2 = { ...form_Dive2 }
         form2.active = false
@@ -57,15 +67,12 @@ export const DiveStates = () => {
         toggleForm3(form3)
     }
 
-    console.log(form_Dive2)
-
-
     console.log('dive1', dive1)
     console.log('dive2', dive2)
     console.log('dive3', dive3)
 
     // Dive Variables
-    const dive = { ...dive0 }
+    const dive = { ...diveInput }
     const tbt = (dive.abt + dive.rnt)
     const depth = dive.depth
     const diveRef = useRef()
@@ -86,13 +93,12 @@ export const DiveStates = () => {
     }
 
     const resetDives = () => {
-        updateDive0({ depth: 0, abt: 0, rnt: 0, pg: '' });
+        updateDiveInput({ depth: 0, abt: 0, rnt: 0, pg: '' });
         updateDive1({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
         updateDive2({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
         updateDive3({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
         resetForms();
     }
-
 
     // Sets Pressure Group, safety stop boolean, no deco limit boolean, minutes to no deco time, and specifies which dive to update.
     const getPressureGroup = () => {
@@ -319,23 +325,28 @@ export const DiveStates = () => {
 
     return (<>
         <h2>Dive 1</h2>
+
+        {/* <Dive step={1} currentDive={currentDive} />
+        <Dive step={2} currentDive={currentDive} />
+        <Dive step={3} currentDive={currentDive} /> */}
+
         <section className="inputs-flag">
             <div className="divePlanInputDiv">
                 {dive1.depth > 0 ? '' :
                     <><fieldset>
                         <label>Depth</label>
-                        <input type="number" value={dive0.depth} onChange={(event) => {
-                            const dive = { ...dive0 }
+                        <input type="number" value={diveInput.depth} onChange={(event) => {
+                            const dive = { ...diveInput }
                             dive.depth = parseInt(event.target.value)
-                            updateDive0(dive)
+                            updateDiveInput(dive)
                         }} /> ft
                     </fieldset>
                         <fieldset>
                             <label>Time</label>
-                            <input type="number" value={dive0.abt} onChange={(event) => {
-                                const dive = { ...dive0 }
+                            <input type="number" value={diveInput.abt} onChange={(event) => {
+                                const dive = { ...diveInput }
                                 dive.abt = parseInt(event.target.value)
-                                updateDive0(dive)
+                                updateDiveInput(dive)
                             }} />min
                         </fieldset>
                         <button onClick={getPressureGroup}>Dive</button></>
@@ -400,25 +411,25 @@ export const DiveStates = () => {
                                 <fieldset>
                                     <label>Surface Interval</label>
                                     <input type="number" onChange={(event) => {
-                                        const dive = { ...dive0 }
+                                        const dive = { ...diveInput }
                                         dive.si = parseInt(event.target.value)
-                                        updateDive0(dive)
+                                        updateDiveInput(dive)
                                     }} /> min
                                 </fieldset>
                                 <fieldset>
                                     <label>Depth</label>
                                     <input type="number" onChange={(event) => {
-                                        const dive = { ...dive0 }
+                                        const dive = { ...diveInput }
                                         dive.depth = parseInt(event.target.value)
-                                        updateDive0(dive)
+                                        updateDiveInput(dive)
                                     }} /> ft
                                 </fieldset>
                                 <fieldset>
                                     <label>Time</label>
                                     <input type="number" onChange={(event) => {
-                                        const dive = { ...dive0 }
+                                        const dive = { ...diveInput }
                                         dive.abt = parseInt(event.target.value)
-                                        updateDive0(dive)
+                                        updateDiveInput(dive)
                                     }} />min
                                 </fieldset>
                                 <button onClick={getPressureGroup}>Dive</button></>
@@ -473,7 +484,7 @@ export const DiveStates = () => {
             : ''}
 
 
-        {/* // DIVE FORM 2 */}
+        {/* // DIVE FORM 3 */}
         {form_Dive3.active === true ?
             <>
                 <h2>Dive 3</h2>
@@ -484,25 +495,25 @@ export const DiveStates = () => {
                                 <fieldset>
                                     <label>Surface Interval</label>
                                     <input type="number" onChange={(event) => {
-                                        const dive = { ...dive0 }
+                                        const dive = { ...diveInput }
                                         dive.si = parseInt(event.target.value)
-                                        updateDive0(dive)
+                                        updateDiveInput(dive)
                                     }} /> min
                                 </fieldset>
                                 <fieldset>
                                     <label>Depth</label>
                                     <input type="number" onChange={(event) => {
-                                        const dive = { ...dive0 }
+                                        const dive = { ...diveInput }
                                         dive.depth = parseInt(event.target.value)
-                                        updateDive0(dive)
+                                        updateDiveInput(dive)
                                     }} /> ft
                                 </fieldset>
                                 <fieldset>
                                     <label>Time</label>
                                     <input type="number" onChange={(event) => {
-                                        const dive = { ...dive0 }
+                                        const dive = { ...diveInput }
                                         dive.abt = parseInt(event.target.value)
-                                        updateDive0(dive)
+                                        updateDiveInput(dive)
                                     }} />min
                                 </fieldset>
                                 <button onClick={getPressureGroup}>Dive</button></>
