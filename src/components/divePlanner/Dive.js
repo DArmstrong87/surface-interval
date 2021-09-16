@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-
-export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
+export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }) => {
     const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     let currentDive = {}
 
@@ -44,9 +43,9 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
                                 updateDiveInput(dive)
                             }} />min
                         </fieldset>
-                        <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button></>
+                            <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button></>
                 }
-                <button onClick={()=>resetDives(updateDiveInput)}>Reset</button>
+                <button onClick={() => resetDives(updateDiveInput)}>Reset</button>
             </div>
             <div className={currentDive.noDecoLimit === false && currentDive.ssRequired === false ? "diveFlagGreen" : currentDive.noDecoLimit === true ? "diveFlagRed" : currentDive.noDecoLimit === false && currentDive.ssRequired === true ? "diveFlagYellow" : ""}>
                 <img src="https://media.istockphoto.com/photos/scuba-flag-waving-picture-id498827225?k=20&m=498827225&s=612x612&w=0&h=fKrkr7R3hWEvan9KJp4hlV4qJMKcVDBFwqrqOsopaw0=" width="200" />
