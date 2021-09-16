@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Dive } from "./Dive";
 /* 
 pg = pressure group ('A')
 rnt = residual nitrogen time (min)
@@ -41,6 +42,8 @@ export const DiveStates = () => {
         spg: ''
     })
 
+    const dives = [dive1, dive2, dive3]
+
     // Toggle States --> Form 2 --> Renders Dive 2 form to the page.
     const [form_Dive2, toggleForm2] = useState({ active: false })
     const toggleDive2 = () => {
@@ -75,7 +78,7 @@ export const DiveStates = () => {
     const dive = { ...diveInput }
     const tbt = (dive.abt + dive.rnt)
     const depth = dive.depth
-    const diveRef = useRef()
+    // const diveRef = useRef()
 
     // Function to set the dive state's pressure group, ss boolean, no deco limit boolean, and minutes over deco. This funciton also scrolls the results into view.
     const setAndUpdate = (pg, ss, ndl, mod, dive) => {
@@ -83,13 +86,14 @@ export const DiveStates = () => {
         const setSS = (boolean) => dive.ssRequired = boolean;
         const setNDL = (boolean) => dive.noDecoLimit = boolean;
         const minOverDeco = (num) => dive.minOverDeco = num;
-        const scroll = () => { diveRef.current.scrollIntoView({ behavior: 'smooth' }) };
+        // const scroll = () => { diveRef.current.scrollIntoView({ behavior: 'smooth' }) };
         const setDive = (pg, ss, ndl, mod) => { setPG(pg); setSS(ss); setNDL(ndl); minOverDeco(mod) };
         setDive(pg, ss, ndl, mod);
-        if (dive1.pg === '') { updateDive1(dive) }
-        else if (dive2.pg === '') { { updateDive2(dive) } }
-        else if (dive3.pg === '') { { updateDive3(dive) } };
-        scroll();
+        updateDive1(dive)
+        console.log('setandupdate', dive)
+        // else if (dive2.pg === '') { { updateDive2(dive) } }
+        // else if (dive3.pg === '') { { updateDive3(dive) } };
+        // scroll();
     }
 
     const resetDives = () => {
@@ -101,7 +105,11 @@ export const DiveStates = () => {
     }
 
     // Sets Pressure Group, safety stop boolean, no deco limit boolean, minutes to no deco time, and specifies which dive to update.
-    const getPressureGroup = () => {
+    const getPressureGroup = (input) => {
+        console.log('input',input)
+        const tbt = (input.abt + input.rnt)
+        const depth = input.depth
+        console.log('getPressureGroup runs')
         // Depth <= 35
         if (tbt <= 10 && depth <= 35) { setAndUpdate('A', false, false, (tbt - 205), dive) }
         else if (tbt <= 19 && depth <= 35) { setAndUpdate('B', false, false, (tbt - 205), dive) }
@@ -324,12 +332,11 @@ export const DiveStates = () => {
     }
 
     return (<>
-        <h2>Dive 1</h2>
+        <Dive step={1} dives={dives} input={diveInput} getPressureGroup={getPressureGroup} resetDives={resetDives}/>
+        {/* <Dive step={2} currentDive={currentDive} input={diveInput} getPressureGroup={getPressureGroup}/>
+        <Dive step={3} currentDive={currentDive} input={diveInput} getPressureGroup={getPressureGroup}/> */}
 
-        {/* <Dive step={1} currentDive={currentDive} />
-        <Dive step={2} currentDive={currentDive} />
-        <Dive step={3} currentDive={currentDive} /> */}
-
+        {/* <h2>Dive 1</h2>
         <section className="inputs-flag">
             <div className="divePlanInputDiv">
                 {dive1.depth > 0 ? '' :
@@ -397,7 +404,7 @@ export const DiveStates = () => {
                 </button>
                 : ''}
             <p ref={diveRef} className="empty"></p>
-        </section>
+        </section> */}
 
 
         {/* // DIVE FORM 2 */}
