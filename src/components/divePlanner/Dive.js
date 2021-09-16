@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }) => {
+export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
     const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     let currentDive = {}
 
@@ -11,6 +11,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }
     console.log('current', currentDive)
 
     return (<>
+
         {/* FORM */}
         <h2>Dive {step === 1 ? '1' : step === 2 ? '2' : step === 3 ? '3' : ''}</h2>
         <section className="inputs-flag">
