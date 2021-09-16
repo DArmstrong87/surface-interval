@@ -46,32 +46,6 @@ export const DiveStates = () => {
 
     const dives = [dive1, dive2, dive3]
 
-    // Toggle States --> Form 2 --> Renders Dive 2 form to the page.
-    const [form_Dive2, toggleForm2] = useState({ active: false })
-    const toggleDive2 = () => {
-        const form = { ...form_Dive2 }
-        form.active = true
-        toggleForm2(form)
-    }
-
-    // Toggle States --> Form 3 -- Renders Dive 3 form to the page.
-    const [form_Dive3, toggleForm3] = useState({ active: false })
-    const toggleDive3 = () => {
-        const form = { ...form_Dive3 }
-        form.active = true
-        toggleForm3(form)
-    }
-
-    // Reset Forms -- Removes Dive 2 and 3 forms from the page and toggles off forms 2 and 3.
-    const resetForms = () => {
-        const form2 = { ...form_Dive2 }
-        form2.active = false
-        const form3 = { ...form_Dive3 }
-        form3.active = false
-        toggleForm2(form2)
-        toggleForm3(form3)
-    }
-
     console.log('dive1', dive1)
     console.log('dive2', dive2)
     console.log('dive3', dive3)
@@ -89,12 +63,11 @@ export const DiveStates = () => {
         else if (step === 3) { updateDive3(dive) }
     }
 
-    const resetDives = () => {
-        // updateDiveInput({ depth: 0, abt: 0, rnt: 0, pg: '' });
+    const resetDives = (updateDiveInput) => {
+        updateDiveInput({ depth: 0, abt: 0, rnt: 0, pg: '' });
         updateDive1({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
         updateDive2({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
         updateDive3({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
-        resetForms();
     }
 
     // Sets Pressure Group, safety stop boolean, no deco limit boolean, minutes to no deco time, and specifies which dive to update.
