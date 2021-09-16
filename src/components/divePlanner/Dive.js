@@ -9,24 +9,35 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
     else if (step === 2) { currentDive = dives[1] }
     else if (step === 3) { currentDive = dives[2] }
     console.log(dives)
-    console.log('current',currentDive)
+    console.log('current', currentDive)
     console.log('step', step)
 
 
     return (<>
         {/* FORM */}
-        <h2>Dive 1</h2>
+        <h2>Dive {step === 1 ? '1' : step === 2 ? '2' : step === 3 ? '3' : ''}</h2>
         <section className="inputs-flag">
             <div className="divePlanInputDiv">
                 {currentDive.pg !== '' ? '' :
-                    <><fieldset>
-                        <label>Depth</label>
-                        <input type="number" value={diveInput.depth} onChange={(event) => {
-                            const dive = { ...diveInput }
-                            dive.depth = parseInt(event.target.value)
-                            updateDiveInput(dive)
-                        }} /> ft
-                    </fieldset>
+                    <>
+                        {step === 2 || step === 3 ?
+                            <fieldset>
+                                <label>Surface Interval</label>
+                                <input type="number" onChange={(event) => {
+                                    const dive = { ...diveInput }
+                                    dive.si = parseInt(event.target.value)
+                                    updateDiveInput(dive)
+                                }} /> min
+                            </fieldset> : ''
+                        }
+                        <fieldset>
+                            <label>Depth</label>
+                            <input type="number" value={diveInput.depth} onChange={(event) => {
+                                const dive = { ...diveInput }
+                                dive.depth = parseInt(event.target.value)
+                                updateDiveInput(dive)
+                            }} /> ft
+                        </fieldset>
                         <fieldset>
                             <label>Time</label>
                             <input type="number" value={diveInput.abt} onChange={(event) => {
@@ -35,7 +46,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
                                 updateDiveInput(dive)
                             }} />min
                         </fieldset>
-                        <button onClick={() => getPressureGroup(diveInput)}>Dive</button></>
+                        <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button></>
                 }
                 <button onClick={resetDives}>Reset</button>
             </div>
@@ -78,12 +89,12 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
                         </li> : ''
                 }
             </ul>
-            {/* {currentDive.depth > 0 ?
-                <button className="nextDive" onClick={toggleDive2}>
+            {currentDive.pg !== '' ?
+                <button className="nextDive" >
                     Next Dive ⬇️
                 </button>
                 : ''}
-            <p className="empty"></p> */}
+            <p className="empty"></p>
         </section>
 
 
