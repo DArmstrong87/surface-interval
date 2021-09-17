@@ -1,13 +1,5 @@
 import React, { useState } from "react";
 import { Dive } from "./Dive";
-/* 
-pg = pressure group ('A')
-rnt = residual nitrogen time (min)
-abt = actual bottom time (min)
-tbt = total bottom time (min)
-si = surface interval (min)
-spg = starting pressure group, pg of next dive at the end of the surface interval ('B')
-*/
 
 export const DiveStates = () => {
     // Dive States
@@ -58,7 +50,7 @@ export const DiveStates = () => {
         const setNewPg = () => {
             if (step === 1) { dive.pgAfterSi = null }
             else if (step === 2) { dive.pgAfterSi = dive2.pgAfterSi }
-            else if (step === 2) { dive.pgAfterSi = dive3.pgAfterSi }
+            else if (step === 3) { dive.pgAfterSi = dive3.pgAfterSi }
         }
         const setRNT = (num) => dive.rnt = num
         const setDive = (pg, ss, ndl, mod, rnt) => { setPG(pg); setSS(ss); setNDL(ndl); minOverDeco(mod); setNewPg(); setRNT(rnt) };
@@ -677,7 +669,6 @@ export const DiveStates = () => {
 
         if (step === 2) { updateDive2(dive) }
         else if (step === 3) { updateDive3(dive) }
-
     }
 
     const getRNT = (step, inputDepth, newPg) => {
