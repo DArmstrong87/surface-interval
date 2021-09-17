@@ -52,11 +52,11 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
                                 updateDiveInput(dive)
                             }} />min
                         </fieldset>
-                        {step === 1 ? 
-                        <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button>
-                        :
-                        <button onClick={() => getRNTandRunPG()}>Dive</button>
-                    }
+                        {step === 1 ?
+                            <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button>
+                            :
+                            <button onClick={() => getRNTandRunPG()}>Dive</button>
+                        }
                     </>
                 }
                 <button onClick={() => resetDives(updateDiveInput)}>Reset</button>
@@ -70,7 +70,6 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
         <section>
             {step === 2 || step === 3 ?
                 <ul className="diveResults">
-
                     {diveInput.si > 0 ?
                         <><li>
                             <div className="results-label">Surface Interval:</div> {diveInput?.si} min</li>
@@ -83,21 +82,35 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
                 : ''}
             {currentDive.depth !== 0 ?
                 <ul className="diveResults">
-
-                    {/* {step === 2 || step === 3 ?
-                        <li>
-                            <div className="results-label">Starting Pressure Group:</div><div className="pg-box">{currentDive.pgAfterSi}</div>
-                        </li> : ''} */}
                     <li>
-                        <div className="results-label">Pressure Group:</div> {currentDive.pg !== '' ? <div className="pg-box">{currentDive.pg}</div> : ''}
+                        <div className="results-label">Pressure group:</div> {currentDive.pg !== '' ? <div className="pg-box">{currentDive.pg}</div> : ''}
                     </li>
                     <li>
                         <div className="results-label">Depth:</div> {currentDive.depth > 0 ? currentDive.depth + ' feet' : ''}
                     </li>
-                    <li>
-                        <div className="results-label">Actual bottom time:</div>
-                        {currentDive.abt > 0 ? currentDive.abt + ' minutes' : ''}
-                    </li>
+                    {step === 1 ?
+                        <li>
+                            <div className="results-label">Total bottom time:</div>
+                            {currentDive.abt > 0 ? currentDive.abt + ' min' : ''}
+                        </li>
+                        : ''}
+                    {step === 2 || step === 3 ?
+                        <><div className={currentDive.noDecoLimit === false && currentDive.ssRequired === false ? "timeGreen" : currentDive.noDecoLimit === true ? "timeRed" : currentDive.noDecoLimit === false && currentDive.ssRequired === true ? "timeYellow" : ""}>
+                            <li>
+                                <div className="results-label">Actual bottom time:</div>
+                                {currentDive.abt > 0 ? currentDive.abt + ' min' : ''}
+                            </li>
+                            <li>
+                                <div className="results-label">+ Residual nitrogen time:</div>
+                                {currentDive.rnt} min
+                            </li>
+                            <li>
+                                <div className="results-label">= Total bottom time: </div>
+                                {currentDive.abt + currentDive.rnt} min
+                            </li>
+                        </div></>
+                        : ''
+                    }
                     <li>
                         <div className="results-label">Safety stop required:</div>
                         <div className="ss">{currentDive.ssRequired === true && currentDive.noDecoLimit === false ? '3 minutes' :
@@ -114,7 +127,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
                         </li> : ''
                     }
                     {currentDive.minOverDeco > 0 ?
-                        <><li>Min over no deco limit: {currentDive.minOverDeco}</li>
+                        <><li><div className="results-label">Min over no deco limit:</div> {currentDive.minOverDeco}</li>
                             <li>
                                 <div className="noDecoLimit">
                                     <b>No Deco Limit exceeded.</b> This dive is highly discouraged. The No Deco Limit is exceeded by {currentDive.minOverDeco} {currentDive.minOverDeco === 1 ? 'minute' : 'minutes'} which requires an {currentDive.minOverDeco <= 5 ? '8' : '15'} minute decompression stop (air supply permitting). The diver must remain out of the water for {currentDive.minOverDeco <= 5 ? '6' : '24'} hours before the next dive.

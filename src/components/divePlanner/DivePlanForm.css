@@ -119,3 +119,22 @@
     color: lightgreen;
     margin-right: 0.3em;
 }
+
+.timeGreen{
+    border: 4px lightgreen double;
+    padding-left: 25px;
+    width: fit-content;
+    margin:5px 0px 0px -20px;
+}
+.timeYellow{
+    border: 4px yellow double;
+    padding-left: 25px;
+    width: fit-content;
+    margin:5px 0px 0px -20px;
+}
+.timeRed {
+    border: 4px red double;
+    padding-left: 25px;
+    width: fit-content;
+    margin:5px 0px 0px -20px;
+}
