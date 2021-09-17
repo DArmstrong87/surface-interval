@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
+export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, getRNT }) => {
     const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     let currentDive = {}
 
@@ -10,23 +10,29 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
     console.log(dives)
     console.log('current', currentDive)
 
-    return (<>
+    const getRNTandRunPG = () => {
+        getRNT(step, diveInput.depth, currentDive.pgAfterSi);
+        getPressureGroup(diveInput, step, currentDive)
+    }
 
-        {/* FORM */}
+    return (<>{/* FORM */}
         <h2>Dive {step === 1 ? '1' : step === 2 ? '2' : step === 3 ? '3' : ''}</h2>
         <section className="inputs-flag">
             <div className="divePlanInputDiv">
                 {currentDive.pg !== '' ? '' :
                     <>
                         {step === 2 || step === 3 ?
-                            <fieldset>
+                            <><fieldset>
                                 <label>Surface Interval</label>
                                 <input type="number" onChange={(event) => {
                                     const dive = { ...diveInput }
                                     dive.si = parseInt(event.target.value)
                                     updateDiveInput(dive)
                                 }} /> min
-                            </fieldset> : ''
+                                <button onClick={() => setPgAfterSi(diveInput, currentDive, step)}>Set</button>
+                            </fieldset>
+                            </>
+                            : ''
                         }
                         <fieldset>
                             <label>Depth</label>
@@ -44,7 +50,12 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
                                 updateDiveInput(dive)
                             }} />min
                         </fieldset>
-                            <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button></>
+                        {step === 1 ?
+                            <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button>
+                            :
+                            <button onClick={() => getRNTandRunPG()}>Dive</button>
+                        }
+                    </>
                 }
                 <button onClick={() => resetDives(updateDiveInput)}>Reset</button>
             </div>
@@ -55,39 +66,81 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
 
         {/* RESULTS */}
         <section>
-            <ul className="diveResults">
-                <li>
-                    Pressure Group: {currentDive.pg !== '' ? <div className="pg-box">{currentDive.pg}</div> : ''}
-                </li>
-                <li>
-                    Safety stop required:
-                    <div className="ss">{currentDive.ssRequired === true && currentDive.noDecoLimit === false ? '3 minutes' :
-                        currentDive.noDecoLimit === true && currentDive.minOverDeco <= 5 ? '8 minutes' :
-                            currentDive.noDecoLimit === true && currentDive.minOverDeco > 5 ? '15 minutes' :
-                                currentDive.pg !== '' && currentDive.ssRequired === false ? 'None' : ''}
-                    </div>
-                </li>
-                {currentDive.minOverDeco < 0 ?
+            {step === 2 || step === 3 ?
+                <ul className="diveResults">
+                    {diveInput.si > 0 ?
+                        <><li>
+                            <div className="results-label">Surface Interval:</div> {diveInput?.si} min</li>
+                            <li>
+                                <div className="results-label">Starting Pressure Group:</div><div className="pg-box">{currentDive?.pgAfterSi}</div>
+                            </li></>
+                        : ''
+                    }
+                </ul>
+                : ''}
+            {currentDive.depth !== 0 ?
+                <ul className="diveResults">
                     <li>
-                        Minutes to no deco limit: {currentDive.pg !== '' ? Math.abs(currentDive.minOverDeco)
-                            : ''}
-                    </li> : ''
-                }
-                {currentDive.minOverDeco > 0 ?
-                    <><li>Min over no deco limit: {currentDive.minOverDeco}</li>
+                        <div className="results-label">Pressure group:</div> {currentDive.pg !== '' ? <div className="pg-box">{currentDive.pg}</div> : ''}
+                    </li>
+                    <li>
+                        <div className="results-label">Depth:</div> {currentDive.depth > 0 ? currentDive.depth + ' feet' : ''}
+                    </li>
+                    {step === 1 ?
                         <li>
-                            <div className="noDecoLimit">
-                                <b>No Deco Limit exceeded.</b> This dive is highly discouraged. The No Deco Limit is exceeded by {currentDive.minOverDeco} {currentDive.minOverDeco === 1 ? 'minute' : 'minutes'} which requires an {currentDive.minOverDeco <= 5 ? '8' : '15'} minute decompression stop (air supply permitting). The diver must remain out of the water for {currentDive.minOverDeco <= 5 ? '6' : '24'} hours before the next dive.
-                            </div>
-                        </li></>
-                    : currentDive.noDecoLimit === true && currentDive.minOverDeco <= 0 ?
+                            <div className="results-label">Total bottom time:</div>
+                            {currentDive.abt > 0 ? currentDive.abt + ' min' : ''}
+                        </li>
+                        : ''}
+                    {step === 2 || step === 3 ?
+                        <><div className={currentDive.noDecoLimit === false && currentDive.ssRequired === false ? "timeGreen" : currentDive.noDecoLimit === true ? "timeRed" : currentDive.noDecoLimit === false && currentDive.ssRequired === true ? "timeYellow" : ""}>
+                            <li>
+                                <div className="results-label">Actual bottom time:</div>
+                                {currentDive.abt > 0 ? currentDive.abt + ' min' : ''}
+                            </li>
+                            <li>
+                                <div className="results-label">+ Residual nitrogen time:</div>
+                                {currentDive.rnt} min
+                            </li>
+                            <li>
+                                <div className="results-label">= Total bottom time: </div>
+                                {currentDive.abt + currentDive.rnt} min
+                            </li>
+                        </div></>
+                        : ''
+                    }
+                    <li>
+                        <div className="results-label">Safety stop required:</div>
+                        <div className="ss">{currentDive.ssRequired === true && currentDive.noDecoLimit === false ? '3 minutes' :
+                            currentDive.noDecoLimit === true && currentDive.minOverDeco <= 5 ? '8 minutes' :
+                                currentDive.noDecoLimit === true && currentDive.minOverDeco > 5 ? '15 minutes' :
+                                    currentDive.pg !== '' && currentDive.ssRequired === false ? 'None' : ''}
+                        </div>
+                    </li>
+                    {currentDive.minOverDeco < 0 ?
                         <li>
-                            <div className="noDecoLimit">
-                                <b>No Deco Limit met.</b> This dive is highly discouraged. The dive time requires rounding up to the next pressure group, which meets the no deco limit. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
-                            </div>
+                            <div className="results-label">Minutes to no deco limit: </div>
+                            {currentDive.pg !== '' ? Math.abs(currentDive.minOverDeco)
+                                : ''}
                         </li> : ''
-                }
-            </ul>
+                    }
+                    {currentDive.minOverDeco > 0 ?
+                        <><li><div className="results-label">Min over no deco limit:</div> {currentDive.minOverDeco}</li>
+                            <li>
+                                <div className="noDecoLimit">
+                                    <b>No Deco Limit exceeded.</b> This dive is highly discouraged. The No Deco Limit is exceeded by {currentDive.minOverDeco} {currentDive.minOverDeco === 1 ? 'minute' : 'minutes'} which requires an {currentDive.minOverDeco <= 5 ? '8' : '15'} minute decompression stop (air supply permitting). The diver must remain out of the water for {currentDive.minOverDeco <= 5 ? '6' : '24'} hours before the next dive.
+                                </div>
+                            </li></>
+                        : currentDive.noDecoLimit === true && currentDive.minOverDeco <= 0 ?
+                            <li>
+                                <div className="noDecoLimit">
+                                    <b>No Deco Limit met.</b> This dive is highly discouraged. The dive time requires rounding up to the next pressure group, which meets the no deco limit. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
+                                </div>
+                            </li> : ''
+                    }
+                </ul>
+                : ''
+            }
         </section>
     </>
     )
