@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
+export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }) => {
     const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     let currentDive = {}
 
@@ -16,17 +16,19 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
         <h2>Dive {step === 1 ? '1' : step === 2 ? '2' : step === 3 ? '3' : ''}</h2>
         <section className="inputs-flag">
             <div className="divePlanInputDiv">
-                {currentDive.pg !== '' ? '' :
+                {currentDive.pg !== '' || currentDive.si > 0 ? '' : 
                     <>
                         {step === 2 || step === 3 ?
-                            <fieldset>
+                            <><fieldset>
                                 <label>Surface Interval</label>
                                 <input type="number" onChange={(event) => {
                                     const dive = { ...diveInput }
                                     dive.si = parseInt(event.target.value)
                                     updateDiveInput(dive)
                                 }} /> min
-                            </fieldset> : ''
+                            </fieldset>
+                                <button onClick={() => setPgAfterSi(diveInput, currentDive, step)}>Set</button></>
+                            : ''
                         }
                         <fieldset>
                             <label>Depth</label>
@@ -55,8 +57,12 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
 
         {/* RESULTS */}
         <section>
-            {currentDive.pg !== '' ?
+            {currentDive.depth !== 0 ?
                 <ul className="diveResults">
+                    {step === 2 || step === 3 ?
+                        <li>
+                            <div className="results-label">Starting Pressure Group:</div><div className="pg-box">{currentDive.pgAfterSi}</div>
+                        </li> : ''}
                     <li>
                         <div className="results-label">Pressure Group:</div> {currentDive.pg !== '' ? <div className="pg-box">{currentDive.pg}</div> : ''}
                     </li>
