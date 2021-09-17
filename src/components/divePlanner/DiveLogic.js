@@ -55,12 +55,12 @@ export const DiveStates = () => {
         const setSS = (boolean) => dive.ssRequired = boolean;
         const setNDL = (boolean) => dive.noDecoLimit = boolean;
         const minOverDeco = (num) => dive.minOverDeco = num;
-        // const newPg = setPgAfterSi(step, dive)
-        // const rnt = getRNT(step, dive, newPg)
-        // const setRNT = (num) => {dive.rnt = num}
-        // console.log('rnt', rnt)
-        // const setNewPg = (newPg) => dive.pgAfterSi = newPg
-        const setDive = (pg, ss, ndl, mod) => { setPG(pg); setSS(ss); setNDL(ndl); minOverDeco(mod)};
+        const setNewPg = () => {
+            if (step === 1) { dive.pgAfterSi = null }
+            else if (step === 2) { dive.pgAfterSi = dive2.pgAfterSi }
+            else if (step === 2) { dive.pgAfterSi = dive3.pgAfterSi }
+        }
+        const setDive = (pg, ss, ndl, mod) => { setPG(pg); setSS(ss); setNDL(ndl); minOverDeco(mod); setNewPg() };
         setDive(pg, ss, ndl, mod);
         if (step === 1) { updateDive1(dive) }
         else if (step === 2) { updateDive2(dive) }
@@ -306,7 +306,7 @@ export const DiveStates = () => {
     const setPgAfterSi = (input, currentDive, step) => {
         // This function finds new PG, factoring in the previous dive's PG and the current surface interval.
         console.log('setNewPG runs')
-        const inputData = {...input}
+        const inputData = { ...input }
         const dive = currentDive
         const findPg = () => {
             if (step === 1) { return '' }
@@ -671,8 +671,8 @@ export const DiveStates = () => {
         else if (pg === 'Z' && si <= 2 && si >= 0) { dive.pgAfterSi = 'Z' }
         else { dive.pgAfterSi = 'none' }
 
-        if(step === 2){updateDive2(dive)}
-        else if(step === 3){updateDive3(dive)}
+        if (step === 2) { updateDive2(dive) }
+        else if (step === 3) { updateDive3(dive) }
 
     }
 
@@ -690,12 +690,12 @@ export const DiveStates = () => {
 
     return (<>
 
-        <Dive step={1} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setAndUpdate={setAndUpdate}/>
+        <Dive step={1} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setAndUpdate={setAndUpdate} />
         {dive1.pg !== ''
-            ? <Dive step={2} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives}  setPgAfterSi={setPgAfterSi}/>
+            ? <Dive step={2} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} />
             : ''}
         {dive2.pg !== ''
-            ? <Dive step={3} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives}  setPgAfterSi={setPgAfterSi}/>
+            ? <Dive step={3} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} />
             : ''}
     </>
     )

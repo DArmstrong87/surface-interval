@@ -16,7 +16,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }
         <h2>Dive {step === 1 ? '1' : step === 2 ? '2' : step === 3 ? '3' : ''}</h2>
         <section className="inputs-flag">
             <div className="divePlanInputDiv">
-                {currentDive.pg !== '' || currentDive.si > 0 ? '' : 
+                {currentDive.pg !== '' ? '' : 
                     <>
                         {step === 2 || step === 3 ?
                             <><fieldset>
