@@ -44,7 +44,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
                                 updateDiveInput(dive)
                             }} />min
                         </fieldset>
-                            <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button></>
+                        <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button></>
                 }
                 <button onClick={() => resetDives(updateDiveInput)}>Reset</button>
             </div>
@@ -55,39 +55,50 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives }) => {
 
         {/* RESULTS */}
         <section>
-            <ul className="diveResults">
-                <li>
-                    Pressure Group: {currentDive.pg !== '' ? <div className="pg-box">{currentDive.pg}</div> : ''}
-                </li>
-                <li>
-                    Safety stop required:
-                    <div className="ss">{currentDive.ssRequired === true && currentDive.noDecoLimit === false ? '3 minutes' :
-                        currentDive.noDecoLimit === true && currentDive.minOverDeco <= 5 ? '8 minutes' :
-                            currentDive.noDecoLimit === true && currentDive.minOverDeco > 5 ? '15 minutes' :
-                                currentDive.pg !== '' && currentDive.ssRequired === false ? 'None' : ''}
-                    </div>
-                </li>
-                {currentDive.minOverDeco < 0 ?
+            {currentDive.pg !== '' ?
+                <ul className="diveResults">
                     <li>
-                        Minutes to no deco limit: {currentDive.pg !== '' ? Math.abs(currentDive.minOverDeco)
-                            : ''}
-                    </li> : ''
-                }
-                {currentDive.minOverDeco > 0 ?
-                    <><li>Min over no deco limit: {currentDive.minOverDeco}</li>
+                        <div className="results-label">Pressure Group:</div> {currentDive.pg !== '' ? <div className="pg-box">{currentDive.pg}</div> : ''}
+                    </li>
+                    <li>
+                        <div className="results-label">Depth:</div> {currentDive.depth > 0 ? currentDive.depth + ' feet' : ''}
+                    </li>
+                    <li>
+                        <div className="results-label">Actual bottom time:</div>
+                        {currentDive.abt > 0 ? currentDive.abt + ' minutes' : ''}
+                    </li>
+                    <li>
+                        <div className="results-label">Safety stop required:</div>
+                        <div className="ss">{currentDive.ssRequired === true && currentDive.noDecoLimit === false ? '3 minutes' :
+                            currentDive.noDecoLimit === true && currentDive.minOverDeco <= 5 ? '8 minutes' :
+                                currentDive.noDecoLimit === true && currentDive.minOverDeco > 5 ? '15 minutes' :
+                                    currentDive.pg !== '' && currentDive.ssRequired === false ? 'None' : ''}
+                        </div>
+                    </li>
+                    {currentDive.minOverDeco < 0 ?
                         <li>
-                            <div className="noDecoLimit">
-                                <b>No Deco Limit exceeded.</b> This dive is highly discouraged. The No Deco Limit is exceeded by {currentDive.minOverDeco} {currentDive.minOverDeco === 1 ? 'minute' : 'minutes'} which requires an {currentDive.minOverDeco <= 5 ? '8' : '15'} minute decompression stop (air supply permitting). The diver must remain out of the water for {currentDive.minOverDeco <= 5 ? '6' : '24'} hours before the next dive.
-                            </div>
-                        </li></>
-                    : currentDive.noDecoLimit === true && currentDive.minOverDeco <= 0 ?
-                        <li>
-                            <div className="noDecoLimit">
-                                <b>No Deco Limit met.</b> This dive is highly discouraged. The dive time requires rounding up to the next pressure group, which meets the no deco limit. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
-                            </div>
+                            <div className="results-label">Minutes to no deco limit: </div>
+                            {currentDive.pg !== '' ? Math.abs(currentDive.minOverDeco)
+                                : ''}
                         </li> : ''
-                }
-            </ul>
+                    }
+                    {currentDive.minOverDeco > 0 ?
+                        <><li>Min over no deco limit: {currentDive.minOverDeco}</li>
+                            <li>
+                                <div className="noDecoLimit">
+                                    <b>No Deco Limit exceeded.</b> This dive is highly discouraged. The No Deco Limit is exceeded by {currentDive.minOverDeco} {currentDive.minOverDeco === 1 ? 'minute' : 'minutes'} which requires an {currentDive.minOverDeco <= 5 ? '8' : '15'} minute decompression stop (air supply permitting). The diver must remain out of the water for {currentDive.minOverDeco <= 5 ? '6' : '24'} hours before the next dive.
+                                </div>
+                            </li></>
+                        : currentDive.noDecoLimit === true && currentDive.minOverDeco <= 0 ?
+                            <li>
+                                <div className="noDecoLimit">
+                                    <b>No Deco Limit met.</b> This dive is highly discouraged. The dive time requires rounding up to the next pressure group, which meets the no deco limit. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
+                                </div>
+                            </li> : ''
+                    }
+                </ul>
+                : ''
+            }
         </section>
     </>
     )

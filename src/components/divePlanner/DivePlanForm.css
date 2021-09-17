@@ -86,7 +86,6 @@
     height: 1.5em;
     align-items: center;
     font-size: 1.5em;
-    margin-left: 0.3em;
     font-weight: bold;
 }
 
@@ -108,10 +107,15 @@
 }
 
 .ss {
-    margin-left: 10px;
     text-decoration: underline;
 }
 
 .nextDive {
     font-size: 1.5em;
+}
+
+.results-label {
+    font-weight: bold;
+    color: lightgreen;
+    margin-right: 0.3em;
 }
