@@ -57,9 +57,12 @@ export const DiveStates = () => {
         const setNDL = (boolean) => dive.noDecoLimit = boolean;
         const minOverDeco = (num) => dive.minOverDeco = num;
         const newPg = setPgAfterSi(step, dive)
+        const rnt = getRNT(step, dive, newPg)
+        const setRNT = (num) => {dive.rnt = num}
+        console.log('rnt', rnt)
         const setNewPg = (newPg) => dive.pgAfterSi = newPg
-        const setDive = (pg, ss, ndl, mod, newPg) => { setPG(pg); setSS(ss); setNDL(ndl); minOverDeco(mod); setNewPg(newPg) };
-        setDive(pg, ss, ndl, mod, newPg);
+        const setDive = (pg, ss, ndl, mod, newPg, rnt) => { setPG(pg); setSS(ss); setNDL(ndl); minOverDeco(mod); setNewPg(newPg); setRNT(rnt) };
+        setDive(pg, ss, ndl, mod, newPg, rnt);
         if (step === 1) { updateDive1(dive) }
         else if (step === 2) { updateDive2(dive) }
         else if (step === 3) { updateDive3(dive) }
@@ -74,6 +77,7 @@ export const DiveStates = () => {
 
     // Sets Pressure Group, safety stop boolean, no deco limit boolean, minutes to no deco time, and specifies which dive to update.
     const getPressureGroup = (input, step) => {
+        
         const tbt = (input.abt + input.rnt)
         const depth = input.depth
         console.log(input)
@@ -314,8 +318,6 @@ export const DiveStates = () => {
 
         const pg = findPg()
         const si = findSi()
-        console.log(step)
-        console.log(pg, si)
 
         if (pg === 'A' && si >= 0) { return 'A' }
         else if (pg === 'B' && si >= 48) { return 'A' }
@@ -668,10 +670,19 @@ export const DiveStates = () => {
         else if (pg === 'Z' && si <= 8 && si >= 6) { return 'X' }
         else if (pg === 'Z' && si <= 5 && si >= 3) { return 'Y' }
         else if (pg === 'Z' && si <= 2 && si >= 0) { return 'Z' }
-
-
-
         else { return 'none' }
+    }
+
+    const getRNT = (step, dive, newPg) => {
+        const depth = dive.depth
+        const startPg = newPg
+        console.log('depth', depth)
+        console.log('starting pg', startPg)
+
+        if (depth <= 35) {
+            if (startPg === 'A') { return 10 }
+            if (startPg === 'B') { return 19 }
+        } else if (step === 1) { return 0 }
     }
 
     return (<>
