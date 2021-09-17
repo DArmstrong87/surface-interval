@@ -15,9 +15,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
         getPressureGroup(diveInput, step, currentDive)
     }
 
-    return (<>
-
-        {/* FORM */}
+    return (<>{/* FORM */}
         <h2>Dive {step === 1 ? '1' : step === 2 ? '2' : step === 3 ? '3' : ''}</h2>
         <section className="inputs-flag">
             <div className="divePlanInputDiv">
