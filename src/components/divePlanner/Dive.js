@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }) => {
+export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, getRNT }) => {
     const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     let currentDive = {}
 
@@ -10,13 +10,18 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }
     console.log(dives)
     console.log('current', currentDive)
 
+    const getRNTandRunPG = () => {
+        getRNT(step, diveInput.depth, currentDive.pgAfterSi);
+        getPressureGroup(diveInput, step, currentDive)
+    }
+
     return (<>
 
         {/* FORM */}
         <h2>Dive {step === 1 ? '1' : step === 2 ? '2' : step === 3 ? '3' : ''}</h2>
         <section className="inputs-flag">
             <div className="divePlanInputDiv">
-                {currentDive.pg !== '' ? '' : 
+                {currentDive.pg !== '' ? '' :
                     <>
                         {step === 2 || step === 3 ?
                             <><fieldset>
@@ -26,8 +31,9 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }
                                     dive.si = parseInt(event.target.value)
                                     updateDiveInput(dive)
                                 }} /> min
+                                <button onClick={() => setPgAfterSi(diveInput, currentDive, step)}>Set</button>
                             </fieldset>
-                                <button onClick={() => setPgAfterSi(diveInput, currentDive, step)}>Set</button></>
+                            </>
                             : ''
                         }
                         <fieldset>
@@ -46,7 +52,12 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }
                                 updateDiveInput(dive)
                             }} />min
                         </fieldset>
-                        <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button></>
+                        {step === 1 ? 
+                        <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button>
+                        :
+                        <button onClick={() => getRNTandRunPG()}>Dive</button>
+                    }
+                    </>
                 }
                 <button onClick={() => resetDives(updateDiveInput)}>Reset</button>
             </div>
@@ -57,12 +68,26 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi }
 
         {/* RESULTS */}
         <section>
+            {step === 2 || step === 3 ?
+                <ul className="diveResults">
+
+                    {diveInput.si > 0 ?
+                        <><li>
+                            <div className="results-label">Surface Interval:</div> {diveInput?.si} min</li>
+                            <li>
+                                <div className="results-label">Starting Pressure Group:</div><div className="pg-box">{currentDive?.pgAfterSi}</div>
+                            </li></>
+                        : ''
+                    }
+                </ul>
+                : ''}
             {currentDive.depth !== 0 ?
                 <ul className="diveResults">
-                    {step === 2 || step === 3 ?
+
+                    {/* {step === 2 || step === 3 ?
                         <li>
                             <div className="results-label">Starting Pressure Group:</div><div className="pg-box">{currentDive.pgAfterSi}</div>
-                        </li> : ''}
+                        </li> : ''} */}
                     <li>
                         <div className="results-label">Pressure Group:</div> {currentDive.pg !== '' ? <div className="pg-box">{currentDive.pg}</div> : ''}
                     </li>

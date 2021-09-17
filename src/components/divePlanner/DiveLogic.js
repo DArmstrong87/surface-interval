@@ -75,9 +75,13 @@ export const DiveStates = () => {
     }
 
     // Sets Pressure Group, safety stop boolean, no deco limit boolean, minutes to no deco time, and specifies which dive to update.
-    const getPressureGroup = (input, step) => {
-
-        const tbt = (input.abt + input.rnt)
+    const getPressureGroup = (input, step, currentDive) => {
+        debugger
+        let tbt = (input.abt + input.rnt)
+        if(step ===2 || step === 3){
+            const rnt = getRNT(step, input.depth, currentDive.pgAfterSi)
+            tbt = input.abt + rnt
+        }
         const depth = input.depth
         console.log(input)
         console.log('getPressureGroup runs')
@@ -676,12 +680,11 @@ export const DiveStates = () => {
 
     }
 
-    const getRNT = (step, dive, newPg) => {
-        const depth = dive.depth
+    const getRNT = (step, inputDepth, newPg) => {
+        const depth = inputDepth
         const startPg = newPg
         console.log('depth', depth)
         console.log('starting pg', startPg)
-        debugger
         if (depth <= 35) {
             if (startPg === 'A') { return 10 }
             if (startPg === 'B') { return 19 }
@@ -692,10 +695,10 @@ export const DiveStates = () => {
 
         <Dive step={1} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setAndUpdate={setAndUpdate} />
         {dive1.pg !== ''
-            ? <Dive step={2} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} />
+            ? <Dive step={2} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} getRNT={getRNT}/>
             : ''}
         {dive2.pg !== ''
-            ? <Dive step={3} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} />
+            ? <Dive step={3} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} getRNT={getRNT}/>
             : ''}
     </>
     )
