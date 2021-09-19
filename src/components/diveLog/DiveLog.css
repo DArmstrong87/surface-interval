@@ -106,13 +106,16 @@
     border-radius: 5px;
     color: white;
     background-color: orange;
-    font-size: 1em;
     margin-right: 5px;
+    font-size: 1.5em;
+    cursor: pointer;
 }
 
 .cancelButton {
     border-radius: 5px;
     margin-left: 5px;
+    font-size: 1.5em;
+    cursor: pointer;
 }
 
 .diveStatsDiv{

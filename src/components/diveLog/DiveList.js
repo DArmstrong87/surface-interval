@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getMyDives } from "../application/ApiManager"
+import { deleteDive, getMyDives } from "../application/ApiManager"
 
 export const DiveList = () => {
     const [dives, setDives] = useState([])
@@ -14,8 +14,8 @@ export const DiveList = () => {
         []
     )
 
-    const deleteDive = (id) => {
-        fetch(`http://localhost:8088/dives/${id}`, {
+    const removeDive = (id) => {
+        return fetch(`http://localhost:8088/dives/${id}`, {
             method: "DELETE"
         })
             .then(() => {
@@ -46,7 +46,7 @@ export const DiveList = () => {
                         <div className='edit-delete'>
                             <a href={`/dives/edit/${dive.id}`}>Edit</a>
                             <a href="##" onClick={() => {
-                                deleteDive(dive.id)
+                                removeDive(dive.id)
                             }}>Delete</a>
                         </div>
                     </section>

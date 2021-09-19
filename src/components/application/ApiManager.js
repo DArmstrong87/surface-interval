@@ -31,17 +31,6 @@ export const getCurrentGearSet = (id) => {
         .then(res => res.json())
 }
 
-export const deleteDive = (id) => {
-    return fetch(`http://localhost:8088/dives/${id}`, {
-        method: "DELETE"
-    })
-}
-export const deleteGear = (id) => {
-    return fetch(`http://localhost:8088/gear/${id}`, {
-        method: "DELETE"
-    })
-}
-
 export const GetDiveStats = () => {
     const [deepest, setDeep] = useState([])
     const [longest, setLongest] = useState([])

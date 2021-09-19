@@ -1,39 +1,45 @@
 .diveFormContainer {
     display: flex;
     justify-content: center;
+    width: 50%;
+    margin: auto;
 }
 
 .diveForm {
     border: 1px black solid;
-    /* width: 50%; */
     color: white;
-    padding: 5px;
+    padding: 1em;
     margin-bottom: 5%;
     background-color: rgb(37, 100, 160, 0.75);
     border-radius: 10px;
+    width: fit-content;
 }
 
 fieldset {
     display: flex;
-    border: none;
-    /* justify-content: center; */
+    align-items: center;
+}
+fieldset input{
+    padding: 5px;
+    margin-right: 1em;
+    width: 68%;  
+    height: 25px;
+    cursor: pointer;
+    align-items:center;
 }
 fieldset label {
-    padding-right: 20px;
+    padding-right: 10px;
     text-align: right;
     width: 30%;
 }
-.fresh-salt-radios {
-    text-align: center;
-    justify-content: center;
-}
 
-input {
-    padding: 3px;
+.fresh-salt-radios input{
+    margin: 0;
+    padding: 0;
 }
 
 .date {
-    width: 60%;
+    width: 68%;
 }
 
 .submit-cancel-buttons {
@@ -41,5 +47,24 @@ input {
 }
 
 .comments-box {
-    width: 60%;
+    margin-right: 1em;
+    margin-left:-0.3em;
+}
+
+.logCheckbox {
+    transform: scale(2.5);
+    margin-right: 1em;
+    align-self: center;
+}
+.checkboxLabel{
+    margin-right: 1em;
+    font-size: 1.5em;
+}
+
+.specialties {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 1.5em;
 }

@@ -40,39 +40,6 @@
       "time": 60,
       "comments": "Deep dive to some awesome swim-throughs.",
       "id": 3
-    },
-    {
-      "userId": "1",
-      "date": "2021-09-07",
-      "location": "Grand Cayman Islands",
-      "diveSite": "USS Kittiwake",
-      "freshOrSalt": "Salt",
-      "depth": 60,
-      "time": 60,
-      "comments": "The Kittiwake was an amazing wreck dive!",
-      "id": 4
-    },
-    {
-      "userId": "1",
-      "date": "2021-09-02",
-      "location": "Cozumel",
-      "diveSite": "Cathedral",
-      "freshOrSalt": "Salt",
-      "depth": 100,
-      "time": 50,
-      "comments": "Swim through some overhead environment.",
-      "id": 5
-    },
-    {
-      "userId": "1",
-      "date": "2021-09-14",
-      "location": "Bahamas",
-      "diveSite": "The Tugboat",
-      "freshOrSalt": "Salt",
-      "depth": 80,
-      "time": 40,
-      "comments": "Saw some awesome fish.",
-      "id": 6
     }
   ],
   "gear": [

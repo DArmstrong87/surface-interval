@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { getMyDives, postDive } from "../application/ApiManager";
+import { Specialties } from "./Specialties";
 import './LogNewDive.css'
 
 export const LogNewDive = () => {
@@ -88,12 +89,14 @@ export const LogNewDive = () => {
                             const copy = { ...diveCopy }
                             copy.freshOrSalt = event.target.value
                             setDive(copy)
-                        }} />Fresh
+                        }} />
+                    <label>Fresh</label>
                     <input type="radio" value="Salt" checked={diveCopy.freshOrSalt === 'Salt' ? true : false} onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.freshOrSalt = event.target.value
                         setDive(copy)
-                    }} />Salt
+                    }} />
+                    <label>Salt</label>
                 </fieldset>
                 <fieldset>
                     <label for="depth">Depth</label>
@@ -113,12 +116,13 @@ export const LogNewDive = () => {
                 </fieldset>
                 <fieldset>
                     <label for="comments">Comments</label>
-                    <textarea className="comments-box" rows="4" type="comments" onChange={(event) => {
+                    <textarea className="comments-box" rows="4" cols="29" type="comments" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.comments = event.target.value
                         setDive(copy)
                     }} />
                 </fieldset>
+                    <Specialties diveCopy={diveCopy} setDive={setDive}/>
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit" onClick={submitDive}>
                         Submit
