@@ -36,10 +36,6 @@ export const DiveStates = () => {
 
     const dives = [dive1, dive2, dive3]
 
-    console.log('dive1', dive1)
-    console.log('dive2', dive2)
-    console.log('dive3', dive3)
-
     // Function to set the dive state's pressure group, ss boolean, no deco limit boolean, and minutes over deco.
     // ***This is the only function that should set the new state of each dive!
     const setAndUpdate = (pg, ss, ndl, mod, dive, step, rnt) => {
@@ -55,9 +51,9 @@ export const DiveStates = () => {
         const setRNT = (num) => dive.rnt = num
         const setDive = (pg, ss, ndl, mod, rnt) => { setPG(pg); setSS(ss); setNDL(ndl); minOverDeco(mod); setNewPg(); setRNT(rnt) };
         setDive(pg, ss, ndl, mod, rnt);
-        if (step === 1) { updateDive1(dive) }
-        else if (step === 2) { updateDive2(dive) }
-        else if (step === 3) { updateDive3(dive) }
+        if (step === 1) updateDive1(dive)
+        if (step === 2) updateDive2(dive)
+        else if (step === 3) updateDive3(dive)
     }
 
     const resetDives = (updateDiveInput) => {
@@ -70,9 +66,7 @@ export const DiveStates = () => {
     // Sets Pressure Group, safety stop boolean, no deco limit boolean, minutes to no deco time, and specifies which dive to update.
     const getPressureGroup = (input, step, currentDive) => {
         let rnt = input.rnt
-        if (step === 2 || step === 3) {
-            rnt = getRNT(step, input.depth, currentDive.pgAfterSi)
-        }
+        if (step === 2 || step === 3) rnt = getRNT(step, input.depth, currentDive.pgAfterSi)
         let tbt = (input.abt + rnt)
         const depth = input.depth
         console.log(input)
@@ -310,7 +304,7 @@ export const DiveStates = () => {
         }
     }
 
-
+    // Sets Pressue group after surface interval.
     const setPgAfterSi = (input, currentDive, step) => {
         // This function finds new PG, factoring in the previous dive's PG and the current surface interval.
         console.log('setNewPG runs')
@@ -330,362 +324,390 @@ export const DiveStates = () => {
         dive.si = inputData.si
 
         if (step === 1) dive.pgAfterSi = 'none'
-        if (pg === 'A' && si >= 0) dive.pgAfterSi = 'A'
-        if (pg === 'B' && si >= 48) dive.pgAfterSi = 'A'
-        if (pg === 'B' && si <= 47 && si >= 0) dive.pgAfterSi = 'B'
-        if (pg === 'C' && si >= 70) dive.pgAfterSi = 'A'
-        if (pg === 'C' && si <= 69 && si >= 22) dive.pgAfterSi = 'B'
-        if (pg === 'C' && si <= 21 && si >= 0) dive.pgAfterSi = 'C'
-        if (pg === 'D' && si >= 79) dive.pgAfterSi = 'A'
-        if (pg === 'D' && si <= 78 && si >= 31) dive.pgAfterSi = 'B'
-        if (pg === 'D' && si <= 30 && si >= 9) dive.pgAfterSi = 'C'
-        if (pg === 'D' && si <= 8 && si >= 0) dive.pgAfterSi = 'D'
-        if (pg === 'E' && si >= 88) dive.pgAfterSi = 'A'
-        if (pg === 'E' && si <= 87 && si >= 39) dive.pgAfterSi = 'B'
-        if (pg === 'E' && si <= 38 && si >= 17) dive.pgAfterSi = 'C'
-        if (pg === 'E' && si <= 16 && si >= 8) dive.pgAfterSi = 'D'
-        if (pg === 'E' && si <= 7 && si >= 0) dive.pgAfterSi = 'E'
-        if (pg === 'F' && si >= 95) dive.pgAfterSi = 'A'
-        if (pg === 'F' && si <= 94 && si >= 47) dive.pgAfterSi = 'B'
-        if (pg === 'F' && si <= 46 && si >= 23) dive.pgAfterSi = 'C'
-        if (pg === 'F' && si <= 24 && si >= 16) dive.pgAfterSi = 'D'
-        if (pg === 'F' && si <= 15 && si >= 8) dive.pgAfterSi = 'E'
-        if (pg === 'F' && si <= 8 && si >= 0) dive.pgAfterSi = 'F'
-        if (pg === 'G' && si >= 102) dive.pgAfterSi = 'A'
-        if (pg === 'G' && si <= 101 && si >= 54) dive.pgAfterSi = 'B'
-        if (pg === 'G' && si <= 53 && si >= 32) dive.pgAfterSi = 'C'
-        if (pg === 'G' && si <= 31 && si >= 23) dive.pgAfterSi = 'D'
-        if (pg === 'G' && si <= 22 && si >= 14) dive.pgAfterSi = 'E'
-        if (pg === 'G' && si <= 13 && si >= 7) dive.pgAfterSi = 'F'
-        if (pg === 'G' && si <= 6 && si >= 0) dive.pgAfterSi = 'G'
-        if (pg === 'H' && si >= 108) dive.pgAfterSi = 'A'
-        if (pg === 'H' && si <= 107 && si >= 60) dive.pgAfterSi = 'B'
-        if (pg === 'H' && si <= 59 && si >= 38) dive.pgAfterSi = 'C'
-        if (pg === 'H' && si <= 37 && si >= 29) dive.pgAfterSi = 'D'
-        if (pg === 'H' && si <= 28 && si >= 21) dive.pgAfterSi = 'E'
-        if (pg === 'H' && si <= 20 && si >= 13) dive.pgAfterSi = 'F'
-        if (pg === 'H' && si <= 12 && si >= 6) dive.pgAfterSi = 'G'
-        if (pg === 'H' && si <= 5 && si >= 0) dive.pgAfterSi = 'H'
-        if (pg === 'I' && si >= 114) dive.pgAfterSi = 'A'
-        if (pg === 'I' && si <= 113 && si >= 66) dive.pgAfterSi = 'B'
-        if (pg === 'I' && si <= 65 && si >= 44) dive.pgAfterSi = 'C'
-        if (pg === 'I' && si <= 43 && si >= 35) dive.pgAfterSi = 'D'
-        if (pg === 'I' && si <= 34 && si >= 27) dive.pgAfterSi = 'E'
-        if (pg === 'I' && si <= 26 && si >= 19) dive.pgAfterSi = 'F'
-        if (pg === 'I' && si <= 18 && si >= 12) dive.pgAfterSi = 'G'
-        if (pg === 'I' && si <= 11 && si >= 6) dive.pgAfterSi = 'H'
-        if (pg === 'I' && si <= 5 && si >= 0) dive.pgAfterSi = 'I'
-        if (pg === 'J' && si >= 120) dive.pgAfterSi = 'A'
-        if (pg === 'J' && si <= 119 && si >= 72) dive.pgAfterSi = 'B'
-        if (pg === 'J' && si <= 71 && si >= 50) dive.pgAfterSi = 'C'
-        if (pg === 'J' && si <= 49 && si >= 41) dive.pgAfterSi = 'D'
-        if (pg === 'J' && si <= 40 && si >= 32) dive.pgAfterSi = 'E'
-        if (pg === 'J' && si <= 31 && si >= 25) dive.pgAfterSi = 'F'
-        if (pg === 'J' && si <= 24 && si >= 18) dive.pgAfterSi = 'G'
-        if (pg === 'J' && si <= 17 && si >= 12) dive.pgAfterSi = 'H'
-        if (pg === 'J' && si <= 11 && si >= 6) dive.pgAfterSi = 'I'
-        if (pg === 'J' && si <= 5 && si >= 0) dive.pgAfterSi = 'J'
-        if (pg === 'K' && si >= 125) dive.pgAfterSi = 'A'
-        if (pg === 'K' && si <= 124 && si >= 77) dive.pgAfterSi = 'B'
-        if (pg === 'K' && si <= 76 && si >= 55) dive.pgAfterSi = 'C'
-        if (pg === 'K' && si <= 54 && si >= 46) dive.pgAfterSi = 'D'
-        if (pg === 'K' && si <= 45 && si >= 38) dive.pgAfterSi = 'E'
-        if (pg === 'K' && si <= 37 && si >= 30) dive.pgAfterSi = 'F'
-        if (pg === 'K' && si <= 29 && si >= 23) dive.pgAfterSi = 'G'
-        if (pg === 'K' && si <= 22 && si >= 17) dive.pgAfterSi = 'H'
-        if (pg === 'K' && si <= 16 && si >= 11) dive.pgAfterSi = 'I'
-        if (pg === 'K' && si <= 10 && si >= 5) dive.pgAfterSi = 'J'
-        if (pg === 'K' && si <= 4 && si >= 0) dive.pgAfterSi = 'K'
-        if (pg === 'L' && si >= 130) dive.pgAfterSi = 'A'
-        if (pg === 'L' && si <= 129 && si >= 82) dive.pgAfterSi = 'B'
-        if (pg === 'L' && si <= 81 && si >= 60) dive.pgAfterSi = 'C'
-        if (pg === 'L' && si <= 59 && si >= 51) dive.pgAfterSi = 'D'
-        if (pg === 'L' && si <= 50 && si >= 43) dive.pgAfterSi = 'E'
-        if (pg === 'L' && si <= 42 && si >= 35) dive.pgAfterSi = 'F'
-        if (pg === 'L' && si <= 34 && si >= 28) dive.pgAfterSi = 'G'
-        if (pg === 'L' && si <= 27 && si >= 22) dive.pgAfterSi = 'H'
-        if (pg === 'L' && si <= 21 && si >= 16) dive.pgAfterSi = 'I'
-        if (pg === 'L' && si <= 15 && si >= 10) dive.pgAfterSi = 'J'
-        if (pg === 'L' && si <= 9 && si >= 5) dive.pgAfterSi = 'K'
-        if (pg === 'L' && si <= 4 && si >= 0) dive.pgAfterSi = 'L'
-        if (pg === 'M' && si >= 135) dive.pgAfterSi = 'A'
-        if (pg === 'M' && si <= 134 && si >= 86) dive.pgAfterSi = 'B'
-        if (pg === 'M' && si <= 85 && si >= 65) dive.pgAfterSi = 'C'
-        if (pg === 'M' && si <= 64 && si >= 56) dive.pgAfterSi = 'D'
-        if (pg === 'M' && si <= 55 && si >= 47) dive.pgAfterSi = 'E'
-        if (pg === 'M' && si <= 46 && si >= 40) dive.pgAfterSi = 'F'
-        if (pg === 'M' && si <= 39 && si >= 33) dive.pgAfterSi = 'G'
-        if (pg === 'M' && si <= 32 && si >= 26) dive.pgAfterSi = 'H'
-        if (pg === 'M' && si <= 25 && si >= 20) dive.pgAfterSi = 'I'
-        if (pg === 'M' && si <= 19 && si >= 15) dive.pgAfterSi = 'J'
-        if (pg === 'M' && si <= 14 && si >= 10) dive.pgAfterSi = 'K'
-        if (pg === 'M' && si <= 9 && si >= 5) dive.pgAfterSi = 'L'
-        if (pg === 'M' && si <= 4 && si >= 0) dive.pgAfterSi = 'M'
-        if (pg === 'N' && si >= 139) dive.pgAfterSi = 'A'
-        if (pg === 'N' && si <= 138 && si >= 91) dive.pgAfterSi = 'B'
-        if (pg === 'N' && si <= 90 && si >= 69) dive.pgAfterSi = 'C'
-        if (pg === 'N' && si <= 68 && si >= 60) dive.pgAfterSi = 'D'
-        if (pg === 'N' && si <= 59 && si >= 52) dive.pgAfterSi = 'E'
-        if (pg === 'N' && si <= 51 && si >= 44) dive.pgAfterSi = 'F'
-        if (pg === 'N' && si <= 43 && si >= 37) dive.pgAfterSi = 'G'
-        if (pg === 'N' && si <= 36 && si >= 31) dive.pgAfterSi = 'H'
-        if (pg === 'N' && si <= 30 && si >= 25) dive.pgAfterSi = 'I'
-        if (pg === 'N' && si <= 24 && si >= 19) dive.pgAfterSi = 'J'
-        if (pg === 'N' && si <= 18 && si >= 14) dive.pgAfterSi = 'K'
-        if (pg === 'N' && si <= 13 && si >= 9) dive.pgAfterSi = 'L'
-        if (pg === 'N' && si <= 8 && si >= 4) dive.pgAfterSi = 'M'
-        if (pg === 'N' && si <= 3 && si >= 0) dive.pgAfterSi = 'N'
-        if (pg === 'O' && si >= 144) dive.pgAfterSi = 'A'
-        if (pg === 'O' && si <= 143 && si >= 95) dive.pgAfterSi = 'B'
-        if (pg === 'O' && si <= 94 && si >= 73) dive.pgAfterSi = 'C'
-        if (pg === 'O' && si <= 72 && si >= 64) dive.pgAfterSi = 'D'
-        if (pg === 'O' && si <= 63 && si >= 56) dive.pgAfterSi = 'E'
-        if (pg === 'O' && si <= 55 && si >= 48) dive.pgAfterSi = 'F'
-        if (pg === 'O' && si <= 47 && si >= 42) dive.pgAfterSi = 'G'
-        if (pg === 'O' && si <= 41 && si >= 35) dive.pgAfterSi = 'H'
-        if (pg === 'O' && si <= 34 && si >= 29) dive.pgAfterSi = 'I'
-        if (pg === 'O' && si <= 28 && si >= 24) dive.pgAfterSi = 'J'
-        if (pg === 'O' && si <= 23 && si >= 18) dive.pgAfterSi = 'K'
-        if (pg === 'O' && si <= 17 && si >= 13) dive.pgAfterSi = 'L'
-        if (pg === 'O' && si <= 12 && si >= 9) dive.pgAfterSi = 'M'
-        if (pg === 'O' && si <= 8 && si >= 4) dive.pgAfterSi = 'N'
-        if (pg === 'O' && si <= 3 && si >= 0) dive.pgAfterSi = 'O'
-        if (pg === 'P' && si >= 148) dive.pgAfterSi = 'A'
-        if (pg === 'P' && si <= 147 && si >= 99) dive.pgAfterSi = 'B'
-        if (pg === 'P' && si <= 98 && si >= 77) dive.pgAfterSi = 'C'
-        if (pg === 'P' && si <= 76 && si >= 68) dive.pgAfterSi = 'D'
-        if (pg === 'P' && si <= 67 && si >= 60) dive.pgAfterSi = 'E'
-        if (pg === 'P' && si <= 59 && si >= 52) dive.pgAfterSi = 'F'
-        if (pg === 'P' && si <= 51 && si >= 46) dive.pgAfterSi = 'G'
-        if (pg === 'P' && si <= 45 && si >= 39) dive.pgAfterSi = 'H'
-        if (pg === 'P' && si <= 38 && si >= 33) dive.pgAfterSi = 'I'
-        if (pg === 'P' && si <= 32 && si >= 28) dive.pgAfterSi = 'J'
-        if (pg === 'P' && si <= 27 && si >= 22) dive.pgAfterSi = 'K'
-        if (pg === 'P' && si <= 21 && si >= 17) dive.pgAfterSi = 'L'
-        if (pg === 'P' && si <= 16 && si >= 13) dive.pgAfterSi = 'M'
-        if (pg === 'P' && si <= 12 && si >= 8) dive.pgAfterSi = 'N'
-        if (pg === 'P' && si <= 7 && si >= 4) dive.pgAfterSi = 'O'
-        if (pg === 'P' && si <= 3 && si >= 0) dive.pgAfterSi = 'P'
-        if (pg === 'Q' && si >= 151) dive.pgAfterSi = 'A'
-        if (pg === 'Q' && si <= 150 && si >= 103) dive.pgAfterSi = 'B'
-        if (pg === 'Q' && si <= 102 && si >= 81) dive.pgAfterSi = 'C'
-        if (pg === 'Q' && si <= 80 && si >= 72) dive.pgAfterSi = 'D'
-        if (pg === 'Q' && si <= 71 && si >= 64) dive.pgAfterSi = 'E'
-        if (pg === 'Q' && si <= 63 && si >= 56) dive.pgAfterSi = 'F'
-        if (pg === 'Q' && si <= 55 && si >= 49) dive.pgAfterSi = 'G'
-        if (pg === 'Q' && si <= 48 && si >= 43) dive.pgAfterSi = 'H'
-        if (pg === 'Q' && si <= 42 && si >= 37) dive.pgAfterSi = 'I'
-        if (pg === 'Q' && si <= 36 && si >= 31) dive.pgAfterSi = 'J'
-        if (pg === 'Q' && si <= 30 && si >= 26) dive.pgAfterSi = 'K'
-        if (pg === 'Q' && si <= 25 && si >= 21) dive.pgAfterSi = 'L'
-        if (pg === 'Q' && si <= 20 && si >= 17) dive.pgAfterSi = 'M'
-        if (pg === 'Q' && si <= 16 && si >= 12) dive.pgAfterSi = 'N'
-        if (pg === 'Q' && si <= 11 && si >= 8) dive.pgAfterSi = 'O'
-        if (pg === 'Q' && si <= 7 && si >= 4) dive.pgAfterSi = 'P'
-        if (pg === 'Q' && si <= 3 && si >= 0) dive.pgAfterSi = 'Q'
-        if (pg === 'R' && si >= 155) dive.pgAfterSi = 'A'
-        if (pg === 'R' && si <= 154 && si >= 107) dive.pgAfterSi = 'B'
-        if (pg === 'R' && si <= 106 && si >= 85) dive.pgAfterSi = 'C'
-        if (pg === 'R' && si <= 84 && si >= 76) dive.pgAfterSi = 'D'
-        if (pg === 'R' && si <= 75 && si >= 68) dive.pgAfterSi = 'E'
-        if (pg === 'R' && si <= 67 && si >= 60) dive.pgAfterSi = 'F'
-        if (pg === 'R' && si <= 59 && si >= 53) dive.pgAfterSi = 'G'
-        if (pg === 'R' && si <= 52 && si >= 47) dive.pgAfterSi = 'H'
-        if (pg === 'R' && si <= 46 && si >= 41) dive.pgAfterSi = 'I'
-        if (pg === 'R' && si <= 40 && si >= 35) dive.pgAfterSi = 'J'
-        if (pg === 'R' && si <= 34 && si >= 30) dive.pgAfterSi = 'K'
-        if (pg === 'R' && si <= 29 && si >= 25) dive.pgAfterSi = 'L'
-        if (pg === 'R' && si <= 24 && si >= 20) dive.pgAfterSi = 'M'
-        if (pg === 'R' && si <= 19 && si >= 16) dive.pgAfterSi = 'N'
-        if (pg === 'R' && si <= 15 && si >= 12) dive.pgAfterSi = 'O'
-        if (pg === 'R' && si <= 11 && si >= 8) dive.pgAfterSi = 'P'
-        if (pg === 'R' && si <= 7 && si >= 4) dive.pgAfterSi = 'Q'
-        if (pg === 'R' && si <= 3 && si >= 0) dive.pgAfterSi = 'R'
-        if (pg === 'S' && si >= 159) dive.pgAfterSi = 'A'
-        if (pg === 'S' && si <= 158 && si >= 110) dive.pgAfterSi = 'B'
-        if (pg === 'S' && si <= 109 && si >= 88) dive.pgAfterSi = 'C'
-        if (pg === 'S' && si <= 87 && si >= 79) dive.pgAfterSi = 'D'
-        if (pg === 'S' && si <= 78 && si >= 71) dive.pgAfterSi = 'E'
-        if (pg === 'S' && si <= 70 && si >= 64) dive.pgAfterSi = 'F'
-        if (pg === 'S' && si <= 63 && si >= 57) dive.pgAfterSi = 'G'
-        if (pg === 'S' && si <= 56 && si >= 50) dive.pgAfterSi = 'H'
-        if (pg === 'S' && si <= 49 && si >= 44) dive.pgAfterSi = 'I'
-        if (pg === 'S' && si <= 43 && si >= 39) dive.pgAfterSi = 'J'
-        if (pg === 'S' && si <= 38 && si >= 33) dive.pgAfterSi = 'K'
-        if (pg === 'S' && si <= 32 && si >= 28) dive.pgAfterSi = 'L'
-        if (pg === 'S' && si <= 27 && si >= 24) dive.pgAfterSi = 'M'
-        if (pg === 'S' && si <= 23 && si >= 19) dive.pgAfterSi = 'N'
-        if (pg === 'S' && si <= 18 && si >= 15) dive.pgAfterSi = 'O'
-        if (pg === 'S' && si <= 14 && si >= 11) dive.pgAfterSi = 'P'
-        if (pg === 'S' && si <= 10 && si >= 7) dive.pgAfterSi = 'Q'
-        if (pg === 'S' && si <= 6 && si >= 4) dive.pgAfterSi = 'R'
-        if (pg === 'S' && si <= 3 && si >= 0) dive.pgAfterSi = 'S'
-        if (pg === 'T' && si >= 162) dive.pgAfterSi = 'A'
-        if (pg === 'T' && si <= 161 && si >= 114) dive.pgAfterSi = 'B'
-        if (pg === 'T' && si <= 113 && si >= 92) dive.pgAfterSi = 'C'
-        if (pg === 'T' && si <= 91 && si >= 83) dive.pgAfterSi = 'D'
-        if (pg === 'T' && si <= 82 && si >= 74) dive.pgAfterSi = 'E'
-        if (pg === 'T' && si <= 73 && si >= 67) dive.pgAfterSi = 'F'
-        if (pg === 'T' && si <= 66 && si >= 60) dive.pgAfterSi = 'G'
-        if (pg === 'T' && si <= 59 && si >= 54) dive.pgAfterSi = 'H'
-        if (pg === 'T' && si <= 53 && si >= 48) dive.pgAfterSi = 'I'
-        if (pg === 'T' && si <= 47 && si >= 42) dive.pgAfterSi = 'J'
-        if (pg === 'T' && si <= 41 && si >= 37) dive.pgAfterSi = 'K'
-        if (pg === 'T' && si <= 36 && si >= 32) dive.pgAfterSi = 'L'
-        if (pg === 'T' && si <= 31 && si >= 27) dive.pgAfterSi = 'M'
-        if (pg === 'T' && si <= 26 && si >= 23) dive.pgAfterSi = 'N'
-        if (pg === 'T' && si <= 22 && si >= 18) dive.pgAfterSi = 'O'
-        if (pg === 'T' && si <= 17 && si >= 14) dive.pgAfterSi = 'P'
-        if (pg === 'T' && si <= 13 && si >= 11) dive.pgAfterSi = 'Q'
-        if (pg === 'T' && si <= 10 && si >= 7) dive.pgAfterSi = 'R'
-        if (pg === 'T' && si <= 6 && si >= 3) dive.pgAfterSi = 'S'
-        if (pg === 'T' && si <= 2 && si >= 0) dive.pgAfterSi = 'T'
-        if (pg === 'U' && si >= 165) dive.pgAfterSi = 'A'
-        if (pg === 'U' && si <= 164 && si >= 117) dive.pgAfterSi = 'B'
-        if (pg === 'U' && si <= 116 && si >= 95) dive.pgAfterSi = 'C'
-        if (pg === 'U' && si <= 94 && si >= 86) dive.pgAfterSi = 'D'
-        if (pg === 'U' && si <= 85 && si >= 78) dive.pgAfterSi = 'E'
-        if (pg === 'U' && si <= 77 && si >= 70) dive.pgAfterSi = 'F'
-        if (pg === 'U' && si <= 69 && si >= 63) dive.pgAfterSi = 'G'
-        if (pg === 'U' && si <= 62 && si >= 57) dive.pgAfterSi = 'H'
-        if (pg === 'U' && si <= 56 && si >= 51) dive.pgAfterSi = 'I'
-        if (pg === 'U' && si <= 50 && si >= 45) dive.pgAfterSi = 'J'
-        if (pg === 'U' && si <= 44 && si >= 40) dive.pgAfterSi = 'K'
-        if (pg === 'U' && si <= 39 && si >= 35) dive.pgAfterSi = 'L'
-        if (pg === 'U' && si <= 34 && si >= 30) dive.pgAfterSi = 'M'
-        if (pg === 'U' && si <= 29 && si >= 26) dive.pgAfterSi = 'N'
-        if (pg === 'U' && si <= 25 && si >= 22) dive.pgAfterSi = 'O'
-        if (pg === 'U' && si <= 21 && si >= 18) dive.pgAfterSi = 'P'
-        if (pg === 'U' && si <= 17 && si >= 14) dive.pgAfterSi = 'Q'
-        if (pg === 'U' && si <= 13 && si >= 10) dive.pgAfterSi = 'R'
-        if (pg === 'U' && si <= 9 && si >= 7) dive.pgAfterSi = 'S'
-        if (pg === 'U' && si <= 6 && si >= 3) dive.pgAfterSi = 'T'
-        if (pg === 'U' && si <= 2 && si >= 0) dive.pgAfterSi = 'U'
-        if (pg === 'V' && si >= 168) dive.pgAfterSi = 'A'
-        if (pg === 'V' && si <= 167 && si >= 120) dive.pgAfterSi = 'B'
-        if (pg === 'V' && si <= 119 && si >= 98) dive.pgAfterSi = 'C'
-        if (pg === 'V' && si <= 97 && si >= 89) dive.pgAfterSi = 'D'
-        if (pg === 'V' && si <= 88 && si >= 81) dive.pgAfterSi = 'E'
-        if (pg === 'V' && si <= 80 && si >= 73) dive.pgAfterSi = 'F'
-        if (pg === 'V' && si <= 72 && si >= 66) dive.pgAfterSi = 'G'
-        if (pg === 'V' && si <= 65 && si >= 60) dive.pgAfterSi = 'H'
-        if (pg === 'V' && si <= 59 && si >= 54) dive.pgAfterSi = 'I'
-        if (pg === 'V' && si <= 53 && si >= 48) dive.pgAfterSi = 'J'
-        if (pg === 'V' && si <= 47 && si >= 43) dive.pgAfterSi = 'K'
-        if (pg === 'V' && si <= 42 && si >= 38) dive.pgAfterSi = 'L'
-        if (pg === 'V' && si <= 37 && si >= 34) dive.pgAfterSi = 'M'
-        if (pg === 'V' && si <= 33 && si >= 29) dive.pgAfterSi = 'N'
-        if (pg === 'V' && si <= 28 && si >= 25) dive.pgAfterSi = 'O'
-        if (pg === 'V' && si <= 24 && si >= 21) dive.pgAfterSi = 'P'
-        if (pg === 'V' && si <= 20 && si >= 17) dive.pgAfterSi = 'Q'
-        if (pg === 'V' && si <= 16 && si >= 13) dive.pgAfterSi = 'R'
-        if (pg === 'V' && si <= 12 && si >= 10) dive.pgAfterSi = 'S'
-        if (pg === 'V' && si <= 9 && si >= 6) dive.pgAfterSi = 'T'
-        if (pg === 'V' && si <= 5 && si >= 3) dive.pgAfterSi = 'U'
-        if (pg === 'V' && si <= 2 && si >= 0) dive.pgAfterSi = 'V'
-        if (pg === 'W' && si >= 171) dive.pgAfterSi = 'A'
-        if (pg === 'W' && si <= 170 && si >= 123) dive.pgAfterSi = 'B'
-        if (pg === 'W' && si <= 122 && si >= 101) dive.pgAfterSi = 'C'
-        if (pg === 'W' && si <= 100 && si >= 92) dive.pgAfterSi = 'D'
-        if (pg === 'W' && si <= 91 && si >= 84) dive.pgAfterSi = 'E'
-        if (pg === 'W' && si <= 83 && si >= 76) dive.pgAfterSi = 'F'
-        if (pg === 'W' && si <= 75 && si >= 69) dive.pgAfterSi = 'G'
-        if (pg === 'W' && si <= 68 && si >= 63) dive.pgAfterSi = 'H'
-        if (pg === 'W' && si <= 62 && si >= 57) dive.pgAfterSi = 'I'
-        if (pg === 'W' && si <= 56 && si >= 51) dive.pgAfterSi = 'J'
-        if (pg === 'W' && si <= 50 && si >= 46) dive.pgAfterSi = 'K'
-        if (pg === 'W' && si <= 45 && si >= 41) dive.pgAfterSi = 'L'
-        if (pg === 'W' && si <= 40 && si >= 37) dive.pgAfterSi = 'M'
-        if (pg === 'W' && si <= 36 && si >= 32) dive.pgAfterSi = 'N'
-        if (pg === 'W' && si <= 31 && si >= 28) dive.pgAfterSi = 'O'
-        if (pg === 'W' && si <= 27 && si >= 24) dive.pgAfterSi = 'P'
-        if (pg === 'W' && si <= 23 && si >= 20) dive.pgAfterSi = 'Q'
-        if (pg === 'W' && si <= 19 && si >= 16) dive.pgAfterSi = 'R'
-        if (pg === 'W' && si <= 15 && si >= 13) dive.pgAfterSi = 'S'
-        if (pg === 'W' && si <= 12 && si >= 9) dive.pgAfterSi = 'T'
-        if (pg === 'W' && si <= 8 && si >= 5) dive.pgAfterSi = 'U'
-        if (pg === 'W' && si <= 5 && si >= 3) dive.pgAfterSi = 'V'
-        if (pg === 'W' && si <= 2 && si >= 0) dive.pgAfterSi = 'W'
-        if (pg === 'X' && si >= 174) dive.pgAfterSi = 'A'
-        if (pg === 'X' && si <= 173 && si >= 126) dive.pgAfterSi = 'B'
-        if (pg === 'X' && si <= 125 && si >= 104) dive.pgAfterSi = 'C'
-        if (pg === 'X' && si <= 103 && si >= 95) dive.pgAfterSi = 'D'
-        if (pg === 'X' && si <= 94 && si >= 87) dive.pgAfterSi = 'E'
-        if (pg === 'X' && si <= 86 && si >= 79) dive.pgAfterSi = 'F'
-        if (pg === 'X' && si <= 78 && si >= 72) dive.pgAfterSi = 'G'
-        if (pg === 'X' && si <= 71 && si >= 66) dive.pgAfterSi = 'H'
-        if (pg === 'X' && si <= 65 && si >= 60) dive.pgAfterSi = 'I'
-        if (pg === 'X' && si <= 59 && si >= 54) dive.pgAfterSi = 'J'
-        if (pg === 'X' && si <= 53 && si >= 49) dive.pgAfterSi = 'K'
-        if (pg === 'X' && si <= 48 && si >= 44) dive.pgAfterSi = 'L'
-        if (pg === 'X' && si <= 43 && si >= 40) dive.pgAfterSi = 'M'
-        if (pg === 'X' && si <= 39 && si >= 35) dive.pgAfterSi = 'N'
-        if (pg === 'X' && si <= 34 && si >= 31) dive.pgAfterSi = 'O'
-        if (pg === 'X' && si <= 30 && si >= 27) dive.pgAfterSi = 'P'
-        if (pg === 'X' && si <= 26 && si >= 23) dive.pgAfterSi = 'Q'
-        if (pg === 'X' && si <= 22 && si >= 19) dive.pgAfterSi = 'R'
-        if (pg === 'X' && si <= 18 && si >= 16) dive.pgAfterSi = 'S'
-        if (pg === 'X' && si <= 15 && si >= 12) dive.pgAfterSi = 'T'
-        if (pg === 'X' && si <= 11 && si >= 9) dive.pgAfterSi = 'U'
-        if (pg === 'X' && si <= 8 && si >= 6) dive.pgAfterSi = 'V'
-        if (pg === 'X' && si <= 5 && si >= 3) dive.pgAfterSi = 'W'
-        if (pg === 'X' && si <= 2 && si >= 0) dive.pgAfterSi = 'X'
-        if (pg === 'Y' && si >= 177) dive.pgAfterSi = 'A'
-        if (pg === 'Y' && si <= 176 && si >= 129) dive.pgAfterSi = 'B'
-        if (pg === 'Y' && si <= 128 && si >= 107) dive.pgAfterSi = 'C'
-        if (pg === 'Y' && si <= 106 && si >= 98) dive.pgAfterSi = 'D'
-        if (pg === 'Y' && si <= 97 && si >= 90) dive.pgAfterSi = 'E'
-        if (pg === 'Y' && si <= 89 && si >= 82) dive.pgAfterSi = 'F'
-        if (pg === 'Y' && si <= 81 && si >= 75) dive.pgAfterSi = 'G'
-        if (pg === 'Y' && si <= 74 && si >= 69) dive.pgAfterSi = 'H'
-        if (pg === 'Y' && si <= 68 && si >= 63) dive.pgAfterSi = 'I'
-        if (pg === 'Y' && si <= 62 && si >= 57) dive.pgAfterSi = 'J'
-        if (pg === 'Y' && si <= 56 && si >= 52) dive.pgAfterSi = 'K'
-        if (pg === 'Y' && si <= 51 && si >= 47) dive.pgAfterSi = 'L'
-        if (pg === 'Y' && si <= 46 && si >= 42) dive.pgAfterSi = 'M'
-        if (pg === 'Y' && si <= 41 && si >= 38) dive.pgAfterSi = 'N'
-        if (pg === 'Y' && si <= 37 && si >= 34) dive.pgAfterSi = 'O'
-        if (pg === 'Y' && si <= 33 && si >= 30) dive.pgAfterSi = 'P'
-        if (pg === 'Y' && si <= 29 && si >= 26) dive.pgAfterSi = 'Q'
-        if (pg === 'Y' && si <= 25 && si >= 22) dive.pgAfterSi = 'R'
-        if (pg === 'Y' && si <= 21 && si >= 19) dive.pgAfterSi = 'S'
-        if (pg === 'Y' && si <= 18 && si >= 15) dive.pgAfterSi = 'T'
-        if (pg === 'Y' && si <= 14 && si >= 12) dive.pgAfterSi = 'U'
-        if (pg === 'Y' && si <= 11 && si >= 9) dive.pgAfterSi = 'V'
-        if (pg === 'Y' && si <= 8 && si >= 6) dive.pgAfterSi = 'W'
-        if (pg === 'Y' && si <= 5 && si >= 3) dive.pgAfterSi = 'X'
-        if (pg === 'Y' && si <= 2 && si >= 0) dive.pgAfterSi = 'Y'
-        if (pg === 'Z' && si >= 180) dive.pgAfterSi = 'A'
-        if (pg === 'Z' && si <= 179 && si >= 132) dive.pgAfterSi = 'B'
-        if (pg === 'Z' && si <= 131 && si >= 110) dive.pgAfterSi = 'C'
-        if (pg === 'Z' && si <= 109 && si >= 101) dive.pgAfterSi = 'D'
-        if (pg === 'Z' && si <= 100 && si >= 92) dive.pgAfterSi = 'E'
-        if (pg === 'Z' && si <= 91 && si >= 85) dive.pgAfterSi = 'F'
-        if (pg === 'Z' && si <= 84 && si >= 78) dive.pgAfterSi = 'G'
-        if (pg === 'Z' && si <= 77 && si >= 72) dive.pgAfterSi = 'H'
-        if (pg === 'Z' && si <= 71 && si >= 66) dive.pgAfterSi = 'I'
-        if (pg === 'Z' && si <= 65 && si >= 60) dive.pgAfterSi = 'J'
-        if (pg === 'Z' && si <= 59 && si >= 55) dive.pgAfterSi = 'K'
-        if (pg === 'Z' && si <= 54 && si >= 50) dive.pgAfterSi = 'L'
-        if (pg === 'Z' && si <= 49 && si >= 45) dive.pgAfterSi = 'M'
-        if (pg === 'Z' && si <= 44 && si >= 41) dive.pgAfterSi = 'N'
-        if (pg === 'Z' && si <= 40 && si >= 36) dive.pgAfterSi = 'O'
-        if (pg === 'Z' && si <= 35 && si >= 32) dive.pgAfterSi = 'P'
-        if (pg === 'Z' && si <= 31 && si >= 29) dive.pgAfterSi = 'Q'
-        if (pg === 'Z' && si <= 28 && si >= 25) dive.pgAfterSi = 'R'
-        if (pg === 'Z' && si <= 24 && si >= 21) dive.pgAfterSi = 'S'
-        if (pg === 'Z' && si <= 20 && si >= 18) dive.pgAfterSi = 'T'
-        if (pg === 'Z' && si <= 17 && si >= 15) dive.pgAfterSi = 'U'
-        if (pg === 'Z' && si <= 14 && si >= 12) dive.pgAfterSi = 'V'
-        if (pg === 'Z' && si <= 11 && si >= 9) dive.pgAfterSi = 'W'
-        if (pg === 'Z' && si <= 8 && si >= 6) dive.pgAfterSi = 'X'
-        if (pg === 'Z' && si <= 5 && si >= 3) dive.pgAfterSi = 'Y'
-        if (pg === 'Z' && si <= 2 && si >= 0) dive.pgAfterSi = 'Z'
+        else if (pg === 'A') {
+            if (si >= 0) dive.pgAfterSi = 'A'
+        } else if (pg === 'B') {
+            if (si >= 48) dive.pgAfterSi = 'A'
+            if (si <= 47 && si >= 0) dive.pgAfterSi = 'B'
+        } else if (pg === 'C') {
+            if (si >= 70) dive.pgAfterSi = 'A'
+            if (si <= 69 && si >= 22) dive.pgAfterSi = 'B'
+            if (si <= 21 && si >= 0) dive.pgAfterSi = 'C'
+        } else if (pg === 'D') {
+            if (si >= 79) dive.pgAfterSi = 'A'
+            if (si <= 78 && si >= 31) dive.pgAfterSi = 'B'
+            if (si <= 30 && si >= 9) dive.pgAfterSi = 'C'
+            if (si <= 8 && si >= 0) dive.pgAfterSi = 'D'
+        } else if (pg === 'E') {
+            if (si >= 88) dive.pgAfterSi = 'A'
+            if (si <= 87 && si >= 39) dive.pgAfterSi = 'B'
+            if (si <= 38 && si >= 17) dive.pgAfterSi = 'C'
+            if (si <= 16 && si >= 8) dive.pgAfterSi = 'D'
+            if (si <= 7 && si >= 0) dive.pgAfterSi = 'E'
+        } else if (pg === 'F') {
+            if (si >= 95) dive.pgAfterSi = 'A'
+            if (si <= 94 && si >= 47) dive.pgAfterSi = 'B'
+            if (si <= 46 && si >= 23) dive.pgAfterSi = 'C'
+            if (si <= 24 && si >= 16) dive.pgAfterSi = 'D'
+            if (si <= 15 && si >= 8) dive.pgAfterSi = 'E'
+            if (si <= 8 && si >= 0) dive.pgAfterSi = 'F'
+        } else if (pg === 'G') {
+            if (si >= 102) dive.pgAfterSi = 'A'
+            if (si <= 101 && si >= 54) dive.pgAfterSi = 'B'
+            if (si <= 53 && si >= 32) dive.pgAfterSi = 'C'
+            if (si <= 31 && si >= 23) dive.pgAfterSi = 'D'
+            if (si <= 22 && si >= 14) dive.pgAfterSi = 'E'
+            if (si <= 13 && si >= 7) dive.pgAfterSi = 'F'
+            if (si <= 6 && si >= 0) dive.pgAfterSi = 'G'
+        } else if (pg === 'H') {
+            if (si >= 108) dive.pgAfterSi = 'A'
+            if (si <= 107 && si >= 60) dive.pgAfterSi = 'B'
+            if (si <= 59 && si >= 38) dive.pgAfterSi = 'C'
+            if (si <= 37 && si >= 29) dive.pgAfterSi = 'D'
+            if (si <= 28 && si >= 21) dive.pgAfterSi = 'E'
+            if (si <= 20 && si >= 13) dive.pgAfterSi = 'F'
+            if (si <= 12 && si >= 6) dive.pgAfterSi = 'G'
+            if (si <= 5 && si >= 0) dive.pgAfterSi = 'H'
+        } else if (pg === 'I') {
+            if (si >= 114) dive.pgAfterSi = 'A'
+            if (si <= 113 && si >= 66) dive.pgAfterSi = 'B'
+            if (si <= 65 && si >= 44) dive.pgAfterSi = 'C'
+            if (si <= 43 && si >= 35) dive.pgAfterSi = 'D'
+            if (si <= 34 && si >= 27) dive.pgAfterSi = 'E'
+            if (si <= 26 && si >= 19) dive.pgAfterSi = 'F'
+            if (si <= 18 && si >= 12) dive.pgAfterSi = 'G'
+            if (si <= 11 && si >= 6) dive.pgAfterSi = 'H'
+            if (si <= 5 && si >= 0) dive.pgAfterSi = 'I'
+        } else if (pg === 'J') {
+            if (si >= 120) dive.pgAfterSi = 'A'
+            if (si <= 119 && si >= 72) dive.pgAfterSi = 'B'
+            if (si <= 71 && si >= 50) dive.pgAfterSi = 'C'
+            if (si <= 49 && si >= 41) dive.pgAfterSi = 'D'
+            if (si <= 40 && si >= 32) dive.pgAfterSi = 'E'
+            if (si <= 31 && si >= 25) dive.pgAfterSi = 'F'
+            if (si <= 24 && si >= 18) dive.pgAfterSi = 'G'
+            if (si <= 17 && si >= 12) dive.pgAfterSi = 'H'
+            if (si <= 11 && si >= 6) dive.pgAfterSi = 'I'
+            if (si <= 5 && si >= 0) dive.pgAfterSi = 'J'
+        } else if (pg === 'K') {
+            if (si >= 125) dive.pgAfterSi = 'A'
+            if (si <= 124 && si >= 77) dive.pgAfterSi = 'B'
+            if (si <= 76 && si >= 55) dive.pgAfterSi = 'C'
+            if (si <= 54 && si >= 46) dive.pgAfterSi = 'D'
+            if (si <= 45 && si >= 38) dive.pgAfterSi = 'E'
+            if (si <= 37 && si >= 30) dive.pgAfterSi = 'F'
+            if (si <= 29 && si >= 23) dive.pgAfterSi = 'G'
+            if (si <= 22 && si >= 17) dive.pgAfterSi = 'H'
+            if (si <= 16 && si >= 11) dive.pgAfterSi = 'I'
+            if (si <= 10 && si >= 5) dive.pgAfterSi = 'J'
+            if (si <= 4 && si >= 0) dive.pgAfterSi = 'K'
+        } else if (pg === 'L') {
+            if (si >= 130) dive.pgAfterSi = 'A'
+            if (si <= 129 && si >= 82) dive.pgAfterSi = 'B'
+            if (si <= 81 && si >= 60) dive.pgAfterSi = 'C'
+            if (si <= 59 && si >= 51) dive.pgAfterSi = 'D'
+            if (si <= 50 && si >= 43) dive.pgAfterSi = 'E'
+            if (si <= 42 && si >= 35) dive.pgAfterSi = 'F'
+            if (si <= 34 && si >= 28) dive.pgAfterSi = 'G'
+            if (si <= 27 && si >= 22) dive.pgAfterSi = 'H'
+            if (si <= 21 && si >= 16) dive.pgAfterSi = 'I'
+            if (si <= 15 && si >= 10) dive.pgAfterSi = 'J'
+            if (si <= 9 && si >= 5) dive.pgAfterSi = 'K'
+            if (si <= 4 && si >= 0) dive.pgAfterSi = 'L'
+        } else if (pg === 'M') {
+            if (si >= 135) dive.pgAfterSi = 'A'
+            if (si <= 134 && si >= 86) dive.pgAfterSi = 'B'
+            if (si <= 85 && si >= 65) dive.pgAfterSi = 'C'
+            if (si <= 64 && si >= 56) dive.pgAfterSi = 'D'
+            if (si <= 55 && si >= 47) dive.pgAfterSi = 'E'
+            if (si <= 46 && si >= 40) dive.pgAfterSi = 'F'
+            if (si <= 39 && si >= 33) dive.pgAfterSi = 'G'
+            if (si <= 32 && si >= 26) dive.pgAfterSi = 'H'
+            if (si <= 25 && si >= 20) dive.pgAfterSi = 'I'
+            if (si <= 19 && si >= 15) dive.pgAfterSi = 'J'
+            if (si <= 14 && si >= 10) dive.pgAfterSi = 'K'
+            if (si <= 9 && si >= 5) dive.pgAfterSi = 'L'
+            if (si <= 4 && si >= 0) dive.pgAfterSi = 'M'
+        } else if (pg === 'N') {
+            if (si >= 139) dive.pgAfterSi = 'A'
+            if (si <= 138 && si >= 91) dive.pgAfterSi = 'B'
+            if (si <= 90 && si >= 69) dive.pgAfterSi = 'C'
+            if (si <= 68 && si >= 60) dive.pgAfterSi = 'D'
+            if (si <= 59 && si >= 52) dive.pgAfterSi = 'E'
+            if (si <= 51 && si >= 44) dive.pgAfterSi = 'F'
+            if (si <= 43 && si >= 37) dive.pgAfterSi = 'G'
+            if (si <= 36 && si >= 31) dive.pgAfterSi = 'H'
+            if (si <= 30 && si >= 25) dive.pgAfterSi = 'I'
+            if (si <= 24 && si >= 19) dive.pgAfterSi = 'J'
+            if (si <= 18 && si >= 14) dive.pgAfterSi = 'K'
+            if (si <= 13 && si >= 9) dive.pgAfterSi = 'L'
+            if (si <= 8 && si >= 4) dive.pgAfterSi = 'M'
+            if (si <= 3 && si >= 0) dive.pgAfterSi = 'N'
+        } else if (pg === 'O') {
+            if (si >= 144) dive.pgAfterSi = 'A'
+            if (si <= 143 && si >= 95) dive.pgAfterSi = 'B'
+            if (si <= 94 && si >= 73) dive.pgAfterSi = 'C'
+            if (si <= 72 && si >= 64) dive.pgAfterSi = 'D'
+            if (si <= 63 && si >= 56) dive.pgAfterSi = 'E'
+            if (si <= 55 && si >= 48) dive.pgAfterSi = 'F'
+            if (si <= 47 && si >= 42) dive.pgAfterSi = 'G'
+            if (si <= 41 && si >= 35) dive.pgAfterSi = 'H'
+            if (si <= 34 && si >= 29) dive.pgAfterSi = 'I'
+            if (si <= 28 && si >= 24) dive.pgAfterSi = 'J'
+            if (si <= 23 && si >= 18) dive.pgAfterSi = 'K'
+            if (si <= 17 && si >= 13) dive.pgAfterSi = 'L'
+            if (si <= 12 && si >= 9) dive.pgAfterSi = 'M'
+            if (si <= 8 && si >= 4) dive.pgAfterSi = 'N'
+            if (si <= 3 && si >= 0) dive.pgAfterSi = 'O'
+        } else if (pg === 'P') {
+            if (si >= 148) dive.pgAfterSi = 'A'
+            if (si <= 147 && si >= 99) dive.pgAfterSi = 'B'
+            if (si <= 98 && si >= 77) dive.pgAfterSi = 'C'
+            if (si <= 76 && si >= 68) dive.pgAfterSi = 'D'
+            if (si <= 67 && si >= 60) dive.pgAfterSi = 'E'
+            if (si <= 59 && si >= 52) dive.pgAfterSi = 'F'
+            if (si <= 51 && si >= 46) dive.pgAfterSi = 'G'
+            if (si <= 45 && si >= 39) dive.pgAfterSi = 'H'
+            if (si <= 38 && si >= 33) dive.pgAfterSi = 'I'
+            if (si <= 32 && si >= 28) dive.pgAfterSi = 'J'
+            if (si <= 27 && si >= 22) dive.pgAfterSi = 'K'
+            if (si <= 21 && si >= 17) dive.pgAfterSi = 'L'
+            if (si <= 16 && si >= 13) dive.pgAfterSi = 'M'
+            if (si <= 12 && si >= 8) dive.pgAfterSi = 'N'
+            if (si <= 7 && si >= 4) dive.pgAfterSi = 'O'
+            if (si <= 3 && si >= 0) dive.pgAfterSi = 'P'
+        } else if (pg === 'Q') {
+            if (si >= 151) dive.pgAfterSi = 'A'
+            if (si <= 150 && si >= 103) dive.pgAfterSi = 'B'
+            if (si <= 102 && si >= 81) dive.pgAfterSi = 'C'
+            if (si <= 80 && si >= 72) dive.pgAfterSi = 'D'
+            if (si <= 71 && si >= 64) dive.pgAfterSi = 'E'
+            if (si <= 63 && si >= 56) dive.pgAfterSi = 'F'
+            if (si <= 55 && si >= 49) dive.pgAfterSi = 'G'
+            if (si <= 48 && si >= 43) dive.pgAfterSi = 'H'
+            if (si <= 42 && si >= 37) dive.pgAfterSi = 'I'
+            if (si <= 36 && si >= 31) dive.pgAfterSi = 'J'
+            if (si <= 30 && si >= 26) dive.pgAfterSi = 'K'
+            if (si <= 25 && si >= 21) dive.pgAfterSi = 'L'
+            if (si <= 20 && si >= 17) dive.pgAfterSi = 'M'
+            if (si <= 16 && si >= 12) dive.pgAfterSi = 'N'
+            if (si <= 11 && si >= 8) dive.pgAfterSi = 'O'
+            if (si <= 7 && si >= 4) dive.pgAfterSi = 'P'
+            if (si <= 3 && si >= 0) dive.pgAfterSi = 'Q'
+        } else if (pg === 'R') {
+            if (si >= 155) dive.pgAfterSi = 'A'
+            if (si <= 154 && si >= 107) dive.pgAfterSi = 'B'
+            if (si <= 106 && si >= 85) dive.pgAfterSi = 'C'
+            if (si <= 84 && si >= 76) dive.pgAfterSi = 'D'
+            if (si <= 75 && si >= 68) dive.pgAfterSi = 'E'
+            if (si <= 67 && si >= 60) dive.pgAfterSi = 'F'
+            if (si <= 59 && si >= 53) dive.pgAfterSi = 'G'
+            if (si <= 52 && si >= 47) dive.pgAfterSi = 'H'
+            if (si <= 46 && si >= 41) dive.pgAfterSi = 'I'
+            if (si <= 40 && si >= 35) dive.pgAfterSi = 'J'
+            if (si <= 34 && si >= 30) dive.pgAfterSi = 'K'
+            if (si <= 29 && si >= 25) dive.pgAfterSi = 'L'
+            if (si <= 24 && si >= 20) dive.pgAfterSi = 'M'
+            if (si <= 19 && si >= 16) dive.pgAfterSi = 'N'
+            if (si <= 15 && si >= 12) dive.pgAfterSi = 'O'
+            if (si <= 11 && si >= 8) dive.pgAfterSi = 'P'
+            if (si <= 7 && si >= 4) dive.pgAfterSi = 'Q'
+            if (si <= 3 && si >= 0) dive.pgAfterSi = 'R'
+        } else if (pg === 'S') {
+            if (si >= 159) dive.pgAfterSi = 'A'
+            if (si <= 158 && si >= 110) dive.pgAfterSi = 'B'
+            if (si <= 109 && si >= 88) dive.pgAfterSi = 'C'
+            if (si <= 87 && si >= 79) dive.pgAfterSi = 'D'
+            if (si <= 78 && si >= 71) dive.pgAfterSi = 'E'
+            if (si <= 70 && si >= 64) dive.pgAfterSi = 'F'
+            if (si <= 63 && si >= 57) dive.pgAfterSi = 'G'
+            if (si <= 56 && si >= 50) dive.pgAfterSi = 'H'
+            if (si <= 49 && si >= 44) dive.pgAfterSi = 'I'
+            if (si <= 43 && si >= 39) dive.pgAfterSi = 'J'
+            if (si <= 38 && si >= 33) dive.pgAfterSi = 'K'
+            if (si <= 32 && si >= 28) dive.pgAfterSi = 'L'
+            if (si <= 27 && si >= 24) dive.pgAfterSi = 'M'
+            if (si <= 23 && si >= 19) dive.pgAfterSi = 'N'
+            if (si <= 18 && si >= 15) dive.pgAfterSi = 'O'
+            if (si <= 14 && si >= 11) dive.pgAfterSi = 'P'
+            if (si <= 10 && si >= 7) dive.pgAfterSi = 'Q'
+            if (si <= 6 && si >= 4) dive.pgAfterSi = 'R'
+            if (si <= 3 && si >= 0) dive.pgAfterSi = 'S'
+        } else if (pg === 'T') {
+            if (si >= 162) dive.pgAfterSi = 'A'
+            if (si <= 161 && si >= 114) dive.pgAfterSi = 'B'
+            if (si <= 113 && si >= 92) dive.pgAfterSi = 'C'
+            if (si <= 91 && si >= 83) dive.pgAfterSi = 'D'
+            if (si <= 82 && si >= 74) dive.pgAfterSi = 'E'
+            if (si <= 73 && si >= 67) dive.pgAfterSi = 'F'
+            if (si <= 66 && si >= 60) dive.pgAfterSi = 'G'
+            if (si <= 59 && si >= 54) dive.pgAfterSi = 'H'
+            if (si <= 53 && si >= 48) dive.pgAfterSi = 'I'
+            if (si <= 47 && si >= 42) dive.pgAfterSi = 'J'
+            if (si <= 41 && si >= 37) dive.pgAfterSi = 'K'
+            if (si <= 36 && si >= 32) dive.pgAfterSi = 'L'
+            if (si <= 31 && si >= 27) dive.pgAfterSi = 'M'
+            if (si <= 26 && si >= 23) dive.pgAfterSi = 'N'
+            if (si <= 22 && si >= 18) dive.pgAfterSi = 'O'
+            if (si <= 17 && si >= 14) dive.pgAfterSi = 'P'
+            if (si <= 13 && si >= 11) dive.pgAfterSi = 'Q'
+            if (si <= 10 && si >= 7) dive.pgAfterSi = 'R'
+            if (si <= 6 && si >= 3) dive.pgAfterSi = 'S'
+            if (si <= 2 && si >= 0) dive.pgAfterSi = 'T'
+        } else if (pg === 'U') {
+            if (si >= 165) dive.pgAfterSi = 'A'
+            if (si <= 164 && si >= 117) dive.pgAfterSi = 'B'
+            if (si <= 116 && si >= 95) dive.pgAfterSi = 'C'
+            if (si <= 94 && si >= 86) dive.pgAfterSi = 'D'
+            if (si <= 85 && si >= 78) dive.pgAfterSi = 'E'
+            if (si <= 77 && si >= 70) dive.pgAfterSi = 'F'
+            if (si <= 69 && si >= 63) dive.pgAfterSi = 'G'
+            if (si <= 62 && si >= 57) dive.pgAfterSi = 'H'
+            if (si <= 56 && si >= 51) dive.pgAfterSi = 'I'
+            if (si <= 50 && si >= 45) dive.pgAfterSi = 'J'
+            if (si <= 44 && si >= 40) dive.pgAfterSi = 'K'
+            if (si <= 39 && si >= 35) dive.pgAfterSi = 'L'
+            if (si <= 34 && si >= 30) dive.pgAfterSi = 'M'
+            if (si <= 29 && si >= 26) dive.pgAfterSi = 'N'
+            if (si <= 25 && si >= 22) dive.pgAfterSi = 'O'
+            if (si <= 21 && si >= 18) dive.pgAfterSi = 'P'
+            if (si <= 17 && si >= 14) dive.pgAfterSi = 'Q'
+            if (si <= 13 && si >= 10) dive.pgAfterSi = 'R'
+            if (si <= 9 && si >= 7) dive.pgAfterSi = 'S'
+            if (si <= 6 && si >= 3) dive.pgAfterSi = 'T'
+            if (si <= 2 && si >= 0) dive.pgAfterSi = 'U'
+        } else if (pg === 'V') {
+            if (si >= 168) dive.pgAfterSi = 'A'
+            if (si <= 167 && si >= 120) dive.pgAfterSi = 'B'
+            if (si <= 119 && si >= 98) dive.pgAfterSi = 'C'
+            if (si <= 97 && si >= 89) dive.pgAfterSi = 'D'
+            if (si <= 88 && si >= 81) dive.pgAfterSi = 'E'
+            if (si <= 80 && si >= 73) dive.pgAfterSi = 'F'
+            if (si <= 72 && si >= 66) dive.pgAfterSi = 'G'
+            if (si <= 65 && si >= 60) dive.pgAfterSi = 'H'
+            if (si <= 59 && si >= 54) dive.pgAfterSi = 'I'
+            if (si <= 53 && si >= 48) dive.pgAfterSi = 'J'
+            if (si <= 47 && si >= 43) dive.pgAfterSi = 'K'
+            if (si <= 42 && si >= 38) dive.pgAfterSi = 'L'
+            if (si <= 37 && si >= 34) dive.pgAfterSi = 'M'
+            if (si <= 33 && si >= 29) dive.pgAfterSi = 'N'
+            if (si <= 28 && si >= 25) dive.pgAfterSi = 'O'
+            if (si <= 24 && si >= 21) dive.pgAfterSi = 'P'
+            if (si <= 20 && si >= 17) dive.pgAfterSi = 'Q'
+            if (si <= 16 && si >= 13) dive.pgAfterSi = 'R'
+            if (si <= 12 && si >= 10) dive.pgAfterSi = 'S'
+            if (si <= 9 && si >= 6) dive.pgAfterSi = 'T'
+            if (si <= 5 && si >= 3) dive.pgAfterSi = 'U'
+            if (si <= 2 && si >= 0) dive.pgAfterSi = 'V'
+        } else if (pg === 'W') {
+            if (si >= 171) dive.pgAfterSi = 'A'
+            if (si <= 170 && si >= 123) dive.pgAfterSi = 'B'
+            if (si <= 122 && si >= 101) dive.pgAfterSi = 'C'
+            if (si <= 100 && si >= 92) dive.pgAfterSi = 'D'
+            if (si <= 91 && si >= 84) dive.pgAfterSi = 'E'
+            if (si <= 83 && si >= 76) dive.pgAfterSi = 'F'
+            if (si <= 75 && si >= 69) dive.pgAfterSi = 'G'
+            if (si <= 68 && si >= 63) dive.pgAfterSi = 'H'
+            if (si <= 62 && si >= 57) dive.pgAfterSi = 'I'
+            if (si <= 56 && si >= 51) dive.pgAfterSi = 'J'
+            if (si <= 50 && si >= 46) dive.pgAfterSi = 'K'
+            if (si <= 45 && si >= 41) dive.pgAfterSi = 'L'
+            if (si <= 40 && si >= 37) dive.pgAfterSi = 'M'
+            if (si <= 36 && si >= 32) dive.pgAfterSi = 'N'
+            if (si <= 31 && si >= 28) dive.pgAfterSi = 'O'
+            if (si <= 27 && si >= 24) dive.pgAfterSi = 'P'
+            if (si <= 23 && si >= 20) dive.pgAfterSi = 'Q'
+            if (si <= 19 && si >= 16) dive.pgAfterSi = 'R'
+            if (si <= 15 && si >= 13) dive.pgAfterSi = 'S'
+            if (si <= 12 && si >= 9) dive.pgAfterSi = 'T'
+            if (si <= 8 && si >= 5) dive.pgAfterSi = 'U'
+            if (si <= 5 && si >= 3) dive.pgAfterSi = 'V'
+            if (si <= 2 && si >= 0) dive.pgAfterSi = 'W'
+        } else if (pg === 'X') {
+            if (si >= 174) dive.pgAfterSi = 'A'
+            if (si <= 173 && si >= 126) dive.pgAfterSi = 'B'
+            if (si <= 125 && si >= 104) dive.pgAfterSi = 'C'
+            if (si <= 103 && si >= 95) dive.pgAfterSi = 'D'
+            if (si <= 94 && si >= 87) dive.pgAfterSi = 'E'
+            if (si <= 86 && si >= 79) dive.pgAfterSi = 'F'
+            if (si <= 78 && si >= 72) dive.pgAfterSi = 'G'
+            if (si <= 71 && si >= 66) dive.pgAfterSi = 'H'
+            if (si <= 65 && si >= 60) dive.pgAfterSi = 'I'
+            if (si <= 59 && si >= 54) dive.pgAfterSi = 'J'
+            if (si <= 53 && si >= 49) dive.pgAfterSi = 'K'
+            if (si <= 48 && si >= 44) dive.pgAfterSi = 'L'
+            if (si <= 43 && si >= 40) dive.pgAfterSi = 'M'
+            if (si <= 39 && si >= 35) dive.pgAfterSi = 'N'
+            if (si <= 34 && si >= 31) dive.pgAfterSi = 'O'
+            if (si <= 30 && si >= 27) dive.pgAfterSi = 'P'
+            if (si <= 26 && si >= 23) dive.pgAfterSi = 'Q'
+            if (si <= 22 && si >= 19) dive.pgAfterSi = 'R'
+            if (si <= 18 && si >= 16) dive.pgAfterSi = 'S'
+            if (si <= 15 && si >= 12) dive.pgAfterSi = 'T'
+            if (si <= 11 && si >= 9) dive.pgAfterSi = 'U'
+            if (si <= 8 && si >= 6) dive.pgAfterSi = 'V'
+            if (si <= 5 && si >= 3) dive.pgAfterSi = 'W'
+            if (si <= 2 && si >= 0) dive.pgAfterSi = 'X'
+        } else if (pg === 'Y') {
+            if (si >= 177) dive.pgAfterSi = 'A'
+            if (si <= 176 && si >= 129) dive.pgAfterSi = 'B'
+            if (si <= 128 && si >= 107) dive.pgAfterSi = 'C'
+            if (si <= 106 && si >= 98) dive.pgAfterSi = 'D'
+            if (si <= 97 && si >= 90) dive.pgAfterSi = 'E'
+            if (si <= 89 && si >= 82) dive.pgAfterSi = 'F'
+            if (si <= 81 && si >= 75) dive.pgAfterSi = 'G'
+            if (si <= 74 && si >= 69) dive.pgAfterSi = 'H'
+            if (si <= 68 && si >= 63) dive.pgAfterSi = 'I'
+            if (si <= 62 && si >= 57) dive.pgAfterSi = 'J'
+            if (si <= 56 && si >= 52) dive.pgAfterSi = 'K'
+            if (si <= 51 && si >= 47) dive.pgAfterSi = 'L'
+            if (si <= 46 && si >= 42) dive.pgAfterSi = 'M'
+            if (si <= 41 && si >= 38) dive.pgAfterSi = 'N'
+            if (si <= 37 && si >= 34) dive.pgAfterSi = 'O'
+            if (si <= 33 && si >= 30) dive.pgAfterSi = 'P'
+            if (si <= 29 && si >= 26) dive.pgAfterSi = 'Q'
+            if (si <= 25 && si >= 22) dive.pgAfterSi = 'R'
+            if (si <= 21 && si >= 19) dive.pgAfterSi = 'S'
+            if (si <= 18 && si >= 15) dive.pgAfterSi = 'T'
+            if (si <= 14 && si >= 12) dive.pgAfterSi = 'U'
+            if (si <= 11 && si >= 9) dive.pgAfterSi = 'V'
+            if (si <= 8 && si >= 6) dive.pgAfterSi = 'W'
+            if (si <= 5 && si >= 3) dive.pgAfterSi = 'X'
+            if (si <= 2 && si >= 0) dive.pgAfterSi = 'Y'
+        } else if (pg === 'Z') {
+            if (si >= 180) dive.pgAfterSi = 'A'
+            if (si <= 179 && si >= 132) dive.pgAfterSi = 'B'
+            if (si <= 131 && si >= 110) dive.pgAfterSi = 'C'
+            if (si <= 109 && si >= 101) dive.pgAfterSi = 'D'
+            if (si <= 100 && si >= 92) dive.pgAfterSi = 'E'
+            if (si <= 91 && si >= 85) dive.pgAfterSi = 'F'
+            if (si <= 84 && si >= 78) dive.pgAfterSi = 'G'
+            if (si <= 77 && si >= 72) dive.pgAfterSi = 'H'
+            if (si <= 71 && si >= 66) dive.pgAfterSi = 'I'
+            if (si <= 65 && si >= 60) dive.pgAfterSi = 'J'
+            if (si <= 59 && si >= 55) dive.pgAfterSi = 'K'
+            if (si <= 54 && si >= 50) dive.pgAfterSi = 'L'
+            if (si <= 49 && si >= 45) dive.pgAfterSi = 'M'
+            if (si <= 44 && si >= 41) dive.pgAfterSi = 'N'
+            if (si <= 40 && si >= 36) dive.pgAfterSi = 'O'
+            if (si <= 35 && si >= 32) dive.pgAfterSi = 'P'
+            if (si <= 31 && si >= 29) dive.pgAfterSi = 'Q'
+            if (si <= 28 && si >= 25) dive.pgAfterSi = 'R'
+            if (si <= 24 && si >= 21) dive.pgAfterSi = 'S'
+            if (si <= 20 && si >= 18) dive.pgAfterSi = 'T'
+            if (si <= 17 && si >= 15) dive.pgAfterSi = 'U'
+            if (si <= 14 && si >= 12) dive.pgAfterSi = 'V'
+            if (si <= 11 && si >= 9) dive.pgAfterSi = 'W'
+            if (si <= 8 && si >= 6) dive.pgAfterSi = 'X'
+            if (si <= 5 && si >= 3) dive.pgAfterSi = 'Y'
+            if (si <= 2 && si >= 0) dive.pgAfterSi = 'Z'
+        }
 
         if (step === 2) { updateDive2(dive) }
         else if (step === 3) { updateDive3(dive) }
     }
 
+    // Sets residual nitrogen time, given starting pressure group and depth of next dive.
     const getRNT = (step, inputDepth, newPg) => {
         const depth = inputDepth
         const startPg = newPg
@@ -693,217 +715,217 @@ export const DiveStates = () => {
         console.log('starting pg', startPg)
         if (step === 1) { return 0 }
         else if (depth <= 35) {
-            if (startPg === 'A') { return 10 }
-            if (startPg === 'B') { return 19 }
-            if (startPg === 'C') { return 25 }
-            if (startPg === 'D') { return 29 }
-            if (startPg === 'E') { return 32 }
-            if (startPg === 'F') { return 36 }
-            if (startPg === 'G') { return 40 }
-            if (startPg === 'H') { return 44 }
-            if (startPg === 'I') { return 48 }
-            if (startPg === 'J') { return 52 }
-            if (startPg === 'K') { return 57 }
-            if (startPg === 'L') { return 62 }
-            if (startPg === 'M') { return 67 }
-            if (startPg === 'N') { return 73 }
-            if (startPg === 'O') { return 79 }
-            if (startPg === 'P') { return 85 }
-            if (startPg === 'Q') { return 92 }
-            if (startPg === 'R') { return 100 }
-            if (startPg === 'S') { return 108 }
-            if (startPg === 'T') { return 117 }
-            if (startPg === 'U') { return 127 }
-            if (startPg === 'V') { return 139 }
-            if (startPg === 'W') { return 152 }
-            if (startPg === 'X') { return 168 }
-            if (startPg === 'Y') { return 188 }
-            if (startPg === 'Z') { return 205 }
+            if (startPg === 'A') return 10
+            if (startPg === 'B') return 19
+            if (startPg === 'C') return 25
+            if (startPg === 'D') return 29
+            if (startPg === 'E') return 32
+            if (startPg === 'F') return 36
+            if (startPg === 'G') return 40
+            if (startPg === 'H') return 44
+            if (startPg === 'I') return 48
+            if (startPg === 'J') return 52
+            if (startPg === 'K') return 57
+            if (startPg === 'L') return 62
+            if (startPg === 'M') return 67
+            if (startPg === 'N') return 73
+            if (startPg === 'O') return 79
+            if (startPg === 'P') return 85
+            if (startPg === 'Q') return 92
+            if (startPg === 'R') return 100
+            if (startPg === 'S') return 108
+            if (startPg === 'T') return 117
+            if (startPg === 'U') return 127
+            if (startPg === 'V') return 139
+            if (startPg === 'W') return 152
+            if (startPg === 'X') return 168
+            if (startPg === 'Y') return 188
+            if (startPg === 'Z') return 205
         } else if (depth <= 40) {
-            if (startPg === 'A') { return 9 }
-            if (startPg === 'B') { return 16 }
-            if (startPg === 'C') { return 22 }
-            if (startPg === 'D') { return 25 }
-            if (startPg === 'E') { return 27 }
-            if (startPg === 'F') { return 31 }
-            if (startPg === 'G') { return 34 }
-            if (startPg === 'H') { return 37 }
-            if (startPg === 'I') { return 40 }
-            if (startPg === 'J') { return 44 }
-            if (startPg === 'K') { return 48 }
-            if (startPg === 'L') { return 51 }
-            if (startPg === 'M') { return 55 }
-            if (startPg === 'N') { return 60 }
-            if (startPg === 'O') { return 64 }
-            if (startPg === 'P') { return 69 }
-            if (startPg === 'Q') { return 74 }
-            if (startPg === 'R') { return 79 }
-            if (startPg === 'S') { return 85 }
-            if (startPg === 'T') { return 91 }
-            if (startPg === 'U') { return 97 }
-            if (startPg === 'V') { return 104 }
-            if (startPg === 'W') { return 111 }
-            if (startPg === 'X') { return 120 }
-            if (startPg === 'Y') { return 129 }
-            if (startPg === 'Z') { return 140 }
+            if (startPg === 'A') return 9
+            if (startPg === 'B') return 16
+            if (startPg === 'C') return 22
+            if (startPg === 'D') return 25
+            if (startPg === 'E') return 27
+            if (startPg === 'F') return 31
+            if (startPg === 'G') return 34
+            if (startPg === 'H') return 37
+            if (startPg === 'I') return 40
+            if (startPg === 'J') return 44
+            if (startPg === 'K') return 48
+            if (startPg === 'L') return 51
+            if (startPg === 'M') return 55
+            if (startPg === 'N') return 60
+            if (startPg === 'O') return 64
+            if (startPg === 'P') return 69
+            if (startPg === 'Q') return 74
+            if (startPg === 'R') return 79
+            if (startPg === 'S') return 85
+            if (startPg === 'T') return 91
+            if (startPg === 'U') return 97
+            if (startPg === 'V') return 104
+            if (startPg === 'W') return 111
+            if (startPg === 'X') return 120
+            if (startPg === 'Y') return 129
+            if (startPg === 'Z') return 140
         } else if (depth <= 50) {
-            if (startPg === 'A') { return 7 }
-            if (startPg === 'B') { return 13 }
-            if (startPg === 'C') { return 17 }
-            if (startPg === 'D') { return 19 }
-            if (startPg === 'E') { return 21 }
-            if (startPg === 'F') { return 24 }
-            if (startPg === 'G') { return 26 }
-            if (startPg === 'H') { return 28 }
-            if (startPg === 'I') { return 31 }
-            if (startPg === 'J') { return 33 }
-            if (startPg === 'K') { return 36 }
-            if (startPg === 'L') { return 38 }
-            if (startPg === 'M') { return 41 }
-            if (startPg === 'N') { return 44 }
-            if (startPg === 'O') { return 47 }
-            if (startPg === 'P') { return 50 }
-            if (startPg === 'Q') { return 53 }
-            if (startPg === 'R') { return 57 }
-            if (startPg === 'S') { return 60 }
-            if (startPg === 'T') { return 63 }
-            if (startPg === 'U') { return 67 }
-            if (startPg === 'V') { return 71 }
-            if (startPg === 'W') { return 75 }
-            if (startPg === 'X') { return 80 }
+            if (startPg === 'A') return 7
+            if (startPg === 'B') return 13
+            if (startPg === 'C') return 17
+            if (startPg === 'D') return 19
+            if (startPg === 'E') return 21
+            if (startPg === 'F') return 24
+            if (startPg === 'G') return 26
+            if (startPg === 'H') return 28
+            if (startPg === 'I') return 31
+            if (startPg === 'J') return 33
+            if (startPg === 'K') return 36
+            if (startPg === 'L') return 38
+            if (startPg === 'M') return 41
+            if (startPg === 'N') return 44
+            if (startPg === 'O') return 47
+            if (startPg === 'P') return 50
+            if (startPg === 'Q') return 53
+            if (startPg === 'R') return 57
+            if (startPg === 'S') return 60
+            if (startPg === 'T') return 63
+            if (startPg === 'U') return 67
+            if (startPg === 'V') return 71
+            if (startPg === 'W') return 75
+            if (startPg === 'X') return 80
         } else if (depth <= 60) {
-            if (startPg === 'A') { return 6 }
-            if (startPg === 'B') { return 11 }
-            if (startPg === 'C') { return 14 }
-            if (startPg === 'D') { return 16 }
-            if (startPg === 'E') { return 17 }
-            if (startPg === 'F') { return 19 }
-            if (startPg === 'G') { return 21 }
-            if (startPg === 'H') { return 23 }
-            if (startPg === 'I') { return 25 }
-            if (startPg === 'J') { return 27 }
-            if (startPg === 'K') { return 29 }
-            if (startPg === 'L') { return 31 }
-            if (startPg === 'M') { return 33 }
-            if (startPg === 'N') { return 35 }
-            if (startPg === 'O') { return 37 }
-            if (startPg === 'P') { return 39 }
-            if (startPg === 'Q') { return 42 }
-            if (startPg === 'R') { return 44 }
-            if (startPg === 'S') { return 47 }
-            if (startPg === 'T') { return 49 }
-            if (startPg === 'U') { return 52 }
-            if (startPg === 'V') { return 54 }
-            if (startPg === 'W') { return 55 }
+            if (startPg === 'A') return 6
+            if (startPg === 'B') return 11
+            if (startPg === 'C') return 14
+            if (startPg === 'D') return 16
+            if (startPg === 'E') return 17
+            if (startPg === 'F') return 19
+            if (startPg === 'G') return 21
+            if (startPg === 'H') return 23
+            if (startPg === 'I') return 25
+            if (startPg === 'J') return 27
+            if (startPg === 'K') return 29
+            if (startPg === 'L') return 31
+            if (startPg === 'M') return 33
+            if (startPg === 'N') return 35
+            if (startPg === 'O') return 37
+            if (startPg === 'P') return 39
+            if (startPg === 'Q') return 42
+            if (startPg === 'R') return 44
+            if (startPg === 'S') return 47
+            if (startPg === 'T') return 49
+            if (startPg === 'U') return 52
+            if (startPg === 'V') return 54
+            if (startPg === 'W') return 55
         } else if (depth <= 70) {
-            if (startPg === 'A') { return 5 }
-            if (startPg === 'B') { return 9 }
-            if (startPg === 'C') { return 12 }
-            if (startPg === 'D') { return 13 }
-            if (startPg === 'E') { return 15 }
-            if (startPg === 'F') { return 16 }
-            if (startPg === 'G') { return 18 }
-            if (startPg === 'H') { return 19 }
-            if (startPg === 'I') { return 21 }
-            if (startPg === 'J') { return 22 }
-            if (startPg === 'K') { return 24 }
-            if (startPg === 'L') { return 26 }
-            if (startPg === 'M') { return 27 }
-            if (startPg === 'N') { return 29 }
-            if (startPg === 'O') { return 31 }
-            if (startPg === 'P') { return 33 }
-            if (startPg === 'Q') { return 34 }
-            if (startPg === 'R') { return 36 }
-            if (startPg === 'S') { return 38 }
-            if (startPg === 'T') { return 40 }
+            if (startPg === 'A') return 5
+            if (startPg === 'B') return 9
+            if (startPg === 'C') return 12
+            if (startPg === 'D') return 13
+            if (startPg === 'E') return 15
+            if (startPg === 'F') return 16
+            if (startPg === 'G') return 18
+            if (startPg === 'H') return 19
+            if (startPg === 'I') return 21
+            if (startPg === 'J') return 22
+            if (startPg === 'K') return 24
+            if (startPg === 'L') return 26
+            if (startPg === 'M') return 27
+            if (startPg === 'N') return 29
+            if (startPg === 'O') return 31
+            if (startPg === 'P') return 33
+            if (startPg === 'Q') return 34
+            if (startPg === 'R') return 36
+            if (startPg === 'S') return 38
+            if (startPg === 'T') return 40
         } else if (depth <= 80) {
-            if (startPg === 'A') { return 4 }
-            if (startPg === 'B') { return 8 }
-            if (startPg === 'C') { return 10 }
-            if (startPg === 'D') { return 11 }
-            if (startPg === 'E') { return 13 }
-            if (startPg === 'F') { return 14 }
-            if (startPg === 'G') { return 15 }
-            if (startPg === 'H') { return 17 }
-            if (startPg === 'I') { return 18 }
-            if (startPg === 'J') { return 19 }
-            if (startPg === 'K') { return 21 }
-            if (startPg === 'L') { return 22 }
-            if (startPg === 'M') { return 23 }
-            if (startPg === 'N') { return 25 }
-            if (startPg === 'O') { return 26 }
-            if (startPg === 'P') { return 28 }
-            if (startPg === 'Q') { return 29 }
-            if (startPg === 'R') { return 30 }
+            if (startPg === 'A') return 4
+            if (startPg === 'B') return 8
+            if (startPg === 'C') return 10
+            if (startPg === 'D') return 11
+            if (startPg === 'E') return 13
+            if (startPg === 'F') return 14
+            if (startPg === 'G') return 15
+            if (startPg === 'H') return 17
+            if (startPg === 'I') return 18
+            if (startPg === 'J') return 19
+            if (startPg === 'K') return 21
+            if (startPg === 'L') return 22
+            if (startPg === 'M') return 23
+            if (startPg === 'N') return 25
+            if (startPg === 'O') return 26
+            if (startPg === 'P') return 28
+            if (startPg === 'Q') return 29
+            if (startPg === 'R') return 30
         } else if (depth <= 90) {
-            if (startPg === 'A') { return 4 }
-            if (startPg === 'B') { return 7 }
-            if (startPg === 'C') { return 9 }
-            if (startPg === 'D') { return 10 }
-            if (startPg === 'E') { return 11 }
-            if (startPg === 'F') { return 12 }
-            if (startPg === 'G') { return 13 }
-            if (startPg === 'H') { return 15 }
-            if (startPg === 'I') { return 16 }
-            if (startPg === 'J') { return 17 }
-            if (startPg === 'K') { return 18 }
-            if (startPg === 'L') { return 19 }
-            if (startPg === 'M') { return 21 }
-            if (startPg === 'N') { return 22 }
-            if (startPg === 'O') { return 23 }
-            if (startPg === 'P') { return 24 }
-            if (startPg === 'Q') { return 25 }
+            if (startPg === 'A') return 4
+            if (startPg === 'B') return 7
+            if (startPg === 'C') return 9
+            if (startPg === 'D') return 10
+            if (startPg === 'E') return 11
+            if (startPg === 'F') return 12
+            if (startPg === 'G') return 13
+            if (startPg === 'H') return 15
+            if (startPg === 'I') return 16
+            if (startPg === 'J') return 17
+            if (startPg === 'K') return 18
+            if (startPg === 'L') return 19
+            if (startPg === 'M') return 21
+            if (startPg === 'N') return 22
+            if (startPg === 'O') return 23
+            if (startPg === 'P') return 24
+            if (startPg === 'Q') return 25
         } else if (depth <= 100) {
-            if (startPg === 'A') { return 3 }
-            if (startPg === 'B') { return 6 }
-            if (startPg === 'C') { return 8 }
-            if (startPg === 'D') { return 9 }
-            if (startPg === 'E') { return 10 }
-            if (startPg === 'F') { return 11 }
-            if (startPg === 'G') { return 12 }
-            if (startPg === 'H') { return 13 }
-            if (startPg === 'I') { return 14 }
-            if (startPg === 'J') { return 15 }
-            if (startPg === 'K') { return 16 }
-            if (startPg === 'L') { return 17 }
-            if (startPg === 'M') { return 18 }
-            if (startPg === 'N') { return 19 }
-            if (startPg === 'O') { return 20 }
+            if (startPg === 'A') return 3
+            if (startPg === 'B') return 6
+            if (startPg === 'C') return 8
+            if (startPg === 'D') return 9
+            if (startPg === 'E') return 10
+            if (startPg === 'F') return 11
+            if (startPg === 'G') return 12
+            if (startPg === 'H') return 13
+            if (startPg === 'I') return 14
+            if (startPg === 'J') return 15
+            if (startPg === 'K') return 16
+            if (startPg === 'L') return 17
+            if (startPg === 'M') return 18
+            if (startPg === 'N') return 19
+            if (startPg === 'O') return 20
         } else if (depth <= 110) {
-            if (startPg === 'A') { return 3 }
-            if (startPg === 'B') { return 6 }
-            if (startPg === 'C') { return 7 }
-            if (startPg === 'D') { return 8 }
-            if (startPg === 'E') { return 9 }
-            if (startPg === 'F') { return 10 }
-            if (startPg === 'G') { return 11 }
-            if (startPg === 'H') { return 12 }
-            if (startPg === 'I') { return 13 }
-            if (startPg === 'J') { return 14 }
-            if (startPg === 'K') { return 14 }
-            if (startPg === 'L') { return 15 }
-            if (startPg === 'M') { return 16 }
+            if (startPg === 'A') return 3
+            if (startPg === 'B') return 6
+            if (startPg === 'C') return 7
+            if (startPg === 'D') return 8
+            if (startPg === 'E') return 9
+            if (startPg === 'F') return 10
+            if (startPg === 'G') return 11
+            if (startPg === 'H') return 12
+            if (startPg === 'I') return 13
+            if (startPg === 'J') return 14
+            if (startPg === 'K') return 14
+            if (startPg === 'L') return 15
+            if (startPg === 'M') return 16
         } else if (depth <= 120) {
-            if (startPg === 'A') { return 3 }
-            if (startPg === 'B') { return 5 }
-            if (startPg === 'C') { return 6 }
-            if (startPg === 'D') { return 7 }
-            if (startPg === 'E') { return 8 }
-            if (startPg === 'F') { return 9 }
-            if (startPg === 'G') { return 10 }
-            if (startPg === 'H') { return 11 }
-            if (startPg === 'I') { return 12 }
-            if (startPg === 'J') { return 12 }
-            if (startPg === 'K') { return 13 }
+            if (startPg === 'A') return 3
+            if (startPg === 'B') return 5
+            if (startPg === 'C') return 6
+            if (startPg === 'D') return 7
+            if (startPg === 'E') return 8
+            if (startPg === 'F') return 9
+            if (startPg === 'G') return 10
+            if (startPg === 'H') return 11
+            if (startPg === 'I') return 12
+            if (startPg === 'J') return 12
+            if (startPg === 'K') return 13
         } else if (depth <= 130) {
-            if (startPg === 'A') { return 3 }
-            if (startPg === 'B') { return 5 }
-            if (startPg === 'C') { return 6 }
-            if (startPg === 'D') { return 7 }
-            if (startPg === 'E') { return 8 }
-            if (startPg === 'F') { return 8 }
-            if (startPg === 'G') { return 9 }
-            if (startPg === 'H') { return 10 }
+            if (startPg === 'A') return 3
+            if (startPg === 'B') return 5
+            if (startPg === 'C') return 6
+            if (startPg === 'D') return 7
+            if (startPg === 'E') return 8
+            if (startPg === 'F') return 8
+            if (startPg === 'G') return 9
+            if (startPg === 'H') return 10
         }
     }
 

@@ -4,9 +4,9 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
     const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     let currentDive = {}
 
-    if (step === 1) { currentDive = dives[0] }
-    else if (step === 2) { currentDive = dives[1] }
-    else if (step === 3) { currentDive = dives[2] }
+    if (step === 1) currentDive = dives[0]
+    if (step === 2) currentDive = dives[1]
+    else if (step === 3) currentDive = dives[2]
     console.log(dives)
     console.log('current', currentDive)
 
