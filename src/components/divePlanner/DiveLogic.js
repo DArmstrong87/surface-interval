@@ -56,8 +56,20 @@ export const DiveStates = () => {
         else if (step === 3) updateDive3(dive)
     }
 
-    const resetDives = (updateDiveInput) => {
-        updateDiveInput({ depth: 0, abt: 0, rnt: 0, pg: '' });
+    const resetDives = (step) => {
+        if (step === 1) {
+            updateDive1({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
+            updateDive2({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
+            updateDive3({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
+        } else if (step === 2) {
+            updateDive2({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '', si: '' });
+            updateDive3({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
+        } else if (step === 3) {
+            updateDive3({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '', si: '' });
+        }
+    }
+    
+    const resetAllDives = () => {
         updateDive1({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
         updateDive2({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
         updateDive3({ noDecoLimit: false, ssRequired: false, depth: 0, rnt: 0, pg: '' });
@@ -69,8 +81,6 @@ export const DiveStates = () => {
         if (step === 2 || step === 3) rnt = getRNT(step, input.depth, currentDive.pgAfterSi)
         let tbt = (input.abt + rnt)
         const depth = input.depth
-        console.log(input)
-        console.log('getPressureGroup runs')
         if (depth <= 35) {
             if (tbt <= 10) setAndUpdate('A', false, false, (tbt - 205), input, step, rnt)
             else if (tbt <= 19) setAndUpdate('B', false, false, (tbt - 205), input, step, rnt)
@@ -304,10 +314,8 @@ export const DiveStates = () => {
         }
     }
 
-    // Sets Pressue group after surface interval.
+    // This function finds new PG, factoring in the previous dive's PG and the current surface interval.
     const setPgAfterSi = (input, currentDive, step) => {
-        // This function finds new PG, factoring in the previous dive's PG and the current surface interval.
-        console.log('setNewPG runs')
         const inputData = { ...input }
         const dive = currentDive
         const findPg = () => {
@@ -315,10 +323,6 @@ export const DiveStates = () => {
             if (step === 2) return dives[0]?.pg
             if (step === 3) return dives[1]?.pg
         }
-        const setPg = (letter) => {
-            dive.pgAfterSi = letter
-        }
-
         let pg = findPg()
         const si = inputData.si
         dive.si = inputData.si
@@ -711,8 +715,6 @@ export const DiveStates = () => {
     const getRNT = (step, inputDepth, newPg) => {
         const depth = inputDepth
         const startPg = newPg
-        console.log('depth', depth)
-        console.log('starting pg', startPg)
         if (step === 1) { return 0 }
         else if (depth <= 35) {
             if (startPg === 'A') return 10
@@ -932,11 +934,11 @@ export const DiveStates = () => {
     return (<>
 
         <Dive step={1} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setAndUpdate={setAndUpdate} />
-        {dive1.pg !== ''
+        {dive1.pg !== '' && dive1.noDecoLimit != true
             ? <Dive step={2} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} getRNT={getRNT} />
             : ''}
-        {dive2.pg !== ''
-            ? <Dive step={3} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} getRNT={getRNT} />
+        {dive2.pg !== '' && dive2.noDecoLimit != true
+            ? <Dive step={3} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} getRNT={getRNT} resetAllDives={resetAllDives}/>
             : ''}
     </>
     )
