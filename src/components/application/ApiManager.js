@@ -1,3 +1,4 @@
+import { useHistory } from "react-router"
 import { useEffect, useState } from "react/cjs/react.development"
 
 export const getCurrentUser = () => {
@@ -73,4 +74,15 @@ export const GetDiveStats = () => {
     )
 
     return diveStats
+}
+
+export const postDive = (dive) => {
+    const fetchOption = {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify(dive)
+    }
+    return fetch("http://localhost:8088/dives", fetchOption)
 }

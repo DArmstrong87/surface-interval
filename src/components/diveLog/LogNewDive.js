@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { getMyDives } from "../application/ApiManager";
+import { getMyDives, postDive } from "../application/ApiManager";
 import './LogNewDive.css'
 
 export const LogNewDive = () => {
     const [dives, setDives] = useState([])
+    const [diveCopy, setDive] = useState({
+        userId: localStorage.getItem('si_user'),
+        date: '',
+        location: '',
+        diveSite: '',
+        freshOrSalt: '',
+        depth: 0,
+        time: 0,
+        comments: ''
+    })
     const history = useHistory()
 
     useEffect(
@@ -19,17 +29,6 @@ export const LogNewDive = () => {
 
     const currentDive = dives.length + 1
 
-    const [diveCopy, setDive] = useState({
-        userId: localStorage.getItem('si_user'),
-        date: '',
-        location: '',
-        diveSite: '',
-        freshOrSalt: '',
-        depth: 0,
-        time: 0,
-        comments: ''
-    })
-
     const submitDive = (event) => {
         event.preventDefault()
         const newDive = {
@@ -42,24 +41,12 @@ export const LogNewDive = () => {
             time: diveCopy.time,
             comments: diveCopy.comments
         }
-
-        const fetchOption = {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(newDive)
-        }
-
-        return fetch("http://localhost:8088/dives", fetchOption)
-            .then(
-                () => {
-                    history.push("/divelog")
-                }
-            )
+        postDive(newDive).then(
+            () => {
+                history.push("/divelog")
+            }
+        )
     }
-
-
 
     return (<>
         <article className='diveLogArticle'>
