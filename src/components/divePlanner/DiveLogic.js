@@ -37,7 +37,7 @@ export const DiveStates = () => {
     const dives = [dive1, dive2, dive3]
 
     // Function to set the dive state's pressure group, ss boolean, no deco limit boolean, and minutes over deco.
-    // ***This is the only function that should set the new state of each dive!
+    // ***This is the only function that should set the new state of each dive!***
     const setAndUpdate = (pg, ss, ndl, mod, dive, step, rnt) => {
         const setPG = (letter) => dive.pg = letter;
         const setSS = (boolean) => dive.ssRequired = boolean;
@@ -703,8 +703,8 @@ export const DiveStates = () => {
             if (si <= 2 && si >= 0) dive.pgAfterSi = 'Z'
         }
 
-        if (step === 2) { updateDive2(dive) }
-        else if (step === 3) { updateDive3(dive) }
+        if (step === 2) updateDive2(dive)
+        else if (step === 3) updateDive3(dive)
     }
 
     // Sets residual nitrogen time, given starting pressure group and depth of next dive.
