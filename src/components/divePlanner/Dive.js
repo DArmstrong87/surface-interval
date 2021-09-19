@@ -30,9 +30,9 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, resetAllDives,
         updateDiveInput({ rnt: 0, depth: '', abt: '', si: '' })
         resetDives(step)
     }
-    const resetAll = (step) => {
+    const resetAll = () => {
         updateDiveInput({ rnt: 0, depth: '', abt: '', si: '' })
-        resetAllDives(step)
+        resetAllDives(updateDiveInput)
     }
 
     return (<>{/* FORM */}
@@ -92,7 +92,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, resetAllDives,
             </div>
             {currentDive.pg !== '' ?
                 <div className="diveButtons">
-                    <button id="reset" onClick={() => resetDivesAndInput(step)}>Reset</button></div>
+                    <button id="reset" onClick={() => resetDivesAndInput(step, diveInput)}>Reset</button></div>
                 : ''}
 
         </section>
@@ -178,7 +178,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, resetAllDives,
             }
             {step === 3 && currentDive.pg !== '' ?
                 <div className="diveButtons">
-                    <button id="reset" onClick={() => resetAll(step)}>Reset All</button></div>
+                    <button id="reset" onClick={resetAll}>Reset All</button></div>
                 : ''
             }
         </section>
