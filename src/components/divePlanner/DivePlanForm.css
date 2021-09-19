@@ -10,15 +10,21 @@
 .divePlannerContainer h2 {
     text-align: center;
     color: white;
-    margin: 0px 0px 1.5em 0px;
+    margin: 0.5em 0px 0.5em 0px;
+    background-color: rgba(144, 238, 144, 0.25);
+    border-radius: 10px;
 }
 
 .inputs-flag{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     color: white;
     align-items: center;
     padding-bottom: 20px;
+    margin-top: 1.5em;
+    padding: 0 2em 0 2em;
+    /* width: 75%; */
+    /* margin: auto; */
 }
 .inputs-flag input{
     width: 5em;
@@ -26,19 +32,23 @@
     margin-right: 0.5em;
 }
 .inputs-flag fieldset{
-    padding: 0.3em;
+    padding: 0.2em;
     align-items: center;
 }
 .inputs-flag label {
-    width: 2em;
+    width: 7em;
     display: flex;
     justify-content: right;
     font-size: 1.5em;
 }
-.inputs-flag button {
+
+.diveButtons{
+    display: flex;
+    justify-content: flex-end;
+}
+.diveButtons button{
     font-size: 1.5em;
-    margin: 0.4em 1em 0 0;
-    justify-self: center;
+    margin: 0.4em 0.5em 0 0;
 }
 
 .divePlanInputDiv{
@@ -53,6 +63,7 @@
     overflow: hidden;
     display: flex;
     order: -1;
+    align-self: center;
 }
 .diveFlagYellow{
     box-shadow: 0px 0px 20px 5px yellow;
@@ -62,6 +73,7 @@
     overflow: hidden;
     display: flex;
     order: -1;
+    align-self: center;
 }
 .diveFlagRed{
     box-shadow: 0px 0px 20px 5px red;
@@ -71,15 +83,12 @@
     overflow: hidden;
     display: flex;
     order: -1;
+    align-self: center;
 }
 
 .diveFlag img {
     width:100%;
     height:100%;
-}
-
-.empty{
-    padding-top: 50px;
 }
 
 .pg-box{
@@ -93,12 +102,12 @@
     font-weight: bold;
 }
 
-.diveResults li{
+.diveResultsList li{
     display: flex;
     align-items: flex-end;
     color: white;
     font-size: 1.5em;
-    margin: 0px 12px 0px -17px;
+    margin: 0 0 0 1em;
 }
 
 .noDecoLimit{
@@ -125,20 +134,29 @@
 }
 
 .timeGreen{
-    border: 4px lightgreen double;
-    padding-left: 25px;
+    border: 0.3em lightgreen double;
     width: fit-content;
-    margin:5px 0px 0px -20px;
+    margin: 0.5em 0 0 1.4em;
+    padding-right: 1em;
 }
 .timeYellow{
-    border: 4px yellow double;
-    padding-left: 25px;
+    border: 0.3em yellow double;
     width: fit-content;
-    margin:5px 0px 0px -20px;
+    margin:5px 0px 0px -0px;
+    padding-right: 1em;
 }
 .timeRed {
-    border: 4px red double;
-    padding-left: 25px;
+    border: 0.3em red double;
     width: fit-content;
-    margin:5px 0px 0px -20px;
+    margin: 0.5em 0 0 1.4em;
+    padding-right: 1em;
+}
+
+.setSI {
+    display: flex;
+    margin: 0 0 0 0.5em;
+    align-content: center;
+}
+.setSI button{
+    font-size: 1.5em;
 }

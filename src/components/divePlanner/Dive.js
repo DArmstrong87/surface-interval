@@ -1,35 +1,57 @@
 import React, { useState } from "react";
 
-export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, getRNT }) => {
+export const Dive = ({ step, dives, getPressureGroup, resetDives, resetAllDives, setPgAfterSi, getRNT }) => {
     const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     let currentDive = {}
 
-    if (step === 1) { currentDive = dives[0] }
-    else if (step === 2) { currentDive = dives[1] }
-    else if (step === 3) { currentDive = dives[2] }
-    console.log(dives)
-    console.log('current', currentDive)
+    if (step === 1) currentDive = dives[0]
+    if (step === 2) currentDive = dives[1]
+    else if (step === 3) currentDive = dives[2]
 
     const getRNTandRunPG = () => {
         getRNT(step, diveInput.depth, currentDive.pgAfterSi);
         getPressureGroup(diveInput, step, currentDive)
     }
 
+    const diveOnEnter = (event) => {
+        if (event.code === "Enter" || event.code === "NumpadEnter") {
+            if (step === 1) { getPressureGroup(diveInput, step, currentDive) }
+            else if (step !== 1) { getRNTandRunPG() }
+        }
+    }
+
+    const setSiOnEnter = (event) => {
+        if (event.code === "Enter" || event.code === "NumpadEnter") {
+            setPgAfterSi(diveInput, currentDive, step)
+        }
+    }
+
+    const resetDivesAndInput = (step) => {
+        updateDiveInput({ rnt: 0, depth: '', abt: '', si: '' })
+        resetDives(step)
+    }
+    const resetAll = () => {
+        updateDiveInput({ rnt: 0, depth: '', abt: '', si: '' })
+        resetAllDives(updateDiveInput)
+    }
+
     return (<>{/* FORM */}
-        <h2>Dive {step === 1 ? '1' : step === 2 ? '2' : step === 3 ? '3' : ''}</h2>
+        <h2>Dive {step === 1 ? 1 : step === 2 ? '2' : step === 3 ? '3' : ''}</h2>
         <section className="inputs-flag">
             <div className="divePlanInputDiv">
                 {currentDive.pg !== '' ? '' :
                     <>
-                        {step === 2 || step === 3 ?
+                        {step !== 1 ?
                             <><fieldset>
                                 <label>Surface Interval</label>
-                                <input type="number" onChange={(event) => {
+                                <input type="number" value={diveInput.si} onChange={(event) => {
                                     const dive = { ...diveInput }
                                     dive.si = parseInt(event.target.value)
                                     updateDiveInput(dive)
-                                }} /> min
-                                <button onClick={() => setPgAfterSi(diveInput, currentDive, step)}>Set</button>
+                                }} onKeyDown={(event) => setSiOnEnter(event)} /> min
+                                <div className="setSI">
+                                    <button onClick={() => setPgAfterSi(diveInput, currentDive, step)}>Set</button>
+                                </div>
                             </fieldset>
                             </>
                             : ''
@@ -48,26 +70,37 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
                                 const dive = { ...diveInput }
                                 dive.abt = parseInt(event.target.value)
                                 updateDiveInput(dive)
-                            }} />min
+                            }} onKeyDown={(event) => diveOnEnter(event)} />min
                         </fieldset>
-                        {step === 1 ?
-                            <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button>
-                            :
-                            <button onClick={() => getRNTandRunPG()}>Dive</button>
-                        }
+                        <div className="diveButtons">
+                            {step === 1
+                                ? <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button>
+                                : <button onClick={() => getRNTandRunPG()}>Dive</button>
+                            }
+                            <button id="reset" onClick={() => resetDivesAndInput(step)}>Reset</button>
+                        </div>
                     </>
                 }
-                <button onClick={() => resetDives(updateDiveInput)}>Reset</button>
+                {/* {currentDive.pg === '' ?
+                    <button id="reset" onClick={() => resetDivesAndInput(step, diveInput)}>Reset</button> : ''} */}
             </div>
-            <div className={currentDive.noDecoLimit === false && currentDive.ssRequired === false ? "diveFlagGreen" : currentDive.noDecoLimit === true ? "diveFlagRed" : currentDive.noDecoLimit === false && currentDive.ssRequired === true ? "diveFlagYellow" : ""}>
-                <img src="https://media.istockphoto.com/photos/scuba-flag-waving-picture-id498827225?k=20&m=498827225&s=612x612&w=0&h=fKrkr7R3hWEvan9KJp4hlV4qJMKcVDBFwqrqOsopaw0=" width="200" />
+            <div className={currentDive.noDecoLimit === false && currentDive.ssRequired === false ? "diveFlagGreen"
+                : currentDive.noDecoLimit === false && currentDive.ssRequired === true ? "diveFlagYellow"
+                    : currentDive.noDecoLimit === true ? "diveFlagRed" : ""}>
+
+                <img src="https://media.istockphoto.com/photos/scuba-flag-waving-picture-id498827225?k=20&m=498827225&s=612x612&w=0&h=fKrkr7R3hWEvan9KJp4hlV4qJMKcVDBFwqrqOsopaw0=" width="200" alt="Dive Flag" />
             </div>
+            {currentDive.pg !== '' ?
+                <div className="diveButtons">
+                    <button id="reset" onClick={() => resetDivesAndInput(step, diveInput)}>Reset</button></div>
+                : ''}
+
         </section>
 
         {/* RESULTS */}
-        <section>
+        <section className="diveResults">
             {step === 2 || step === 3 ?
-                <ul className="diveResults">
+                <ul className="diveResultsList">
                     {diveInput.si > 0 ?
                         <><li>
                             <div className="results-label">Surface Interval:</div> {diveInput?.si} min</li>
@@ -79,7 +112,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
                 </ul>
                 : ''}
             {currentDive.depth !== 0 ?
-                <ul className="diveResults">
+                <ul className="diveResultsList">
                     <li>
                         <div className="results-label">Pressure group:</div> {currentDive.pg !== '' ? <div className="pg-box">{currentDive.pg}</div> : ''}
                     </li>
@@ -93,7 +126,9 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
                         </li>
                         : ''}
                     {step === 2 || step === 3 ?
-                        <><div className={currentDive.noDecoLimit === false && currentDive.ssRequired === false ? "timeGreen" : currentDive.noDecoLimit === true ? "timeRed" : currentDive.noDecoLimit === false && currentDive.ssRequired === true ? "timeYellow" : ""}>
+                        <><div className={currentDive.noDecoLimit === false && currentDive.ssRequired === false ? "timeGreen"
+                            : currentDive.noDecoLimit === false && currentDive.ssRequired === true ? "timeYellow"
+                                : currentDive.noDecoLimit === true ? "timeRed" : ""}>
                             <li>
                                 <div className="results-label">Actual bottom time:</div>
                                 {currentDive.abt > 0 ? currentDive.abt + ' min' : ''}
@@ -111,10 +146,10 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
                     }
                     <li>
                         <div className="results-label">Safety stop required:</div>
-                        <div className="ss">{currentDive.ssRequired === true && currentDive.noDecoLimit === false ? '3 minutes' :
-                            currentDive.noDecoLimit === true && currentDive.minOverDeco <= 5 ? '8 minutes' :
-                                currentDive.noDecoLimit === true && currentDive.minOverDeco > 5 ? '15 minutes' :
-                                    currentDive.pg !== '' && currentDive.ssRequired === false ? 'None' : ''}
+                        <div className="ss">{currentDive.ssRequired === true && currentDive.noDecoLimit === false ? '3 minutes'
+                            : currentDive.noDecoLimit === true && currentDive.minOverDeco <= 5 ? '8 minutes'
+                                : currentDive.noDecoLimit === true && currentDive.minOverDeco > 5 ? '15 minutes'
+                                    : currentDive.pg !== '' && currentDive.ssRequired === false ? 'None' : ''}
                         </div>
                     </li>
                     {currentDive.minOverDeco < 0 ?
@@ -139,6 +174,11 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, setPgAfterSi, 
                             </li> : ''
                     }
                 </ul>
+                : ''
+            }
+            {step === 3 && currentDive.pg !== '' ?
+                <div className="diveButtons">
+                    <button id="reset" onClick={resetAll}>Reset All</button></div>
                 : ''
             }
         </section>
