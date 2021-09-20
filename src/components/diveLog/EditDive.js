@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router";
 import { getCurrentDive } from "../application/ApiManager";
+import { EditConditions } from "./EditConditions";
+import { EditSpecialties } from "./EditSpecialties";
 
 export const EditDive = () => {
     const history = useHistory()
@@ -37,7 +39,27 @@ export const EditDive = () => {
             freshOrSalt: currentDive.freshOrSalt,
             depth: currentDive.depth,
             time: currentDive.time,
-            comments: currentDive.comments
+            comments: currentDive.comments,
+            isAltitude: currentDive.isAltitude,
+            isCave: currentDive.isCave,
+            isDeep: currentDive.isDeep,
+            isDrift: currentDive.isDrift,
+            isDry: currentDive.isDry,
+            isFFM: currentDive.isFFM,
+            isNav: currentDive.isNav,
+            isNight: currentDive.isNight,
+            isN32: currentDive.isN32,
+            isN36: currentDive.isN36,
+            isRebreather: currentDive.isRebreather,
+            isSearch: currentDive.isSearch,
+            isSidemount: currentDive.isSidemount,
+            isWreck: currentDive.isWreck,
+            isBoat: currentDive.isBoat,
+            isCurrent: currentDive.isCurrent,
+            isShore: currentDive.isShore,
+            isSurge: currentDive.isSurge,
+            isWaves: currentDive.isWaves,
+            waterTemp: currentDive.waterTemp,
         }
 
         const fetchOption = {
@@ -97,7 +119,7 @@ export const EditDive = () => {
                             copy.freshOrSalt = event.target.value
                             setDive(copy)
                         }} />
-                        <label>Fresh</label>
+                    <label>Fresh</label>
                     <input type="radio" value="Salt" checked={currentDive.freshOrSalt === 'Salt' ? true : false} onChange={(event) => {
                         const copy = { ...currentDive }
                         copy.freshOrSalt = event.target.value
@@ -128,6 +150,10 @@ export const EditDive = () => {
                         setDive(copy)
                     }} />
                 </fieldset>
+
+                    <EditConditions currentDive={currentDive} setDive={setDive}/>
+                    <EditSpecialties currentDive={currentDive} setDive={setDive}/>
+
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit" onClick={saveDive}>
                         Save Changes
