@@ -18,7 +18,6 @@ export const DiveStats = () => {
                 .then(dives => {
                     setDives(dives)
                 })
-
         },
         []
     )

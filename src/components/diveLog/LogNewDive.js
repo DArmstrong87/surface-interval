@@ -3,18 +3,39 @@ import { useHistory } from "react-router";
 import { getMyDives, postDive } from "../application/ApiManager";
 import { Specialties } from "./Specialties";
 import './LogNewDive.css'
+import { Conditions } from "./Conditions";
 
 export const LogNewDive = () => {
     const [dives, setDives] = useState([])
     const [diveCopy, setDive] = useState({
-        userId: localStorage.getItem('si_user'),
+        userId: parseInt(localStorage.getItem('si_user')),
         date: '',
         location: '',
         diveSite: '',
         freshOrSalt: '',
         depth: 0,
         time: 0,
-        comments: ''
+        comments: '',
+        isAltitude: false,
+        isCave: false,
+        isDeep: false,
+        isDrift: false,
+        isDry: false,
+        isFFM: false,
+        isNav: false,
+        isNight: false,
+        isN32: false,
+        isN36: false,
+        isRebreather: false,
+        isSearch: false,
+        isSidemount: false,
+        isWreck: false,
+        isBoat: false,
+        isCurrent: false,
+        isShore: false,
+        isSurge: false,
+        isWaves: false,
+        waterTemp: 0,
     })
     const history = useHistory()
 
@@ -40,7 +61,27 @@ export const LogNewDive = () => {
             freshOrSalt: diveCopy.freshOrSalt,
             depth: diveCopy.depth,
             time: diveCopy.time,
-            comments: diveCopy.comments
+            comments: diveCopy.comments,
+            isAltitude: diveCopy.isAltitude,
+            isCave: diveCopy.isCave,
+            isDeep: diveCopy.isDeep,
+            isDrift: diveCopy.isDrift,
+            isDry: diveCopy.isDry,
+            isFFM: diveCopy.isFFM,
+            isNav: diveCopy.isNav,
+            isNight: diveCopy.isNight,
+            isN32: diveCopy.isN32,
+            isN36: diveCopy.isN36,
+            isRebreather: diveCopy.isRebreather,
+            isSearch: diveCopy.isSearch,
+            isSidemount: diveCopy.isSidemount,
+            isWreck: diveCopy.isWreck,
+            isBoat: diveCopy.isBoat,
+            isCurrent: diveCopy.isCurrent,
+            isShore: diveCopy.isShore,
+            isSurge: diveCopy.isSurge,
+            isWaves: diveCopy.isWaves,
+            waterTemp: diveCopy.waterTemp,
         }
         postDive(newDive).then(
             () => {
@@ -83,7 +124,7 @@ export const LogNewDive = () => {
                         setDive(copy)
                     }} />
                 </fieldset>
-                <fieldset className="fresh-salt-radios">
+                <div className="fresh-salt-radios">
                     <input type="radio" value="Fresh"
                         checked={diveCopy.freshOrSalt === 'Fresh' ? true : false} onChange={(event) => {
                             const copy = { ...diveCopy }
@@ -97,10 +138,10 @@ export const LogNewDive = () => {
                         setDive(copy)
                     }} />
                     <label>Salt</label>
-                </fieldset>
+                </div>
                 <fieldset>
                     <label for="depth">Depth</label>
-                    <input type="number" onChange={(event) => {
+                    <input type="number" min="15" max="140" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.depth = parseInt(event.target.value)
                         setDive(copy)
@@ -108,7 +149,7 @@ export const LogNewDive = () => {
                 </fieldset>
                 <fieldset>
                     <label for="time">Time</label>
-                    <input type="number" onChange={(event) => {
+                    <input type="number" min="0" max="205" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.time = parseInt(event.target.value)
                         setDive(copy)
@@ -122,7 +163,11 @@ export const LogNewDive = () => {
                         setDive(copy)
                     }} />
                 </fieldset>
-                    <Specialties diveCopy={diveCopy} setDive={setDive}/>
+
+                <Conditions diveCopy={diveCopy} setDive={setDive} />
+
+                <Specialties diveCopy={diveCopy} setDive={setDive} />
+
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit" onClick={submitDive}>
                         Submit

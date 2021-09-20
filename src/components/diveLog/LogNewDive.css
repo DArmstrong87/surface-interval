@@ -12,7 +12,7 @@
     margin-bottom: 5%;
     background-color: rgb(37, 100, 160, 0.75);
     border-radius: 10px;
-    width: fit-content;
+    width: 65%;
 }
 
 fieldset {
@@ -33,9 +33,21 @@ fieldset label {
     width: 30%;
 }
 
+.fresh-salt-radios{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .fresh-salt-radios input{
-    margin: 0;
     padding: 0;
+    transform: scale(2.5);
+    margin-left: 0em;
+    margin-right: 1em;
+    cursor: pointer;
+}
+.fresh-salt-radios label{
+    margin-right: 2em;
+    font-size: 1.5em;
 }
 
 .date {
@@ -57,14 +69,30 @@ fieldset label {
     align-self: center;
 }
 .checkboxLabel{
-    margin-right: 1em;
-    font-size: 1.5em;
+    font-size: 1em;
+    padding: 0;
 }
 
 .specialties {
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
     width: 100%;
-    margin: 1.5em;
+}
+.specialtyColumn{
+    flex-direction: column;
+    flex-basis: 33%;
+    width: 33%;
+}
+
+.specialtyList li{
+    list-style-type: none;
+    margin-bottom: 1em;
+    margin-left: -2em;
+    padding-right: 0;
+}
+.specialtyList input {
+    margin-right: 0.8em;
+    padding: 0;
+    cursor: pointer;
 }
