@@ -90,19 +90,20 @@ export const EditDive = () => {
                         setDive(copy)
                     }} />
                 </fieldset>
-                <fieldset className="fresh-salt-radios">
+                <div className="fresh-salt-radios">
                     <input type="radio" value="Fresh"
                         checked={currentDive.freshOrSalt === 'Fresh' ? true : false} onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.freshOrSalt = event.target.value
                             setDive(copy)
-                        }} />Fresh
+                        }} />
+                        <label>Fresh</label>
                     <input type="radio" value="Salt" checked={currentDive.freshOrSalt === 'Salt' ? true : false} onChange={(event) => {
                         const copy = { ...currentDive }
                         copy.freshOrSalt = event.target.value
                         setDive(copy)
-                    }} />Salt
-                </fieldset>
+                    }} /><label>Salt</label>
+                </div>
                 <fieldset>
                     <label for="depth">Depth</label>
                     <input type="number" value={currentDive.depth} onChange={(event) => {
