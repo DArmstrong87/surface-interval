@@ -7,6 +7,7 @@ import { DivePlanner } from "../divePlanner/DivePlanner"
 import { CreateGearSet } from "../gear/CreateGear"
 import { EditGearSet } from "../gear/EditGear"
 import { Gear } from "../gear/Gear"
+import { Gearset } from "../gear/Gearset"
 import { DiverProfile } from "../profile/DiverProfile"
 import { Home } from "./Home"
 
@@ -31,6 +32,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/gear">
                 <Gear />
+            </Route>
+            <Route exact path="/gear/:gearId(\d+)">
+                <Gearset />
             </Route>
             <Route path="/addgear">
                 <CreateGearSet />
