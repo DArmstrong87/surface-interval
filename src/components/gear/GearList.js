@@ -1,5 +1,5 @@
 import React from "react";
-import { Computer } from "./GearComputer";
+import { Link } from "react-router-dom";
 
 export const GearList = ({ gear, deleteGear }) => {
     return (
@@ -7,8 +7,10 @@ export const GearList = ({ gear, deleteGear }) => {
             {gear.map(
                 (gearset) => {
                     return <section className='diveLogEntry' key={`section--${gearset.id}`}><div>
-                        <h2 className='diveNumber'>{gearset.name}</h2>
-                        <h3 className='gearHeading'>Essential Gear</h3>
+                        <h2 className='diveNumber'>
+                            <Link className="diveNumber" to={`/gear/${gearset.id}`}>{gearset.name}</Link>
+                        </h2>
+                        {/* <h3 className='gearHeading'>Essential Gear</h3> */}
                         <ul className='diveList'>
                             {gearset.bcd !== '' ?
                                 <li><b>BCD:</b> {gearset.bcd}</li> : ''}
@@ -32,14 +34,11 @@ export const GearList = ({ gear, deleteGear }) => {
                                 <li><b>Weight:</b> {gearset.weight}</li> : ''}
                             {gearset.tank !== '' ?
                                 <li><b>Tank:</b> {gearset.tank}</li> : ''}
-                            <Computer gear={gear} />
                         </ul>
                     </div>
                         <div className='edit-delete'>
-                            <a href={`/gear/edit/${gearset.id}`}>Edit</a>
-                            <a href="##" onClick={() => {
-                                deleteGear(gearset.id)
-                            }}>Delete</a>
+                            <Link to={`/gear/edit/${gearset.id}`}>Edit</Link>
+                            <Link to="#" onClick={() => { deleteGear(gearset.id) }}>Delete</Link>
                         </div>
                     </section>
                 }

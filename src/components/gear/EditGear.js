@@ -4,6 +4,12 @@ import { useEffect } from "react/cjs/react.development";
 import { getCurrentGearSet } from "../application/ApiManager";
 import "../diveLog/LogNewDive.css";
 import "./CreateGear.css"
+import { EditBackups } from "./editGear/EditBackups";
+import { EditDocuments } from "./editGear/EditDocuments";
+import { EditEssentials } from "./editGear/EditEssentials";
+import { EditMisc } from "./editGear/EditMisc";
+import { EditSafety } from "./editGear/EditSafety";
+import { EditTech } from "./editGear/EditTech";
 
 export const EditGearSet = () => {
     const history = useHistory()
@@ -11,18 +17,18 @@ export const EditGearSet = () => {
 
     const [currentGear, updateGear] = useState({
         userId: parseInt(localStorage.getItem('si_user')),
-        name: "",
-        bcd: "",
-        regulator: "",
-        octopus: "",
-        mask: "",
-        fins: "",
-        boots: "",
-        console: "",
-        computer: "",
-        exposureSuit: "",
-        weight: "",
-        tank: ""
+        // name: "",
+        // bcd: "",
+        // regulator: "",
+        // octopus: "",
+        // mask: "",
+        // fins: "",
+        // boots: "",
+        // console: "",
+        // computer: "",
+        // exposureSuit: "",
+        // weight: "",
+        // tank: ""
     })
 
     useEffect(
@@ -50,7 +56,45 @@ export const EditGearSet = () => {
             computer: currentGear.computer,
             exposureSuit: currentGear.exposureSuit,
             weight: parseInt(currentGear.weight),
-            tank: currentGear.tank
+            tank: currentGear.tank,
+            gloves: currentGear.gloves,
+            hood: currentGear.hood,
+            batteries: currentGear.batteries,
+            camera: currentGear.camera,
+            cameraAcc: currentGear.cameraAcc,
+            chargers: currentGear.chargers,
+            o2Analyzer: currentGear.o2Analyzer,
+            power: currentGear.power,
+            strobe: currentGear.strobe,
+            torch: currentGear.torch,
+            torchBackup: currentGear.torchBackup,
+            finStrap: currentGear.finStrap,
+            maskBackup: currentGear.maskBackup,
+            maskStrap: currentGear.maskStrap,
+            mouthpiece: currentGear.mouthpiece,
+            oRings: currentGear.oRings,
+            zipTies: currentGear.zipTies,
+            itinerary: currentGear.itinerary,
+            maps: currentGear.maps,
+            passport: currentGear.passport,
+            logbook: currentGear.logbook,
+            planeTicket: currentGear.planeTicket,
+            travelIns: currentGear.travelIns,
+            vaxRec: currentGear.vaxRec,
+            audSignal: currentGear.audSignal,
+            firstAid: currentGear.firstAid,
+            knife: currentGear.knife,
+            meds: currentGear.meds,
+            o2Kit: currentGear.o2Kit,
+            sunscreen: currentGear.sunscreen,
+            vizSignal: currentGear.vizSignal,
+            wreckReel: currentGear.wreckReel,
+            dryBag: currentGear.dryBag,
+            defog: currentGear.defog,
+            sunglasses: currentGear.sunglasses,
+            toolKit: currentGear.toolKit,
+            towel: currentGear.towel,
+            waterBottle: currentGear.waterBottle
         }
 
         const fetchOption = {
@@ -87,95 +131,13 @@ export const EditGearSet = () => {
                         updateGear(copy)
                     }} />
                 </fieldset>
-                <h3>Essentials</h3>
-                <fieldset>
-                    <label>BCD</label>
-                    <input type="BCD" value={currentGear.bcd} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.bcd = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Regulator</label>
-                    <input type="Regulator" value={currentGear.regulator} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.regulator = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Octopus</label>
-                    <input type="Octopus" value={currentGear.octopus} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.octopus = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Mask</label>
-                    <input type="Mask" value={currentGear.mask} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.mask = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Fins</label>
-                    <input type="Fins" value={currentGear.fins} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.fins = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Boots</label>
-                    <input type="Boots" value={currentGear.boots} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.boots = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Computer</label>
-                    <input type="Computer" value={currentGear.computer} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.computer = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Console</label>
-                    <input type="Console" value={currentGear.console} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.console = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Exposure Suit</label>
-                    <input type="Exposure-Suit" value={currentGear.exposureSuit} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.exposureSuit = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Weight</label>
-                    <input type="number" value={currentGear.weight} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.weight = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Tank</label>
-                    <input type="Tank" value={currentGear.tank} onChange={(event) => {
-                        const copy = { ...currentGear }
-                        copy.tank = event.target.value
-                        updateGear(copy)
-                    }} />
-                </fieldset>
+
+                <EditEssentials currentGear={currentGear} updateGear={updateGear} />
+                <EditTech currentGear={currentGear} updateGear={updateGear} />
+                <EditBackups currentGear={currentGear} updateGear={updateGear} />
+                <EditDocuments currentGear={currentGear} updateGear={updateGear} />
+                <EditSafety currentGear={currentGear} updateGear={updateGear} />
+                <EditMisc currentGear={currentGear} updateGear={updateGear} />
 
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit" onClick={saveGear}>
