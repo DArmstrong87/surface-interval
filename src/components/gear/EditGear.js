@@ -7,6 +7,7 @@ import "./CreateGear.css"
 import { EditBackups } from "./editGear/EditBackups";
 import { EditDocuments } from "./editGear/EditDocuments";
 import { EditEssentials } from "./editGear/EditEssentials";
+import { EditExposure } from "./editGear/EditExposure";
 import { EditMisc } from "./editGear/EditMisc";
 import { EditSafety } from "./editGear/EditSafety";
 import { EditTech } from "./editGear/EditTech";
@@ -14,22 +15,7 @@ import { EditTech } from "./editGear/EditTech";
 export const EditGearSet = () => {
     const history = useHistory()
     const { gearId } = useParams()
-
-    const [currentGear, updateGear] = useState({
-        userId: parseInt(localStorage.getItem('si_user')),
-        // name: "",
-        // bcd: "",
-        // regulator: "",
-        // octopus: "",
-        // mask: "",
-        // fins: "",
-        // boots: "",
-        // console: "",
-        // computer: "",
-        // exposureSuit: "",
-        // weight: "",
-        // tank: ""
-    })
+    const [currentGear, updateGear] = useState({})
 
     useEffect(
         () => {
@@ -44,7 +30,7 @@ export const EditGearSet = () => {
     const saveGear = (event) => {
         event.preventDefault()
         const updatedGear = {
-            userId: currentGear.userId,
+            userId: parseInt(localStorage.getItem('si_user')),
             name: currentGear.name,
             bcd: currentGear.bcd,
             regulator: currentGear.regulator,
@@ -99,21 +85,13 @@ export const EditGearSet = () => {
 
         const fetchOption = {
             method: "PUT",
-            headers: {
-                "Content-type": "application/json",
-            },
+            headers: { "Content-type": "application/json" },
             body: JSON.stringify(updatedGear)
         }
 
         return fetch(`http://localhost:8088/gear/${gearId}`, fetchOption)
-            .then(
-                () => {
-                    history.push("/gear")
-                }
-            )
+            .then(() => { history.goBack() })
     }
-
-
 
     return (<>
         <article className='diveLogArticle'>
@@ -133,6 +111,7 @@ export const EditGearSet = () => {
                 </fieldset>
 
                 <EditEssentials currentGear={currentGear} updateGear={updateGear} />
+                <EditExposure currentGear={currentGear} updateGear={updateGear} />
                 <EditTech currentGear={currentGear} updateGear={updateGear} />
                 <EditBackups currentGear={currentGear} updateGear={updateGear} />
                 <EditDocuments currentGear={currentGear} updateGear={updateGear} />
@@ -144,11 +123,11 @@ export const EditGearSet = () => {
                         Save Changes
                     </button>
                     <button className="cancelButton" onClick={() => {
-                        history.push('/gear')
-                    }}>
-                        Cancel
+                        history.goBack()
+                    }}>Cancel
                     </button>
                 </fieldset>
+
             </section>
         </article>
     </>)
