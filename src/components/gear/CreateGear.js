@@ -4,6 +4,7 @@ import "../diveLog/LogNewDive.css";
 import { Backups } from "./additonalGear/Backups";
 import { Documents } from "./additonalGear/Documents";
 import { Exposure } from "./additonalGear/Exposure";
+import { Misc } from "./additonalGear/Misc";
 import { Safety } from "./additonalGear/Safety";
 import { Tech } from "./additonalGear/Tech";
 import "./CreateGear.css"
@@ -41,29 +42,36 @@ export const CreateGearSet = () => {
         torch: '',
         torchBackup: '',
         // Backups
-        finStrap: '',
-        maskBackup: '',
-        maskStrap: '',
-        mouthpiece: '',
-        oRings: '',
-        zipTies: '',
+        finStrap: false,
+        maskBackup: false,
+        maskStrap: false,
+        mouthpiece: false,
+        oRings: false,
+        zipTies: false,
         // Documents
-        itinerary: '',
-        maps: '',
-        passport: '',
-        logbook: '',
-        planeTicket: '',
-        travelIns: '',
-        vaxRec: '',
+        itinerary: false,
+        maps: false,
+        passport: false,
+        logbook: false,
+        planeTicket: false,
+        travelIns: false,
+        vaxRec: false,
         // Safety
         audSignal: '',
-        firstAid: '',
+        firstAid: false,
         knife: '',
         meds: '',
-        o2Kit: '',
+        o2Kit: false,
         sunscreen: '',
         vizSignal: '',
-        wreckReel: ''
+        wreckReel: '',
+        // Misc
+        dryBag: false,
+        defog: false,
+        sunglasses: false,
+        toolKit: false,
+        towel: false,
+        waterBottle: false
     })
 
     const submitGear = (event) => {
@@ -113,7 +121,13 @@ export const CreateGearSet = () => {
             o2Kit: gearCopy.o2Kit,
             sunscreen: gearCopy.sunscreen,
             vizSignal: gearCopy.vizSignal,
-            wreckReel: gearCopy.wreckReel
+            wreckReel: gearCopy.wreckReel,
+            dryBag: gearCopy.dryBag,
+            defog: gearCopy.defog,
+            sunglasses: gearCopy.sunglasses,
+            toolKit: gearCopy.toolKit,
+            towel: gearCopy.towel,
+            waterBottle: gearCopy.waterBottle
         }
 
         const fetchOption = {
@@ -157,6 +171,7 @@ export const CreateGearSet = () => {
                 <Backups gearCopy={gearCopy} setNewGear={setNewGear} />
                 <Documents gearCopy={gearCopy} setNewGear={setNewGear}/>
                 <Safety gearCopy={gearCopy} setNewGear={setNewGear}/>
+                <Misc gearCopy={gearCopy} setNewGear={setNewGear}/>
 
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit" onClick={submitGear}>
