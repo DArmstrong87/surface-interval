@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "../diveLog/LogNewDive.css";
 import { Backups } from "./additonalGear/Backups";
+import { Documents } from "./additonalGear/Documents";
 import { Exposure } from "./additonalGear/Exposure";
+import { Safety } from "./additonalGear/Safety";
 import { Tech } from "./additonalGear/Tech";
 import "./CreateGear.css"
 import { EssentialGear } from "./EssentialGear";
@@ -44,7 +46,24 @@ export const CreateGearSet = () => {
         maskStrap: '',
         mouthpiece: '',
         oRings: '',
-        zipTies: ''
+        zipTies: '',
+        // Documents
+        itinerary: '',
+        maps: '',
+        passport: '',
+        logbook: '',
+        planeTicket: '',
+        travelIns: '',
+        vaxRec: '',
+        // Safety
+        audSignal: '',
+        firstAid: '',
+        knife: '',
+        meds: '',
+        o2Kit: '',
+        sunscreen: '',
+        vizSignal: '',
+        wreckReel: ''
     })
 
     const submitGear = (event) => {
@@ -79,7 +98,22 @@ export const CreateGearSet = () => {
             maskStrap: gearCopy.maskStrap,
             mouthpiece: gearCopy.mouthpiece,
             oRings: gearCopy.oRings,
-            zipTies: gearCopy.zipTies
+            zipTies: gearCopy.zipTies,
+            itinerary: gearCopy.itinerary,
+            maps: gearCopy.maps,
+            passport: gearCopy.passport,
+            logbook: gearCopy.logbook,
+            planeTicket: gearCopy.planeTicket,
+            travelIns: gearCopy.travelIns,
+            vaxRec: gearCopy.vaxRec,
+            audSignal: gearCopy.audSignal,
+            firstAid: gearCopy.firstAid,
+            knife: gearCopy.knife,
+            meds: gearCopy.meds,
+            o2Kit: gearCopy.o2Kit,
+            sunscreen: gearCopy.sunscreen,
+            vizSignal: gearCopy.vizSignal,
+            wreckReel: gearCopy.wreckReel
         }
 
         const fetchOption = {
@@ -121,7 +155,8 @@ export const CreateGearSet = () => {
                 <Exposure gearCopy={gearCopy} setNewGear={setNewGear} />
                 <Tech gearCopy={gearCopy} setNewGear={setNewGear} />
                 <Backups gearCopy={gearCopy} setNewGear={setNewGear} />
-
+                <Documents gearCopy={gearCopy} setNewGear={setNewGear}/>
+                <Safety gearCopy={gearCopy} setNewGear={setNewGear}/>
 
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit" onClick={submitGear}>
