@@ -61,7 +61,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                         <label className="checkboxLabel">Cave</label>
                     </li>
                     <li>
-                        <input type="checkbox"checked={currentDive.isDry ? true : false} className="logCheckbox" onChange={(event) => {
+                        <input type="checkbox" checked={currentDive.isDry ? true : false} className="logCheckbox" onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.isDry = event.target.checked
                             setDive(copy)
@@ -69,7 +69,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                         <label className="checkboxLabel">Drysuit</label>
                     </li>
                     <li>
-                        <input type="checkbox" checked={currentDive.isNight ? true : false}className="logCheckbox" onChange={(event) => {
+                        <input type="checkbox" checked={currentDive.isNight ? true : false} className="logCheckbox" onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.isNight = event.target.checked
                             setDive(copy)
@@ -77,7 +77,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                         <label className="checkboxLabel">Night</label>
                     </li>
                     <li>
-                        <input type="checkbox"checked={currentDive.isRebreather ? true : false} className="logCheckbox" onChange={(event) => {
+                        <input type="checkbox" checked={currentDive.isRebreather ? true : false} className="logCheckbox" onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.isRebreather = event.target.checked
                             setDive(copy)
@@ -85,7 +85,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                         <label className="checkboxLabel">Rebreather</label>
                     </li>
                     <li>
-                        <input type="checkbox"checked={currentDive.isWreck ? true : false} className="logCheckbox" onChange={(event) => {
+                        <input type="checkbox" checked={currentDive.isWreck ? true : false} className="logCheckbox" onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.isWreck = event.target.checked
                             setDive(copy)
@@ -98,7 +98,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
             <div className="specialtyColumn">
                 <ul className="specialtyList">
                     <li>
-                        <input type="checkbox"checked={currentDive.isDeep ? true : false} checked={currentDive.depth > 60 ? true : false} className="logCheckbox" onChange={(event) => {
+                        <input type="checkbox" checked={currentDive.isDeep || currentDive.depth > 60 ? true : false} className="logCheckbox" onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.isDeep = event.target.checked
                             setDive(copy)
@@ -106,7 +106,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                         <label className="checkboxLabel">Deep</label>
                     </li>
                     <li>
-                        <input type="checkbox" checked={currentDive.isFFM ? true : false}className="logCheckbox" onChange={(event) => {
+                        <input type="checkbox" checked={currentDive.isFFM ? true : false} className="logCheckbox" onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.isFFM = event.target.checked
                             setDive(copy)
@@ -114,7 +114,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                         <label className="checkboxLabel">Full Face Mask</label>
                     </li>
                     <li>
-                        <input type="checkbox" checked={currentDive.isN32 ? true : false}className="logCheckbox" onChange={(event) => {
+                        <input type="checkbox" checked={currentDive.isN32 ? true : false} className="logCheckbox" onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.isN32 = event.target.checked
                             setDive(copy)
@@ -122,7 +122,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                         <label className="checkboxLabel">Nitrox 32</label>
                     </li>
                     <li>
-                        <input type="checkbox" checked={currentDive.isSearch ? true : false}className="logCheckbox" onChange={(event) => {
+                        <input type="checkbox" checked={currentDive.isSearch ? true : false} className="logCheckbox" onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.isSearch = event.target.checked
                             setDive(copy)

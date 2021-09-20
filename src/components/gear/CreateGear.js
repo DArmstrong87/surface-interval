@@ -146,8 +146,6 @@ export const CreateGearSet = () => {
             )
     }
 
-
-
     return (<>
         <article className='diveLogArticle'>
             <section className='diveLogHeading'>
@@ -169,9 +167,9 @@ export const CreateGearSet = () => {
                 <Exposure gearCopy={gearCopy} setNewGear={setNewGear} />
                 <Tech gearCopy={gearCopy} setNewGear={setNewGear} />
                 <Backups gearCopy={gearCopy} setNewGear={setNewGear} />
-                <Documents gearCopy={gearCopy} setNewGear={setNewGear}/>
-                <Safety gearCopy={gearCopy} setNewGear={setNewGear}/>
-                <Misc gearCopy={gearCopy} setNewGear={setNewGear}/>
+                <Documents gearCopy={gearCopy} setNewGear={setNewGear} />
+                <Safety gearCopy={gearCopy} setNewGear={setNewGear} />
+                <Misc gearCopy={gearCopy} setNewGear={setNewGear} />
 
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit" onClick={submitGear}>
