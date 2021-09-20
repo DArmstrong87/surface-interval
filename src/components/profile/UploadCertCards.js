@@ -32,7 +32,7 @@ export const CertCardUpload = () => {
         imageUrl: ""
     })
 
-    const UpdateProfilePic = (image) => {
+    const UploadCertCard = (image) => {
         const copy = { ...certCard }
         copy.imageUrl = image.data_url;
         const fetchOption = {
@@ -107,7 +107,7 @@ export const CertCardUpload = () => {
                                             setCert(copy)
                                         }} />
                                         <div class="save-delete">
-                                        <button className="certCardButton" onClick={() => { UpdateProfilePic(image).then(onImageRemove(index)) }}>Save</button>
+                                        <button className="certCardButton" onClick={() => { UploadCertCard(image).then(onImageRemove(index)) }}>Save</button>
                                         <button className="certCardButton" onClick={() => onImageRemove(index)}>Delete</button></div>
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@ export const CertCardUpload = () => {
                                                 copy.dateIssued = event.target.value
                                                 setCert(copy)
                                             }} />
-                                            <button className="certCardButton" onClick={() => { UpdateProfilePic(image).then(onImageRemove(index)) }}>Save</button>
+                                            <button className="certCardButton" onClick={() => { UploadCertCard(image).then(onImageRemove(index)) }}>Save</button>
                                             <button className="certButton" onClick={() => onImageRemove(index)}>Delete</button>
                                         </div>
                                     </div>

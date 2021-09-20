@@ -1,31 +1,83 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "../diveLog/LogNewDive.css";
+import { Backups } from "./additonalGear/Backups";
+import { Documents } from "./additonalGear/Documents";
+import { Exposure } from "./additonalGear/Exposure";
+import { Misc } from "./additonalGear/Misc";
+import { Safety } from "./additonalGear/Safety";
+import { Tech } from "./additonalGear/Tech";
 import "./CreateGear.css"
+import { EssentialGear } from "./EssentialGear";
 
 export const CreateGearSet = () => {
     const history = useHistory()
 
     const [gearCopy, setNewGear] = useState({
+        //Essential
         userId: parseInt(localStorage.getItem('si_user')),
-        name: "",
-        bcd: "",
-        regulator: "",
-        octopus: "",
-        mask: "",
-        fins: "",
-        boots: "",
-        console: "",
-        computer: "",
-        exposureSuit: "",
+        name: '',
+        bcd: '',
+        regulator: '',
+        octopus: '',
+        mask: '',
+        fins: '',
+        boots: '',
+        console: '',
+        computer: '',
+        exposureSuit: '',
         weight: 0,
-        tank: ""
+        tank: '',
+        // Exposure
+        gloves: '',
+        hood: '',
+        // Tech
+        batteries: '',
+        camera: '',
+        cameraAcc: '',
+        chargers: '',
+        o2Analyzer: '',
+        power: '',
+        strobe: '',
+        torch: '',
+        torchBackup: '',
+        // Backups
+        finStrap: false,
+        maskBackup: false,
+        maskStrap: false,
+        mouthpiece: false,
+        oRings: false,
+        zipTies: false,
+        // Documents
+        itinerary: false,
+        maps: false,
+        passport: false,
+        logbook: false,
+        planeTicket: false,
+        travelIns: false,
+        vaxRec: false,
+        // Safety
+        audSignal: '',
+        firstAid: false,
+        knife: '',
+        meds: '',
+        o2Kit: false,
+        sunscreen: '',
+        vizSignal: '',
+        wreckReel: '',
+        // Misc
+        dryBag: false,
+        defog: false,
+        sunglasses: false,
+        toolKit: false,
+        towel: false,
+        waterBottle: false
     })
 
     const submitGear = (event) => {
         event.preventDefault()
-        const newDive = {
-            userId: localStorage.getItem('si_user'),
+        const newGear = {
+            userId: gearCopy.userId,
             name: gearCopy.name,
             bcd: gearCopy.bcd,
             regulator: gearCopy.regulator,
@@ -37,7 +89,45 @@ export const CreateGearSet = () => {
             computer: gearCopy.computer,
             exposureSuit: gearCopy.exposureSuit,
             weight: parseInt(gearCopy.weight),
-            tank: gearCopy.tank
+            tank: gearCopy.tank,
+            gloves: gearCopy.gloves,
+            hood: gearCopy.hood,
+            batteries: gearCopy.batteries,
+            camera: gearCopy.camera,
+            cameraAcc: gearCopy.cameraAcc,
+            chargers: gearCopy.chargers,
+            o2Analyzer: gearCopy.o2Analyzer,
+            power: gearCopy.power,
+            strobe: gearCopy.strobe,
+            torch: gearCopy.torch,
+            torchBackup: gearCopy.torchBackup,
+            finStrap: gearCopy.finStrap,
+            maskBackup: gearCopy.maskBackup,
+            maskStrap: gearCopy.maskStrap,
+            mouthpiece: gearCopy.mouthpiece,
+            oRings: gearCopy.oRings,
+            zipTies: gearCopy.zipTies,
+            itinerary: gearCopy.itinerary,
+            maps: gearCopy.maps,
+            passport: gearCopy.passport,
+            logbook: gearCopy.logbook,
+            planeTicket: gearCopy.planeTicket,
+            travelIns: gearCopy.travelIns,
+            vaxRec: gearCopy.vaxRec,
+            audSignal: gearCopy.audSignal,
+            firstAid: gearCopy.firstAid,
+            knife: gearCopy.knife,
+            meds: gearCopy.meds,
+            o2Kit: gearCopy.o2Kit,
+            sunscreen: gearCopy.sunscreen,
+            vizSignal: gearCopy.vizSignal,
+            wreckReel: gearCopy.wreckReel,
+            dryBag: gearCopy.dryBag,
+            defog: gearCopy.defog,
+            sunglasses: gearCopy.sunglasses,
+            toolKit: gearCopy.toolKit,
+            towel: gearCopy.towel,
+            waterBottle: gearCopy.waterBottle
         }
 
         const fetchOption = {
@@ -45,7 +135,7 @@ export const CreateGearSet = () => {
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify(newDive)
+            body: JSON.stringify(newGear)
         }
 
         return fetch("http://localhost:8088/gear", fetchOption)
@@ -55,8 +145,6 @@ export const CreateGearSet = () => {
                 }
             )
     }
-
-
 
     return (<>
         <article className='diveLogArticle'>
@@ -74,95 +162,14 @@ export const CreateGearSet = () => {
                         setNewGear(copy)
                     }} />
                 </fieldset>
-                    <h3>Essentials</h3>
-                <fieldset>
-                    <label>BCD</label>
-                    <input type="BCD" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.bcd = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Regulator</label>
-                    <input type="Regulator" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.regulator = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Octopus</label>
-                    <input type="Octopus" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.octopus = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Mask</label>
-                    <input type="Mask" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.mask = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Fins</label>
-                    <input type="Fins" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.fins = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Boots</label>
-                    <input type="Boots" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.boots = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Computer</label>
-                    <input type="Computer" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.computer = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Console</label>
-                    <input type="Console" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.console = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Exposure Suit</label>
-                    <input type="Exposure-Suit" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.exposureSuit = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Weight</label>
-                    <input type="number" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.weight = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
-                <fieldset>
-                    <label>Tank</label>
-                    <input type="Tank" onChange={(event) => {
-                        const copy = { ...gearCopy }
-                        copy.tank = event.target.value
-                        setNewGear(copy)
-                    }} />
-                </fieldset>
+
+                <EssentialGear gearCopy={gearCopy} setNewGear={setNewGear} />
+                <Exposure gearCopy={gearCopy} setNewGear={setNewGear} />
+                <Tech gearCopy={gearCopy} setNewGear={setNewGear} />
+                <Backups gearCopy={gearCopy} setNewGear={setNewGear} />
+                <Documents gearCopy={gearCopy} setNewGear={setNewGear} />
+                <Safety gearCopy={gearCopy} setNewGear={setNewGear} />
+                <Misc gearCopy={gearCopy} setNewGear={setNewGear} />
 
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit" onClick={submitGear}>

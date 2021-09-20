@@ -1,3 +1,14 @@
 .gearName {
     justify-content: center;
 }
+
+.gearCat {
+    color: orange;
+}
+
+.toggleButton {
+    font-size: 1em;
+    width: 1.5em;
+    font-weight: bold;
+    margin-left: 0.5em;
+}
