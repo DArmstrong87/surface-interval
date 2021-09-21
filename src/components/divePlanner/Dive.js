@@ -13,12 +13,12 @@ export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetA
 
     const getRNTandRunPG = () => {
         GetRNT(step, diveInput.depth, currentDive.pgAfterSi);
-        GetPressureGroup(diveInput, step, currentDive, GetRNT, setAndUpdate)
+        GetPressureGroup(diveInput, step, currentDive, setAndUpdate)
     }
 
     const diveOnEnter = (event) => {
         if (event.code === "Enter" || event.code === "NumpadEnter") {
-            if (step === 1) { GetPressureGroup(diveInput, step, currentDive, GetRNT, setAndUpdate) }
+            if (step === 1) { GetPressureGroup(diveInput, step, currentDive, setAndUpdate) }
             else if (step !== 1) { getRNTandRunPG() }
         }
     }
@@ -78,7 +78,7 @@ export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetA
                         <div className="diveButtons">
                             {step === 1
                                 ? <button
-                                    onClick={() => GetPressureGroup(diveInput, step, currentDive, GetRNT, setAndUpdate)}>Dive</button>
+                                    onClick={() => GetPressureGroup(diveInput, step, currentDive, setAndUpdate)}>Dive</button>
                                 : <button onClick={() => getRNTandRunPG()}>Dive</button>
                             }
                             <button id="reset" onClick={() => resetDivesAndInput(step)}>Reset</button>
