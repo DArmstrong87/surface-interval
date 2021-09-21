@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { getMyDives } from "../application/ApiManager"
 
 export const DiveList = () => {
@@ -77,10 +78,10 @@ export const DiveList = () => {
                     </div>
 
                         <div className='edit-delete'>
-                            <a href={`/dives/edit/${dive.id}`}>Edit</a>
-                            <a href="##" onClick={() => {
+                            <Link to={`/dives/edit/${dive.id}`}>Edit</Link>
+                            <Link to="#" onClick={() => {
                                 deleteDive(dive.id)
-                            }}>Delete</a>
+                            }}>Delete</Link>
                         </div>
                     </section>
                 }
