@@ -1,43 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { getMyDives, postDive } from "../application/ApiManager";
+import { getMyDives, submitDive } from "../application/ApiManager";
 import { Specialties } from "./Specialties";
 import './LogNewDive.css'
 import { Conditions } from "./Conditions";
 
 export const LogNewDive = () => {
     const [dives, setDives] = useState([])
-    const [diveCopy, setDive] = useState({
-        userId: parseInt(localStorage.getItem('si_user')),
-        date: '',
-        location: '',
-        diveSite: '',
-        freshOrSalt: '',
-        depth: 0,
-        time: 0,
-        comments: '',
-        isAltitude: false,
-        isCave: false,
-        isDeep: false,
-        isDrift: false,
-        isDry: false,
-        isFFM: false,
-        isNav: false,
-        isNight: false,
-        isN32: false,
-        isN36: false,
-        isRebreather: false,
-        isSearch: false,
-        isSidemount: false,
-        isWreck: false,
-        isBoat: false,
-        isCurrent: false,
-        isShore: false,
-        isSurge: false,
-        isWaves: false,
-        waterTemp: 0,
-    })
+    const [diveCopy, setDive] = useState({ userId: parseInt(localStorage.getItem('si_user')), })
     const history = useHistory()
+    const currentDive = dives.length + 1
 
     useEffect(
         () => {
@@ -48,47 +20,6 @@ export const LogNewDive = () => {
         },
         []
     )
-
-    const currentDive = dives.length + 1
-
-    const submitDive = (event) => {
-        event.preventDefault()
-        const newDive = {
-            userId: diveCopy.userId,
-            date: diveCopy.date,
-            location: diveCopy.location,
-            diveSite: diveCopy.diveSite,
-            freshOrSalt: diveCopy.freshOrSalt,
-            depth: diveCopy.depth,
-            time: diveCopy.time,
-            comments: diveCopy.comments,
-            isAltitude: diveCopy.isAltitude,
-            isCave: diveCopy.isCave,
-            isDeep: diveCopy.isDeep,
-            isDrift: diveCopy.isDrift,
-            isDry: diveCopy.isDry,
-            isFFM: diveCopy.isFFM,
-            isNav: diveCopy.isNav,
-            isNight: diveCopy.isNight,
-            isN32: diveCopy.isN32,
-            isN36: diveCopy.isN36,
-            isRebreather: diveCopy.isRebreather,
-            isSearch: diveCopy.isSearch,
-            isSidemount: diveCopy.isSidemount,
-            isWreck: diveCopy.isWreck,
-            isBoat: diveCopy.isBoat,
-            isCurrent: diveCopy.isCurrent,
-            isShore: diveCopy.isShore,
-            isSurge: diveCopy.isSurge,
-            isWaves: diveCopy.isWaves,
-            waterTemp: diveCopy.waterTemp,
-        }
-        postDive(newDive).then(
-            () => {
-                history.push("/divelog")
-            }
-        )
-    }
 
     return (<>
         <article className='diveLogArticle'>
@@ -165,11 +96,12 @@ export const LogNewDive = () => {
                 </fieldset>
 
                 <Conditions diveCopy={diveCopy} setDive={setDive} />
-
                 <Specialties diveCopy={diveCopy} setDive={setDive} />
 
                 <fieldset className="submit-cancel-buttons">
-                    <button className="submitButton" type="submit" onClick={submitDive}>
+                    <button className="submitButton" type="submit"
+                        onClick={(event) => submitDive(event, diveCopy)
+                            .then(history.push("/divelog"))}>
                         Submit
                     </button>
                     <button className="cancelButton" onClick={() => {

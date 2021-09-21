@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
-export const EditTech = ({currentGear, updateGear}) => {
-
+export const EditTech = ({ currentGear, updateGear }) => {
     const [toggle, setToggle] = useState(false)
-
     const toggleList = () => toggle !== true ? true : false
     const toggled = toggleList()
 

@@ -130,8 +130,6 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                         <label className="checkboxLabel">Search & Recovery</label>
                     </li>
                 </ul>
-
-
             </div>
         </section>
     </>)

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const GearList = ({ gear, deleteGear }) => {
+export const GearList = ({ gear, deleteGear, setGear }) => {
     return (
         <article className='diveLogMain' key='article2'>
             {gear.map(
@@ -10,7 +10,7 @@ export const GearList = ({ gear, deleteGear }) => {
                         <h2 className='diveNumber'>
                             <Link className="diveNumber" to={`/gear/${gearset.id}`}>{gearset.name}</Link>
                         </h2>
-                        {/* <h3 className='gearHeading'>Essential Gear</h3> */}
+                        <h3 className='gearHeading'>Essential Gear</h3>
                         <ul className='diveList'>
                             {gearset.bcd !== '' ?
                                 <li><b>BCD:</b> {gearset.bcd}</li> : ''}
@@ -35,10 +35,13 @@ export const GearList = ({ gear, deleteGear }) => {
                             {gearset.tank !== '' ?
                                 <li><b>Tank:</b> {gearset.tank}</li> : ''}
                         </ul>
+                        <Link className="diveNumber" to={`/gear/${gearset.id}`}>
+                            View All ▶️
+                        </Link>
                     </div>
                         <div className='edit-delete'>
                             <Link to={`/gear/edit/${gearset.id}`}>Edit</Link>
-                            <Link to="#" onClick={() => { deleteGear(gearset.id) }}>Delete</Link>
+                            <Link to="#" onClick={() => { deleteGear(gearset.id, setGear) }}>Delete</Link>
                         </div>
                     </section>
                 }

@@ -12,7 +12,7 @@ import { DisplayExposure } from "./displayGear/DisplayExposure";
 import { DisplayMisc } from "./displayGear/DisplayMisc";
 import { DisplaySafety } from "./displayGear/DisplaySafety";
 import { DisplayTech } from "./displayGear/DisplayTech";
-import { Page, Text, Document, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import { GearPDF } from "./GearPDF";
 
 export const Gearset = () => {
