@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
 import { getCurrentGearSet } from "../application/ApiManager";
 import "../diveLog/LogNewDive.css";
+import { MyPDF } from "../pdf/Render";
 import "./CreateGear.css"
 import { DisplayBackups } from "./displayGear/DisplayBackups";
 import { DisplayDocuments } from "./displayGear/DisplayDocuments";
@@ -12,6 +13,8 @@ import { DisplayExposure } from "./displayGear/DisplayExposure";
 import { DisplayMisc } from "./displayGear/DisplayMisc";
 import { DisplaySafety } from "./displayGear/DisplaySafety";
 import { DisplayTech } from "./displayGear/DisplayTech";
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+
 export const Gearset = () => {
     const history = useHistory()
     const { gearId } = useParams()
@@ -40,6 +43,8 @@ export const Gearset = () => {
 
     return (
         <>
+        <Document>
+            <Page>
             <article className='gearArticle'>
                 <h2 className='gearTitle'>Gearset</h2>
                 <div className="back">
@@ -71,6 +76,8 @@ export const Gearset = () => {
 
                 </section>
             </article>
+            </Page>
+            </Document>
         </>
     )
 }
