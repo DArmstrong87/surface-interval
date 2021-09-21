@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
 import { getCurrentGearSet } from "../application/ApiManager";
 import "../diveLog/LogNewDive.css";
-import { MyPDF } from "../pdf/Render";
 import "./CreateGear.css"
 import { DisplayBackups } from "./displayGear/DisplayBackups";
 import { DisplayDocuments } from "./displayGear/DisplayDocuments";
@@ -13,7 +12,8 @@ import { DisplayExposure } from "./displayGear/DisplayExposure";
 import { DisplayMisc } from "./displayGear/DisplayMisc";
 import { DisplaySafety } from "./displayGear/DisplaySafety";
 import { DisplayTech } from "./displayGear/DisplayTech";
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, Document, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { GearPDF } from "./GearPDF";
 
 export const Gearset = () => {
     const history = useHistory()
@@ -43,8 +43,9 @@ export const Gearset = () => {
 
     return (
         <>
-        <Document>
-            <Page>
+            <PDFViewer >
+                <GearPDF gear={gear} />
+            </PDFViewer>
             <article className='gearArticle'>
                 <h2 className='gearTitle'>Gearset</h2>
                 <div className="back">
@@ -67,17 +68,19 @@ export const Gearset = () => {
                             <DisplaySafety gear={gear} />
                             <DisplayMisc gear={gear} />
                         </div>
-
                     </div>
                     <div className='edit-delete'>
+                        <PDFDownloadLink document={<GearPDF gear={gear} />} fileName={`${gear.name} Gearset.pdf`}>
+                            {({ blob, url, loading, error }) =>
+                                loading ? 'Loading document...' : 'Download PDF'
+                            }
+                        </PDFDownloadLink>
                         <Link to={`/gear/edit/${gear.id}`}>Edit</Link>
                         <Link to="#" onClick={() => { deleteGear(gear.id) }}>Delete</Link>
                     </div>
 
                 </section>
             </article>
-            </Page>
-            </Document>
         </>
     )
 }
