@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { GetPressureGroup } from "./GetPressureGroup";
+import { SetPgAfterSi } from "./SetNewPgAfterSi";
 
-export const Dive = ({ step, dives, getPressureGroup, resetDives, resetAllDives, setPgAfterSi, getRNT }) => {
+export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetAllDives, getRNT, setAndUpdate }) => {
     const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     let currentDive = {}
 
@@ -10,19 +12,19 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, resetAllDives,
 
     const getRNTandRunPG = () => {
         getRNT(step, diveInput.depth, currentDive.pgAfterSi);
-        getPressureGroup(diveInput, step, currentDive)
+        GetPressureGroup(diveInput, step, currentDive, getRNT, setAndUpdate)
     }
 
     const diveOnEnter = (event) => {
         if (event.code === "Enter" || event.code === "NumpadEnter") {
-            if (step === 1) { getPressureGroup(diveInput, step, currentDive) }
+            if (step === 1) { GetPressureGroup(diveInput, step, currentDive, getRNT, setAndUpdate) }
             else if (step !== 1) { getRNTandRunPG() }
         }
     }
 
     const setSiOnEnter = (event) => {
         if (event.code === "Enter" || event.code === "NumpadEnter") {
-            setPgAfterSi(diveInput, currentDive, step)
+            SetPgAfterSi(diveInput, dives, currentDive, step, updateDive2, updateDive3)
         }
     }
 
@@ -50,7 +52,7 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, resetAllDives,
                                     updateDiveInput(dive)
                                 }} onKeyDown={(event) => setSiOnEnter(event)} /> min
                                 <div className="setSI">
-                                    <button onClick={() => setPgAfterSi(diveInput, currentDive, step)}>Set</button>
+                                    <button onClick={() => SetPgAfterSi(diveInput, dives, currentDive, step, updateDive2, updateDive3)}>Set</button>
                                 </div>
                             </fieldset>
                             </>
@@ -74,7 +76,8 @@ export const Dive = ({ step, dives, getPressureGroup, resetDives, resetAllDives,
                         </fieldset>
                         <div className="diveButtons">
                             {step === 1
-                                ? <button onClick={() => getPressureGroup(diveInput, step)}>Dive</button>
+                                ? <button
+                                    onClick={() => GetPressureGroup(diveInput, step, currentDive, getRNT, setAndUpdate)}>Dive</button>
                                 : <button onClick={() => getRNTandRunPG()}>Dive</button>
                             }
                             <button id="reset" onClick={() => resetDivesAndInput(step)}>Reset</button>
