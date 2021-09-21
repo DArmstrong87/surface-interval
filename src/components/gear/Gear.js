@@ -35,7 +35,7 @@ export const Gear = () => {
                 <h2 className="quip">Proper dive planning includes ensuring you have all the gear you need for the dive conditions.</h2>
                 <Link to="/addgear"><button className="logDive">
                     Create Gear Set<br />
-                    🤿
+                    🤿🧳
                 </button></Link>
             </section>
         </article>
