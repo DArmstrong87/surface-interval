@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { GetPressureGroup } from "./GetPressureGroup";
+import { GetRNT } from "./GetRNT";
 import { SetPgAfterSi } from "./SetNewPgAfterSi";
 
-export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetAllDives, getRNT, setAndUpdate }) => {
+export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetAllDives, setAndUpdate }) => {
     const [diveInput, updateDiveInput] = useState({ rnt: 0 })
     let currentDive = {}
 
@@ -11,13 +12,13 @@ export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetA
     else if (step === 3) currentDive = dives[2]
 
     const getRNTandRunPG = () => {
-        getRNT(step, diveInput.depth, currentDive.pgAfterSi);
-        GetPressureGroup(diveInput, step, currentDive, getRNT, setAndUpdate)
+        GetRNT(step, diveInput.depth, currentDive.pgAfterSi);
+        GetPressureGroup(diveInput, step, currentDive, GetRNT, setAndUpdate)
     }
 
     const diveOnEnter = (event) => {
         if (event.code === "Enter" || event.code === "NumpadEnter") {
-            if (step === 1) { GetPressureGroup(diveInput, step, currentDive, getRNT, setAndUpdate) }
+            if (step === 1) { GetPressureGroup(diveInput, step, currentDive, GetRNT, setAndUpdate) }
             else if (step !== 1) { getRNTandRunPG() }
         }
     }
@@ -77,7 +78,7 @@ export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetA
                         <div className="diveButtons">
                             {step === 1
                                 ? <button
-                                    onClick={() => GetPressureGroup(diveInput, step, currentDive, getRNT, setAndUpdate)}>Dive</button>
+                                    onClick={() => GetPressureGroup(diveInput, step, currentDive, GetRNT, setAndUpdate)}>Dive</button>
                                 : <button onClick={() => getRNTandRunPG()}>Dive</button>
                             }
                             <button id="reset" onClick={() => resetDivesAndInput(step)}>Reset</button>

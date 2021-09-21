@@ -1,8 +1,10 @@
+import { GetRNT } from "./GetRNT"
+
 // Sets Pressure Group, safety stop boolean, no deco limit boolean, minutes to no deco time, and specifies which dive to update.
 
 export const GetPressureGroup = (input, step, currentDive, getRNT, setAndUpdate) => {
         let rnt = input.rnt
-        if (step === 2 || step === 3) rnt = getRNT(step, input.depth, currentDive.pgAfterSi)
+        if (step === 2 || step === 3) rnt = GetRNT(step, input.depth, currentDive.pgAfterSi)
         let tbt = (input.abt + rnt)
         const depth = input.depth
         if (depth <= 35) {
