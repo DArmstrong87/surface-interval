@@ -79,9 +79,9 @@ export const DiveList = () => {
 
                         <div className='edit-delete'>
                             <Link to={`/dives/edit/${dive.id}`}>Edit</Link>
-                            <Link to="#" onClick={() => {
-                                deleteDive(dive.id)
-                            }}>Delete</Link>
+                            <Link to="#" onClick={() => { deleteDive(dive.id) }}>
+                                Delete
+                            </Link>
                         </div>
                     </section>
                 }

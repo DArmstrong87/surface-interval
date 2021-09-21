@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-export const EditMisc = ({currentGear, updateGear}) => {
+export const EditMisc = ({ currentGear, updateGear }) => {
     const [toggle, setToggle] = useState(false)
-
     const toggleList = () => toggle !== true ? true : false
     const toggled = toggleList()
 

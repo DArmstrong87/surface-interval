@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 export const Backups = ({ gearCopy, setNewGear }) => {
     const [toggle, setToggle] = useState(false)
-
     const toggleList = () => toggle !== true ? true : false
     const toggled = toggleList()
 

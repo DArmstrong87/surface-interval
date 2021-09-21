@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { useEffect } from "react/cjs/react.development";
-import { getCurrentGearSet } from "../application/ApiManager";
+import { getCurrentGearSet, saveGear } from "../application/ApiManager";
 import "../diveLog/LogNewDive.css";
 import "./CreateGear.css"
 import { EditBackups } from "./editGear/EditBackups";
@@ -26,72 +26,6 @@ export const EditGearSet = () => {
         },
         [gearId]
     )
-
-    const saveGear = (event) => {
-        event.preventDefault()
-        const updatedGear = {
-            userId: parseInt(localStorage.getItem('si_user')),
-            name: currentGear.name,
-            bcd: currentGear.bcd,
-            regulator: currentGear.regulator,
-            octopus: currentGear.octopus,
-            mask: currentGear.mask,
-            fins: currentGear.fins,
-            boots: currentGear.boots,
-            console: currentGear.console,
-            computer: currentGear.computer,
-            exposureSuit: currentGear.exposureSuit,
-            weight: parseInt(currentGear.weight),
-            tank: currentGear.tank,
-            gloves: currentGear.gloves,
-            hood: currentGear.hood,
-            batteries: currentGear.batteries,
-            camera: currentGear.camera,
-            cameraAcc: currentGear.cameraAcc,
-            chargers: currentGear.chargers,
-            o2Analyzer: currentGear.o2Analyzer,
-            power: currentGear.power,
-            strobe: currentGear.strobe,
-            torch: currentGear.torch,
-            torchBackup: currentGear.torchBackup,
-            finStrap: currentGear.finStrap,
-            maskBackup: currentGear.maskBackup,
-            maskStrap: currentGear.maskStrap,
-            mouthpiece: currentGear.mouthpiece,
-            oRings: currentGear.oRings,
-            zipTies: currentGear.zipTies,
-            itinerary: currentGear.itinerary,
-            maps: currentGear.maps,
-            passport: currentGear.passport,
-            logbook: currentGear.logbook,
-            planeTicket: currentGear.planeTicket,
-            travelIns: currentGear.travelIns,
-            vaxRec: currentGear.vaxRec,
-            audSignal: currentGear.audSignal,
-            firstAid: currentGear.firstAid,
-            knife: currentGear.knife,
-            meds: currentGear.meds,
-            o2Kit: currentGear.o2Kit,
-            sunscreen: currentGear.sunscreen,
-            vizSignal: currentGear.vizSignal,
-            wreckReel: currentGear.wreckReel,
-            dryBag: currentGear.dryBag,
-            defog: currentGear.defog,
-            sunglasses: currentGear.sunglasses,
-            toolKit: currentGear.toolKit,
-            towel: currentGear.towel,
-            waterBottle: currentGear.waterBottle
-        }
-
-        const fetchOption = {
-            method: "PUT",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify(updatedGear)
-        }
-
-        return fetch(`http://localhost:8088/gear/${gearId}`, fetchOption)
-            .then(() => { history.goBack() })
-    }
 
     return (<>
         <article className='diveLogArticle'>
@@ -119,7 +53,8 @@ export const EditGearSet = () => {
                 <EditMisc currentGear={currentGear} updateGear={updateGear} />
 
                 <fieldset className="submit-cancel-buttons">
-                    <button className="submitButton" type="submit" onClick={saveGear}>
+                    <button className="submitButton" type="submit"
+                        onClick={(event) => saveGear(event, currentGear, gearId).then(history.goBack())}>
                         Save Changes
                     </button>
                     <button className="cancelButton" onClick={() => {
@@ -127,7 +62,6 @@ export const EditGearSet = () => {
                     }}>Cancel
                     </button>
                 </fieldset>
-
             </section>
         </article>
     </>)

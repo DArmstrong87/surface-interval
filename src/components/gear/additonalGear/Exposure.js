@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
 export const Exposure = ({ gearCopy, setNewGear }) => {
-
     const [toggle, setToggle] = useState(false)
-
     const toggleList = () => toggle !== true ? true : false
     const toggled = toggleList()
 

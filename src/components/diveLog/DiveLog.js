@@ -12,7 +12,6 @@ export const DiveLog = () => {
             <section className='diveLogHeading'>
                 <h2 className='moduleTitle'>Dive Log</h2>
             </section>
-
             <div className="diveStatsDiv">
                 <DiveStats />
                 <Link to="/logdive">
@@ -22,7 +21,6 @@ export const DiveLog = () => {
                     </button>
                 </Link>
             </div>
-
         </article>
 
         <DiveList />
