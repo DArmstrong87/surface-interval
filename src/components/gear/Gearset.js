@@ -12,6 +12,9 @@ import { DisplayExposure } from "./displayGear/DisplayExposure";
 import { DisplayMisc } from "./displayGear/DisplayMisc";
 import { DisplaySafety } from "./displayGear/DisplaySafety";
 import { DisplayTech } from "./displayGear/DisplayTech";
+import { Page, Text, Document, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { GearPDF } from "./GearPDF";
+
 export const Gearset = () => {
     const history = useHistory()
     const { gearId } = useParams()
@@ -62,9 +65,14 @@ export const Gearset = () => {
                             <DisplaySafety gear={gear} />
                             <DisplayMisc gear={gear} />
                         </div>
-
                     </div>
                     <div className='edit-delete'>
+                        <PDFDownloadLink document={<GearPDF gear={gear} />}
+                            fileName={`${gear.name} Gearset.pdf`}>
+                            {({ blob, url, loading, error }) =>
+                                loading ? 'Loading document...' : 'Download PDF'
+                            }
+                        </PDFDownloadLink>
                         <Link to={`/gear/edit/${gear.id}`}>Edit</Link>
                         <Link to="#" onClick={() => { deleteGear(gear.id) }}>Delete</Link>
                     </div>
