@@ -7,50 +7,50 @@ export const GearPDF = ({ gear }) => {
     const styles = StyleSheet.create({
         page: {
             margin: 20,
-            marginBottom: 20
-        },
-        box: {
-            border: 'solid' | 2
+            paddingRight: 20,
+            paddingBottom: 20
         },
         h2: {
-            fontSize: 30,
+            fontSize: 25,
             textAlign: 'center',
             marginBottom: 10,
-            border: 'solid' | 1
+            border: 'solid' | 1,
+            padding: 5,
+            paddingTop: 2
+        },
+        text2: {
+            border: 'solid' | 1,
+            borderColor: 'black',
+            width: 20,
+            lineHeight: 1
         },
         h3: {
-            fontSize: 20,
+            fontSize: 16,
             marginBottom: 5,
             marginTop: 10,
             marginLeft: 10,
             textDecoration: 'underline'
         },
+        caption: {
+            fontSize: 10,
+            marginBottom: 15,
+            textDecoration: 'italic'
+        },
         li: {
-            fontSize: 16,
+            fontSize: 12,
             marginLeft: 15,
             fontWeight: 'bolder'
-        },
-        section: {
-            margin: 10,
-            padding: 10,
-            flexGrow: 1
-        },
-        box: {
-            borderWidth: 2,
-            borderStyle: 'solid',
-            borderColor: 'black',
-            border: 'black'
         }
     });
 
     return (
         <>
-            <Document>
-                <Page style={styles.page}>
-                    <View style={styles.page}>
+            <Document >
+                <Page size='A4' style={styles.page} wrap={false}>
+                    <View style={styles.page} wrap={false}>
+                        <Text style={styles.caption} fixed>Surface Interval - Gearset</Text>
                         <Text style={styles.h2}>{gear.name}</Text>
 
-                        <Text style={styles.box}>hello</Text>
                         <Text style={styles.h3}>Essential Gear</Text>
                         <Text style={styles.li}>
                             {gear.bcd ? `___ BCD: ${gear.bcd}` : ''}
@@ -122,7 +122,6 @@ export const GearPDF = ({ gear }) => {
                         <Text style={styles.li}>
                             {gear.torchBackup ? `___ Torch (Backup): ${gear.torchBackup}` : ''}
                         </Text>
-
                         <Text style={styles.h3}>{foundGear.backups > 0 ? 'Backups' : ''}</Text>
                         <Text style={styles.li}>
                             {gear.finStrap ? `___ Finstrap` : ''}
@@ -142,8 +141,8 @@ export const GearPDF = ({ gear }) => {
                         <Text style={styles.li}>
                             {gear.zipTies ? `___ Zip ties` : ''}
                         </Text>
-
-                        <Text style={styles.h3}>{foundGear.documents > 0 ? 'Documents' : ''}</Text>
+  
+                        <Text style={styles.h3}>{foundGear.docs > 0 ? 'Documents' : ''}</Text>
                         <Text style={styles.li}>
                             {gear.itinerary ? `___ Itinerary` : ''}
                         </Text>

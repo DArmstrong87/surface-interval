@@ -43,9 +43,6 @@ export const Gearset = () => {
 
     return (
         <>
-            <PDFViewer >
-                <GearPDF gear={gear} />
-            </PDFViewer>
             <article className='gearArticle'>
                 <h2 className='gearTitle'>Gearset</h2>
                 <div className="back">
@@ -70,7 +67,8 @@ export const Gearset = () => {
                         </div>
                     </div>
                     <div className='edit-delete'>
-                        <PDFDownloadLink document={<GearPDF gear={gear} />} fileName={`${gear.name} Gearset.pdf`}>
+                        <PDFDownloadLink document={<GearPDF gear={gear} />}
+                            fileName={`${gear.name} Gearset.pdf`}>
                             {({ blob, url, loading, error }) =>
                                 loading ? 'Loading document...' : 'Download PDF'
                             }

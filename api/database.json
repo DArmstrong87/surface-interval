@@ -180,7 +180,7 @@
     },
     {
       "userId": 1,
-      "name": "Cold Water Gear",
+      "name": "Cold Water",
       "bcd": "TUSA Soverin Alpha BC",
       "regulator": "Sherwood Oasis",
       "octopus": "Sherwood",
@@ -210,12 +210,12 @@
       "sunscreen": "Sun Bum SPF50",
       "vizSignal": "Surface sausage",
       "wreckReel": "150 feet",
-      "dryBag": true,
-      "defog": true,
-      "sunglasses": true,
-      "toolKit": true,
-      "towel": true,
-      "waterBottle": true,
+      "dryBag": false,
+      "defog": false,
+      "sunglasses": false,
+      "toolKit": false,
+      "towel": false,
+      "waterBottle": false,
       "id": 2
     },
     {
