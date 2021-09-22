@@ -74,7 +74,8 @@
 .all {
     margin:auto;
     width:fit-content;
-    margin-bottom: 0.5em;;
+    margin-bottom: 0.5em;
+    margin-top: -   0.5em;
 }
 .all button{
     height: 2em;

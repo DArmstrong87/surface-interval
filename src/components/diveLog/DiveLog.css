@@ -134,13 +134,13 @@
 
 .expanded-condensed {
     color: white;
-    background-color: rgb(37, 100, 160, 1);
+    background-color: rgb(37, 100, 160, 0.75);
     width: fit-content;
     border-radius: 10px;
     padding: 0.5em;
     border: 1px solid black;
     margin: auto;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 .expanded-condensed input:hover {
     cursor: pointer;

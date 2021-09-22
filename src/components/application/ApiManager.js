@@ -57,17 +57,35 @@ export const getMyCards = () => {
         .then(res => res.json())
 }
 
-
-
 export const GetDiveStats = () => {
     const [deepest, setDeep] = useState([])
     const [longest, setLongest] = useState([])
     const [mostRecent, setRecent] = useState([])
+    const [dives, setDives] = useState([])
+    const getAvgDepth = () => {
+        let total = 0
+        for (const dive of dives) {
+            total += dive.depth
+        }
+        return total / dives.length
+    }
+    const getAvgTime = () => {
+        let total = 0
+        for (const dive of dives) {
+            total += dive.time
+        }
+        return total / dives.length
+    }
+    const avgDepth = getAvgDepth()
+    const avgTime = getAvgTime()
     const diveStats = {
         mostRecent: mostRecent[0]?.date,
         deepest: deepest[0]?.depth,
-        longest: longest[0]?.time
+        longest: longest[0]?.time,
+        avgDepth: avgDepth,
+        avgTime: avgTime
     }
+
     useEffect(() => {
         const user = localStorage.getItem('si_user')
         fetch(`http://localhost:8088/dives?&userId=${user}&_sort=date&_order=desc`)
@@ -87,6 +105,11 @@ export const GetDiveStats = () => {
         fetch(`http://localhost:8088/dives?&userId=${user}&_sort=time&_order=desc`)
             .then(res => res.json())
             .then((data) => setLongest(data))
+    }, []
+    )
+    useEffect(() => {
+        getMyDives()
+            .then((data) => setDives(data))
     }, []
     )
 

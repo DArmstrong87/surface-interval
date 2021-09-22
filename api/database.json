@@ -9,7 +9,7 @@
   ],
   "dives": [
     {
-      "userId": "1",
+      "userId": 1,
       "date": "2021-09-07",
       "location": "Kentucky",
       "diveSite": "Pennyroyal",
@@ -20,7 +20,7 @@
       "id": 1
     },
     {
-      "userId": "1",
+      "userId": 1,
       "date": "2021-09-07",
       "location": "Kentucky",
       "diveSite": "Pennyroyal",
@@ -31,7 +31,7 @@
       "id": 2
     },
     {
-      "userId": "1",
+      "userId": 1,
       "date": "2021-09-07",
       "location": "Grand Cayman Islands",
       "diveSite": "Deep Tunnels",
@@ -42,7 +42,7 @@
       "id": 3
     },
     {
-      "userId": "1",
+      "userId": 1,
       "date": "2021-09-19",
       "location": "Cozumel",
       "diveSite": "The Cathedral",
@@ -53,7 +53,7 @@
       "id": 4
     },
     {
-      "userId": "1",
+      "userId": 1,
       "date": "2021-09-01",
       "location": "uybguyg",
       "diveSite": "jhg",
@@ -64,7 +64,7 @@
       "id": 5
     },
     {
-      "userId": "1",
+      "userId": 1,
       "date": "2021-09-20",
       "location": "wqerqewefqwef",
       "diveSite": "aefeea",
@@ -80,7 +80,7 @@
       "id": 6
     },
     {
-      "userId": "1",
+      "userId": 1,
       "date": "2021-09-21",
       "location": "fefaefeawe",
       "diveSite": "Somewhere fun",
