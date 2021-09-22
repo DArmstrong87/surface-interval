@@ -934,10 +934,10 @@ export const DiveStates = () => {
     return (<>
 
         <Dive step={1} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setAndUpdate={setAndUpdate} />
-        {dive1.pg !== '' && dive1.noDecoLimit != true
+        {dive1.pg !== '' && dive1.noDecoLimit !== true
             ? <Dive step={2} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} getRNT={getRNT} />
             : ''}
-        {dive2.pg !== '' && dive2.noDecoLimit != true
+        {dive2.pg !== '' && dive2.noDecoLimit !== true
             ? <Dive step={3} dives={dives} getPressureGroup={getPressureGroup} resetDives={resetDives} setPgAfterSi={setPgAfterSi} getRNT={getRNT} resetAllDives={resetAllDives}/>
             : ''}
     </>
