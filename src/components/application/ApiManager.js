@@ -13,6 +13,18 @@ export const getMyDives = () => {
         .then(res => res.json())
 }
 
+export const getDivesByParam = (obj) => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/dives?&userId=${user}&${obj.property}=${obj.param}`)
+        .then(res => res.json())
+}
+
+export const getDivesByDepth = (order) => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/dives?_sort=depth&userId=${user}&_order=${order}`)
+        .then(res => res.json())
+}
+
 export const getMyGear = () => {
     const user = localStorage.getItem('si_user')
     return fetch(`http://localhost:8088/gear?&userId=${user}`)
@@ -280,9 +292,7 @@ export const saveDive = (event, currentDive, diveId) => {
 
     const fetchOption = {
         method: "PUT",
-        headers: {
-            "Content-type": "application/json",
-        },
+        headers: { "Content-type": "application/json" },
         body: JSON.stringify(updateDive)
     }
 
@@ -297,6 +307,19 @@ export const deleteGear = (id, setGear) => {
         .then(() => {
             getMyGear()
                 .then(gear => setGear(gear))
+        }, []
+        )
+}
+
+export const deleteDive = (id, setDives) => {
+    return fetch(`http://localhost:8088/dives/${id}`, {
+        method: "DELETE"
+    })
+        .then(() => {
+            getMyDives()
+                .then(dives => {
+                    setDives(dives)
+                })
         }, []
         )
 }

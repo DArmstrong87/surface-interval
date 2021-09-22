@@ -63,7 +63,9 @@ export const LogNewDive = () => {
                             setDive(copy)
                         }} />
                     <label>Fresh</label>
-                    <input type="radio" value="Salt" checked={diveCopy.freshOrSalt === 'Salt' ? true : false} onChange={(event) => {
+                    <input type="radio" value="Salt" 
+                    checked={diveCopy.freshOrSalt === 'Salt' ? true : false} 
+                    onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.freshOrSalt = event.target.value
                         setDive(copy)
