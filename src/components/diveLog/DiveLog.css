@@ -130,3 +130,14 @@
     justify-content: space-between;
     padding: 0 1em 0 1em;
 }
+
+.expanded-condensed {
+    color: white;
+    background-color: rgb(37, 100, 160, 1);
+    width: fit-content;
+    border-radius: 10px;
+    padding: 0.5em;
+    border: 1px solid black;
+    margin: auto;
+    margin-bottom: 2em;
+}

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react/cjs/react.development"
 
 // ---------------------------------- GETTERS ----------------------------------
+// --------- User
 export const getCurrentUser = () => {
     const user = localStorage.getItem('si_user')
     return fetch(`http://localhost:8088/users?&userId=${user}`)
         .then(res => res.json())
 }
 
+// --------- Dives
 export const getMyDives = () => {
     const user = localStorage.getItem('si_user')
     return fetch(`http://localhost:8088/dives?&userId=${user}`)
@@ -25,15 +27,9 @@ export const getDivesByDepth = (order) => {
         .then(res => res.json())
 }
 
-export const getMyGear = () => {
+export const getDivesByTime = (order) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/gear?&userId=${user}`)
-        .then(res => res.json())
-}
-
-export const getMyCards = () => {
-    const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/certCards?&userId=${user}`)
+    return fetch(`http://localhost:8088/dives?_sort=time&userId=${user}&_order=${order}`)
         .then(res => res.json())
 }
 
@@ -42,10 +38,26 @@ export const getCurrentDive = (id) => {
         .then(res => res.json())
 }
 
+// --------- Gear
+export const getMyGear = () => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/gear?&userId=${user}`)
+        .then(res => res.json())
+}
+
 export const getCurrentGearSet = (id) => {
     return fetch(`http://localhost:8088/gear/${id}`)
         .then(res => res.json())
 }
+
+// --------- Cert Cards
+export const getMyCards = () => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/certCards?&userId=${user}`)
+        .then(res => res.json())
+}
+
+
 
 export const GetDiveStats = () => {
     const [deepest, setDeep] = useState([])

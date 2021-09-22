@@ -5,7 +5,7 @@ import { SortedDiveLists } from "./sortedDives/SortedDiveLists"
 
 export const DiveList = () => {
     const [dives, setDives] = useState([])
-    
+
     useEffect(
         () => {
             getMyDives()
@@ -17,8 +17,6 @@ export const DiveList = () => {
     )
 
     return (<>
-        <SortedDiveLists />
-        
         <article className='diveLogMain' key='article2'>
             {dives.map(
                 (dive, index) => {

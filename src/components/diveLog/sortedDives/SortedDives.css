@@ -10,16 +10,30 @@
 
 .sortedDiveLog thead {
     font-weight: bold;
-    text-align: center;
+    /* text-align: center; */
     color: orange;
 }
 
 .sortedDiveLog td {
-    border: 1px solid white;
-    padding: 0.1em;
+    border: 1px solid black;
+    padding: 0.2em 0.4em 0.2em 0.4em;
 }
-.sortedDiveLog tbody {
-    border: 1px solid white;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+
+.sortDiveSelect {
+    background-color: rgba(37, 100, 160);
+    color: white;
+    height: 2em;
+    border-radius: 10px;
+    border: 1px solid black;
+    width:fit-content;
+    margin: 0 0.5em 0 0.5em;
+}
+
+.sort_selects {
+    margin: auto;
+    margin-bottom: 2em;
+    width: fit-content;
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
