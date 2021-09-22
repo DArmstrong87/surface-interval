@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { getDivesByParam, getMyDives } from "../../application/ApiManager"
+import { AllDives } from "./AllDives"
 import { ByDepth } from "./ByDepth"
 import { ByDiveSite } from "./ByDiveSite"
 import { ByLocation } from "./ByLocation"
@@ -42,7 +43,10 @@ export const SortedDiveLists = () => {
     )
 
     return (<>
-
+        <div className="all">
+            <button
+                onClick={() => { setToggle({ all: true }) }}>All</button>
+        </div>
         <div className="sort_selects">
             <select className="sortDiveSelect"
                 onChange={(event) => {
@@ -110,9 +114,9 @@ export const SortedDiveLists = () => {
             </select>
         </div>
 
-
-        <ByLocation divesByParam={divesByParam} toggleState={toggleState} />
-        <ByDiveSite divesByParam={divesByParam} toggleState={toggleState} />
+        <AllDives dives={dives} setDives={setDives} toggleState={toggleState} />
+        <ByLocation setDives={setDives} divesByParam={divesByParam} toggleState={toggleState} />
+        <ByDiveSite setDives={setDives} divesByParam={divesByParam} toggleState={toggleState} />
         <ByDepth order={order} toggleState={toggleState} />
         <ByTime order={order} toggleState={toggleState} />
     </>

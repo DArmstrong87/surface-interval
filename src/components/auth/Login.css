@@ -20,8 +20,10 @@
     margin-top: .5rem;
 }
 .loginForm button:hover{
-    background-color: red;
+    background-color: orange;
     color: white;
+    transition: background-color 0.3s ease;
+    cursor: pointer
 }
 
 .container--login {
@@ -50,4 +52,6 @@
 }
 .link--register a:hover {
     color: orange;
+    transition: background-color 0.3s ease;
+    cursor: pointer
 }

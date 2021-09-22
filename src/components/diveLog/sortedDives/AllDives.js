@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
-import { deleteDive, getDivesByDepth } from "../../application/ApiManager"
+import { deleteDive } from "../../application/ApiManager"
 
-export const ByDepth = ({ order, toggleState }) => {
-    const [dives, setDives] = useState([])
-
-    useEffect(
-        () => {
-            getDivesByDepth(order)
-                .then(dives => {
-                    setDives(dives)
-                })
-        },
-        [order]
-    )
+export const AllDives = ({ dives, setDives, toggleState }) => {
 
     return (
         <>
-            {toggleState.depth !== true ? '' :
+            {toggleState.all !== true ? '' :
                 <table className="sortedDiveLog">
                     <thead>
-                        <td>Depth</td>
-                        <td>Dive Site</td>
-                        <td>Location</td>
                         <td>Dive</td>
+                        <td>Location</td>
+                        <td>Dive Site</td>
+                        <td>Depth</td>
                         <td>Time</td>
                         <td>Fresh/Salt</td>
                         <td>Specialties</td>
@@ -51,10 +40,10 @@ export const ByDepth = ({ order, toggleState }) => {
                                 }
                                 const specialties = foundSpecialties()
                                 return <tr>
-                                    <td>{dive.depth}</td>
-                                    <td>{dive.diveSite}</td>
-                                    <td>{dive.location}</td>
                                     <td>{dive.id}</td>
+                                    <td>{dive.location}</td>
+                                    <td>{dive.diveSite}</td>
+                                    <td>{dive.depth}</td>
                                     <td>{dive.time}</td>
                                     <td>{dive.freshOrSalt}</td>
                                     <td className="specialtiesTD">{specialties}</td>

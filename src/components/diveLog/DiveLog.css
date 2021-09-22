@@ -34,6 +34,7 @@
 
 .logDive:hover{
     background-color: orange;
+    transition: background-color 0.3s ease;
 }
 
 .diveLogMain {
@@ -140,4 +141,11 @@
     border: 1px solid black;
     margin: auto;
     margin-bottom: 2em;
+}
+.expanded-condensed input:hover {
+    cursor: pointer;
+}
+.expanded-condensed input {
+    transform: scale(1.5);
+    margin-right: 0.5em;
 }

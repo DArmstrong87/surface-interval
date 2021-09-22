@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { deleteDive, getMyDives } from "../application/ApiManager"
-import { SortedDiveLists } from "./sortedDives/SortedDiveLists"
 
 export const DiveList = () => {
     const [dives, setDives] = useState([])
