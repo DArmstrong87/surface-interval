@@ -178,20 +178,20 @@ export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetA
                                 <li><div className="results-label">Min over no deco limit:</div> {currentDive.minOverDeco}</li>
                                 <li>
                                     <div className="noDecoLimit">
-                                        <b>No Deco Limit exceeded.</b> This dive is highly discouraged. The No Deco Limit is exceeded by {currentDive.minOverDeco} {currentDive.minOverDeco === 1 ? 'minute' : 'minutes'} which requires an {currentDive.minOverDeco <= 5 ? '8' : '15'} minute decompression stop (air supply permitting). The diver must remain out of the water for {currentDive.minOverDeco <= 5 ? '6' : '24'} hours before the next dive.
+                                        <b>❗ No Deco Limit exceeded.</b> This dive is highly discouraged. The No Deco Limit is exceeded by {currentDive.minOverDeco} {currentDive.minOverDeco === 1 ? 'minute' : 'minutes'} which requires an {currentDive.minOverDeco <= 5 ? '8' : '15'} minute decompression stop (air supply permitting). The diver must remain out of the water for {currentDive.minOverDeco <= 5 ? '6' : '24'} hours before the next dive.
                                     </div>
                                 </li></>
                             : currentDive.noDecoLimit === true && currentDive.minOverDeco < 0 ?
                                 <li>
                                     <div className="noDecoLimit">
-                                        <b>No Deco Limit met.</b> This dive is highly discouraged. The dive time requires rounding up to the next pressure group, which meets the no deco limit. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
+                                        <b>❗ No Deco Limit met.</b> This dive is highly discouraged. The dive time requires rounding up to the next pressure group, which meets the no deco limit. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
                                     </div>
                                 </li>
                                 :
                                 currentDive.minOverDeco === 0 ?
                                     <li>
                                         <div className="noDecoLimit">
-                                            <b>No Deco Limit met.</b> This dive is highly discouraged. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
+                                            <b>❗ No Deco Limit met.</b> This dive is highly discouraged. This dive requires an 8 minute decompression stop (air supply permitting). The diver must remain out of the water for 6 hours before the next dive.
                                         </div>
                                     </li> : ''
                         }
