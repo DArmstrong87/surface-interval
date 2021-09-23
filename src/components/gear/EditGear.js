@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 import { getCurrentGearSet, saveGear } from "../application/ApiManager";
 import "../diveLog/LogNewDive.css";
 import "./CreateGear.css"

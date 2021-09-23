@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 import { getCurrentGearSet } from "../application/ApiManager";
 import "../diveLog/LogNewDive.css";
 import "./CreateGear.css"

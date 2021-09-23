@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ImageUploading from "react-images-uploading";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import { getCurrentUser } from "../application/ApiManager";
 import "./UploadProfilePic.css";
 
