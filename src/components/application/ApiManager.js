@@ -4,62 +4,62 @@ import { useEffect, useState } from "react/cjs/react.development"
 // --------- User
 export const getCurrentUser = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/users?&userId=${user}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/users?&userId=${user}`)
         .then(res => res.json())
 }
 
 // --------- Dives
 export const getMyDives = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/dives?&userId=${user}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}`)
         .then(res => res.json())
 }
 
 export const getDivesByParam = (obj) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/dives?&userId=${user}&${obj.property}=${obj.param}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&${obj.property}=${obj.param}`)
         .then(res => res.json())
 }
 
 export const getDivesByDepth = (order) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/dives?_sort=depth&userId=${user}&_order=${order}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?_sort=depth&userId=${user}&_order=${order}`)
         .then(res => res.json())
 }
 
 export const getDivesByDate = (order) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/dives?_sort=date&userId=${user}&_order=${order}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?_sort=date&userId=${user}&_order=${order}`)
         .then(res => res.json())
 }
 
 export const getDivesByTime = (order) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/dives?_sort=time&userId=${user}&_order=${order}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?_sort=time&userId=${user}&_order=${order}`)
         .then(res => res.json())
 }
 
 export const getCurrentDive = (id) => {
-    return fetch(`http://localhost:8088/dives/${id}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${id}`)
         .then(res => res.json())
 }
 
 // --------- Gear
 export const getMyGear = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/gear?&userId=${user}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear?&userId=${user}`)
         .then(res => res.json())
 }
 
 export const getCurrentGearSet = (id) => {
-    return fetch(`http://localhost:8088/gear/${id}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`)
         .then(res => res.json())
 }
 
 // --------- Cert Cards
 export const getMyCards = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/certCards?&userId=${user}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards?&userId=${user}`)
         .then(res => res.json())
 }
 
@@ -94,21 +94,21 @@ export const GetDiveStats = () => {
 
     useEffect(() => {
         const user = localStorage.getItem('si_user')
-        fetch(`http://localhost:8088/dives?&userId=${user}&_sort=date&_order=desc`)
+        fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_sort=date&_order=desc`)
             .then(res => res.json())
             .then((data) => setRecent(data))
     }, []
     )
     useEffect(() => {
         const user = localStorage.getItem('si_user')
-        fetch(`http://localhost:8088/dives?&userId=${user}&_sort=depth&_order=desc`)
+        fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_sort=depth&_order=desc`)
             .then(res => res.json())
             .then((data) => setDeep(data))
     }, []
     )
     useEffect(() => {
         const user = localStorage.getItem('si_user')
-        fetch(`http://localhost:8088/dives?&userId=${user}&_sort=time&_order=desc`)
+        fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_sort=time&_order=desc`)
             .then(res => res.json())
             .then((data) => setLongest(data))
     }, []
@@ -162,7 +162,7 @@ export const submitDive = (event, diveCopy) => {
         },
         body: JSON.stringify(newDive)
     }
-    return fetch("http://localhost:8088/dives", fetchOption)
+    return fetch("https://surface-interval-api-ferdk.ondigitalocean.app/dives", fetchOption)
 }
 
 export const submitGear = (event, gearCopy) => {
@@ -229,7 +229,7 @@ export const submitGear = (event, gearCopy) => {
         body: JSON.stringify(newGear)
     }
 
-    return fetch("http://localhost:8088/gear", fetchOption)
+    return fetch("https://surface-interval-api-ferdk.ondigitalocean.app/gear", fetchOption)
 }
 
 // ---------------------------------- PUT METHODS ----------------------------------
@@ -295,7 +295,7 @@ export const saveGear = (event, currentGear, gearId) => {
         body: JSON.stringify(updatedGear)
     }
 
-    return fetch(`http://localhost:8088/gear/${gearId}`, fetchOption)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${gearId}`, fetchOption)
 }
 
 export const saveDive = (event, currentDive, diveId) => {
@@ -337,12 +337,12 @@ export const saveDive = (event, currentDive, diveId) => {
         body: JSON.stringify(updateDive)
     }
 
-    return fetch(`http://localhost:8088/dives/${diveId}`, fetchOption)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${diveId}`, fetchOption)
 }
 
 // ---------------------------------- DELETE METHODS ----------------------------------
 export const deleteGear = (id, setGear) => {
-    fetch(`http://localhost:8088/gear/${id}`, {
+    fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`, {
         method: "DELETE"
     })
         .then(() => {
@@ -353,7 +353,7 @@ export const deleteGear = (id, setGear) => {
 }
 
 export const deleteDive = (id, setDives) => {
-    return fetch(`http://localhost:8088/dives/${id}`, {
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${id}`, {
         method: "DELETE"
     })
         .then(() => {

@@ -28,7 +28,7 @@ export const ProfilePicUpload = () => {
       body: JSON.stringify(profilePatch)
     }
 
-    return fetch(`http://localhost:8088/users/${user.id}`, fetchOption)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/users/${user.id}`, fetchOption)
       .then(() =>
         getCurrentUser()
           .then((data) => setUser(data[0])

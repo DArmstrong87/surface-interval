@@ -32,7 +32,7 @@ export const Gearset = () => {
     )
 
     const deleteGear = (id) => {
-        fetch(`http://localhost:8088/gear/${id}`, {
+        fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`, {
             method: "DELETE"
         })
             .then(() => {

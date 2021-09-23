@@ -42,7 +42,7 @@ export const CertCardUpload = () => {
             },
             body: JSON.stringify(copy)
         }
-        return fetch(`http://localhost:8088/certCards`, fetchOption)
+        return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards`, fetchOption)
             .then(() =>
                 getMyCards()
                     .then((data) => setCards(data)
@@ -54,7 +54,7 @@ export const CertCardUpload = () => {
         const fetchOption = {
             method: "DELETE",
         }
-        return fetch(`http://localhost:8088/certCards/${id}`, fetchOption)
+        return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards/${id}`, fetchOption)
             .then(() =>
                 getMyCards()
                     .then((data) => setCards(data)
