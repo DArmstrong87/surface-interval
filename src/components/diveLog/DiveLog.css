@@ -34,13 +34,26 @@
 
 .logDive:hover{
     background-color: orange;
+    transition: background-color 0.3s ease;
 }
 
 .diveLogMain {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    overflow: scroll;
+    height: 30em;
+    overflow-x: hidden;
 }
+.diveLogMain::-webkit-scrollbar {
+    background:rgba(37, 100, 160, 0.5);
+    border-radius: 10px;
+}
+.diveLogMain::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 10px;
+    height: 2em;
+  }
 
 .diveLogEntry {
     color: white;
@@ -129,4 +142,22 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0 1em 0 1em;
+}
+
+.expanded-condensed {
+    color: white;
+    background-color: rgb(37, 100, 160, 0.75);
+    width: fit-content;
+    border-radius: 10px;
+    padding: 0.5em;
+    border: 1px solid black;
+    margin: auto;
+    margin-bottom: 1em;
+}
+.expanded-condensed input:hover {
+    cursor: pointer;
+}
+.expanded-condensed input {
+    transform: scale(1.5);
+    margin-right: 0.5em;
 }

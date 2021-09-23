@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { DiveList } from "./DiveList";
 import './DiveLog.css'
 import { DiveStats } from "./DiveStats";
 import './DiveStats.css'
+import { SortedDiveLists } from "./sortedDives/SortedDiveLists";
 
 export const DiveLog = () => {
+    const [view, setView] = useState({ condensed: true })
+
     return (<>
         <article className='diveLogArticle'>
 
@@ -22,7 +25,23 @@ export const DiveLog = () => {
                 </Link>
             </div>
         </article>
+        <div className="expanded-condensed">
+            <input name="condensed" type="radio"
+                checked={view.condensed}
+                onChange={() =>
+                    setView({ condensed: true, expanded: false })
+                } />
+            <label htmlFor="condensed">Condensed</label> ⚓
+            <input name="expanded" type="radio"
+                checked={view.expanded === true ? true : false}
+                onChange={() =>
+                    setView({ expanded: true, condensed: false })
+                } />
+            <label htmlFor="expanded">Expanded</label>
+        </div>
 
-        <DiveList />
+        {view.condensed ? <SortedDiveLists /> : ''}
+        {view.expanded ? <DiveList /> : ''}
+
     </>)
 }

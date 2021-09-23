@@ -1,27 +1,41 @@
 import { useEffect, useState } from "react/cjs/react.development"
 
 // ---------------------------------- GETTERS ----------------------------------
+// --------- User
 export const getCurrentUser = () => {
     const user = localStorage.getItem('si_user')
     return fetch(`http://localhost:8088/users?&userId=${user}`)
         .then(res => res.json())
 }
 
+// --------- Dives
 export const getMyDives = () => {
     const user = localStorage.getItem('si_user')
     return fetch(`http://localhost:8088/dives?&userId=${user}`)
         .then(res => res.json())
 }
 
-export const getMyGear = () => {
+export const getDivesByParam = (obj) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/gear?&userId=${user}`)
+    return fetch(`http://localhost:8088/dives?&userId=${user}&${obj.property}=${obj.param}`)
         .then(res => res.json())
 }
 
-export const getMyCards = () => {
+export const getDivesByDepth = (order) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`http://localhost:8088/certCards?&userId=${user}`)
+    return fetch(`http://localhost:8088/dives?_sort=depth&userId=${user}&_order=${order}`)
+        .then(res => res.json())
+}
+
+export const getDivesByDate = (order) => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/dives?_sort=date&userId=${user}&_order=${order}`)
+        .then(res => res.json())
+}
+
+export const getDivesByTime = (order) => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/dives?_sort=time&userId=${user}&_order=${order}`)
         .then(res => res.json())
 }
 
@@ -30,8 +44,22 @@ export const getCurrentDive = (id) => {
         .then(res => res.json())
 }
 
+// --------- Gear
+export const getMyGear = () => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/gear?&userId=${user}`)
+        .then(res => res.json())
+}
+
 export const getCurrentGearSet = (id) => {
     return fetch(`http://localhost:8088/gear/${id}`)
+        .then(res => res.json())
+}
+
+// --------- Cert Cards
+export const getMyCards = () => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/certCards?&userId=${user}`)
         .then(res => res.json())
 }
 
@@ -39,11 +67,31 @@ export const GetDiveStats = () => {
     const [deepest, setDeep] = useState([])
     const [longest, setLongest] = useState([])
     const [mostRecent, setRecent] = useState([])
+    const [dives, setDives] = useState([])
+    const getAvgDepth = () => {
+        let total = 0
+        for (const dive of dives) {
+            total += dive.depth
+        }
+        return total / dives.length
+    }
+    const getAvgTime = () => {
+        let total = 0
+        for (const dive of dives) {
+            total += dive.time
+        }
+        return total / dives.length
+    }
+    const avgDepth = getAvgDepth()
+    const avgTime = getAvgTime()
     const diveStats = {
         mostRecent: mostRecent[0]?.date,
         deepest: deepest[0]?.depth,
-        longest: longest[0]?.time
+        longest: longest[0]?.time,
+        avgDepth: avgDepth.toFixed(2),
+        avgTime: avgTime.toFixed(0)
     }
+
     useEffect(() => {
         const user = localStorage.getItem('si_user')
         fetch(`http://localhost:8088/dives?&userId=${user}&_sort=date&_order=desc`)
@@ -63,6 +111,11 @@ export const GetDiveStats = () => {
         fetch(`http://localhost:8088/dives?&userId=${user}&_sort=time&_order=desc`)
             .then(res => res.json())
             .then((data) => setLongest(data))
+    }, []
+    )
+    useEffect(() => {
+        getMyDives()
+            .then((data) => setDives(data))
     }, []
     )
 
@@ -280,9 +333,7 @@ export const saveDive = (event, currentDive, diveId) => {
 
     const fetchOption = {
         method: "PUT",
-        headers: {
-            "Content-type": "application/json",
-        },
+        headers: { "Content-type": "application/json" },
         body: JSON.stringify(updateDive)
     }
 
@@ -297,6 +348,19 @@ export const deleteGear = (id, setGear) => {
         .then(() => {
             getMyGear()
                 .then(gear => setGear(gear))
+        }, []
+        )
+}
+
+export const deleteDive = (id, setDives) => {
+    return fetch(`http://localhost:8088/dives/${id}`, {
+        method: "DELETE"
+    })
+        .then(() => {
+            getMyDives()
+                .then(dives => {
+                    setDives(dives)
+                })
         }, []
         )
 }

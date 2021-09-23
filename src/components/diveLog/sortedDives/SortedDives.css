@@ -1,0 +1,105 @@
+.sortedDivesContainer {
+    overflow: scroll;
+    height: 30em;
+    overflow-x: hidden;
+}
+.sortedDivesContainer::-webkit-scrollbar {
+    background:rgba(37, 100, 160, 0.5);
+    border-radius: 10px;
+    
+}
+.sortedDivesContainer::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 10px;
+    height: 2em;
+  }
+
+.sortedDiveLog {
+    background-color: rgba(37, 100, 160);
+    color: white;
+    width: 80%;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 2em;
+    border-collapse: collapse;
+}
+
+.sortedDiveLog thead {
+    font-weight: bold;
+    color: orange;
+    width:fit-content;
+}
+
+.sortedDiveLog td {
+    border: 1px solid black;
+    padding: 0.2em 0.4em 0.2em 0.4em;
+    max-width: fit-content;
+}
+
+.sortDiveSelect {
+    background-color: rgba(37, 100, 160);
+    color: white;
+    height: 2em;
+    border-radius: 10px;
+    border: 1px solid black;
+    width:fit-content;
+    margin: 0 0.5em 0 0.5em;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 3px 5px;
+}
+
+.sortDiveSelect:hover {
+  color: white;
+  background-color: orange;
+  transition: background-color 0.3s ease
+}
+.sortDiveSelect:focus {
+  color: orange;
+  background-color: rgba(37, 100, 160);
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+.sortDiveSelect option {
+    background-color: rgba(37, 100, 160);
+    color: white;
+}
+
+.sort_selects {
+    margin: auto;
+    margin-bottom: 2em;
+    width: fit-content;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.specialtiesTD {
+    width: 2em;
+}
+
+.small-icons a{
+    align-content: space-evenly;
+    margin: 0 0.2em 0 0.2em;
+    text-decoration: none;
+}
+.small-icons {
+    width: 2em;
+    text-align: center;
+}
+
+.all {
+    margin:auto;
+    width:fit-content;
+    margin-bottom: 0.5em;
+    margin-top: -   0.5em;
+}
+.all button{
+    height: 2em;
+    width: 3em;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 3px 5px;
+}
+
+.all button:active {
+    background-color: greenyellow;
+}

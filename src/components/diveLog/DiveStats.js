@@ -24,22 +24,34 @@ export const DiveStats = () => {
 
     return (<>
         <section>
-            {window.location.pathname === "/profile" ?
-                <ul className="diveStats">
-                    <li>{user.name}</li>
-                    <li>Total Dives: {dives.length}</li>
-                    <li>Most Recent Dive: {diveStats.mostRecent}</li>
-                    <li>Deepest Dive: {diveStats.deepest} ft</li>
-                    <li>Longest Dive: {diveStats.longest} min</li>
-                </ul>
-                :
-                <ul className="diveStats">
-                    <li>Total Dives: {dives.length}</li>
-                    <li>Most Recent Dive: {diveStats.mostRecent}</li>
-                    <li>Deepest Dive: {diveStats.deepest} ft</li>
-                    <li>Longest Dive: {diveStats.longest} min</li>
-                </ul>
-            }
+                <table className="diveStatsTable">
+                    <tbody>
+                        <tr>
+                            <td><b>Total Dives</b></td>
+                            <td>{dives.length}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Most Recent</b></td>
+                            <td>{diveStats.mostRecent}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Deepest</b></td>
+                            <td>{diveStats.deepest} ft</td>
+                        </tr>
+                        <tr>
+                            <td><b>Longest</b></td>
+                            <td>{diveStats.longest} min</td>
+                        </tr>
+                        <tr>
+                            <td><b>Avg depth</b></td>
+                            <td>{diveStats.avgDepth} ft</td>
+                        </tr>
+                        <tr>
+                            <td><b>Avg time</b></td>
+                            <td>{diveStats.avgTime} min</td>
+                        </tr>
+                    </tbody>
+                </table>
         </section>
     </>)
 }

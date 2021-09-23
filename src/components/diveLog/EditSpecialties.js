@@ -15,7 +15,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                         <label className="checkboxLabel">Altitude</label>
                     </li>
                     <li>
-                        <input type="checkbox" value="false" checked={currentDive.isDrift ? true : false} className="logCheckbox" onChange={(event) => {
+                        <input type="checkbox" className="logCheckbox" onChange={(event) => {
                             const copy = { ...currentDive }
                             copy.isDrift = event.target.checked
                             setDive(copy)
@@ -98,11 +98,13 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
             <div className="specialtyColumn">
                 <ul className="specialtyList">
                     <li>
-                        <input type="checkbox" checked={currentDive.isDeep || currentDive.depth > 60 ? true : false} className="logCheckbox" onChange={(event) => {
-                            const copy = { ...currentDive }
-                            copy.isDeep = event.target.checked
-                            setDive(copy)
-                        }} />
+                        <input type="checkbox"
+                            value={currentDive.depth > 60 ? true : false}
+                            className="logCheckbox" onChange={(event) => {
+                                const copy = { ...currentDive }
+                                copy.isDeep = event.target.value
+                                setDive(copy)
+                            }} />
                         <label className="checkboxLabel">Deep</label>
                     </li>
                     <li>

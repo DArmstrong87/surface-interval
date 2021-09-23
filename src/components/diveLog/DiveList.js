@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { getMyDives } from "../application/ApiManager"
+import { deleteDive, getMyDives } from "../application/ApiManager"
 
 export const DiveList = () => {
     const [dives, setDives] = useState([])
@@ -14,19 +14,6 @@ export const DiveList = () => {
         },
         []
     )
-
-    const deleteDive = (id) => {
-        return fetch(`http://localhost:8088/dives/${id}`, {
-            method: "DELETE"
-        })
-            .then(() => {
-                getMyDives()
-                    .then(dives => {
-                        setDives(dives)
-                    })
-            }, []
-            )
-    }
 
     return (<>
         <article className='diveLogMain' key='article2'>
@@ -68,8 +55,8 @@ export const DiveList = () => {
                             {dive.isFFM ? <b>🤿Full Face Mask</b> : ''}
                             {dive.isNav ? <b>🧭Navigation</b> : ''}
                             {dive.isNight ? <b>🌒Night</b> : ''}
-                            {dive.isN32 ? <b>🟢Nitrox 32</b> : ''}
-                            {dive.isN36 ? <b>🟡Nitrox 36</b> : ''}
+                            {dive.isN32 ? <b>🟢EANX32</b> : ''}
+                            {dive.isN36 ? <b>🟡EANX36</b> : ''}
                             {dive.isRebreather ? <b>🤖Rebreather</b> : ''}
                             {dive.isSearch ? <b>🔍Search and Recovery</b> : ''}
                             {dive.isSidemount ? <b>🚀Sidemount</b> : ''}
@@ -79,7 +66,7 @@ export const DiveList = () => {
 
                         <div className='edit-delete'>
                             <Link to={`/dives/edit/${dive.id}`}>Edit</Link>
-                            <Link to="#" onClick={() => { deleteDive(dive.id) }}>
+                            <Link to="#" onClick={() => { deleteDive(dive.id, setDives) }}>
                                 Delete
                             </Link>
                         </div>

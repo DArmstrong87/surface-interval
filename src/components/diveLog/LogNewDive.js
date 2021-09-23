@@ -7,7 +7,7 @@ import { Conditions } from "./Conditions";
 
 export const LogNewDive = () => {
     const [dives, setDives] = useState([])
-    const [diveCopy, setDive] = useState({ userId: parseInt(localStorage.getItem('si_user')), })
+    const [diveCopy, setDive] = useState({ userId: parseInt(localStorage.getItem('si_user')) })
     const history = useHistory()
     const currentDive = dives.length + 1
 
@@ -63,11 +63,13 @@ export const LogNewDive = () => {
                             setDive(copy)
                         }} />
                     <label>Fresh</label>
-                    <input type="radio" value="Salt" checked={diveCopy.freshOrSalt === 'Salt' ? true : false} onChange={(event) => {
-                        const copy = { ...diveCopy }
-                        copy.freshOrSalt = event.target.value
-                        setDive(copy)
-                    }} />
+                    <input type="radio" value="Salt"
+                        checked={diveCopy.freshOrSalt === 'Salt' ? true : false}
+                        onChange={(event) => {
+                            const copy = { ...diveCopy }
+                            copy.freshOrSalt = event.target.value
+                            setDive(copy)
+                        }} />
                     <label>Salt</label>
                 </div>
                 <fieldset>
