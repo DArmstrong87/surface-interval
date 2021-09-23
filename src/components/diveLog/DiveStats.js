@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react/cjs/react.development";
-import { getCurrentUser, GetDiveStats, getMyDives } from "../application/ApiManager";
+import { GetDiveStats, getMyDives } from "../application/ApiManager";
 import "./DiveStats.css"
 
 export const DiveStats = () => {
     const [dives, setDives] = useState([])
     const diveStats = GetDiveStats()
-    const [user, setUser] = useState([{}])
 
-    useEffect(() =>
-        getCurrentUser()
-            .then((data) => setUser(data[0])
-            ), []
-    )
     useEffect(
         () => {
             getMyDives()
