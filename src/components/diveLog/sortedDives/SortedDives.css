@@ -1,3 +1,19 @@
+.sortedDivesContainer {
+    overflow: scroll;
+    height: 30em;
+    overflow-x: hidden;
+}
+.sortedDivesContainer::-webkit-scrollbar {
+    background:rgba(37, 100, 160, 0.5);
+    border-radius: 10px;
+    
+}
+.sortedDivesContainer::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 10px;
+    height: 2em;
+  }
+
 .sortedDiveLog {
     background-color: rgba(37, 100, 160);
     color: white;

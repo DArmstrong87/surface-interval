@@ -27,6 +27,12 @@ export const getDivesByDepth = (order) => {
         .then(res => res.json())
 }
 
+export const getDivesByDate = (order) => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`http://localhost:8088/dives?_sort=date&userId=${user}&_order=${order}`)
+        .then(res => res.json())
+}
+
 export const getDivesByTime = (order) => {
     const user = localStorage.getItem('si_user')
     return fetch(`http://localhost:8088/dives?_sort=time&userId=${user}&_order=${order}`)

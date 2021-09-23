@@ -5,11 +5,11 @@
     width: 50%;
     margin: auto;
     border-radius: 10px;
-    transform: translate(0%, 50%);
+    transform: translate(0%, 25%);
     color: white;
     box-shadow: 0px 0px 20px 20px rgba(37, 100, 160, 0.34);
     /* Animation */
-    animation: fadeIn linear 1s, slideInFromBottom linear 1s;;
+    animation: fadeIn ease-in-out 1s, slideInFromBottom ease-in-out 1s;;
     -webkit-animation: fadeIn linear 1s, slideInFromBottom linear 1s;;
     -moz-animation: fadeIn linear 1s, slideInFromBottom linear 1s;;
     -o-animation: fadeIn linear 1s, slideInFromBottom linear 1s;;
@@ -31,46 +31,46 @@
 /* Slide Up */
 @keyframes slideInFromBottom {
     0% {
-      transform: translateY(60%);
+      transform: translateY(35%);
     }
     100% {
-      transform: translateY(50%);
+      transform: translateY(25%);
     }
   }
 
   @-moz-keyframes slideInFromBottom {
     0% {
-      transform: translateY(60%);
+      transform: translateY(35%);
     }
     100% {
-      transform: translateY(50%);
+      transform: translateY(25%);
     }
   }
   
   @-webkit-keyframes slideInFromBottom {
     0% {
-      transform: translateY(60%);
+      transform: translateY(35%);
     }
     100% {
-      transform: translateY(50%);
+      transform: translateY(25%);
     }
   }
   
   @-o-keyframes slideInFromBottom {
     0% {
-      transform: translateY(60%);
+      transform: translateY(35%);
     }
     100% {
-      transform: translateY(50%);
+      transform: translateY(25%);
     }
   }
   
   @-ms-keyframes slideInFromBottom {
     0% {
-      transform: translateY(60%);
+      transform: translateY(35%);
     }
     100% {
-      transform: translateY(50%);
+      transform: translateY(25%);
     }
   }
 

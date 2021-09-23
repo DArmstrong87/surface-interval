@@ -1,8 +1,19 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { deleteDive } from "../../application/ApiManager"
+import { deleteDive, getDivesByDate } from "../../application/ApiManager"
 
-export const AllDives = ({ dives, setDives, toggleState }) => {
+export const AllDives = ({ divesByDate, setDives, toggleState }) => {
+    const [divesByDateAsc, setDivesAsc] = useState([])
+
+    useEffect(
+        () => {
+            getDivesByDate('asc')
+                .then(dives => {
+                    setDivesAsc(dives)
+                })
+        },
+        []
+    )
 
     return (
         <>
@@ -20,15 +31,19 @@ export const AllDives = ({ dives, setDives, toggleState }) => {
                         <td>Edit/Del</td>
                     </thead>
                     <tbody>
-                        {dives.map(
+                        {divesByDate.map(
                             dive => {
+                                const foundDiveNum = divesByDateAsc.find(
+                                    diveDate => dive.id === diveDate.id
+                                )
+                                const diveNum = divesByDateAsc.indexOf(foundDiveNum)
                                 const foundSpecialties = () => {
                                     const specialties = []
                                     if (dive.isAltitude) { specialties.push('Altitude') }
                                     if (dive.isCave) { specialties.push('Altitude') }
                                     if (dive.isDeep) { specialties.push('Deep') }
                                     if (dive.isDrift) { specialties.push('Drift') }
-                                    if (dive.isDry) { specialties.push('Dry') }
+                                    if (dive.isDry) { specialties.push('Drysuit') }
                                     if (dive.isFFM) { specialties.push('FFM') }
                                     if (dive.isNav) { specialties.push('Nav') }
                                     if (dive.isNight) { specialties.push('Night') }
@@ -42,7 +57,7 @@ export const AllDives = ({ dives, setDives, toggleState }) => {
                                 }
                                 const specialties = foundSpecialties()
                                 return <tr>
-                                    <td>{dive.id}</td>
+                                    <td>{diveNum + 1}</td>
                                     <td>{dive.date}</td>
                                     <td>{dive.location}</td>
                                     <td>{dive.diveSite}</td>

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { deleteDive, getDivesByTime } from "../../application/ApiManager"
+import { deleteDive, getDivesByDate } from "../../application/ApiManager"
 
-export const ByTime = ({ order, divesByDate, toggleState }) => {
-    const [divesByTime, setDivesByTime] = useState([])
+export const ByDate = ({ dateOrder, toggleState }) => {
+    const [dives, setDives] = useState([])
 
     useEffect(
         () => {
-            getDivesByTime(order)
+            getDivesByDate(dateOrder)
                 .then(dives => {
-                    setDivesByTime(dives)
+                    setDives(dives)
                 })
         },
         [order]
@@ -17,7 +17,7 @@ export const ByTime = ({ order, divesByDate, toggleState }) => {
 
     return (
         <>
-            {toggleState.time !== true ? '' :
+            {toggleState.depth !== true ? '' :
                 <table className="sortedDiveLog">
                     <thead>
                         <td>Dive</td>
@@ -31,12 +31,8 @@ export const ByTime = ({ order, divesByDate, toggleState }) => {
                         <td>Edit/Del</td>
                     </thead>
                     <tbody>
-                        {divesByTime.map(
+                        {dives.map(
                             dive => {
-                                const foundDiveNum = divesByDate.find(
-                                    diveDate => dive.id === diveDate.id
-                                )
-                                const diveNum = divesByDate.indexOf(foundDiveNum)
                                 const foundSpecialties = () => {
                                     const specialties = []
                                     if (dive.isAltitude) { specialties.push('Altitude') }
@@ -57,7 +53,7 @@ export const ByTime = ({ order, divesByDate, toggleState }) => {
                                 }
                                 const specialties = foundSpecialties()
                                 return <tr>
-                                    <td>{diveNum + 1}</td>
+                                    <td>{dives.indexOf(dive) + 1}</td>
                                     <td>{dive.date}</td>
                                     <td>{dive.location}</td>
                                     <td>{dive.diveSite}</td>
@@ -67,7 +63,7 @@ export const ByTime = ({ order, divesByDate, toggleState }) => {
                                     <td className="specialtiesTD">{specialties}</td>
                                     <td className="small-icons">
                                         <Link to={`/dives/edit/${dive.id}`}>📝</Link>
-                                        <Link to="#" onClick={() => { deleteDive(dive.id, setDivesByTime) }}>🗑️</Link>
+                                        <Link to="#" onClick={() => { deleteDive(dive.id, setDives) }}>🗑️</Link>
                                     </td>
                                 </tr>
                             }

@@ -1,16 +1,17 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import {deleteDive} from "../../application/ApiManager"
+import { deleteDive } from "../../application/ApiManager"
 
-export const ByDiveSite = ({ divesByParam, toggleState, setDives }) => {
+export const ByDiveSite = ({ divesByParam, divesByDate, toggleState, setDives }) => {
     return (
         <>
             {toggleState.diveSite !== true ? '' :
                 <table className="sortedDiveLog">
                     <thead>
-                        <td>Dive Site</td>
+                        <td>Dive</td>
+                        <td>Date</td>
                         <td>Location</td>
-                        <td>Dive #</td>
+                        <td>Dive Site</td>
                         <td>Depth</td>
                         <td>Time</td>
                         <td>Fresh/Salt</td>
@@ -20,12 +21,17 @@ export const ByDiveSite = ({ divesByParam, toggleState, setDives }) => {
                     <tbody>
                         {divesByParam.map(
                             dive => {
+                                const foundDiveNum = divesByDate.find(
+                                    diveDate => dive.id === diveDate.id
+                                )
+                                const diveNum = divesByDate.indexOf(foundDiveNum)
                                 const foundSpecialties = () => {
                                     const specialties = []
                                     if (dive.isAltitude) { specialties.push('Altitude') }
                                     if (dive.isCave) { specialties.push('Altitude') }
                                     if (dive.isDeep) { specialties.push('Deep') }
                                     if (dive.isDrift) { specialties.push('Drift') }
+                                    if (dive.isDry) { specialties.push('Drysuit') }
                                     if (dive.isFFM) { specialties.push('FFM') }
                                     if (dive.isNav) { specialties.push('Nav') }
                                     if (dive.isNight) { specialties.push('Night') }
@@ -37,14 +43,16 @@ export const ByDiveSite = ({ divesByParam, toggleState, setDives }) => {
                                     if (dive.isWreck) { specialties.push('Wreck') }
                                     return specialties.join(' | ')
                                 }
+                                const specialties = foundSpecialties()
                                 return <tr>
-                                    <td>{dive.diveSite}</td>
+                                    <td>{diveNum + 1}</td>
+                                    <td>{dive.date}</td>
                                     <td>{dive.location}</td>
-                                    <td>{dive.id}</td>
+                                    <td>{dive.diveSite}</td>
                                     <td>{dive.depth}</td>
                                     <td>{dive.time}</td>
                                     <td>{dive.freshOrSalt}</td>
-                                    <td className="specialtiesTD">{foundSpecialties()}</td>
+                                    <td className="specialtiesTD">{specialties}</td>
                                     <td className="small-icons">
                                         <Link to={`/dives/edit/${dive.id}`}>📝</Link>
                                         <Link to="#" onClick={() => { deleteDive(dive.id, setDives) }}>🗑️</Link>

@@ -524,7 +524,7 @@
       "location": "Cozumel",
       "diveSite": "Cathedral",
       "freshOrSalt": "Salt",
-      "depth": 98,
+      "depth": 105,
       "time": 33,
       "comments": "Deep drift dive through some big overhangs!",
       "isDeep": "true",
@@ -601,7 +601,7 @@
       "diveSite": "Pennyroyal",
       "freshOrSalt": "Fresh",
       "depth": 35,
-      "time": 10,
+      "time": 15,
       "id": 51
     },
     {
@@ -909,7 +909,7 @@
     },
     {
       "userId": 1,
-      "date": "0219-10-06",
+      "date": "2019-10-06",
       "location": "Kentucky",
       "diveSite": "Pennyroyal",
       "freshOrSalt": "Fresh",
