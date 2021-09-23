@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react/cjs/react.development";
-import { GetDiveStats, getMyDives } from "../application/ApiManager";
+import { useEffect, useState } from "react"
+import { GetDiveStats, getMyDives } from "../application/ApiManager"
 import "./DiveStats.css"
 
 export const DiveStats = () => {
