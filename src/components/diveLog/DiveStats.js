@@ -24,15 +24,6 @@ export const DiveStats = () => {
 
     return (<>
         <section>
-            {window.location.pathname === "/profile" ?
-                <ul className="diveStats">
-                    <li>{user.name}</li>
-                    <li>Total Dives: {dives.length}</li>
-                    <li>Most Recent Dive: {diveStats.mostRecent}</li>
-                    <li>Deepest Dive: {diveStats.deepest} ft</li>
-                    <li>Longest Dive: {diveStats.longest} min</li>
-                </ul>
-                :
                 <table className="diveStatsTable">
                     <tbody>
                         <tr>
@@ -61,7 +52,6 @@ export const DiveStats = () => {
                         </tr>
                     </tbody>
                 </table>
-            }
         </section>
     </>)
 }
