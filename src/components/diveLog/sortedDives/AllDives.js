@@ -10,6 +10,7 @@ export const AllDives = ({ dives, setDives, toggleState }) => {
                 <table className="sortedDiveLog">
                     <thead>
                         <td>Dive</td>
+                        <td>Date</td>
                         <td>Location</td>
                         <td>Dive Site</td>
                         <td>Depth</td>
@@ -27,6 +28,7 @@ export const AllDives = ({ dives, setDives, toggleState }) => {
                                     if (dive.isCave) { specialties.push('Altitude') }
                                     if (dive.isDeep) { specialties.push('Deep') }
                                     if (dive.isDrift) { specialties.push('Drift') }
+                                    if (dive.isDry) { specialties.push('Dry') }
                                     if (dive.isFFM) { specialties.push('FFM') }
                                     if (dive.isNav) { specialties.push('Nav') }
                                     if (dive.isNight) { specialties.push('Night') }
@@ -41,6 +43,7 @@ export const AllDives = ({ dives, setDives, toggleState }) => {
                                 const specialties = foundSpecialties()
                                 return <tr>
                                     <td>{dive.id}</td>
+                                    <td>{dive.date}</td>
                                     <td>{dive.location}</td>
                                     <td>{dive.diveSite}</td>
                                     <td>{dive.depth}</td>

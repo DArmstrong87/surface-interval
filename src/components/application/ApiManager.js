@@ -82,8 +82,8 @@ export const GetDiveStats = () => {
         mostRecent: mostRecent[0]?.date,
         deepest: deepest[0]?.depth,
         longest: longest[0]?.time,
-        avgDepth: avgDepth,
-        avgTime: avgTime
+        avgDepth: avgDepth.toFixed(2),
+        avgTime: avgTime.toFixed(0)
     }
 
     useEffect(() => {
