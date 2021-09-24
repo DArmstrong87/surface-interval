@@ -20,15 +20,17 @@ export const ByDate = ({ dateOrder, toggleState }) => {
             {toggleState.date !== true ? '' :
                 <table className="sortedDiveLog">
                     <thead>
-                        <td>Dive</td>
-                        <td>Date</td>
-                        <td>Location</td>
-                        <td>Dive Site</td>
-                        <td>Depth</td>
-                        <td>Time</td>
-                        <td>Fresh/Salt</td>
-                        <td>Specialties</td>
-                        <td>Edit/Del</td>
+                        <tr key={"row1"}>
+                            <td>Dive</td>
+                            <td>Date</td>
+                            <td>Location</td>
+                            <td>Dive Site</td>
+                            <td>Depth</td>
+                            <td>Time</td>
+                            <td>Fresh/Salt</td>
+                            <td>Specialties</td>
+                            <td>Edit/Del</td>
+                        </tr>
                     </thead>
                     <tbody>
                         {dives.map(
@@ -52,7 +54,7 @@ export const ByDate = ({ dateOrder, toggleState }) => {
                                     return specialties.join(' | ')
                                 }
                                 const specialties = foundSpecialties()
-                                return <tr>
+                                return   <tr key={dive.id}>
                                     <td>{dives.indexOf(dive) + 1}</td>
                                     <td>{dive.date}</td>
                                     <td>{dive.location}</td>

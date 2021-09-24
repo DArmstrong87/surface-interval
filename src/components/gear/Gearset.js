@@ -18,7 +18,6 @@ import { GearPDF } from "./GearPDF";
 export const Gearset = () => {
     const history = useHistory()
     const { gearId } = useParams()
-
     const [gear, setGear] = useState({})
 
     useEffect(
@@ -49,7 +48,7 @@ export const Gearset = () => {
                     <Link className="diveNumber" to="/gear">🔙</Link>
                 </div>
             </article>
-            <article className='diveLogMain'>
+            <article className='gearLogMain'>
                 <section className="gearsetContainer">
                     <h2 className='diveNumber'>{gear.name}</h2>
                     <div className="gearEntry">
