@@ -13,6 +13,7 @@
     -o-animation: fadeIn linear 1s, floatUp linear 1s;
     -ms-animation: fadeIn linear 1s, floatUp linear 1s;
 }
+
 .divePlannerHeading h1 {
     text-align: center;
     margin-bottom: 0;
@@ -50,4 +51,67 @@
     display: flex;
     justify-content: center;
     margin-bottom: 2em;
+}
+
+
+/* MOBILE STYLING */
+@media (min-width:320px) and (max-width:480px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
+    .divePlannerHeading {
+        width: 80%;
+        font-size: 14px;
+        background-color: rgb(37, 100, 160, 0.34);
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px 20px rgba(37, 100, 160, 0.34);
+        color: white;
+        margin:auto;
+        margin-bottom: 3em;
+        /* Animation */
+        animation: fadeIn linear 1s, floatUp linear 1s;
+        -webkit-animation: fadeIn linear 1s, floatUp linear 1s;
+        -moz-animation: fadeIn linear 1s, floatUp linear 1s;
+        -o-animation: fadeIn linear 1s, floatUp linear 1s;
+        -ms-animation: fadeIn linear 1s, floatUp linear 1s;
+    }
+    
+    .divePlannerHeading h1 {
+        text-align: center;
+        margin-bottom: 0;
+        font-size: 30px;
+    }
+    
+    .RDP {
+        display: flex;
+        width: 50%;
+        margin: auto;
+        margin-bottom: 1em;
+        border-radius: 10px;
+        justify-self: center;
+        border: 2px solid rgb(37, 100, 160);
+        /* overflow: hidden; */
+    }
+    
+    .RDP:hover {
+        animation: scaleUp ease-in-out 1s;
+        transform: scale(2, 2);
+    }
+    
+    @keyframes scaleUp {
+        0% {
+            transform: scale(1, 1);
+        }
+        100% {
+            transform: scale(2, 2)
+        }
+    }
+    
+    .RDP img {
+        width: 100%;
+        height: 100%
+    }
+    
+    .RDP-container {
+        display: flex;
+        margin-bottom: 2em;
+        flex-direction: column;
+    }
 }
