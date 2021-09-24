@@ -85,6 +85,11 @@
     text-align: center;
 }
 
+.all {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
 @media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */ 
     .sortedDivesContainer {
         overflow: scroll;
