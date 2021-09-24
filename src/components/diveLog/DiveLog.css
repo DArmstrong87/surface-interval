@@ -161,3 +161,166 @@
     transform: scale(1.5);
     margin-right: 0.5em;
 }
+
+@media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */ 
+    .diveLogArticle {
+        display: flex;
+        flex-direction: column;
+        margin: 0px 0px 30px 0px;
+        justify-content: center;
+    }
+    
+    .diveLogHeading {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .logDive {
+        color: white;
+        border-radius: 10px;
+        border: 0px solid; 
+        padding: 10px;
+        background-color: rgba(37, 100, 160, 1);
+        border: 1px solid black;
+        width: fit-content;
+        box-shadow: rgba(0, 0, 0, 0.5) 5px 3px 5px;
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+        
+        animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
+        -webkit-animation: fadeIn linear 0.3s, slideLeft linear 0.2s;;
+        -moz-animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
+        -o-animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
+        -ms-animation: fadeIn linear 0.3s, slideLeft linear 0.1s;;
+    }
+    
+    .logDive:hover{
+        background-color: orange;
+        transition: background-color 0.3s ease;
+    }
+    
+    .diveLogMain {
+        overflow: scroll;
+        height: 24em;
+        overflow-x: hidden;
+    }
+    .diveLogMain::-webkit-scrollbar {
+        background:rgba(37, 100, 160, 0.5);
+        border-radius: 10px;
+    }
+    .diveLogMain::-webkit-scrollbar-thumb {
+        background: orange;
+        border-radius: 10px;
+        height: 2em;
+      }
+    
+    .diveLogEntry {
+        color: white;
+        border: 1px black solid;
+        width: 90%;
+        padding: 5px;
+        margin: 0px;
+        margin-bottom: 30px;
+        background-color: rgb(37, 100, 160, 0.75);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .diveNumber {
+        margin: 0px;
+        color: orange;
+        text-transform: uppercase;
+        text-align: center;
+        text-decoration: none;
+    }
+    
+    .diveDate{
+        text-align: center;
+        margin: 0px 0px 0px 0px;
+    }
+    
+    .diveList {
+        list-style-type: none;
+    }
+    
+    .fresh {
+        background-color: rgb(0, 65, 139);
+        width: max-content;
+        list-style-type: '💧';
+    }
+    
+    .salt {
+        background-color: darkcyan;
+        width: max-content;
+        list-style-type: '🌊';
+    }
+    
+    .deep{
+        list-style-type: '⬇️';
+    }
+    
+    .edit-delete {
+        display: flex;
+        justify-content: flex-end;
+        margin: 5px 0px 0px 0px;
+    }
+    
+    .edit-delete a{
+        border: none;
+        font-size: 1em;
+        background: none;
+        color:orange;
+        padding-right: 10px;
+    }
+    
+    .submitButton {
+        border-radius: 5px;
+        color: white;
+        background-color: rgb(37, 100, 160, 1);
+        margin-right: 5px;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+    
+    .cancelButton {
+        border-radius: 5px;
+        margin-left: 5px;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+    
+    .diveStatsDiv{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+    .loggedSpecialties {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 1em 0 1em;
+    }
+    
+    .expanded-condensed {
+        color: white;
+        background-color: rgb(37, 100, 160, 0.75);
+        width: fit-content;
+        border-radius: 10px;
+        padding: 0.5em;
+        border: 1px solid black;
+        margin: auto;
+        margin-bottom: 1em;
+    }
+    .expanded-condensed input:hover {
+        cursor: pointer;
+    }
+    .expanded-condensed input {
+        transform: scale(1.5);
+        margin-right: 0.5em;
+    }
+}

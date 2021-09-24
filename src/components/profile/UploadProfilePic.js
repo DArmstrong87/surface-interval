@@ -36,7 +36,7 @@ export const ProfilePicUpload = () => {
       )
   }
 
-  return (<section>
+  return (<section className="profilePicContainer">
     {user.profilePicUrl === '' ?
       < div className="uploadButton" >
         <ImageUploading

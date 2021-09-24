@@ -62,7 +62,7 @@ export const CertCardUpload = () => {
             )
     }
    
-    return (<article>
+    return (<>
 
         {certCards.length === 0 ?
 
@@ -189,13 +189,13 @@ export const CertCardUpload = () => {
                             <img src={card.imageUrl} alt={`${certCard.name} Cert`} />
                         </div>
                         <p className="cardDetails"><i>Date Issued: {card.dateIssued}</i>
-                            <button onClick={() => { deleteCard(card.id) }}>Delete</button>
+                            <button className="certButton" onClick={() => { deleteCard(card.id) }}>Delete</button>
                         </p>
                     </div>
                     </>
                 }
             )}
         </section>
-    </article>
+    </>
     );
 }

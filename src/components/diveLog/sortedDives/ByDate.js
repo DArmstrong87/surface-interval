@@ -17,7 +17,7 @@ export const ByDate = ({ dateOrder, toggleState }) => {
 
     return (
         <>
-            {toggleState.depth !== true ? '' :
+            {toggleState.date !== true ? '' :
                 <table className="sortedDiveLog">
                     <thead>
                         <td>Dive</td>

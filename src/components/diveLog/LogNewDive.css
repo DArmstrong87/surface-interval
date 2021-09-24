@@ -96,3 +96,104 @@ fieldset label {
     padding: 0;
     cursor: pointer;
 }
+
+@media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */
+    .diveFormContainer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+    
+    .diveForm {
+        border: 1px black solid;
+        color: white;
+        padding: 1em;
+        margin-bottom: 5%;
+        background-color: rgb(37, 100, 160, 0.75);
+        border-radius: 10px;
+        width: 90%;
+    }
+    
+    fieldset {
+        display: flex;
+        align-items: center;
+    }
+    fieldset input{
+        padding: 5px;
+        margin-right: 1em;
+        width: 68%;  
+        height: 25px;
+        cursor: pointer;
+        align-items:center;
+    }
+    fieldset label {
+        padding-right: 10px;
+        text-align: right;
+        width: 30%;
+    }
+    
+    .fresh-salt-radios{
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
+    .fresh-salt-radios input{
+        padding: 0;
+        transform: scale(2.5);
+        margin-left: 0em;
+        margin-right: 1em;
+        cursor: pointer;
+    }
+    .fresh-salt-radios label{
+        margin-right: 2em;
+        font-size: 1.5em;
+    }
+    
+    .date {
+        width: 68%;
+    }
+    
+    .submit-cancel-buttons {
+        justify-content: center;
+    }
+    
+    .comments-box {
+        margin-right: 1em;
+        margin-left:-0.3em;
+    }
+    
+    .logCheckbox {
+        transform: scale(2.5);
+        margin-right: 1em;
+        align-self: center;
+    }
+    .checkboxLabel{
+        font-size: 1em;
+        padding: 0;
+    }
+    
+    .specialties {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+    .specialtyColumn{
+        flex-direction: column;
+        flex-basis: 33%;
+        width: 33%;
+    }
+    
+    .specialtyList li{
+        list-style-type: none;
+        margin-bottom: 1em;
+        margin-left: -2em;
+        padding-right: 0;
+    }
+    .specialtyList input {
+        margin-right: 0.8em;
+        padding: 0;
+        cursor: pointer;
+    }
+}
