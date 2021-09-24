@@ -14,7 +14,7 @@ export const Gear = () => {
                     setGear(gear)
                 })
         },
-        [gear]
+        [gear.length]
     )
 
     return (

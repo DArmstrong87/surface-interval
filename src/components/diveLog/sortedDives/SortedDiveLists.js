@@ -31,7 +31,7 @@ export const SortedDiveLists = () => {
                     setDives(dives)
                 })
         },
-        [dives]
+        [dives.length]
     )
     useEffect(
         () => {
@@ -40,7 +40,7 @@ export const SortedDiveLists = () => {
                     setDivesByDate(dives)
                 })
         },
-        [dateOrder, dives]
+        [dives.length, dateOrder]
     )
 
     useEffect(
@@ -50,7 +50,7 @@ export const SortedDiveLists = () => {
                     setDivesByParam(dives)
                 })
         },
-        [obj]
+        [dives.length, obj]
     )
 
     return (<>

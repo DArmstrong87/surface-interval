@@ -54,7 +54,7 @@ export const EditGearSet = () => {
 
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit"
-                        onClick={(event) => saveGear(event, currentGear, gearId).then(history.goBack())}>
+                        onClick={(event) => saveGear(event, currentGear, gearId).then(history.push("/gear"))}>
                         Save Changes
                     </button>
                     <button className="cancelButton" onClick={() => {
