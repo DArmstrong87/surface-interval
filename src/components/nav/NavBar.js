@@ -8,7 +8,8 @@ export const NavBar = () => {
 		<div className='header'>
 			<h1 className='title'>Surface Interval</h1>
 		</div>
-		<ul className="navbar">
+		<div className="navbar">
+		<ul className="navBarList">
 			<li className="navbar__item active">
 				<Link className="navbar__link" to="/">Home</Link>
 			</li>
@@ -34,5 +35,6 @@ export const NavBar = () => {
 				>Logout</Link>
 			</li>
 		</ul>
+		</div>
 	</>)
 }
