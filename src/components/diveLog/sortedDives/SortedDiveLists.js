@@ -31,7 +31,7 @@ export const SortedDiveLists = () => {
                     setDives(dives)
                 })
         },
-        []
+        [dives]
     )
     useEffect(
         () => {
@@ -40,7 +40,7 @@ export const SortedDiveLists = () => {
                     setDivesByDate(dives)
                 })
         },
-        [dateOrder]
+        [dateOrder, dives]
     )
 
     useEffect(
@@ -55,13 +55,15 @@ export const SortedDiveLists = () => {
 
     return (<>
         <div className="all">
-                <select className="sortDiveSelect"
+            <select className="sortDiveSelect"
+                defaultValue="all"
                 onChange={(event) => {
                     setDateOrder(event.target.value);
                     setToggle({ all: true })
                 }}>
-                <option default selected={!toggleState.all}
-                    style={{ color: 'gray' }}>All 
+                <option
+                    selected={!toggleState.all}
+                    value='all' style={{ color: 'gray' }}>All
                 </option>
                 <option key={'asc'} value={'asc'}>Asc 👍</option>
                 <option key={'desc'} value={'desc'}>Desc 👎</option>
@@ -70,12 +72,14 @@ export const SortedDiveLists = () => {
         </div>
         <div className="sort_selects">
             <select className="sortDiveSelect"
+                defaultValue='location'
                 onChange={(event) => {
                     setPropertyandParam({ property: 'location', param: event.target.value });
                     setDateOrder('asc')
                     setToggle({ location: true })
                 }}>
-                <option default selected={!toggleState.location}
+                <option value='location'
+                    selected={!toggleState.location}
                     style={{ color: 'gray' }}>
                     Location
                 </option>
@@ -91,12 +95,14 @@ export const SortedDiveLists = () => {
 
 
             <select className="sortDiveSelect"
+                defaultValue="site"
                 onChange={(event) => {
                     setPropertyandParam({ property: 'diveSite', param: event.target.value });
                     setToggle({ diveSite: true })
                     setDateOrder('asc')
                 }}>
-                <option default selected={!toggleState.diveSite}
+                <option value='site'
+                    selected={!toggleState.diveSite}
                     style={{ color: 'gray' }}>
                     Dive Sites
                 </option>
@@ -111,12 +117,15 @@ export const SortedDiveLists = () => {
             </select>
 
             <select className="sortDiveSelect"
+                selected={!toggleState.depth ? false : true}
+                defaultValue={null}
                 onChange={(event) => {
                     setOrder(event.target.value);
                     setToggle({ depth: true })
                     setDateOrder('asc')
                 }}>
-                <option default selected={!toggleState.depth}
+                <option value='depth'
+                    selected={!toggleState.depth}
                     style={{ color: 'gray' }}>
                     Depth
                 </option>
@@ -125,12 +134,14 @@ export const SortedDiveLists = () => {
             </select>
 
             <select className="sortDiveSelect"
+                defaultValue="time"
                 onChange={(event) => {
                     setOrder(event.target.value);
                     setToggle({ time: true })
                     setDateOrder('asc')
                 }}>
-                <option default selected={!toggleState.time}
+                <option value='time'
+                    selected={!toggleState.time}
                     style={{ color: 'gray' }}>
                     Time
                 </option>

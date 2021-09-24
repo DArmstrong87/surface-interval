@@ -142,7 +142,6 @@ code {
 
 @media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */
   body {
-    /* margin: 0; */
     font-family: 'monospace', 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
@@ -153,7 +152,6 @@ code {
     background-position-x: 45%;
     background-position-y: 100%;
     background-size: 90em; 
-    position: relative;
     background-repeat: no-repeat;
     background-attachment:fixed;
     background-color: black;
