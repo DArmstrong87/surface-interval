@@ -55,7 +55,7 @@
 
 
 /* MOBILE STYLING */
-@media (min-width:320px) and (max-width:480px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
+@media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */ 
     .divePlannerHeading {
         width: 80%;
         font-size: 14px;

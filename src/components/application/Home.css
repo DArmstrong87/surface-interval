@@ -99,3 +99,109 @@
     0% {opacity:0;}
     100% {opacity:1;}
   }
+
+  
+@media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */
+
+  .homeArticle {
+    justify-content: center;
+    display: flex;
+    background-color: rgba(37, 100, 160, 0.34);
+    width: 50%;
+    margin: auto;
+    border-radius: 10px;
+    transform: translate(0%, 10%);
+    color: white;
+    box-shadow: 0px 0px 20px 20px rgba(37, 100, 160, 0.34);
+    /* Animation */
+    animation: fadeIn ease-in-out 1s, slideInFromBottom ease-in-out 1s;;
+    -webkit-animation: fadeIn linear 1s, slideInFromBottom linear 1s;;
+    -moz-animation: fadeIn linear 1s, slideInFromBottom linear 1s;;
+    -o-animation: fadeIn linear 1s, slideInFromBottom linear 1s;;
+    -ms-animation: fadeIn linear 1s, slideInFromBottom linear 1s;;
+}
+
+.homeSection{
+    text-align: center;
+    margin: auto;
+    
+}
+
+.homeTitle {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0;
+}
+
+/* Slide Up */
+@keyframes slideInFromBottom {
+    0% {
+      transform: translateY(20%);
+    }
+    100% {
+      transform: translateY(10%);
+    }
+  }
+
+  @-moz-keyframes slideInFromBottom {
+    0% {
+      transform: translateY(20%);
+    }
+    100% {
+      transform: translateY(10%);
+    }
+  }
+  
+  @-webkit-keyframes slideInFromBottom {
+    0% {
+      transform: translateY(20%);
+    }
+    100% {
+      transform: translateY(10%);
+    }
+  }
+  
+  @-o-keyframes slideInFromBottom {
+    0% {
+      transform: translateY(20%);
+    }
+    100% {
+      transform: translateY(10%);
+    }
+  }
+  
+  @-ms-keyframes slideInFromBottom {
+    0% {
+      transform: translateY(20%);
+    }
+    100% {
+      transform: translateY(10%);
+    }
+  }
+
+/* Fade In */
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+}

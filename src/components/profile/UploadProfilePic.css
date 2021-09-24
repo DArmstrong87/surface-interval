@@ -98,3 +98,121 @@ cursor: pointer
 .save-delete button {
   width: 12em;
 }
+
+
+@media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */
+.uploadButton {
+  text-align: right;
+}
+.certUploadButton {
+  text-align: left;
+}
+
+.image-item {
+  display: flex;
+  margin: 10px 0;
+}
+
+.image-item__btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  color:white;
+}
+
+button {
+background-color: rgba(37, 100, 160, 1);
+border-radius: 10px;
+color:white;
+}
+button:hover{
+background-color: orange;
+transition: background-color 0.3s ease;
+cursor: pointer;
+}
+
+.certCards {
+margin: 1em;
+}
+
+
+.certUploadButton{
+text-align: left;
+}
+.certCardButton {
+background-color: rgba(37, 100, 160, 1);
+border-radius: 10px;
+color:white;
+cursor: pointer;
+height: 3em;
+margin: 0.5em;
+}
+.certCardButton:hover{
+background-color: orange;
+transition: background-color 0.3s ease;
+cursor: pointer;
+}
+
+.noCerts {
+color: white;
+}
+
+.cardDetails {
+    color: white;
+    padding-top: 5px;
+    margin: auto;
+    width:85%;
+    display: flex;
+    justify-content: space-between;
+}
+.cardTitle {
+color: white;
+margin: 0;
+}
+.cardOverview{
+margin-bottom: 30px;
+width: 90%;
+}
+.cardOverview button{
+align-content: right;
+cursor: pointer
+}
+
+.upload__image-wrapper{
+flex-direction: column;
+flex-wrap: wrap;
+}
+.upload__image-wrapper button{
+margin:auto;
+cursor: pointer
+}
+
+.cardHeader {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.uploadButton {
+display: flex;
+justify-content: flex-end;
+}
+
+.addCard {
+padding: 10px;
+}
+
+.save-delete{
+margin-top: 5px;
+display: flex;
+flex-direction: column;
+}
+.save-delete button {
+width: 12em;
+}
+
+.certButton {
+  height: 3em;
+margin: 0.5em;
+}
+}
