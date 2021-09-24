@@ -12,7 +12,7 @@ export const AllDives = ({ divesByDate, setDives, toggleState }) => {
                     setDivesAsc(dives)
                 })
         },
-        []
+        [divesByDate.length]
     )
 
     return (
@@ -35,10 +35,10 @@ export const AllDives = ({ divesByDate, setDives, toggleState }) => {
                     <tbody>
                         {divesByDate.map(
                             dive => {
-                                const foundDiveNum = divesByDateAsc.find(
+                                const foundDiveNum = divesByDateAsc?.find(
                                     diveDate => dive.id === diveDate.id
                                 )
-                                const diveNum = divesByDateAsc.indexOf(foundDiveNum)
+                                const diveNum = divesByDateAsc?.indexOf(foundDiveNum)
                                 const foundSpecialties = () => {
                                     const specialties = []
                                     if (dive.isAltitude) { specialties.push('Altitude') }

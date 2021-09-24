@@ -10,9 +10,7 @@ import "./SortedDives.css"
 export const SortedDiveLists = () => {
     const [dives, setDives] = useState([])
     const [divesByDate, setDivesByDate] = useState([])
-    const [toggleState, setToggle] = useState({
-        all: true
-    })
+    const [toggleState, setToggle] = useState({ all: true })
     const [order, setOrder] = useState('')
     const [dateOrder, setDateOrder] = useState('asc')
     const locations = dives.map((dive) => { return dive.location })

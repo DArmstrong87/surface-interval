@@ -11,6 +11,14 @@ body {
   background-repeat: no-repeat;
   background-attachment:fixed;
   background-color: black;
+  }
+
+body::-webkit-scrollbar {
+  background:rgba(37, 100, 160, 0.5);
+}
+body::-webkit-scrollbar-thumb {
+  background: rgb(37, 100, 160);
+  border-radius: 10px;
 }
 
 code {
