@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { deleteDive, getDivesByDate } from "../../application/ApiManager"
+import { deleteDive, getDivesByDate, getDivesByDepth, getDivesByTime } from "../../application/ApiManager"
 
-export const AllDives = ({ divesByDate, setDives, toggleState }) => {
+export const AllDives = ({ divesByDate, setDives, toggleState, order, divesByParam }) => {
     const [divesByDateAsc, setDivesAsc] = useState([])
+    const [divesByDepth, setDivesByDepth] = useState([])
+    const [divesByTime, setDivesByTime] = useState([])
 
     useEffect(
         () => {
@@ -15,9 +17,37 @@ export const AllDives = ({ divesByDate, setDives, toggleState }) => {
         [divesByDate.length]
     )
 
+    useEffect(
+        () => {
+            getDivesByDepth(order)
+                .then(dives => {
+                    setDivesByDepth(dives)
+                })
+        },
+        [order]
+    )
+
+    useEffect(
+        () => {
+            getDivesByTime(order)
+                .then(dives => {
+                    setDivesByTime(dives)
+                })
+        },
+        [order]
+    )
+    const findDives = ()=> {
+        if(toggleState.all) return divesByDateAsc
+        if (toggleState.location) return divesByParam
+        if (toggleState.diveSite) return divesByParam
+        if (toggleState.depth) return divesByDepth 
+        else if (toggleState.time) return divesByTime
+    }
+    const dives = findDives()
+    console.log(dives)
+
     return (
         <>
-            {toggleState.all !== true ? '' :
                 <table className="sortedDiveLog">
                     <thead>
                         <tr key={'row1'}>
@@ -33,12 +63,12 @@ export const AllDives = ({ divesByDate, setDives, toggleState }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {divesByDate.map(
+                        {dives.map(
                             dive => {
-                                const foundDiveNum = divesByDateAsc?.find(
+                                const foundDiveNum = divesByDate.find(
                                     diveDate => dive.id === diveDate.id
                                 )
-                                const diveNum = divesByDateAsc?.indexOf(foundDiveNum)
+                                const diveNum = divesByDate.indexOf(foundDiveNum)
                                 const foundSpecialties = () => {
                                     const specialties = []
                                     if (dive.isAltitude) { specialties.push('Altitude') }
@@ -76,7 +106,6 @@ export const AllDives = ({ divesByDate, setDives, toggleState }) => {
                         )}
                     </tbody>
                 </table>
-            }
         </>
     )
 }

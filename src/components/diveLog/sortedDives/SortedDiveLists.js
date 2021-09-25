@@ -13,6 +13,7 @@ export const SortedDiveLists = () => {
     const [toggleState, setToggle] = useState({ all: true })
     const [order, setOrder] = useState('')
     const [dateOrder, setDateOrder] = useState('asc')
+    
     const locations = dives.map((dive) => { return dive.location })
     const sites = dives.map((dive) => { return dive.diveSite })
     const uniqueLocations = [...new Set(locations)]
@@ -149,11 +150,11 @@ export const SortedDiveLists = () => {
         </div>
 
         <section className="sortedDivesContainer">
-            <AllDives dives={dives} divesByDate={divesByDate} setDives={setDives} toggleState={toggleState} />
-            <ByLocation setDives={setDives} divesByDate={divesByDate} divesByParam={divesByParam} toggleState={toggleState} />
+            <AllDives dives={dives} divesByDate={divesByDate} setDives={setDives} toggleState={toggleState} order={order} divesByParam={divesByParam}/>
+            {/* <ByLocation setDives={setDives} divesByDate={divesByDate} divesByParam={divesByParam} toggleState={toggleState} />
             <ByDiveSite setDives={setDives} divesByDate={divesByDate} divesByParam={divesByParam} toggleState={toggleState} />
             <ByDepth order={order} divesByDate={divesByDate} toggleState={toggleState} />
-            <ByTime order={order} divesByDate={divesByDate} toggleState={toggleState} />
+            <ByTime order={order} divesByDate={divesByDate} toggleState={toggleState} /> */}
         </section>
     </>
     )
