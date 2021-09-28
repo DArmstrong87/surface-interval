@@ -53,6 +53,28 @@
     margin-bottom: 2em;
 }
 
+.air-selectors {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 2px solid black;
+    width: fit-content;
+    margin: auto;
+    background-color: rgb(37, 100, 160, 0.75);
+    color: white;
+    border-radius: 10px;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    padding: 0 0.2em 0 0.2em;
+}
+
+.air-selectors input {
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em
+}
+
 
 /* MOBILE STYLING */
 @media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */ 

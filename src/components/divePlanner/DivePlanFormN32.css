@@ -1,0 +1,258 @@
+.divePlannerContainerN32 {
+    width: 50%;
+    margin: auto;
+    background-color: rgba(154, 255, 59, 0.514);
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5em;
+}
+.divePlannerContainerN32 h2 {
+    text-align: center;
+    color: black;
+    margin: 0.5em 0px 0.5em 0px;
+    background-color: rgba(255, 251, 11, 0.767);
+    border-radius: 10px;
+}
+
+.inputs-flagN32{
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-top: 1.5em;
+    padding: 0 2em 2em 2em;
+}
+.inputs-flagN32 input{
+    width: 5em;
+    padding: 0.5em;
+    margin-right: 0.5em;
+}
+.inputs-flagN32 fieldset{
+    padding: 0.2em;
+    align-items: center;
+}
+.inputs-flagN32 label {
+    width: 7em;
+    display: flex;
+    justify-content: right;
+    font-size: 1.5em;
+}
+
+.pg-boxN32{
+    display: flex;
+    justify-content: center;
+    border: 2px solid white;
+    width: 1.5em;
+    height: 1.5em;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.diveResultsListN32 li{
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    font-size: 1.5em;
+    margin: 0 1em 0 -0.3em;
+}
+
+.noDecoLimitN32{
+    color: white;
+    border-radius: 10px;
+    display:'inline';
+    background-color: rgba(253, 106, 106, 0.753);
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.results-labelN32 {
+    font-weight: bold;
+    color: black;
+    margin-right: 0.3em;
+}
+
+/* ______________________________________________________________________________________ */
+
+@media (min-width:320px) and (max-width:480px)  {/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+
+    .divePlannerContainer {
+        width: 80%;
+        background-color: rgba(37, 100, 160, 0.75);
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 5em;
+    }
+    .divePlannerContainer h2 {
+        text-align: center;
+        color: white;
+        margin: 0.5em 0px 0.5em 0px;
+        background-color: rgba(144, 238, 144, 0.25);
+        border-radius: 10px;
+    }
+
+    .divePlanInputDiv{
+        justify-self: center;
+        margin:auto;
+        margin-top: 1em;
+    }
+    .divePlanInputDiv{
+        width: 100%;
+    }
+    
+    .inputs-flag{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        color: white;
+        align-items: center;
+        padding-bottom: 20px;
+        margin-top: 1.5em;
+        padding: 0 2em 2em 2em;
+    }
+    .inputs-flag input{
+        width: 5em;
+        padding: 0.5em;
+        margin-right: 0.5em;
+    }
+    .inputs-flag label {
+        width: 3em;
+        font-size: 1.5em;
+    }
+    
+    .diveButtons{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .diveButtons button{
+        font-size: 1.5em;
+        text-align: center;
+        margin: 0;
+        margin-top: 0.5em;
+    }
+    
+    .diveResults{
+        margin-left: -2em;
+    }
+    
+    .diveFlagGreen{
+        box-shadow: 0px 0px 20px 5px rgb(101, 233, 101);
+        border: 0.3em rgb(101, 233, 101) solid;
+        width: 11em;
+        height: 8em;
+        overflow: hidden;
+        display: flex;
+        order: -1;
+        align-self: center;
+    }
+    .diveFlagYellow{
+        box-shadow: 0px 0px 20px 5px yellow;
+        border: 0.3em yellow solid;
+        width: 11em;
+        height: 8em;
+        overflow: hidden;
+        display: flex;
+        order: -1;
+        align-self: center;
+    }
+    .diveFlagRed{
+        box-shadow: 0px 0px 20px 5px red;
+        border: 0.3em red solid;
+        width: 11em;
+        height: 8em;
+        overflow: hidden;
+        display: flex;
+        order: -1;
+        align-self: center;
+    }
+    
+    .diveFlag img {
+        width:100%;
+        height:100%;
+    }
+    
+    .pg-box{
+        /* display: flex; */
+        /* justify-content: center; */
+        border: 2px solid white;
+        width: 1.5em;
+        height: 1.5em;
+        align-items: center;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    .diveResultsList {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+    .diveResultsList li{
+        display: flex;
+        color: white;
+        justify-content: space-between;
+        text-align: right;
+        font-size: 1.5em;
+        padding: 0.2em;
+        margin: 0 0 0 -0.3em;
+        width: 100%;
+    }
+
+    
+    .noDecoLimit{
+        color: white;
+        border-radius: 10px;
+        background-color: rgb(253, 106, 106, 0.5);
+        padding: 5px;
+        margin-top: 5px;
+        font-size: 0.8em;
+        text-align: left;
+    }
+    
+    .ss {
+        text-decoration: underline;
+    }
+    
+    .nextDive {
+        font-size: 1.5em;
+    }
+    
+    .results-label {
+        font-weight: bold;
+        font-size: 20px;
+        color: lightgreen;
+        width: 60%;
+        justify-content: left;
+        text-align: left;
+    }
+    
+    .timeGreen{
+        border: 0.3em lightgreen double;
+        width: fit-content;
+        margin: 0.3em 0 0 -0.4em;
+        padding-left: 0.5em;
+    }
+    .timeYellow{
+        border: 0.3em yellow double;
+        width: fit-content;
+        margin: 0.3em 0 0 -0.4em;
+        padding-left: 0.5em;
+    }
+    .timeRed {
+        border: 0.3em red double;
+        width: fit-content;
+        margin: 0.3em 0 0 -0.4em;
+        padding-left: 0.5em;
+    }
+    
+    .setSI {
+        display: flex;
+        margin: 0 0 0 0.5em;
+        align-content: center;
+    }
+    .setSI button{
+        font-size: 1.5em;
+    }
+}

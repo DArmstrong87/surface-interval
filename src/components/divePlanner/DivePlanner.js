@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import './DivePlanner.css';
 import { DiveStates } from "./DiveStates";
 import "./DivePlanForm.css"
+import "./DivePlanFormN32.css"
+import "./DivePlanFormN36.css"
 import rdpFront from '../../images/RDPFront.jpg';
 import rdpBack from '../../images/RDPBack.jpg';
+import { DiveStatesN32 } from "./EANx32/DiveStatesN32";
+import { DiveStatesN36 } from "./EANx36/DiveStatesN36";
 
 export const DivePlanner = () => {
+    const [air, setAir] = useState('air')
+
     return (<>
         <article>
             <section className="divePlannerHeading">
@@ -34,8 +40,20 @@ export const DivePlanner = () => {
             </div>
         </section>
 
-        <article className="divePlannerContainer">
-            <DiveStates />
-        </article>
+        <section className="air-selectors">
+            <input type="radio" onClick={() => setAir('air')} checked={air === 'air'} />
+            <label>Air</label>
+            <input type="radio" onClick={() => setAir('EANx32')} checked={air === 'EANx32'} />
+            <label>EANx32</label>
+            <input type="radio" onClick={() => setAir('EANx36')} checked={air === 'EANx36'} />
+            <label>EANx36</label>
+        </section>
+
+
+        {air === 'air' ? <article className="divePlannerContainer"><DiveStates /></article>
+            : air === 'EANx32' ?
+                <article className="divePlannerContainerN32"><DiveStatesN32 /></article>
+                : air === 'EANx36' ?
+                    <article className="divePlannerContainerN36"><DiveStatesN36 /></article> : ''}
     </>)
 }
