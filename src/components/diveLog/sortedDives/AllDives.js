@@ -59,7 +59,6 @@ export const AllDives = ({ divesByDate, setDivesByDate, toggleState, setDateOrde
         else if (toggleState.time) return divesByTime
     }
     const dives = findDives()
-    console.log(dives)
 
     return (
         <>
@@ -128,8 +127,10 @@ export const AllDives = ({ divesByDate, setDivesByDate, toggleState, setDateOrde
                                     setParams(copy)
                                     setToggle({ freshOrSalt: true });
                                 }}>
-                                Fresh/Salt {diveParams.order === 'asc' && toggleState.freshOrSalt ? '👍'
-                                    : diveParams.order === 'desc' && toggleState.freshOrSalt ? '👎' : ''}
+                                {diveParams.order === 'asc' && toggleState.freshOrSalt ?
+                                    <><u>Fresh</u>/Salt</>
+                                    : diveParams.order === 'desc' && toggleState.freshOrSalt ?
+                                        <>Fresh/<u>Salt</u></> : 'Fresh/Salt'}
                             </Link>
                         </td>
                         <td>Specialties</td>

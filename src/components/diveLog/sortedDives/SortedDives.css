@@ -88,6 +88,7 @@
     height: 2em;
     width: 3.5em;
     box-shadow: rgba(0, 0, 0, 0.5) 5px 3px 5px;
+    margin: 0 0.5em 0 0.5em;
 }
 
 .condensed-link {

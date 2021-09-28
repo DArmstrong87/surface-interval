@@ -45,15 +45,13 @@ export const SortedDiveLists = () => {
                 setDateOrder('asc');
                 setToggle({ all: true })
             }}>All</button>
-            <select className="sortDiveSelect"
-                defaultValue='location'
+            <select className="sortDiveSelect" defaultValue='location'
                 onChange={(event) => {
                     setPropertyandParam({ property: 'location', param: event.target.value });
                     setDateOrder('asc')
                     setToggle({ location: true })
                 }}>
                 <option value='location'
-                    selected={!toggleState.location}
                     style={{ color: 'gray' }}>
                     Locations
                 </option>
@@ -67,15 +65,13 @@ export const SortedDiveLists = () => {
                 )
             </select>
 
-            <select className="sortDiveSelect"
-                defaultValue="site"
+            <select className="sortDiveSelect" defaultValue="site"
                 onChange={(event) => {
                     setPropertyandParam({ property: 'diveSite', param: event.target.value });
                     setToggle({ diveSite: true })
                     setDateOrder('asc')
                 }}>
                 <option value='site'
-                    selected={!toggleState.diveSite}
                     style={{ color: 'gray' }}>
                     Dive Sites
                 </option>
