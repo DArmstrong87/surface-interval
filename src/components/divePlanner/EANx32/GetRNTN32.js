@@ -226,7 +226,7 @@ export const GetRNTN32 = (step, inputDepth, newPg) => {
         if (startPg === 'M') return 18
         if (startPg === 'N') return 19
         if (startPg === 'O') return 10
-    } else if (depth <= 130) {
+    } else if (depth > 120) {
         if (startPg === 'A') return 3
         if (startPg === 'B') return 5
         if (startPg === 'C') return 7

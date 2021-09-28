@@ -239,7 +239,7 @@ export const GetPGN32 = (input, step, currentDive, setAndUpdate) => {
         else if (tbt <= 19) setAndUpdate('N', true, false, (tbt - 20), input, step, rnt)
         else if (tbt > 19) setAndUpdate('O', true, true, (tbt - 20), input, step, rnt)
     }
-    else if (depth <= 130) {
+    else if (depth > 120) {
         if (tbt <= 3) setAndUpdate('A', true, false, (tbt - 18), input, step, rnt)
         else if (tbt <= 6) setAndUpdate('B', true, false, (tbt - 18), input, step, rnt)
         else if (tbt <= 7) setAndUpdate('C', true, false, (tbt - 18), input, step, rnt)

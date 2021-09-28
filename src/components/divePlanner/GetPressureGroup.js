@@ -230,7 +230,7 @@ export const GetPressureGroup = (input, step, currentDive, setAndUpdate) => {
             else if (tbt <= 9) setAndUpdate('G', true, false, (tbt - 10), input, step, rnt)
             else if (tbt > 9) setAndUpdate('H', true, true, (tbt - 10), input, step, rnt)
         }
-        else if (depth <= 140) {
+        else if (depth > 130) {
             if (tbt <= 0) setAndUpdate('A', true, false, (tbt - 8), input, step, rnt)
             else if (tbt <= 4) setAndUpdate('B', true, false, (tbt - 8), input, step, rnt)
             else if (tbt <= 5) setAndUpdate('C', true, false, (tbt - 8), input, step, rnt)

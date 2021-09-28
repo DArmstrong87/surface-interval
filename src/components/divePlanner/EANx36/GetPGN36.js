@@ -208,7 +208,7 @@ export const GetPGN36 = (input, step, currentDive, setAndUpdate) => {
         else if (tbt <= 34) setAndUpdate('R', true, false, (tbt - 35), input, step, rnt)
         else if (tbt > 34) setAndUpdate('S', true, true, (tbt - 35), input, step, rnt)
     }
-    else if (depth <= 110) {
+    else if (depth > 100) {
         if (tbt <= 4) setAndUpdate('A', true, false, (tbt - 29), input, step, rnt)
         else if (tbt <= 7) setAndUpdate('B', true, false, (tbt - 29), input, step, rnt)
         else if (tbt <= 10) setAndUpdate('C', true, false, (tbt - 29), input, step, rnt)
