@@ -51,7 +51,7 @@ export const SortedDiveLists = () => {
                     setDateOrder('asc')
                     setToggle({ location: true })
                 }}>
-                <option value='location'
+                <option value='location' selected={!toggleState.location}
                     style={{ color: 'gray' }}>
                     Locations
                 </option>
@@ -71,7 +71,7 @@ export const SortedDiveLists = () => {
                     setToggle({ diveSite: true })
                     setDateOrder('asc')
                 }}>
-                <option value='site'
+                <option value='site' selected={!toggleState.diveSite}
                     style={{ color: 'gray' }}>
                     Dive Sites
                 </option>
