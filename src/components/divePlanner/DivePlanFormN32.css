@@ -77,33 +77,23 @@
 /* ______________________________________________________________________________________ */
 
 @media (min-width:320px) and (max-width:480px)  {/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-
-    .divePlannerContainer {
+    .divePlannerContainerN32 {
         width: 80%;
-        background-color: rgba(37, 100, 160, 0.75);
+        background-color: rgba(154, 255, 59, 0.514);
         border: 1px solid black;
         border-radius: 10px;
         padding: 10px;
         margin-bottom: 5em;
     }
-    .divePlannerContainer h2 {
+    .divePlannerContainerN32 h2 {
         text-align: center;
-        color: white;
+        color: black;
         margin: 0.5em 0px 0.5em 0px;
-        background-color: rgba(144, 238, 144, 0.25);
+        background-color: rgba(255, 251, 11, 0.767);
         border-radius: 10px;
     }
-
-    .divePlanInputDiv{
-        justify-self: center;
-        margin:auto;
-        margin-top: 1em;
-    }
-    .divePlanInputDiv{
-        width: 100%;
-    }
     
-    .inputs-flag{
+    .inputs-flagN32{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -113,12 +103,16 @@
         margin-top: 1.5em;
         padding: 0 2em 2em 2em;
     }
-    .inputs-flag input{
+    .inputs-flagN32 input{
         width: 5em;
         padding: 0.5em;
         margin-right: 0.5em;
     }
-    .inputs-flag label {
+    .inputs-flagN32 fieldset{
+        padding: 0.2em;
+        align-items: center;
+    }
+    .inputs-flagN32 label {
         width: 3em;
         font-size: 1.5em;
     }

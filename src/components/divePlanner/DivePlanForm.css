@@ -177,12 +177,9 @@
     }
 
     .divePlanInputDiv{
-        justify-self: center;
-        margin:auto;
+        margin: auto;
         margin-top: 1em;
-    }
-    .divePlanInputDiv{
-        width: 100%;
+        justify-self: center;
     }
     
     .inputs-flag{
@@ -200,6 +197,12 @@
         padding: 0.5em;
         margin-right: 0.5em;
     }
+    .inputs-flag fieldset{
+        padding: 0.2em;
+        align-items: center;
+        margin-left: 2em;
+    }
+    
     .inputs-flag label {
         width: 3em;
         font-size: 1.5em;
@@ -208,6 +211,7 @@
     .diveButtons{
         display: flex;
         justify-content: space-evenly;
+        margin: auto;
     }
     .diveButtons button{
         font-size: 1.5em;
