@@ -1,5 +1,7 @@
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import React from "react";
 import { Link } from "react-router-dom";
+import { GearPDF } from "./GearPDF";
 
 export const GearList = ({ gear, deleteGear, setGear }) => {
     return (
@@ -40,6 +42,12 @@ export const GearList = ({ gear, deleteGear, setGear }) => {
                         </Link>
                     </div>
                         <div className='edit-delete'>
+                            <PDFDownloadLink document={<GearPDF gear={gearset} />}
+                                fileName={`${gearset.name} Gearset.pdf`}>
+                                {({ blob, url, loading, error }) =>
+                                    loading ? 'Loading document...' : 'Download PDF'
+                                }
+                            </PDFDownloadLink>
                             <Link to={`/gear/edit/${gearset.id}`}>Edit</Link>
                             <Link to="#" onClick={() => { deleteGear(gearset.id, setGear) }}>Delete</Link>
                         </div>

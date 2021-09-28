@@ -13,6 +13,7 @@ export const Dive = () => {
         const array = [dive.isAltitude, dive.isDeep, dive.isDrift, dive.isDry, dive.isFFM, dive.isNav, dive.isN32, dive.isN36, dive.isRebreather, dive.isSearch, dive.isSidemount, dive.isWreck]
         if (array.some(x => x === true)) { return true }
     }
+    const hasSpecialty = findSpecialties()
 
     useEffect(
         () => {
@@ -20,7 +21,6 @@ export const Dive = () => {
                 .then(dive => {
                     setDive(dive)
                 })
-                .then(() => findSpecialties())
         }, [diveId]
     )
 
@@ -64,7 +64,7 @@ export const Dive = () => {
                             {dive.waterTemp ? <li><b>Water Temp:</b> {dive.waterTemp} °F</li> : ''}
                         </ul>
 
-                        {findSpecialties() === true ? <h3 className="diveNumber">Specialties</h3> : ''}
+                        {hasSpecialty ? <h3 className="diveNumber">Specialties</h3> : ''}
                         <div className="loggedSpecialties">
                             {dive.isAltitude ? <b>⛰️Altitude</b> : ''}
                             {dive.isDeep ? <b>⬇️Deep</b> : ''}
