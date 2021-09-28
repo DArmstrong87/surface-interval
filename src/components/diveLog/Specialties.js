@@ -110,7 +110,9 @@ export const Specialties = ({ diveCopy, setDive }) => {
                 <ul className="specialtyList">
                     <li>
                         <input type="checkbox"
-                            value={diveCopy.depth > 60 ? true : false} className="logCheckbox"
+                            value={diveCopy.depth > 60 ? true : false} 
+                            checked={diveCopy.depth > 60 ? true : false}
+                            className="logCheckbox"
                             onChange={(event) => {
                                 const copy = { ...diveCopy }
                                 copy.isDeep = event.target.value

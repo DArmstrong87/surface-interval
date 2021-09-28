@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getCurrentGearSet } from "../application/ApiManager";
+import { deleteGear, getCurrentGearSet } from "../application/ApiManager";
 import "../diveLog/LogNewDive.css";
 import "./CreateGear.css"
 import { DisplayBackups } from "./displayGear/DisplayBackups";
@@ -16,7 +16,6 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { GearPDF } from "./GearPDF";
 
 export const Gearset = () => {
-    const history = useHistory()
     const { gearId } = useParams()
     const [gear, setGear] = useState({})
 
@@ -27,18 +26,8 @@ export const Gearset = () => {
                     setGear(gear)
                 })
         },
-        [gearId]
+        [gearId, gear]
     )
-
-    const deleteGear = (id) => {
-        fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`, {
-            method: "DELETE"
-        })
-            .then(() => {
-                history.push("/gear")
-            }
-            )
-    }
 
     return (
         <>
@@ -73,9 +62,8 @@ export const Gearset = () => {
                             }
                         </PDFDownloadLink>
                         <Link to={`/gear/edit/${gear.id}`}>Edit</Link>
-                        <Link to="#" onClick={() => { deleteGear(gear.id) }}>Delete</Link>
+                        <Link to="#" onClick={() => { deleteGear(gear.id, setGear) }}>Delete</Link>
                     </div>
-
                 </section>
             </article>
         </>
