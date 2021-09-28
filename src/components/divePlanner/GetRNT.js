@@ -207,7 +207,7 @@ export const GetRNT = (step, inputDepth, newPg) => {
         if (startPg === 'I') return 12
         if (startPg === 'J') return 12
         if (startPg === 'K') return 13
-    } else if (depth <= 130) {
+    } else if (depth > 120) {
         if (startPg === 'A') return 3
         if (startPg === 'B') return 5
         if (startPg === 'C') return 6

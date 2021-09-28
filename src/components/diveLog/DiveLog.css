@@ -145,6 +145,7 @@
 }
 
 .expanded-condensed {
+    display: flex;
     color: white;
     background-color: rgb(37, 100, 160, 0.75);
     width: fit-content;
@@ -153,12 +154,14 @@
     border: 1px solid black;
     margin: auto;
     margin-bottom: 1em;
+    align-items: center;
 }
 .expanded-condensed input:hover {
     cursor: pointer;
 }
 .expanded-condensed input {
-    transform: scale(1.5);
+    width: 1.5em;
+    height: 1.5em;
     margin-right: 0.5em;
 }
 
