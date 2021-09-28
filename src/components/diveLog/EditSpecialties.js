@@ -99,6 +99,7 @@ export const EditSpecialties = ({ currentDive, setDive }) => {
                 <ul className="specialtyList">
                     <li>
                         <input type="checkbox"
+                            value={currentDive.depth > 60 ? true : false}
                             checked={currentDive.depth > 60 ? true : false}
                             className="logCheckbox" onChange={(event) => {
                                 const copy = { ...currentDive }

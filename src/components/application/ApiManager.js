@@ -14,6 +14,11 @@ export const getMyDives = () => {
     return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}`)
         .then(res => res.json())
 }
+export const getDivesAlphabetical = (obj) => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_sort=${obj.property}&_order=${obj.order}`)
+        .then(res => res.json())
+}
 
 export const getDivesByParam = (obj) => {
     const user = localStorage.getItem('si_user')
@@ -311,7 +316,7 @@ export const saveDive = (event, currentDive, diveId) => {
         comments: currentDive.comments,
         isAltitude: currentDive.isAltitude,
         isCave: currentDive.isCave,
-        isDeep: currentDive.isDeep,
+        isDeep: !!currentDive.isDeep,
         isDrift: currentDive.isDrift,
         isDry: currentDive.isDry,
         isFFM: currentDive.isFFM,
@@ -363,4 +368,9 @@ export const deleteDive = (id, setDives) => {
                 })
         }, []
         )
+}
+export const deleteSingleDive = (id) => {
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${id}`, {
+        method: "DELETE"
+    })
 }

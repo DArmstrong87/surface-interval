@@ -1,5 +1,6 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { Dive } from "../diveLog/Dive"
 import { DiveLog } from "../diveLog/DiveLog"
 import { EditDive } from "../diveLog/EditDive"
 import { LogNewDive } from "../diveLog/LogNewDive"
@@ -26,6 +27,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route path="/dives/edit/:diveId(\d+)">
                 <EditDive />
+            </Route>
+            <Route path="/dives/:diveId(\d+)">
+                <Dive />
             </Route>
             <Route path="/diveplanner">
                 <DivePlanner />

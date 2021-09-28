@@ -16,7 +16,6 @@
     background-color: rgba(37, 100, 160);
     color: white;
     width: 80%;
-    border-radius: 10px;
     margin: auto;
     margin-bottom: 2em;
     border-collapse: collapse;
@@ -85,9 +84,20 @@
     text-align: center;
 }
 
-.all {
-    text-align: center;
-    margin-bottom: 1em;
+.allButton {
+    height: 2em;
+    width: 3.5em;
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 3px 5px;
+    margin: 0 0.5em 0 0.5em;
+}
+
+.condensed-link {
+    text-decoration: none;
+    color: white;
+}
+.condensed-link-header {
+    text-decoration: none;
+    color: orange;
 }
 
 @media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */ 
