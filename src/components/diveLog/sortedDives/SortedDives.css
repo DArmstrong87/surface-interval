@@ -32,17 +32,20 @@
     padding: 0.2em 0.4em 0.2em 0.4em;
     max-width: fit-content;
 }
+.sortedDiveLog a {
+    text-decoration: none;
+}
 
 .sortDiveSelect {
     background-color: rgba(37, 100, 160);
-    color: white;
+    color: orange;
+    font-weight: bold;
+    font-size: 1em;
     height: 2em;
-    border-radius: 10px;
-    border: 1px solid black;
-    width:fit-content;
-    margin: 0 0.5em 0 0.5em;
+    border: 0px solid black;
+    width: 100%;
+    margin: 0;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.5) 5px 3px 5px;
 }
 
 .sortDiveSelect:hover {
@@ -63,7 +66,7 @@
 
 .sort_selects {
     margin: auto;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     width: fit-content;
     text-align: center;
     display: flex;
@@ -92,7 +95,7 @@
 }
 
 .condensed-link {
-    text-decoration: none;
+    width: 100%;
     color: white;
 }
 .condensed-link-header {
