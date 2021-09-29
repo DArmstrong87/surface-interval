@@ -32,7 +32,7 @@ export const EditDive = () => {
             <section className='diveForm'>
                 <h2 className='diveNumber'>Dive {currentDive.id}</h2>
                 <fieldset>
-                    <label for="date">Date </label>
+                    <label htmlFor="date">Date </label>
                     <input type="date" value={currentDive.date} className='date'
                         onChange={(event) => {
                             const copy = { ...currentDive }
@@ -41,7 +41,7 @@ export const EditDive = () => {
                         }} />
                 </fieldset>
                 <fieldset>
-                    <label for="location">Location</label>
+                    <label htmlFor="location">Location</label>
                     <input type="location" value={currentDive.location}
                         onChange={(event) => {
                             const copy = { ...currentDive }
@@ -50,7 +50,7 @@ export const EditDive = () => {
                         }} />
                 </fieldset>
                 <fieldset>
-                    <label for="diveSite">Dive Site</label>
+                    <label htmlFor="diveSite">Dive Site</label>
                     <input type="diveSite" value={currentDive.diveSite}
                         onChange={(event) => {
                             const copy = { ...currentDive }
@@ -76,7 +76,7 @@ export const EditDive = () => {
                         }} /><label>Salt</label>
                 </div>
                 <fieldset>
-                    <label for="depth">Depth</label>
+                    <label htmlFor="depth">Depth</label>
                     <input type="number" value={currentDive.depth}
                         onChange={(event) => {
                             const copy = { ...currentDive }
@@ -85,7 +85,7 @@ export const EditDive = () => {
                         }} />
                 </fieldset>
                 <fieldset>
-                    <label for="time">Time</label>
+                    <label htmlFor="time">Time</label>
                     <input type="number" value={currentDive.time}
                         onChange={(event) => {
                             const copy = { ...currentDive }
@@ -94,7 +94,7 @@ export const EditDive = () => {
                         }} />
                 </fieldset>
                 <fieldset>
-                    <label for="comments">Comments</label>
+                    <label htmlFor="comments">Comments</label>
                     <textarea type="comments" value={currentDive.comments}
                         className="comments-box" rows="4"
                         onChange={(event) => {

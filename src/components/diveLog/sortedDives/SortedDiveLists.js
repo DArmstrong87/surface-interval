@@ -117,13 +117,13 @@ export const SortedDiveLists = () => {
                                     : dateOrder === 'desc' && toggleState.date ? '👎' : ''}
                             </Link></td>
                         <td>
-                            <select className="sortDiveSelect" defaultValue='location'
+                            <select className="sortDiveSelect" defaultValue={(event) => toggleState.location ? event.target.value : 'locations'}
                                 onChange={(event) => {
                                     setPropertyandParam({ property: 'location', param: event.target.value });
                                     setDateOrder('asc')
                                     setToggle({ location: true })
                                 }}>
-                                <option value='location' selected={!toggleState.location}
+                                <option value='locations'
                                     style={{ color: 'gray' }}>
                                     Locations
                                 </option>
