@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router"
 import { Link } from "react-router-dom"
-import { deleteSingleDive, getCurrentDive, getDivesByDate } from "../application/ApiManager"
+import { deleteImage, deleteSingleDive, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
+import "./Dive.css"
 
 export const Dive = () => {
     const { diveId } = useParams()
     const [dive, setDive] = useState({})
     const [dives, setDives] = useState([])
+    const [images, setDiveImages] = useState([])
     const history = useHistory()
 
     const findSpecialties = () => {
@@ -22,6 +24,14 @@ export const Dive = () => {
                     setDive(dive)
                 })
         }, [diveId]
+    )
+    useEffect(
+        () => {
+            getDiveImages(diveId)
+                .then(images => {
+                    setDiveImages(images)
+                })
+        }, []
     )
 
     useEffect(
@@ -81,6 +91,19 @@ export const Dive = () => {
                             {dive.isWreck ? <b>⚓Wreck</b> : ''}
                         </div>
                     </div>
+
+                    {images ? <>
+                        <h3 className='diveNumber'>Photos</h3>
+                        <section className="dive-images">
+                            {images.map(image => {
+                                return <div className="dive-image">
+                                    <button className="x" onClick={() => { deleteImage(image.id, diveId, setDiveImages) }}>
+                                        X</button>
+                                    <img src={image.imageUrl} />
+                                </div>
+                            })}
+                        </section></> : ''
+                    }
 
                     <div className='edit-delete'>
                         <Link to={`/dives/edit/${dive.id}`}>Edit</Link>

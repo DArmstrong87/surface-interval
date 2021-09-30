@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { getMyDives, submitDive } from "../application/ApiManager";
+import { getMyDives, postImages, submitDive } from "../application/ApiManager";
 import { Specialties } from "./Specialties";
 import './LogNewDive.css'
 import { Conditions } from "./Conditions";
+import { DiveLogImageUpload } from "./imageUpload/DiveLogImageUpload";
 
 export const LogNewDive = () => {
     const [dives, setDives] = useState([])
     const [diveCopy, setDive] = useState({ userId: parseInt(localStorage.getItem('si_user')) })
     const history = useHistory()
+    const [diveImages, setDiveImages] = useState()
     const currentDive = dives.length + 1
 
+    console.log('diveImages', diveImages)
     useEffect(
         () => {
             getMyDives()
@@ -99,11 +102,13 @@ export const LogNewDive = () => {
 
                 <Conditions diveCopy={diveCopy} setDive={setDive} />
                 <Specialties diveCopy={diveCopy} setDive={setDive} />
-
+                <DiveLogImageUpload setDiveImages={setDiveImages} diveImages={diveImages} currentDive={currentDive} />
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit"
-                        onClick={(event) => submitDive(event, diveCopy)
-                            .then(history.push("/divelog"))}>
+                        onClick={(event) => {
+                            submitDive(event, diveCopy)
+                                .then(history.push("/divelog"))
+                        }}>
                         Submit
                     </button>
                     <button className="cancelButton" onClick={() => {

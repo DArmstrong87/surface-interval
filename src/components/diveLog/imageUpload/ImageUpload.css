@@ -1,0 +1,15 @@
+.preview-images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgPreview {
+    width: 33%;
+    margin: 0.2em;
+}
+.imgPreview:hover {
+    transform: scale(3,3);
+}
+.imgPreview img {
+    width: 100%;
+}

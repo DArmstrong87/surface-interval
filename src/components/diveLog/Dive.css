@@ -1,0 +1,20 @@
+.dive-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.dive-image {
+    width: 40%;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+}
+.dive-image img {
+    width: 100%;
+}
+
+.x {
+    border-radius: 10px;
+    position:relative;
+    top: 2em;
+    left: 0;
+}
