@@ -1,9 +1,7 @@
 import axios from 'axios';
-import { Cloudinary } from 'cloudinary-core';
 import { useEffect, useState } from 'react';
-import { Image, Video, Transformation, CloudinaryContext } from 'cloudinary-react';
 import "./ImageUpload.css"
-import { getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager';
+import { deleteImage, getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager';
 
 export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) => {
     const [postedImages, setPostedImages] = useState([])
@@ -13,13 +11,13 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
         () => {
             getAllDiveImages()
                 .then(images => setAllDiveImages(images))
-        }, []
+        }, [currentDive]
     )
     useEffect(
         () => {
             getDiveImages(currentDive)
                 .then(images => setPostedImages(images))
-        }, [allDiveImages]
+        }, [currentDive, allDiveImages]
     )
 
     const uploadImage = () => {
@@ -34,23 +32,26 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
                     copy.diveId = currentDive
                     postImages(copy)
                 })
-                .then(getAllDiveImages().then(images => setAllDiveImages(images)))
-                
+                .then(() => {
+                    getAllDiveImages()
+                        .then(images => setAllDiveImages(images))
+                })
+
         }
     }
 
     return (
         <div>
-            <h2 className='diveNumber'>Images</h2>
+            <h2 className='diveNumber'>Photos</h2>
             <section className="preview-images">
-            {postedImages.map(image=>{
-                return <>
-                <div className="imgPreview">
-                            <img src={image.imageUrl} />
-                        </div>
-                </>
-            })}
-            </section>
+                {postedImages.map(image => {
+                    return <div className="dive-image">
+                        <button className="x" onClick={() => deleteImage(image.id, currentDive, setDiveImages)}>
+                            X</button>
+                        <img src={image.imageUrl} alt="divelog" />
+                    </div>
+                })}
+            </section >
 
             <fieldset>
                 <input type="file" multiple onChange={(event) => {
@@ -61,6 +62,6 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
                     Upload Image
                 </button>
             </fieldset>
-        </div>
+        </div >
     )
 }

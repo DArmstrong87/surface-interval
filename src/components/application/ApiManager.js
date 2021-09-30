@@ -379,11 +379,11 @@ export const deleteGear = (id, setGear) => {
         )
 }
 export const deleteImage = (id, diveId, setDiveImages) => {
-    fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages/${id}`, {
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages/${id}`, {
         method: "DELETE"
     })
         .then(() => {
-            getDiveImages(diveId)
+            getAllDiveImages(diveId)
                 .then(images => setDiveImages(images))
         }, []
         )

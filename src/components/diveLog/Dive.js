@@ -31,7 +31,7 @@ export const Dive = () => {
                 .then(images => {
                     setDiveImages(images)
                 })
-        }, []
+        }, [diveId]
     )
 
     useEffect(
@@ -99,7 +99,7 @@ export const Dive = () => {
                                 return <div className="dive-image">
                                     <button className="x" onClick={() => { deleteImage(image.id, diveId, setDiveImages) }}>
                                         X</button>
-                                    <img src={image.imageUrl} />
+                                    <img src={image.imageUrl} alt="divelog"/>
                                 </div>
                             })}
                         </section></> : ''
