@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { getDivesByDate, getDivesByParam, deleteDive, getDivesAlphabetical, getDivesByDepth, getDivesByTime } from "../../application/ApiManager"
+import { getDivesByDate, getDivesByParam, deleteDive, getDivesAlphabetical, getDivesByDepth, getDivesByTime, getAllDiveImages } from "../../application/ApiManager"
 import { Link } from "react-router-dom"
 import "./SortedDives.css"
 
 export const SortedDiveLists = () => {
     const [divesByDate, setDivesByDate] = useState([])
+    const [images, setImages] = useState([])
     const [toggleState, setToggle] = useState({ all: true })
     const [divesByDateAsc, setDivesAsc] = useState([])
     const [divesByDepth, setDivesByDepth] = useState([])
@@ -82,6 +83,13 @@ export const SortedDiveLists = () => {
         },
         [order, divesByDate]
     )
+
+    useEffect(
+        () => {
+            getAllDiveImages()
+                .then(images => setImages(images))
+        }, []
+    )
     const findDives = () => {
         if (toggleState.all) return divesByDate
         if (toggleState.date) return divesByDate
@@ -117,7 +125,7 @@ export const SortedDiveLists = () => {
                                     : dateOrder === 'desc' && toggleState.date ? '👎' : ''}
                             </Link></td>
                         <td>
-                            <select className="sortDiveSelect" defaultValue={(event) => toggleState.location ? event.target.value : 'locations'} 
+                            <select className="sortDiveSelect" defaultValue={(event) => toggleState.location ? event.target.value : 'locations'}
                                 onChange={(event) => {
                                     setPropertyandParam({ property: 'location', param: event.target.value });
                                     setDateOrder('asc')
@@ -223,11 +231,15 @@ export const SortedDiveLists = () => {
                                 return specialties.join(' | ')
                             }
                             const specialties = foundSpecialties()
+                            const foundImages = images.find(image => image.diveId === dive.id)
                             return <tr key={dive.id}>
                                 <td>
-                                        <Link to={`/dives/${dive.id}`}>
-                                            <div className="condensed-link">{diveNum + 1}</div>
-                                        </Link>
+                                    <Link to={`/dives/${dive.id}`}>
+                                        <div className="condensed-link">
+                                            {diveNum + 1}
+                                            {foundImages ? ' 📷' : ''}
+                                        </div>
+                                    </Link>
                                 </td>
                                 <td>{dive.date}</td>
                                 <td>{dive.location}</td>
