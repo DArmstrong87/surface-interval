@@ -76,7 +76,7 @@ export const DiveList = () => {
                             </div>
                         </div>
 
-                        {foundImages ? <Link style={{ textDecoration: 'none' }} to={`/dives/${dive.id}`}><h3 className='diveNumber'>{`📷 Photos >>`}</h3></Link> : ''}
+                        {foundImages ? <Link style={{ textDecoration: 'none' }} to={`/dives/${dive.id}`}><h3 className='diveNumber'>{`📷 Photos`}</h3></Link> : ''}
 
                         <div className='edit-delete'>
                             <Link to={`/dives/edit/${dive.id}`}>Edit</Link>
