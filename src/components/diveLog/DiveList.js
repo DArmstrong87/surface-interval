@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { deleteDive, getMyDives } from "../application/ApiManager"
+import { deleteDive, getAllDiveImages, getMyDives } from "../application/ApiManager"
 
 export const DiveList = () => {
     const [dives, setDives] = useState([])
+    const [images, setImages] = useState([])
 
     useEffect(
         () => {
@@ -14,11 +15,21 @@ export const DiveList = () => {
         },
         []
     )
+    useEffect(
+        () => {
+            getAllDiveImages()
+                .then(images => {
+                    setImages(images)
+                })
+        },
+        []
+    )
 
     return (<>
         <article className='diveLogMain' key='article2'>
             {dives.map(
                 (dive, index) => {
+                    const foundImages = images.find(image => image.diveId === (index + 1))
                     const findSpecialties = () => {
                         const array = [dive.isAltitude, dive.isDeep, dive.isDrift, dive.isDry, dive.isFFM, dive.isNav, dive.isN32, dive.isN36, dive.isRebreather, dive.isSearch, dive.isSidemount, dive.isWreck]
                         if (array.some(x => x === true)) { return true }
@@ -64,6 +75,8 @@ export const DiveList = () => {
                                 {dive.isWreck ? <b>⚓Wreck</b> : ''}
                             </div>
                         </div>
+
+                        {foundImages ? <Link style={{ textDecoration: 'none' }} to={`/dives/${dive.id}`}><h3 className='diveNumber'>{`Photos >>`}</h3></Link> : ''}
 
                         <div className='edit-delete'>
                             <Link to={`/dives/edit/${dive.id}`}>Edit</Link>

@@ -51,12 +51,12 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
                 })}
             </section >
 
-            <fieldset>
+            <fieldset className="upload-images-container">
                 <div><input className="fileUpload" name="fileUpload" type="file" multiple onChange={(event) => {
                     setDiveImages(event.target.files)
                 }
                 }/></div>
-                <button onClick={uploadImage}>
+                <button className="upload-photos" onClick={uploadImage}>
                     Upload Photos
                 </button>
             </fieldset>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router"
 import { Link } from "react-router-dom"
-import { deleteImage, deleteSingleDive, getAllDiveImages, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
+import { deleteImage, deleteSingleDive, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
 import "./Dive.css"
 
 export const Dive = () => {
@@ -9,7 +9,6 @@ export const Dive = () => {
     const [dive, setDive] = useState({})
     const [dives, setDives] = useState([])
     const [images, setDiveImages] = useState([])
-    const [allImages, setAllDiveImages] = useState()
     const history = useHistory()
 
     const findSpecialties = () => {
@@ -26,14 +25,7 @@ export const Dive = () => {
                 })
         }, [diveId]
     )
-    useEffect(
-        () => {
-            getAllDiveImages()
-                .then(dive => {
-                    setAllDiveImages(dive)
-                })
-        }, []
-    )
+
     useEffect(
         () => {
             getDiveImages(diveId)

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router";
-import { getCurrentDive, getDivesByDate, saveDive } from "../application/ApiManager";
+import { getCurrentDive, saveDive } from "../application/ApiManager";
 import { EditConditions } from "./EditConditions";
 import { EditSpecialties } from "./EditSpecialties";
 import { DiveLogImageUpload } from "./imageUpload/DiveLogImageUpload";

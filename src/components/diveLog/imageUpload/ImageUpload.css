@@ -7,13 +7,33 @@
     width: 33%;
     margin: 0.2em;
 }
+
 .imgPreview:hover {
-    transform: scale(3,3);
+    transform: scale(3, 3);
 }
+
 .imgPreview img {
     width: 100%;
 }
 
 .fileUpload {
-    border: 1px solid black;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgba(37, 100, 160);
+}
+
+.fileUpload:hover {
+    background-color: orange;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-photos {
+    height: 3em;
+    font-weight: bold;
+}
+
+.upload-images-container {
+    display: flex;
+    justify-content: space-evenly;
 }
