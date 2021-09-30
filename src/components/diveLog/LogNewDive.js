@@ -4,11 +4,13 @@ import { getMyDives, submitDive } from "../application/ApiManager";
 import { Specialties } from "./Specialties";
 import './LogNewDive.css'
 import { Conditions } from "./Conditions";
+import { DiveLogImageUpload } from "./imageUpload/DiveLogImageUpload";
 
 export const LogNewDive = () => {
     const [dives, setDives] = useState([])
     const [diveCopy, setDive] = useState({ userId: parseInt(localStorage.getItem('si_user')) })
     const history = useHistory()
+    const [diveImages, setDiveImages] = useState()
     const currentDive = dives.length + 1
 
     useEffect(
@@ -32,7 +34,7 @@ export const LogNewDive = () => {
             <section className='diveForm'>
                 <h2 className='diveNumber'>Dive {currentDive}</h2>
                 <fieldset>
-                    <label for="date">Date </label>
+                    <label htmlFor="date">Date </label>
                     <input type="date" className='date' onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.date = event.target.value
@@ -40,7 +42,7 @@ export const LogNewDive = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="location">Location</label>
+                    <label htmlFor="location">Location</label>
                     <input type="location" placeholder={"City or Country"} onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.location = event.target.value
@@ -48,7 +50,7 @@ export const LogNewDive = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="dive-Site">Dive Site</label>
+                    <label htmlFor="dive-Site">Dive Site</label>
                     <input type="diveSite" placeholder="USS Kittiwake" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.diveSite = event.target.value
@@ -73,7 +75,7 @@ export const LogNewDive = () => {
                     <label>Salt</label>
                 </div>
                 <fieldset>
-                    <label for="depth">Depth</label>
+                    <label htmlFor="depth">Depth</label>
                     <input type="number" min="15" max="140" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.depth = parseInt(event.target.value)
@@ -81,7 +83,7 @@ export const LogNewDive = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="time">Time</label>
+                    <label htmlFor="time">Time</label>
                     <input type="number" min="0" max="205" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.time = parseInt(event.target.value)
@@ -89,7 +91,7 @@ export const LogNewDive = () => {
                     }} />
                 </fieldset>
                 <fieldset>
-                    <label for="comments">Comments</label>
+                    <label htmlFor="comments">Comments</label>
                     <textarea className="comments-box" rows="4" cols="29" type="comments" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.comments = event.target.value
@@ -99,11 +101,13 @@ export const LogNewDive = () => {
 
                 <Conditions diveCopy={diveCopy} setDive={setDive} />
                 <Specialties diveCopy={diveCopy} setDive={setDive} />
-
+                <DiveLogImageUpload setDiveImages={setDiveImages} diveImages={diveImages} currentDive={currentDive} />
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit"
-                        onClick={(event) => submitDive(event, diveCopy)
-                            .then(history.push("/divelog"))}>
+                        onClick={(event) => {
+                            submitDive(event, diveCopy)
+                                .then(history.push("/divelog"))
+                        }}>
                         Submit
                     </button>
                     <button className="cancelButton" onClick={() => {

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router"
 import { Link } from "react-router-dom"
-import { deleteSingleDive, getCurrentDive, getDivesByDate } from "../application/ApiManager"
+import { deleteImage, deleteSingleDive, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
+import "./Dive.css"
 
 export const Dive = () => {
     const { diveId } = useParams()
     const [dive, setDive] = useState({})
     const [dives, setDives] = useState([])
+    const [images, setDiveImages] = useState([])
     const history = useHistory()
 
     const findSpecialties = () => {
@@ -22,6 +24,15 @@ export const Dive = () => {
                     setDive(dive)
                 })
         }, [diveId]
+    )
+
+    useEffect(
+        () => {
+            getDiveImages(diveId)
+                .then(images => {
+                    setDiveImages(images)
+                })
+        }, [diveId, images]
     )
 
     useEffect(
@@ -82,10 +93,24 @@ export const Dive = () => {
                         </div>
                     </div>
 
+                    {images.length > 0 ? <>
+                        <h3 className='diveNumber'>Photos</h3>
+                        <section className="dive-images">
+                            {images.map(image => {
+                                return <div className="dive-image">
+                                    <div><button className="x" onClick={() => { deleteImage(image.id) }}>
+                                        X</button></div>
+                                    <Link to={image.imageUrl}>
+                                        <img src={image.imageUrl} alt="divelog" />
+                                    </Link>
+                                </div>
+                            })}
+                        </section></> : ''
+                    }
+
                     <div className='edit-delete'>
                         <Link to={`/dives/edit/${dive.id}`}>Edit</Link>
-                        <Link to="#" onClick={() => { deleteSingleDive(dive.id).then(history.goBack()) }}>
-                            Delete
+                        <Link to="#" onClick={() => { deleteSingleDive(dive.id).then(history.goBack()) }}>Delete
                         </Link>
                     </div>
                 </section>

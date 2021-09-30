@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router";
 import { getCurrentDive, saveDive } from "../application/ApiManager";
 import { EditConditions } from "./EditConditions";
 import { EditSpecialties } from "./EditSpecialties";
+import { DiveLogImageUpload } from "./imageUpload/DiveLogImageUpload";
 
 export const EditDive = () => {
     const history = useHistory()
@@ -10,6 +11,7 @@ export const EditDive = () => {
     const [currentDive, setDive] = useState({
         userId: parseInt(localStorage.getItem('si_user'))
     })
+    const [diveImages, setDiveImages] = useState()
 
     useEffect(
         () => {
@@ -106,6 +108,7 @@ export const EditDive = () => {
 
                 <EditConditions currentDive={currentDive} setDive={setDive} />
                 <EditSpecialties currentDive={currentDive} setDive={setDive} />
+                <DiveLogImageUpload currentDive={parseInt(diveId)} diveImages={diveImages} setDiveImages={setDiveImages} />
 
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit"

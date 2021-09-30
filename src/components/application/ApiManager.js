@@ -48,6 +48,14 @@ export const getCurrentDive = (id) => {
     return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${id}`)
         .then(res => res.json())
 }
+export const getDiveImages = (num) => {
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages?&diveId=${num}`)
+        .then(res => res.json())
+}
+export const getAllDiveImages = () => {
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages`)
+        .then(res => res.json())
+}
 
 // --------- Gear
 export const getMyGear = () => {
@@ -73,11 +81,13 @@ export const GetDiveStats = () => {
     const [longest, setLongest] = useState([])
     const [mostRecent, setRecent] = useState([])
     const [dives, setDives] = useState([])
+
     const getAvgDepth = () => {
         let total = 0
         for (const dive of dives) {
             total += dive.depth
         }
+
         return total / dives.length
     }
     const getAvgTime = () => {
@@ -168,6 +178,20 @@ export const submitDive = (event, diveCopy) => {
         body: JSON.stringify(newDive)
     }
     return fetch("https://surface-interval-api-ferdk.ondigitalocean.app/dives", fetchOption)
+}
+export const postImages = (diveImages) => {
+    const newImage = {
+        diveId: diveImages.diveId,
+        imageUrl: diveImages.imageUrl
+    }
+    const fetchOption = {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify(newImage)
+    }
+    return fetch("https://surface-interval-api-ferdk.ondigitalocean.app/diveImages", fetchOption)
 }
 
 export const submitGear = (event, gearCopy) => {
@@ -347,7 +371,7 @@ export const saveDive = (event, currentDive, diveId) => {
 
 // ---------------------------------- DELETE METHODS ----------------------------------
 export const deleteGear = (id, setGear) => {
-    fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`, {
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`, {
         method: "DELETE"
     })
         .then(() => {
@@ -355,6 +379,11 @@ export const deleteGear = (id, setGear) => {
                 .then(gear => setGear(gear))
         }, []
         )
+}
+export const deleteImage = (id) => {
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages/${id}`, {
+        method: "DELETE"
+    })
 }
 
 export const deleteDive = (id, setDives) => {
