@@ -13,3 +13,7 @@
 .imgPreview img {
     width: 100%;
 }
+
+.fileUpload {
+    border: 1px solid black;
+}

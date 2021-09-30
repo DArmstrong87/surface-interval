@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router"
 import { Link } from "react-router-dom"
-import { deleteImage, deleteSingleDive, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
+import { deleteImage, deleteSingleDive, getAllDiveImages, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
 import "./Dive.css"
 
 export const Dive = () => {
@@ -9,6 +9,7 @@ export const Dive = () => {
     const [dive, setDive] = useState({})
     const [dives, setDives] = useState([])
     const [images, setDiveImages] = useState([])
+    const [allImages, setAllDiveImages] = useState()
     const history = useHistory()
 
     const findSpecialties = () => {
@@ -27,11 +28,19 @@ export const Dive = () => {
     )
     useEffect(
         () => {
+            getAllDiveImages()
+                .then(dive => {
+                    setAllDiveImages(dive)
+                })
+        }, []
+    )
+    useEffect(
+        () => {
             getDiveImages(diveId)
                 .then(images => {
                     setDiveImages(images)
                 })
-        }, [diveId]
+        }, [diveId, images]
     )
 
     useEffect(
@@ -92,14 +101,16 @@ export const Dive = () => {
                         </div>
                     </div>
 
-                    {images ? <>
+                    {images.length > 0 ? <>
                         <h3 className='diveNumber'>Photos</h3>
                         <section className="dive-images">
                             {images.map(image => {
                                 return <div className="dive-image">
-                                    <button className="x" onClick={() => { deleteImage(image.id, diveId, setDiveImages) }}>
-                                        X</button>
-                                    <img src={image.imageUrl} alt="divelog"/>
+                                    <div><button className="x" onClick={() => { deleteImage(image.id) }}>
+                                        X</button></div>
+                                    <Link to={image.imageUrl}>
+                                        <img src={image.imageUrl} alt="divelog" />
+                                    </Link>
                                 </div>
                             })}
                         </section></> : ''
@@ -107,8 +118,7 @@ export const Dive = () => {
 
                     <div className='edit-delete'>
                         <Link to={`/dives/edit/${dive.id}`}>Edit</Link>
-                        <Link to="#" onClick={() => { deleteSingleDive(dive.id).then(history.goBack()) }}>
-                            Delete
+                        <Link to="#" onClick={() => { deleteSingleDive(dive.id).then(history.goBack()) }}>Delete
                         </Link>
                     </div>
                 </section>

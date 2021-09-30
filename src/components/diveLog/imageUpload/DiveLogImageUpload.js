@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import "./ImageUpload.css"
-import { deleteImage, getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager';
+import { getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager';
 
 export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) => {
     const [postedImages, setPostedImages] = useState([])
@@ -46,20 +46,18 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
             <section className="preview-images">
                 {postedImages.map(image => {
                     return <div className="dive-image">
-                        <button className="x" onClick={() => deleteImage(image.id, currentDive, setDiveImages)}>
-                            X</button>
                         <img src={image.imageUrl} alt="divelog" />
                     </div>
                 })}
             </section >
 
             <fieldset>
-                <input type="file" multiple onChange={(event) => {
+                <div><input className="fileUpload" name="fileUpload" type="file" multiple onChange={(event) => {
                     setDiveImages(event.target.files)
                 }
-                }></input>
+                }/></div>
                 <button onClick={uploadImage}>
-                    Upload Image
+                    Upload Photos
                 </button>
             </fieldset>
         </div >

@@ -81,11 +81,13 @@ export const GetDiveStats = () => {
     const [longest, setLongest] = useState([])
     const [mostRecent, setRecent] = useState([])
     const [dives, setDives] = useState([])
+
     const getAvgDepth = () => {
         let total = 0
         for (const dive of dives) {
             total += dive.depth
         }
+
         return total / dives.length
     }
     const getAvgTime = () => {
@@ -369,7 +371,7 @@ export const saveDive = (event, currentDive, diveId) => {
 
 // ---------------------------------- DELETE METHODS ----------------------------------
 export const deleteGear = (id, setGear) => {
-    fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`, {
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`, {
         method: "DELETE"
     })
         .then(() => {
@@ -378,15 +380,10 @@ export const deleteGear = (id, setGear) => {
         }, []
         )
 }
-export const deleteImage = (id, diveId, setDiveImages) => {
+export const deleteImage = (id) => {
     return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages/${id}`, {
         method: "DELETE"
     })
-        .then(() => {
-            getAllDiveImages(diveId)
-                .then(images => setDiveImages(images))
-        }, []
-        )
 }
 
 export const deleteDive = (id, setDives) => {

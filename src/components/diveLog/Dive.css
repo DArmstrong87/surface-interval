@@ -5,16 +5,23 @@
 }
 
 .dive-image {
-    width: 40%;
+    width: 25%;
+    overflow: hidden;
+    background-color: black;
+    align-items: center;
     margin: 0.5em 0.5em 0.5em 0.5em;
+    border: 5px ridge rgba(128, 128, 128, 0.75);
+    box-shadow: black 7px 7px 10px;
+    border-radius: 10px;
 }
+
 .dive-image img {
     width: 100%;
+    border-radius: 10px;
 }
 
 .x {
     border-radius: 10px;
-    position:relative;
-    top: 2em;
-    left: 0;
+    top: 0em;
+    left: 0em;
 }
