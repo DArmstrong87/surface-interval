@@ -161,7 +161,7 @@ export const DiveN36 = ({ step, dives, updateDive2, updateDive3, resetDives, res
                         </li>
                         <li>
                             <div className="results-labelN36">Pre-flight surface interval: </div>
-                            {step !== 1 ? 18 : currentDive.noDecoLimit ? 18 + ' hours' : 12 + ' hours'}
+                            {step !== 1 ? `18 hours` : currentDive.noDecoLimit ? `18 hours` : `12 hours`}
                         </li>
 
                         {/* Min over no deco limit */}
