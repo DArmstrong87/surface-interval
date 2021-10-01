@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import { Dive } from "../diveLog/Dive"
 import { DiveLog } from "../diveLog/DiveLog"
 import { EditDive } from "../diveLog/EditDive"
+import { PhotoGallery } from "../diveLog/imageGallery/PhotoGallery"
 import { LogNewDive } from "../diveLog/LogNewDive"
 import { DivePlanner } from "../divePlanner/DivePlanner"
 import { CreateGearSet } from "../gear/CreateGear"
@@ -48,6 +49,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route path="/profile">
                 <DiverProfile />
+            </Route>
+            <Route path="/photo-gallery">
+                <PhotoGallery />
             </Route>
         </>)
 }

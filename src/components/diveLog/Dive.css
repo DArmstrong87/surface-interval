@@ -1,27 +1,22 @@
 .dive-images {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-
-.dive-image {
-    width: 25%;
-    overflow: hidden;
-    background-color: black;
-    align-items: center;
-    margin: 0.5em 0.5em 0.5em 0.5em;
-    border: 5px ridge rgba(128, 128, 128, 0.75);
-    box-shadow: black 7px 7px 10px;
-    border-radius: 10px;
-}
-
-.dive-image img {
     width: 100%;
-    border-radius: 10px;
+}
+.dive-images div{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dive-images img {
+    width: 32%;
+    margin: 0.2em;
+    cursor: pointer;
 }
 
 .x {
+    position:relative;
     border-radius: 10px;
-    top: 0em;
-    left: 0em;
+    top: 1em;
+    left: -4em;
 }

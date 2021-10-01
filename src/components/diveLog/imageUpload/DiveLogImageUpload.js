@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import "./ImageUpload.css"
 import { getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager';
+import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
 
 export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) => {
     const [postedImages, setPostedImages] = useState([])
@@ -36,30 +37,34 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
                     getAllDiveImages()
                         .then(images => setAllDiveImages(images))
                 })
-
         }
     }
 
     return (
-        <div>
-            <h2 className='diveNumber'>Photos</h2>
-            <section className="preview-images">
-                {postedImages.map(image => {
-                    return <div className="dive-image">
-                        <img src={image.imageUrl} alt="divelog" />
-                    </div>
-                })}
-            </section >
+        <SimpleReactLightbox>
+            <div>
+                <h2 className='diveNumber'>Photos</h2>
+                <section className="preview-images">
+                    <SRLWrapper >
+                        {postedImages.map(image => {
+                            return <img src={image.imageUrl} alt="divelog" />
 
-            <fieldset className="upload-images-container">
-                <div><input className="fileUpload" name="fileUpload" type="file" multiple onChange={(event) => {
-                    setDiveImages(event.target.files)
-                }
-                }/></div>
-                <button className="upload-photos" onClick={uploadImage}>
-                    Upload Photos
-                </button>
-            </fieldset>
-        </div >
+                        })}
+                    </SRLWrapper>
+                </section >
+
+                <fieldset className="upload-images-container">
+                    <div>
+                        <input className="fileUpload" name="fileUpload" type="file" multiple onChange={(event) => {
+                            setDiveImages(event.target.files)
+                        }
+                        } />
+                    </div>
+                    <button className="upload-photos" onClick={uploadImage}>
+                        Upload Photos
+                    </button>
+                </fieldset>
+            </div >
+        </SimpleReactLightbox>
     )
 }

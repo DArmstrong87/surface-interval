@@ -56,6 +56,11 @@ export const getAllDiveImages = () => {
     return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages`)
         .then(res => res.json())
 }
+export const getDivesAndImages = () => {
+    const user = localStorage.getItem('si_user')
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_embed=diveImages&_sort=date`)
+        .then(res => res.json())
+}
 
 // --------- Gear
 export const getMyGear = () => {
