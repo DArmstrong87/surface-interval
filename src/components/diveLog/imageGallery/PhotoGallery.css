@@ -31,7 +31,7 @@
     overflow: hidden;
 }
 .gallery-image:hover{
-    transition: ease-out 0.3s;
+    transition: ease-out 0.1s;
     transform: scale(1.1);
     border: 4px orange double;
 }

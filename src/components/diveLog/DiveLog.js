@@ -40,7 +40,6 @@ export const DiveLog = () => {
             <label htmlFor="expanded">Expanded</label>
         </div>
 
-        <Link to="/photo-gallery">Photo Gallery</Link>
         {view.condensed ? <SortedDiveLists /> : ''}
         {view.expanded ? <DiveList /> : ''}
 

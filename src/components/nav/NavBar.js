@@ -23,6 +23,9 @@ export const NavBar = () => {
 				<Link className="navbar__link" to="/gear">Gear</Link>
 			</li>
 			<li className="navbar__item active">
+				<Link className="navbar__link" to="/photo-gallery">Photo Gallery</Link>
+			</li>
+			<li className="navbar__item active">
 				<Link className="navbar__link" to="/profile">Profile</Link>
 			</li>
 			<li className="navbar__item active">
