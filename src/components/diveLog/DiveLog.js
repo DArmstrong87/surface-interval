@@ -4,7 +4,6 @@ import { DiveList } from "./DiveList";
 import './DiveLog.css'
 import { DiveStats } from "./DiveStats";
 import './DiveStats.css'
-import { PhotoGallery } from "./imageGallery/PhotoGallery";
 import { SortedDiveLists } from "./sortedDives/SortedDiveLists";
 
 export const DiveLog = () => {
