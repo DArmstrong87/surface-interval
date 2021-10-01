@@ -1,0 +1,49 @@
+.cert-cards {
+    background-color: rgba(37, 100, 160, 0.75);
+    border-radius: 10px;
+    border: 2px solid black;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.upload-cert-button {
+    text-align: center;
+    margin: 1em auto 1em auto;
+    width: fit-content;
+    height: 3em;
+}
+
+.cert-card-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.cert-card-form fieldset {
+    padding: 0;
+    margin: 1em 0 0.5em 0;
+}
+
+.cert-card-form input {
+    width: 20em;
+    margin: 0;
+}
+
+.cert-buttons {
+    margin: auto;
+}
+
+.cert-buttons button {
+    width: fit-content;
+    height: 2em;
+    font-size: 1em;
+    margin: 0.5em;
+}
+
+.noCerts {
+    color: white;
+    margin-bottom: 1em;
+}
