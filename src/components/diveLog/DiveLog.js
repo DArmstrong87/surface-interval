@@ -4,6 +4,7 @@ import { DiveList } from "./DiveList";
 import './DiveLog.css'
 import { DiveStats } from "./DiveStats";
 import './DiveStats.css'
+import { PhotoGallery } from "./imageGallery/PhotoGallery";
 import { SortedDiveLists } from "./sortedDives/SortedDiveLists";
 
 export const DiveLog = () => {
@@ -40,6 +41,7 @@ export const DiveLog = () => {
             <label htmlFor="expanded">Expanded</label>
         </div>
 
+        <Link to="/photo-gallery">Photo Gallery</Link>
         {view.condensed ? <SortedDiveLists /> : ''}
         {view.expanded ? <DiveList /> : ''}
 
