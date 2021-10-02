@@ -30,7 +30,7 @@ export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetA
     }
 
     const resetDivesAndInput = (step) => {
-        updateDiveInput({ rnt: 0, depth: 0, abt: 0, si: 0})
+        updateDiveInput({ rnt: 0, depth: 0, abt: 0, si: 0 })
         resetDives(step)
     }
     const resetAll = () => {
@@ -51,7 +51,7 @@ export const Dive = ({ step, dives, updateDive2, updateDive3, resetDives, resetA
                                     <label>Surface Interval</label>
                                     <input type="number" value={diveInput.si} onChange={(event) => {
                                         const dive = { ...diveInput }
-                                        dive.si =parseInt(event.target.value)
+                                        dive.si = parseInt(event.target.value)
                                         updateDiveInput(dive)
                                     }} onKeyDown={(event) => setSiOnEnter(event)} /> min
                                     <div className="setSI">

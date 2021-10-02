@@ -47,17 +47,6 @@ button:hover{
   color: white;
 }
 
-.cardDetails {
-  color: white;
-  padding-top: 5px;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-}
-.cardTitle {
-  color: white;
-  margin: 0;
-}
 .cardOverview{
   margin-bottom: 30px;
 }
@@ -99,6 +88,10 @@ cursor: pointer
   width: 12em;
 }
 
+.upload-profile-pic {
+  font-weight: bold;
+  height: 3em;
+}
 
 @media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */
 .uploadButton {

@@ -34,6 +34,7 @@ export const CertCardUpload = () => {
         axios.post('https://api.cloudinary.com/v1_1/surface-interval/image/upload', imageData)
             .then(res => {
                 cert.imageUrl = res?.data?.secure_url
+                cert.userId = user?.id
                 setCert(cert)
             })
     }
@@ -84,7 +85,13 @@ export const CertCardUpload = () => {
                 {toggleUpload ? <>
                     <div className="cert-card-form">
                         {certCard.imageUrl ?
-                            <img src={certCard.imageUrl} alt="New Cert" /> : ''}
+                            <article className="cards">
+                                <section className="card">
+                                    <div className="cert-card">
+                                        <img src={certCard.imageUrl} alt="New Cert" />
+                                    </div>
+                                </section>
+                            </article> : ''}
                         <fieldset>
                             <label htmlFor="name">Name</label>
                             <input type="text" placeholder={"Name of cert"} onChange={(event) => {
@@ -121,18 +128,27 @@ export const CertCardUpload = () => {
                     : ''}
 
                 <section key={"certCardContainer"} className="certCardContainer">
-                    <SRLWrapper >
-                        {certCards.map(card => {
-                            return <>
-                                <div className="cardHeader">
-                                    <h2 className="cardTitle" >{card.name}</h2>
-                                </div>
-                                <img src={card.imageUrl} alt={`${card.name} Cert`} />
-                                <p className="cardDetails"><i>Date Issued: {card.dateIssued}</i>
-                                    <button className="certButton" onClick={() => { deleteCard(card.id) }}>Delete</button>
-                                </p>
-                            </>
-                        })}
+                    <SRLWrapper>
+                        <article className="cards">
+                            {certCards.map(card => {
+                                return <>
+                                    <section className="card">
+                                        <div className="cardHeader">
+                                            <h2 className="cardTitle" >{card.name}</h2>
+                                        </div>
+                                        <div className="cert-card">
+                                            <img src={card.imageUrl} alt={`${card.name} Cert`} />
+                                        </div>
+                                        <p className="cardDetails"><i>Date Issued: {card.dateIssued}</i>
+                                            <button className="certButton"
+                                                onClick={() => { deleteCard(card.id) }}>
+                                                Delete</button>
+                                        </p>
+                                    </section>
+
+                                </>
+                            })}
+                        </article>
                     </SRLWrapper>
                 </section>
             </article >

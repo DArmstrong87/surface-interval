@@ -7,12 +7,16 @@
     width: 300px;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
 }
 
 .profilePic > img {
     max-width: 100%;
     max-height: 100%;
     border: 5px outset white;
+}
+.profilePic button {
+    width:fit-content;
 }
 
 .changeProfilePic{
@@ -24,11 +28,6 @@
     display: flex;
     justify-content: center;
     text-align: center;
-}
-
-.certCardContainer{
-    display: flex;
-    justify-content: space-evenly;
 }
 
 .certCard {
@@ -48,6 +47,8 @@
     height: 100%;
     flex-shrink: 0;
 }
+
+
 
 @media (min-width:20em) and (max-width:30em)  { /* smartphones, iPhone, portrait 480x320 phones */
     .diverProfileContainer {
@@ -83,12 +84,6 @@
         justify-content: center;
         text-align: center;
         flex-wrap:wrap;
-    }
-    
-    .certCardContainer{
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
     }
     
     .certCard {
