@@ -70,8 +70,6 @@ export const CertCardUpload = () => {
     }
 
     return (<>
-
-
         <SimpleReactLightbox>
             <article className="cert-cards">
                 <h2 className='diveNumber'>Certification Cards</h2>
