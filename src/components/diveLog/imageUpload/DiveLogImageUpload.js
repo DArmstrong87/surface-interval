@@ -37,34 +37,33 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
                     getAllDiveImages()
                         .then(images => setAllDiveImages(images))
                 })
+
         }
     }
 
     return (
         <SimpleReactLightbox>
-            <div>
-                <h2 className='diveNumber'>Photos</h2>
-                <section className="preview-images">
-                    <SRLWrapper >
-                        {postedImages.map(image => {
-                            return <img src={image.imageUrl} alt="divelog" />
+        <div>
+            <h2 className='diveNumber'>Photos</h2>
+            <section className="preview-images">
+                <SRLWrapper >
+                    {postedImages.map(image => {
+                        return <img src={image.imageUrl} alt="divelog" />
+                       
+                    })}
+                </SRLWrapper>
+            </section >
 
-                        })}
-                    </SRLWrapper>
-                </section >
-
-                <fieldset className="upload-images-container">
-                    <div>
-                        <input className="fileUpload" name="fileUpload" type="file" multiple onChange={(event) => {
-                            setDiveImages(event.target.files)
-                        }
-                        } />
-                    </div>
-                    <button className="upload-photos" onClick={uploadImage}>
-                        Upload Photos
-                    </button>
-                </fieldset>
-            </div >
+            <fieldset className="upload-images-container">
+                <div><input className="fileUpload" name="fileUpload" type="file" multiple onChange={(event) => {
+                    setDiveImages(event.target.files)
+                }
+                } /></div>
+                <button className="upload-photos" onClick={uploadImage}>
+                    Upload Photos
+                </button>
+            </fieldset>
+        </div >
         </SimpleReactLightbox>
     )
 }

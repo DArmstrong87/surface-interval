@@ -17,7 +17,7 @@ export const DiveStats = () => {
     )
 
     return (<>
-        <section>
+        <section className="diveStats-section">
                 <table className="diveStatsTable">
                     <tbody>
                         <tr>

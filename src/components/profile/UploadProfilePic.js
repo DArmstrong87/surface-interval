@@ -1,23 +1,33 @@
 import React, { useEffect } from "react";
-import ImageUploading from "react-images-uploading";
 import { useState } from "react";
 import { getCurrentUser } from "../application/ApiManager";
 import "./UploadProfilePic.css";
+import axios from "axios";
 
 export const ProfilePicUpload = () => {
-  const [image, setImage] = useState([])
+  const [image, setImage] = useState()
+  const [profileUpload, setProfileUpload] = useState(false)
   const [user, setUser] = useState({})
-  const profilePatch = { "profilePicUrl": image[0]?.data_url }
-  const maxNumber = 1;
-  const onChange = (imageList) => {
-    setImage(imageList);
-  };
+  const [profilePatch, setProfilePatch] = useState({ profilePicUrl: '' })
 
   useEffect(() =>
     getCurrentUser()
       .then((data) => setUser(data[0])
       ), []
   )
+
+  const uploadImage = () => {
+    const imageData = new FormData()
+    const img = { ...image }
+    const patch = { ...profilePatch }
+    imageData.append("file", img[0])
+    imageData.append('upload_preset', 'profilePic')
+    axios.post('https://api.cloudinary.com/v1_1/surface-interval/image/upload', imageData)
+      .then(res => {
+        patch.profilePicUrl = res?.data?.secure_url
+        setProfilePatch(patch)
+      })
+  }
 
   const UpdateProfilePic = () => {
     const fetchOption = {
@@ -36,82 +46,45 @@ export const ProfilePicUpload = () => {
       )
   }
 
-  return (<section className="profilePicContainer">
-    {user.profilePicUrl === '' ?
-      < div className="uploadButton" >
-        <ImageUploading
-          multiple
-          value={image}
-          onChange={onChange}
-          maxNumber={maxNumber}
-          dataURLKey="data_url"
-        >
-          {({
-            imageList,
-            onImageUpload,
-            onImageUpdate,
-            onImageRemove,
-            isDragging,
-            dragProps
-          }) => (
+  const handleSubmit = () => {
+    UpdateProfilePic()
+    setProfileUpload(false)
+  }
+
+  return (
+    <>
+      {profileUpload ? '' :
+        <>
+          <h2 className="profile-h2">{user.name}</h2>
+          <div className="profilePic">
+            <img src={user.profilePicUrl} alt="Profile pic" />
+            <button onClick={() => setProfileUpload(true)}>Update</button>
+          </div>
+        </>
+      }
+
+      {profileUpload ? <>
+        {profilePatch.profilePicUrl !== "" ?
+          <img src={profilePatch.profilePicUrl} alt="Profile pic" /> : ''}
+        <div className="cert-card-form">
+
+          <fieldset className="upload-images-container">
             <div>
-              {imageList.map((image, index) => (
-                <div key={index} className="profilePic">
-                  <img src={image.data_url} alt="profilePic" />
-                  <div className="image-item__btn-wrapper">
-                    <button onClick={UpdateProfilePic(image.data_url)}>Update</button>
-                  </div>
-                </div>
-              ))}
-              <button
-                style={isDragging ? { color: "skyblue" } : null}
-                onClick={onImageUpload}
-                {...dragProps}
-              >
-                Upload Profile Pic
-              </button>
+              <input className="fileUpload" name="fileUpload" type="file"
+                onChange={(event) => { setImage(event.target.files) }
+                } />
             </div>
-          )}
-        </ImageUploading>
-      </div >
-      :
-      <div className="profilePic">
-        <img src={user.profilePicUrl} alt="profilePic" />
-        < div className="uploadButton" >
-          <ImageUploading
-            multiple
-            value={image}
-            onChange={onChange}
-            maxNumber={maxNumber}
-            dataURLKey="data_url"
-          >
-            {({
-              imageList,
-              onImageUpload,
-              onImageRemove,
-              isDragging,
-              dragProps
-            }) => (
-              <div>
-                {imageList.map((image, index) => (
-                  <div key={index} className="profilePic">
-                    <div className="image-item__btn-wrapper">
-                      <button onClick={UpdateProfilePic(image.data_url) && onImageRemove(index)}>Save</button>
-                    </div>
-                  </div>
-                ))}
-                <button
-                  style={isDragging ? { color: "skyblue" } : null}
-                  onClick={onImageUpload}
-                  {...dragProps}
-                > Update
-                </button>
-              </div>
-            )}
-          </ImageUploading>
-        </div >
-      </div>
-    }
-  </section>
-  );
+            <button className="upload-profile-pic" onClick={uploadImage}>
+              Upload
+            </button>
+          </fieldset>
+
+          <div className="cert-buttons">
+            <button onClick={handleSubmit}>Save</button>⚓
+            <button onClick={() => setProfileUpload(false)}>Cancel</button>
+          </div>
+        </div>
+      </>
+        : ''}
+    </>)
 }
