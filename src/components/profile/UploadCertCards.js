@@ -86,7 +86,7 @@ export const CertCardUpload = () => {
                     <div className="cert-card-form">
                         {certCard.imageUrl ?
                             <article className="cards">
-                                <section className="card">
+                                <section className="uploadedCard">
                                     <div className="cert-card">
                                         <img src={certCard.imageUrl} alt="New Cert" />
                                     </div>

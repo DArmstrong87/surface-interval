@@ -10,18 +10,19 @@
     font-size: 1.5em;
     font-weight: bold;
     padding: 0;
+    margin: 0;
     color: white;
     background-color: rgba(37, 100, 160, 0.34);
     border-radius: 10px;
     box-shadow: 0px 0px 20px 20px rgba(37, 100, 160, 0.34);
 }
 
+
 .diveStatsTable {
     background-color: rgba(37, 100, 160);
     color: white;
     border: 1px solid black;
     margin: auto;
-    margin-bottom: 2em;
     border-collapse: collapse;
 }
 

@@ -54,15 +54,20 @@ export const ProfilePicUpload = () => {
   return (
     <>
       {profileUpload ? '' :
-        <div className="profilePic">
-          <img src={user.profilePicUrl} />
-          <button onClick={() => setProfileUpload(true)}>Update</button>
-        </div>
+        <>
+          <h2 className="profile-h2">{user.name}</h2>
+          <div className="profilePic">
+            <img src={user.profilePicUrl} alt="Profile pic" />
+            <button onClick={() => setProfileUpload(true)}>Update</button>
+          </div>
+        </>
       }
 
       {profileUpload ? <>
-        {profilePatch.profilePicUrl !== "" ? <img src={profilePatch.profilePicUrl} /> : ''}
+        {profilePatch.profilePicUrl !== "" ?
+          <img src={profilePatch.profilePicUrl} alt="Profile pic" /> : ''}
         <div className="cert-card-form">
+
           <fieldset className="upload-images-container">
             <div>
               <input className="fileUpload" name="fileUpload" type="file"
@@ -73,6 +78,7 @@ export const ProfilePicUpload = () => {
               Upload
             </button>
           </fieldset>
+
           <div className="cert-buttons">
             <button onClick={handleSubmit}>Save</button>⚓
             <button onClick={() => setProfileUpload(false)}>Cancel</button>
