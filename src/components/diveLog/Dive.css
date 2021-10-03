@@ -11,15 +11,29 @@
 
 .dive-images img {
     width: 32%;
-    height: 12em;
+    height: 10em;
     object-fit: cover;
     margin: 0.2em;
     cursor: pointer;
 }
 
-.x {
-    position: relative;
-    border-radius: 10px;
-    top: 1em;
-    left: -4em;
+@media (min-width:20em) and (max-width:30em) {
+    .dive-images {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    
+    .dive-images div {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .dive-images img {
+        width: 46%;
+        height: 8em;
+        object-fit: cover;
+        margin: 0.2em;
+        cursor: pointer;
+    }
 }
