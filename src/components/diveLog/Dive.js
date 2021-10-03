@@ -45,14 +45,7 @@ export const Dive = () => {
 
     const index = dives.indexOf(dives.find(singleDive => singleDive.id === dive.id))
 
-    const options = {
-        settings: {},
-        caption: {},
-        buttons: { showDownloadButton: false },
-        thumbnails: {},
-        progressBar: {},
-
-    }
+    const options = { buttons: { showDownloadButton: false } }
 
     const shiftClick = (event, id) => {
         if (event.shiftKey) {
@@ -122,7 +115,7 @@ export const Dive = () => {
                                 })}
                             </SRLWrapper>
                         </div>
-                            <p>Shift+Click to delete</p>
+                        <p>Shift+Click to delete</p>
                     </> : ''
                     }
 

@@ -114,3 +114,9 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+.tip {
+    margin: 0 auto 0 auto;
+    color:rgb(170, 194, 219);
+    font-style: italic;
+}

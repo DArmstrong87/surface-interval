@@ -17,16 +17,8 @@ export const PhotoGallery = () => {
     const filteredDives = divesImages.filter(dive => {
         return dive.diveImages.length > 0
     })
-    console.log(filteredDives)
 
-    const options = {
-        settings: {},
-        caption: {},
-        buttons: { showDownloadButton: false },
-        thumbnails: {},
-        progressBar: {},
-
-    }
+    const options = { buttons: { showDownloadButton: false } }
 
     return (<>
         <SimpleReactLightbox>
@@ -44,8 +36,10 @@ export const PhotoGallery = () => {
                             </div>
                             <div className="gallery-photos">
                                 {dive.diveImages.map(image => {
+                                    let url = image.imageUrl
+                                    url = url.substr(0, url.lastIndexOf(".jpg")) + ".webp"
                                     return <div className="gallery-image">
-                                        <img src={image.imageUrl} alt={`Location/Site: ${dive.location}, ${dive.diveSite}  ${dive.date}`} />
+                                        <img src={url} alt={`Location/Site: ${dive.location}, ${dive.diveSite}  ${dive.date}`} />
                                     </div>
                                 })}
                             </div>
