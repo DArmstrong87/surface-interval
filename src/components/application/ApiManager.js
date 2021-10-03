@@ -77,7 +77,7 @@ export const getCurrentGearSet = (id) => {
 // --------- Cert Cards
 export const getMyCards = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards?&userId=${user}`)
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards?&userId=${user}&_sort=dateIssued`)
         .then(res => res.json())
 }
 
