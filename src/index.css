@@ -17,7 +17,7 @@ body::-webkit-scrollbar {
   background:rgba(37, 100, 160, 0.5);
 }
 body::-webkit-scrollbar-thumb {
-  background: rgb(48, 128, 204);
+  background: rgb(32, 89, 141);
   border-radius: 10px;
 }
 
@@ -30,6 +30,7 @@ code {
   color: white;
   margin-top: 10px;
   background-color: rgba(37, 100, 160, 0.75);
+  background-image: linear-gradient(to right, rgb(72, 197, 255), rgba(47, 125, 161, 0.75), rgb(19, 51, 82, 0.5));
   width: 10em;
   border-radius: 10px;
   text-align: center;

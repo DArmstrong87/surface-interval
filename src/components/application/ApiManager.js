@@ -104,12 +104,40 @@ export const GetDiveStats = () => {
     }
     const avgDepth = getAvgDepth()
     const avgTime = getAvgTime()
+    const foundAltitude = dives.filter(dive => dive.isAltitude)
+    const foundNight = dives.filter(dive => dive.isNight)
+    const foundDrift = dives.filter(dive => dive.isDrift)
+    const foundNav = dives.filter(dive => dive.isNav)
+    const foundN32 = dives.filter(dive => dive.isN32)
+    const foundSidemount = dives.filter(dive => dive.isSidemount)
+    const foundCave = dives.filter(dive => dive.isCave)
+    const foundDry = dives.filter(dive => dive.isDry)
+    const foundRebreather = dives.filter(dive => dive.isRebreather)
+    const foundN36 = dives.filter(dive => dive.isN36)
+    const foundWreck = dives.filter(dive => dive.isWreck)
+    const foundDeep = dives.filter(dive => dive.isDeep)
+    const foundFFM = dives.filter(dive => dive.isFFM)
+    const foundSearch = dives.filter(dive => dive.isSearch)
     const diveStats = {
         mostRecent: mostRecent[0]?.date,
         deepest: deepest[0]?.depth,
         longest: longest[0]?.time,
         avgDepth: avgDepth.toFixed(2),
-        avgTime: avgTime.toFixed(0)
+        avgTime: avgTime.toFixed(0),
+        altitude: foundAltitude.length,
+        drift: foundDrift.length,
+        nav: foundNav.length,
+        n32: foundN32.length,
+        sidemount: foundSidemount.length,
+        cave: foundCave.length,
+        dry: foundDry.length,
+        night: foundNight.length,
+        rebreather: foundRebreather.length,
+        wreck: foundWreck.length,
+        deep: foundDeep.length,
+        ffm: foundFFM.length,
+        n36: foundN36.length,
+        search: foundSearch.length
     }
 
     useEffect(() => {
@@ -389,20 +417,20 @@ export const saveDive = (event, currentDive, diveId) => {
 
 export const updateProfilePic = (user, patch, setUser) => {
     const fetchOption = {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(patch)
+        method: "PATCH",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify(patch)
     }
 
     return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/users/${user.id}`, fetchOption)
-      .then(() =>
-        getCurrentUser()
-          .then((data) => setUser(data[0])
-          ), {}
-      )
-  }
+        .then(() =>
+            getCurrentUser()
+                .then((data) => setUser(data[0])
+                ), {}
+        )
+}
 
 // ---------------------------------- DELETE METHODS ----------------------------------
 export const deleteGear = (id, setGear) => {

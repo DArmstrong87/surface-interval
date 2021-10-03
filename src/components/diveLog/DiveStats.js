@@ -20,6 +20,7 @@ export const DiveStats = () => {
         <section className="diveStats-section">
                 <table className="diveStatsTable">
                     <tbody>
+                    <th colspan='4' className="diveStatsHeading">Dive Stats</th>
                         <tr>
                             <td><b>Total Dives</b></td>
                             <td>{dives.length}</td>

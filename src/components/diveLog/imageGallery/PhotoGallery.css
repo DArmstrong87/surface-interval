@@ -27,6 +27,9 @@
 
 .gallery-image{
     width: 30%;
+    height: 15em;
+    display: flex;
+    background-color: black;
     margin: 0.5em;
     overflow: hidden;
 }
@@ -37,5 +40,6 @@
 }
 
 .gallery-image img{
+    object-fit: cover;
     width: 100%;
 }
