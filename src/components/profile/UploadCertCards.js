@@ -46,16 +46,23 @@ export const CertCardUpload = () => {
         setToggleUpload(false)
     }
 
+    const options = { buttons: { showDownloadButton: false } }
+
     return (<>
         <SimpleReactLightbox>
             <article className="cert-cards">
                 <h2 className='diveNumber'>Certification Cards</h2>
+
                 {certCards.length === 0 ?
                     <section key={"certCards"} className="certCards" >
-                        <h3 className="noCerts">No Certification Cards Uploaded</h3>
+                        <h3 className="noCerts">No cert cards uploaded</h3>
                     </section>
                     : ''}
-                {toggleUpload ? '' : <button className="upload-cert-button" onClick={() => setToggleUpload(true)}>Upload New Card</button>}
+                {toggleUpload ? '' :
+                    <>
+                        <p className="tip">Tip: Take photos of your cert cards and crop them.</p>
+                        <button className="upload-cert-button" onClick={() => setToggleUpload(true)}>Upload New Card</button>
+                    </>}
 
                 {toggleUpload ? <>
                     <div className="cert-card-form">
@@ -103,7 +110,7 @@ export const CertCardUpload = () => {
                     : ''}
 
                 <section key={"certCardContainer"} className="certCardContainer">
-                    <SRLWrapper>
+                    <SRLWrapper options={options}>
                         <article className="cards">
                             {certCards.map(card => {
                                 return <>
