@@ -8,8 +8,12 @@ export const SpecialtyStats = () => {
     return (<>
         <section className="diveStats-section">
             <table className="diveStatsTable">
+                <thead colSpan='4' className="diveStatsHeading">
+                    <tr>
+                        <td colSpan='4'>Specialty Dives</td>
+                    </tr>
+                </thead>
                 <tbody>
-                    <th colspan='4' className="diveStatsHeading">Specialty Dives</th>
                     <tr>
                         <td><b>Altitude</b></td>
                         <td>{diveStats.altitude}</td>

@@ -18,35 +18,39 @@ export const DiveStats = () => {
 
     return (<>
         <section className="diveStats-section">
-                <table className="diveStatsTable">
-                    <tbody>
-                    <th colspan='4' className="diveStatsHeading">Dive Stats</th>
-                        <tr>
-                            <td><b>Total Dives</b></td>
-                            <td>{dives.length}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Most Recent</b></td>
-                            <td>{diveStats.mostRecent}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Deepest</b></td>
-                            <td>{diveStats.deepest} ft</td>
-                        </tr>
-                        <tr>
-                            <td><b>Longest</b></td>
-                            <td>{diveStats.longest} min</td>
-                        </tr>
-                        <tr>
-                            <td><b>Avg depth</b></td>
-                            <td>{diveStats.avgDepth} ft</td>
-                        </tr>
-                        <tr>
-                            <td><b>Avg time</b></td>
-                            <td>{diveStats.avgTime} min</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <table className="diveStatsTable">
+                <thead className="diveStatsHeading">
+                    <tr>
+                        <td colSpan='2'>Dive Stats</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Total Dives</b></td>
+                        <td>{dives.length}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Most Recent</b></td>
+                        <td>{diveStats.mostRecent}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Deepest</b></td>
+                        <td>{diveStats.deepest} ft</td>
+                    </tr>
+                    <tr>
+                        <td><b>Longest</b></td>
+                        <td>{diveStats.longest} min</td>
+                    </tr>
+                    <tr>
+                        <td><b>Avg depth</b></td>
+                        <td>{diveStats.avgDepth} ft</td>
+                    </tr>
+                    <tr>
+                        <td><b>Avg time</b></td>
+                        <td>{diveStats.avgTime} min</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
     </>)
 }

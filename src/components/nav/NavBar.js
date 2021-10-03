@@ -13,7 +13,7 @@ export const NavBar = () => {
 				<div className="diveFlagHeader">
 					{/* <img src={siLogo}/>
 					<img src={siLogoTurtle}/> */}
-					<img src="https://media.istockphoto.com/photos/scuba-flag-waving-picture-id498827225?k=20&m=498827225&s=612x612&w=0&h=fKrkr7R3hWEvan9KJp4hlV4qJMKcVDBFwqrqOsopaw0=" alt="Dive Flag"/>
+					<img src="https://media.istockphoto.com/photos/scuba-flag-waving-picture-id498827225?k=20&m=498827225&s=612x612&w=0&h=fKrkr7R3hWEvan9KJp4hlV4qJMKcVDBFwqrqOsopaw0=" alt="Dive Flag" />
 					<h1 className='title'>Surface Interval</h1>
 				</div>
 			</Link>
@@ -36,11 +36,7 @@ export const NavBar = () => {
 					</li>
 					<li className="navbar-li">
 						<Link className="navbar__link" to="#"
-							onClick={
-								() => {
-									localStorage.removeItem("si_user")
-								}
-							}
+							onClick={() => { localStorage.removeItem("si_user") }}
 						>Logout</Link>
 					</li>
 				</ul>
