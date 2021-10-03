@@ -266,6 +266,17 @@ export const submitGear = (event, gearCopy) => {
     return fetch("https://surface-interval-api-ferdk.ondigitalocean.app/gear", fetchOption)
 }
 
+export const postCertCard = (cert) => {
+    const fetchOption = {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify(cert)
+    }
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards`, fetchOption)
+}
+
 // ---------------------------------- PUT METHODS ----------------------------------
 export const saveGear = (event, currentGear, gearId) => {
     event.preventDefault()
@@ -374,6 +385,25 @@ export const saveDive = (event, currentDive, diveId) => {
     return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${diveId}`, fetchOption)
 }
 
+// ---------------------------------- PATCH METHODS ----------------------------------
+
+export const updateProfilePic = (user, patch, setUser) => {
+    const fetchOption = {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(patch)
+    }
+
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/users/${user.id}`, fetchOption)
+      .then(() =>
+        getCurrentUser()
+          .then((data) => setUser(data[0])
+          ), {}
+      )
+  }
+
 // ---------------------------------- DELETE METHODS ----------------------------------
 export const deleteGear = (id, setGear) => {
     return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`, {
@@ -407,4 +437,16 @@ export const deleteSingleDive = (id) => {
     return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${id}`, {
         method: "DELETE"
     })
+}
+
+export const deleteCard = (id, setCards) => {
+    const fetchOption = {
+        method: "DELETE",
+    }
+    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards/${id}`, fetchOption)
+        .then(() =>
+            getMyCards()
+                .then((data) => setCards(data)
+                ), []
+        )
 }

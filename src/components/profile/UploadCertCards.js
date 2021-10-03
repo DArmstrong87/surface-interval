@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { getCurrentUser, getMyCards } from "../application/ApiManager";
+import { deleteCard, getCurrentUser, getMyCards, postCertCard } from "../application/ApiManager";
 import "./UploadProfilePic.css";
 import "./CertCards.css";
 import axios from "axios";
@@ -22,7 +22,7 @@ export const CertCardUpload = () => {
     useEffect(() =>
         getMyCards()
             .then((data) => setCards(data)
-            ), [toggleUpload]
+            ), []
     )
 
     const uploadImage = () => {
@@ -37,29 +37,6 @@ export const CertCardUpload = () => {
                 cert.userId = user?.id
                 setCert(cert)
             })
-    }
-
-    const postCertCard = (cert) => {
-        const fetchOption = {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(cert)
-        }
-        return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards`, fetchOption)
-    }
-
-    const deleteCard = (id) => {
-        const fetchOption = {
-            method: "DELETE",
-        }
-        return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards/${id}`, fetchOption)
-            .then(() =>
-                getMyCards()
-                    .then((data) => setCards(data)
-                    ), []
-            )
     }
 
     const handleSubmit = () => {
@@ -139,7 +116,7 @@ export const CertCardUpload = () => {
                                         </div>
                                         <p className="cardDetails"><i>Date Issued: {card.dateIssued}</i>
                                             <button className="certButton"
-                                                onClick={() => { deleteCard(card.id) }}>
+                                                onClick={() => { deleteCard(card.id, setCards) }}>
                                                 Delete</button>
                                         </p>
                                     </section>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { getCurrentUser } from "../application/ApiManager";
+import { getCurrentUser, updateProfilePic } from "../application/ApiManager";
 import "./UploadProfilePic.css";
 import axios from "axios";
 
@@ -29,25 +29,8 @@ export const ProfilePicUpload = () => {
       })
   }
 
-  const UpdateProfilePic = () => {
-    const fetchOption = {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(profilePatch)
-    }
-
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/users/${user.id}`, fetchOption)
-      .then(() =>
-        getCurrentUser()
-          .then((data) => setUser(data[0])
-          ), {}
-      )
-  }
-
   const handleSubmit = () => {
-    UpdateProfilePic()
+    updateProfilePic(user, profilePatch, setUser)
     setProfileUpload(false)
   }
 
