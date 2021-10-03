@@ -30,6 +30,7 @@
     width: 13.75em;
     background-color: rgba(37, 100, 160);
     border-radius: 10px 10px 0 0;
+    background-image: linear-gradient(to right, rgb(72, 197, 255), rgba(47, 125, 161, 0.75), rgb(19, 51, 82, 0.5));
 }
 
 .changeProfilePic{

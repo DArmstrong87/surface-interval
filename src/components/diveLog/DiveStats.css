@@ -17,9 +17,16 @@
     box-shadow: 0px 0px 20px 20px rgba(37, 100, 160, 0.34);
 }
 
+.diveStatsHeading {
+    font-weight: bold;
+    text-align: center;
+}
+
 
 .diveStatsTable {
     background-color: rgba(37, 100, 160);
+    background-image: linear-gradient(to bottom, rgb(72, 197, 255), rgba(47, 125, 161, 0.75), rgb(19, 51, 82, 0.5));
+
     color: white;
     border: 1px solid black;
     margin: auto;

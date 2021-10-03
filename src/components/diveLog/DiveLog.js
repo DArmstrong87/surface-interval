@@ -5,6 +5,7 @@ import './DiveLog.css'
 import { DiveStats } from "./DiveStats";
 import './DiveStats.css'
 import { SortedDiveLists } from "./sortedDives/SortedDiveLists";
+import { SpecialtyStats } from "./SpecialtyStats";
 
 export const DiveLog = () => {
     const [view, setView] = useState({ condensed: true })
@@ -17,6 +18,7 @@ export const DiveLog = () => {
             </section>
             <div className="diveStatsDiv">
                 <DiveStats />
+                <SpecialtyStats />
                 <Link to="/logdive">
                     <button className="logDive">
                         Log Dive<br />

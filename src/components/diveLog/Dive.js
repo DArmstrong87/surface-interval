@@ -33,7 +33,7 @@ export const Dive = () => {
                 .then(images => {
                     setDiveImages(images)
                 })
-        }, [diveId, images]
+        }, [diveId]
     )
 
     useEffect(

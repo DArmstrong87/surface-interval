@@ -39,7 +39,7 @@ export const PhotoGallery = () => {
                                     let url = image.imageUrl
                                     url = url.substr(0, url.lastIndexOf(".jpg")) + ".webp"
                                     return <div className="gallery-image">
-                                        <img src={url} alt={`Location/Site: ${dive.location}, ${dive.diveSite}  ${dive.date}`} />
+                                        <img src={image.imageUrl.includes(".jpg") ? url : image.imageUrl} alt={`Location/Site: ${dive.location}, ${dive.diveSite}  ${dive.date}`} />
                                     </div>
                                 })}
                             </div>

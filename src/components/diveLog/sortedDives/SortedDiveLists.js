@@ -118,20 +118,24 @@ export const SortedDiveLists = () => {
                         <td>
                             <Link className="condensed-link-header" to={`#`}
                                 onClick={() => {
-                                    dateOrder === 'asc' ? setDateOrder('desc') : setDateOrder('asc')
+                                    dateOrder === 'asc' ? setDateOrder('desc')
+                                        : setDateOrder('asc')
                                     setToggle({ date: true });
                                 }}>
                                 Date {dateOrder === 'asc' && toggleState.date ? '👍'
                                     : dateOrder === 'desc' && toggleState.date ? '👎' : ''}
-                            </Link></td>
+                            </Link>
+                        </td>
                         <td>
-                            <select className="sortDiveSelect" defaultValue={(event) => toggleState.location ? event.target.value : 'locations'}
+                            <select className="sortDiveSelect" defaultValue={!toggleState.location}
                                 onChange={(event) => {
                                     setPropertyandParam({ property: 'location', param: event.target.value });
                                     setDateOrder('asc')
                                     setToggle({ location: true })
                                 }}>
-                                <option value='locations' selected={!toggleState.location}
+                                <option
+                                    value={!toggleState.location}
+                                    selected={!toggleState.location}
                                     style={{ color: 'gray' }}>
                                     Locations
                                 </option>

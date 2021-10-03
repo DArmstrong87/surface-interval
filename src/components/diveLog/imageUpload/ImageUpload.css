@@ -9,8 +9,10 @@
 }
 .preview-images img {
     width: 32%;
+    height: 8em;
     margin: 0.2em;
     cursor: pointer;
+    object-fit: cover;
 }
 
 .imgPreview {
