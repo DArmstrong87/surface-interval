@@ -1,6 +1,6 @@
 .photo-gallery-container {
     width: 95%;
-    margin:auto;
+    margin: auto;
     background-color: rgba(37, 100, 160, 0.75);
     border-radius: 10px;
     border: 5px slategray groove;
@@ -15,6 +15,7 @@
     padding: 0 0 7px 3em;
     margin-bottom: 1em;
 }
+
 .gallery-heading h2, h3, h4 {
     margin: 0;
 }
@@ -25,7 +26,7 @@
     margin-left: 4em;
 }
 
-.gallery-image{
+.gallery-image {
     width: 30%;
     height: 15em;
     display: flex;
@@ -33,13 +34,54 @@
     margin: 0.5em;
     overflow: hidden;
 }
-.gallery-image:hover{
+
+.gallery-image:hover {
     transition: ease-out 0.1s;
     transform: scale(1.1);
     border: 4px orange double;
 }
 
-.gallery-image img{
+.gallery-image img {
     object-fit: cover;
     width: 100%;
+}
+
+@media (min-width:20em) and (max-width:30em) {
+    /* smartphones, iPhone, portrait 480x320 phones */
+    .photo-gallery-container {
+        width: 95%;
+        margin: auto;
+        background-color: rgba(37, 100, 160, 0.75);
+        border-radius: 10px;
+        border: 5px slategray groove;
+        display: flex;
+        flex-direction: column;
+    }
+    .gallery-heading {
+        background-image: linear-gradient(to right, rgb(0, 174, 255), rgba(0, 183, 255, 0));
+        color: white;
+        width: 50%;
+        padding: 0 0 7px 3em;
+        margin-bottom: 1em;
+    }
+    .gallery-heading h2, h3, h4 {
+        margin: 0;
+    }
+    .gallery-photos {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+    }
+    .gallery-image {
+        width: 30%;
+        height: 5em;
+        display: flex;
+        background-color: black;
+        margin: 0.2em;
+        overflow: hidden;
+    }
+    .gallery-image img {
+        object-fit: cover;
+        width: 100%;
+    }
 }

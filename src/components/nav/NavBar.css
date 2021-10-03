@@ -9,7 +9,6 @@
 .navBarList {
     list-style-type: none;
     display: flex;
-    /* flex-wrap: wrap; */
     justify-content: space-between;
     margin-left: -2em;
     margin-top: 0em;
@@ -37,11 +36,9 @@
 
 .title {
     color: white;
-    /* padding: 0 0 0 0.2em; */
     margin: 0px;
     text-decoration: none;
-    /* font-size: 2.5em; */
-} 
+}
 
 .title a:hover {
     color: orange;
@@ -52,42 +49,66 @@
     height: 3em;
     display: flex;
 }
+
 .diveFlagHeader img {
     height: 100%;
     margin-right: 0.5em;
 }
 
-@media (min-width:320px) and (max-width:480px) {
+@media (min-width:20em) and (max-width:30em) {
     /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
     .navbar {
-        background-color: rgba(37, 100, 160, 0.75);
         color: white;
-        margin: 0px 0px 0px 0px;
+        margin: 0;
         padding: 5px;
-        height: 3em;
+        width: 100%;
+        margin-top: -1.5em;
     }
     .navBarList {
         list-style-type: none;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        margin-left: -2em;
-        margin-top: 0em;
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .navbar-li a:hover {
+        color: orange;
+        transition: ease-in-out 0.3s color;
     }
     .navbar a {
         color: white;
+        margin-right: 0.5em;
         font-weight: bold;
+        font-size: 0.8em;
     }
     .header {
         display: flex;
-        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 6em;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background-image: linear-gradient(to bottom, rgb(72, 197, 255), rgba(47, 125, 161, 0.75), rgb(19, 51, 82, 0.5));
         background-color: rgb(37, 100, 160, 0.75);
         border-bottom: white 0.5px dashed;
     }
     .title {
         color: white;
-        padding: 5px;
-        margin: 0px;
-        font-size: 2.5em;
+        margin-top: 0.2em;
+        text-decoration: none;
+        font-size: 1.5em;
+    }
+    .title a:hover {
+        color: orange;
+        transition: ease-in-out 0.3s color;
+    }
+    .diveFlagHeader {
+        height: 1.5em;
+        display: flex;
+        align-items: center;
+    }
+    .diveFlagHeader img {
+        height: 100%;
+        margin-right: 0.5em;
     }
 }

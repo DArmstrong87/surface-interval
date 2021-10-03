@@ -300,6 +300,7 @@
     }
     .diveStatsDiv {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-evenly;
     }
     .loggedSpecialties {
@@ -324,5 +325,8 @@
     .expanded-condensed input {
         transform: scale(1.5);
         margin-right: 0.5em;
+    }
+    .diveStats-section {
+        margin-bottom: 1em;
     }
 }
