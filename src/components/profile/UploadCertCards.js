@@ -7,7 +7,8 @@ import axios from "axios";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 
 export const CertCardUpload = () => {
-    const [image, setImage] = useState([])
+    const [front, setFront] = useState([])
+    const [back, setBack] = useState([])
     const [user, setUser] = useState({})
     const [certCards, setCards] = useState([])
     const [certCard, setCert] = useState({ userId: user.id })
@@ -25,15 +26,28 @@ export const CertCardUpload = () => {
             ), []
     )
 
-    const uploadImage = () => {
+    const uploadFront = () => {
         const imageData = new FormData()
-        const img = { ...image }
+        const frontImg = { ...front }
         const cert = { ...certCard }
-        imageData.append("file", img[0])
+        imageData.append("file", frontImg[0])
         imageData.append('upload_preset', 'certCards')
         axios.post('https://api.cloudinary.com/v1_1/surface-interval/image/upload', imageData)
             .then(res => {
-                cert.imageUrl = res?.data?.secure_url
+                cert.frontImageUrl = res?.data?.secure_url
+                cert.userId = user?.id
+                setCert(cert)
+            })
+    }
+    const uploadBack = () => {
+        const imageData = new FormData()
+        const backImg = { ...back }
+        const cert = { ...certCard }
+        imageData.append("file", backImg[0])
+        imageData.append('upload_preset', 'certCards')
+        axios.post('https://api.cloudinary.com/v1_1/surface-interval/image/upload', imageData)
+            .then(res => {
+                cert.backImageUrl = res?.data?.secure_url
                 cert.userId = user?.id
                 setCert(cert)
             })
@@ -60,17 +74,20 @@ export const CertCardUpload = () => {
                     : ''}
                 {toggleUpload ? '' :
                     <>
-                        <p className="tip">Tip: Take photos of your cert cards and crop them.</p>
+                        <p className="tip">Tip: Take photos of the front and back of your cert cards and crop them.</p>
                         <button className="upload-cert-button" onClick={() => setToggleUpload(true)}>Upload New Card</button>
                     </>}
 
                 {toggleUpload ? <>
                     <div className="cert-card-form">
-                        {certCard.imageUrl ?
+                        {certCard.frontImageUrl ?
                             <article className="cards">
                                 <section className="uploadedCard">
                                     <div className="cert-card">
-                                        <img src={certCard.imageUrl} alt="New Cert" />
+                                        <img src={certCard?.frontImageUrl} alt="New Cert Front" />
+                                    </div>
+                                    <div className="cert-card">
+                                        <img src={certCard?.backImageUrl} alt="New Cert Back" />
                                     </div>
                                 </section>
                             </article> : ''}
@@ -90,16 +107,29 @@ export const CertCardUpload = () => {
                                 setCert(copy)
                             }} />
                         </fieldset>
-                        <fieldset className="upload-images-container">
-                            <div>
-                                <input className="fileUpload" name="fileUpload" type="file" onChange={(event) => {
-                                    setImage(event.target.files)
-                                }
-                                } />
+                        <fieldset className="upload-certs-container">
+                            <div className="cert-inputs">
+                                <div>
+                                    <input className="fileUpload" name="fileUpload" type="file" onChange={(event) => {
+                                        setFront(event.target.files)
+                                    }
+                                    } />
+                                    <button className="upload-certs"
+                                        onClick={uploadFront}>
+                                        Upload Front
+                                    </button>
+                                </div>
+                                <div>
+                                    <input className="fileUpload" name="fileUpload" type="file" onChange={(event) => {
+                                        setBack(event.target.files)
+                                    }
+                                    } />
+                                    <button className="upload-certs"
+                                        onClick={uploadBack}>
+                                        Upload Back
+                                    </button>
+                                </div>
                             </div>
-                            <button className="upload-photos" onClick={uploadImage}>
-                                Upload Photos
-                            </button>
                         </fieldset>
                         <div className="cert-buttons">
                             <button onClick={handleSubmit}>Submit</button>⚓
@@ -119,7 +149,10 @@ export const CertCardUpload = () => {
                                             <h2 className="cardTitle" >{card.name}</h2>
                                         </div>
                                         <div className="cert-card">
-                                            <img src={card.imageUrl} alt={`${card.name} Cert`} />
+                                            <img src={card.frontImageUrl} alt={`${card.name} Cert`} />
+                                        </div>
+                                        <div className="cert-card">
+                                            <img src={card.backImageUrl} alt={`${card.name} Cert`} />
                                         </div>
                                         <p className="cardDetails"><i>Date Issued: {card.dateIssued}</i>
                                             <button className="certButton"

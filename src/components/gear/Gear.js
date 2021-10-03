@@ -6,7 +6,7 @@ import { GearList } from "./GearList"
 
 export const Gear = () => {
     const [gear, setGear] = useState([])
-    
+
     useEffect(
         () => {
             getMyGear()
