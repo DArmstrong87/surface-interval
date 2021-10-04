@@ -11,7 +11,12 @@ export const CertCardUpload = () => {
     const [back, setBack] = useState([])
     const [user, setUser] = useState({})
     const [certCards, setCards] = useState([])
-    const [certCard, setCert] = useState({ userId: user.id })
+    const [certCard, setCert] = useState({ 
+        userId: user.id,
+        name: "Open Water Diver",
+        dateIssued: "2017-08-06",
+
+    })
     const [toggleUpload, setToggleUpload] = useState(false)
 
     useEffect(() =>
@@ -93,7 +98,9 @@ export const CertCardUpload = () => {
                             </article> : ''}
                         <fieldset>
                             <label htmlFor="name">Name</label>
-                            <input type="text" placeholder={"Name of cert"} onChange={(event) => {
+                            <input type="text" 
+                            value={certCard.name}
+                            placeholder={"Name of cert"} onChange={(event) => {
                                 const copy = { ...certCard }
                                 copy.name = event.target.value
                                 setCert(copy)
@@ -101,7 +108,9 @@ export const CertCardUpload = () => {
                         </fieldset>
                         <fieldset>
                             <label htmlFor="name">Date Issued</label>
-                            <input type="date" onChange={(event) => {
+                            <input type="date" 
+                            value={certCard.dateIssued}
+                            onChange={(event) => {
                                 const copy = { ...certCard }
                                 copy.dateIssued = event.target.value
                                 setCert(copy)

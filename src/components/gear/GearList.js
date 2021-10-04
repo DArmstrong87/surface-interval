@@ -19,7 +19,7 @@ export const GearList = ({ gear, deleteGear, setGear }) => {
                             {gearset.regulator !== '' ?
                                 <li><b>Regulator:</b> {gearset.regulator}</li> : ''}
                             {gearset.octopus !== '' ?
-                                <li><b>Octopus:</b> {gearset.octopus}</li> : ''}
+                                <li><b>Alternate air source:</b> {gearset.octopus}</li> : ''}
                             {gearset.mask !== '' ?
                                 <li><b>Mask:</b> {gearset.mask}</li> : ''}
                             {gearset.fins !== '' ?

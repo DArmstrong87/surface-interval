@@ -8,7 +8,16 @@ import { DiveLogImageUpload } from "./imageUpload/DiveLogImageUpload";
 
 export const LogNewDive = () => {
     const [dives, setDives] = useState([])
-    const [diveCopy, setDive] = useState({ userId: parseInt(localStorage.getItem('si_user')) })
+    const [diveCopy, setDive] = useState({ 
+        userId: parseInt(localStorage.getItem('si_user')),
+        location: 'Iceland',
+        diveSite: 'Silfra',
+        waterTemp: 36,
+        date: '2021-10-02',
+        depth: 40,
+        time: 45,
+        comments: 'Super cold dive but amazing visibility! Diving between continental shelves!'
+    })
     const history = useHistory()
     const [diveImages, setDiveImages] = useState()
     const currentDive = dives.length + 1
@@ -35,7 +44,9 @@ export const LogNewDive = () => {
                 <h2 className='diveNumber'>Dive {currentDive}</h2>
                 <fieldset>
                     <label htmlFor="date">Date </label>
-                    <input type="date" className='date' onChange={(event) => {
+                    <input type="date" 
+                    value={diveCopy.date}
+                    className='date' onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.date = event.target.value
                         setDive(copy)
@@ -43,7 +54,9 @@ export const LogNewDive = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="location">Location</label>
-                    <input type="location" placeholder={"City or Country"} onChange={(event) => {
+                    <input type="location"
+                    value={diveCopy.location}
+                    placeholder={"City or Country"} onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.location = event.target.value
                         setDive(copy)
@@ -51,7 +64,9 @@ export const LogNewDive = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="dive-Site">Dive Site</label>
-                    <input type="diveSite" placeholder="USS Kittiwake" onChange={(event) => {
+                    <input type="diveSite" 
+                    value={diveCopy.diveSite}
+                    placeholder="USS Kittiwake" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.diveSite = event.target.value
                         setDive(copy)
@@ -76,7 +91,9 @@ export const LogNewDive = () => {
                 </div>
                 <fieldset>
                     <label htmlFor="depth">Depth</label>
-                    <input type="number" min="15" max="140" onChange={(event) => {
+                    <input type="number" 
+                    value={diveCopy.depth}
+                    min="15" max="140" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.depth = parseInt(event.target.value)
                         setDive(copy)
@@ -84,7 +101,9 @@ export const LogNewDive = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="time">Time</label>
-                    <input type="number" min="0" max="205" onChange={(event) => {
+                    <input type="number" 
+                     value={diveCopy.time}
+                    min="0" max="205" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.time = parseInt(event.target.value)
                         setDive(copy)
@@ -92,7 +111,9 @@ export const LogNewDive = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="comments">Comments</label>
-                    <textarea className="comments-box" rows="4" cols="29" type="comments" onChange={(event) => {
+                    <textarea className="comments-box" 
+                    value={diveCopy.comments}
+                    rows="4" cols="29" type="comments" onChange={(event) => {
                         const copy = { ...diveCopy }
                         copy.comments = event.target.value
                         setDive(copy)

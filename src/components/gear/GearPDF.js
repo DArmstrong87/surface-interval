@@ -59,7 +59,7 @@ export const GearPDF = ({ gear }) => {
                             {gear.regulator ? `___ Regulator: ${gear.regulator}` : ''}
                         </Text>
                         <Text style={styles.li}>
-                            {gear.octopus ? `___ Octopus: ${gear.octopus}` : ''}
+                            {gear.octopus ? `___ Alternate air source: ${gear.octopus}` : ''}
                         </Text>
                         <Text style={styles.li}>
                             {gear.mask ? `___ Mask: ${gear.mask}` : ''}

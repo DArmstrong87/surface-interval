@@ -31,7 +31,7 @@ export const EssentialGear = ({ gearCopy, setNewGear }) => {
                         }} />
                     </fieldset>
                     <fieldset>
-                        <label>Octopus</label>
+                        <label>Alternate air source</label>
                         <input type="Octopus" value={gearCopy.octopus} onChange={(event) => {
                             const copy = { ...gearCopy }
                             copy.octopus = event.target.value

@@ -9,7 +9,7 @@ export const DisplayEssential = ({ gear }) => {
             {gear.regulator ?
                 <li><b>Regulator:</b> {gear.regulator}</li> : ''}
             {gear.octopus ?
-                <li><b>Octopus:</b> {gear.octopus}</li> : ''}
+                <li><b>Alternate air source:</b> {gear.octopus}</li> : ''}
             {gear.mask ?
                 <li><b>Mask:</b> {gear.mask}</li> : ''}
             {gear.fins ?

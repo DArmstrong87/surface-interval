@@ -69,6 +69,7 @@ export const Conditions = ({ diveCopy, setDive }) => {
         <fieldset>
             <label className="">Water Temperature</label>
             <input type="number" width="20px"
+            value={diveCopy.waterTemp}
                 onChange={(event) => {
                     const copy = { ...diveCopy }
                     copy.waterTemp = event.target.value
