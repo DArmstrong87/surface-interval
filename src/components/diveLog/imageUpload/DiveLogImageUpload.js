@@ -1,11 +1,28 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import "./ImageUpload.css"
-import { getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager';
+import { getAllDiveImages, postImages } from '../../application/ApiManager';
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
 
-export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) => {
-    const [postedImages, setPostedImages] = useState([])
+export const DiveLogImageUpload = ({ setDiveImages, currentDive }) => {
+    const [postedImages, setPostedImages] = useState([
+        {
+            diveId: 129,
+            imageUrl: "https://res.cloudinary.com/surface-interval/image/upload/v1633312641/divelog-images/ii1bx971cz9l3ewu0j0c.webp"
+        },
+        {
+            diveId: 129,
+            imageUrl: "https://res.cloudinary.com/surface-interval/image/upload/v1633312641/divelog-images/itdzrgactbxup12qmwsa.webp"
+        },
+        {
+            diveId: 129,
+            imageUrl: "https://res.cloudinary.com/surface-interval/image/upload/v1633312641/divelog-images/v30tdxz0qxh6t3r5p0db.webp"
+        },
+        {
+            diveId: 129,
+            imageUrl: "https://res.cloudinary.com/surface-interval/image/upload/v1633312640/divelog-images/xqzhm4wgzr65etvjg9ur.webp"
+        }
+    ])
     const [allDiveImages, setAllDiveImages] = useState([])
 
     useEffect(
@@ -14,30 +31,17 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
                 .then(images => setAllDiveImages(images))
         }, [currentDive]
     )
-    useEffect(
-        () => {
-            getDiveImages(currentDive)
-                .then(images => setPostedImages(images))
-        }, [currentDive, allDiveImages]
-    )
+    // useEffect(
+    //     () => {
+    //         getDiveImages(currentDive)
+    //             .then(images => setPostedImages(images))
+    //     }, [currentDive, allDiveImages]
+    // )
 
     const uploadImage = () => {
-        for (let i = 0; i < diveImages.length; i++) {
-            const imageData = new FormData()
-            const copy = { ...diveImages }
-            imageData.append("file", copy[i])
-            imageData.append('upload_preset', 'diveLog')
-            axios.post('https://api.cloudinary.com/v1_1/surface-interval/image/upload', imageData)
-                .then(res => {
-                    copy.imageUrl = res?.data?.secure_url
-                    copy.diveId = currentDive
-                    postImages(copy)
-                })
-                .then(() => {
-                    getAllDiveImages()
-                        .then(images => setAllDiveImages(images))
-                })
-
+        for (let i = 0; i < postedImages.length; i++) {
+            const copy = { ...postedImages[i] }
+            postImages(copy)
         }
     }
     const options = { buttons: { showDownloadButton: false } }
@@ -49,8 +53,7 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
                 <section className="preview-images">
                     <SRLWrapper options={options}>
                         {postedImages.map(image => {
-                            return <img src={image.imageUrl} alt="divelog" />
-
+                            return <img src={image.imageUrl} alt="dive log" />
                         })}
                     </SRLWrapper>
                 </section >

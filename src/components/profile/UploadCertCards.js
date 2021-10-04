@@ -12,10 +12,11 @@ export const CertCardUpload = () => {
     const [user, setUser] = useState({})
     const [certCards, setCards] = useState([])
     const [certCard, setCert] = useState({ 
-        userId: user.id,
+        userId: 1,
         name: "Open Water Diver",
         dateIssued: "2017-08-06",
-
+        frontImageUrl: "https://res.cloudinary.com/surface-interval/image/upload/v1633303354/certCards/z1y9pcif8gaubdcpi5ro.webp",
+        backImageUrl: "https://res.cloudinary.com/surface-interval/image/upload/v1633300453/certCards/c51ujdz4dn4kv5rmwt86.webp"
     })
     const [toggleUpload, setToggleUpload] = useState(false)
 
