@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
-import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
-import { getDivesAndImages } from "../../application/ApiManager";
+import React, { useState } from "react"
+import { useEffect } from "react/cjs/react.development"
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox"
+import { getDivesAndImages } from "../../application/ApiManager"
 import "./PhotoGallery.css"
 
 export const PhotoGallery = () => {
