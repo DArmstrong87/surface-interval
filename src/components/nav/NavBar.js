@@ -29,7 +29,7 @@ export const NavBar = () => {
 						<Link className="navbar__link" to="/gear">Gear</Link>
 					</li>
 					<li className="navbar-li">
-						<Link className="navbar__link" to="/photo-gallery">Photo Gallery</Link>
+						<Link className="navbar__link" to="/photoGallery">Photo Gallery</Link>
 					</li>
 					<li className="navbar-li">
 						<Link className="navbar__link" to="/profile">Profile</Link>

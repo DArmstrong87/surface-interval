@@ -13,7 +13,6 @@ import { Gearset } from "../gear/Gearset"
 import { DiverProfile } from "../profile/DiverProfile"
 import { Home } from "./Home"
 
-
 export const ApplicationViews = () => {
     return (
         <>
@@ -50,7 +49,7 @@ export const ApplicationViews = () => {
             <Route path="/profile">
                 <DiverProfile />
             </Route>
-            <Route path="/photo-gallery">
+            <Route path="/photoGallery">
                 <PhotoGallery />
             </Route>
         </>)
