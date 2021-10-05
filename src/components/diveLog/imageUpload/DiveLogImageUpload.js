@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import "./ImageUpload.css"
-import { getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager';
-import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
+import { getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager'
+import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 
 export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) => {
     const [postedImages, setPostedImages] = useState([])
