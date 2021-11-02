@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import './DivePlanner.css';
 import { DiveStates } from "./DiveStates";
 import "./DivePlanForm.css"
@@ -11,9 +11,26 @@ import { DiveStatesN36 } from "./EANx36/DiveStatesN36";
 
 export const DivePlanner = () => {
     const [air, setAir] = useState('air')
+    const RDP = useRef()
+    const RDP_Back = useRef()
 
     return (<>
+
+
+
         <article>
+            <dialog ref={RDP} className="RDP-dialog" onClick={() => { RDP.current.close() }}>
+                <div className="RDP">
+                    <img src="http://localhost:3000/static/media/RDPFront.9ed0326a.jpg" alt="RDP" onClick={() => { RDP.current.close() }} />
+                </div>
+                <button onClick={() => { RDP.current.close() }}>Close</button>
+            </dialog>
+            <dialog ref={RDP_Back} className="RDP-dialog" onClick={() => { RDP_Back.current.close() }}>
+                <div className="RDP">
+                    <img src="http://localhost:3000/static/media/RDPBack.d0c2f2df.jpg" alt="RDP Back" onClick={() => { RDP_Back.current.close() }} />
+                </div>
+                <button onClick={() => { RDP_Back.current.close() }}>Close</button>
+            </dialog>
             <section className="divePlannerHeading">
                 <h1>Plan the dive, dive the plan.</h1>
                 <p>
@@ -28,15 +45,11 @@ export const DivePlanner = () => {
         </article>
 
         <section className="RDP-container">
-            <div className="RDP">
-                <a href="http://localhost:3000/static/media/RDPFront.9ed0326a.jpg">
-                    <img src={rdpFront} alt="RDP Front" />
-                </a>
+            <div className="RDP-small">
+                <img src={rdpFront} alt="RDP Front" onClick={() => { RDP.current.showModal() }} />
             </div>
-            <div className="RDP">
-                <a href="http://localhost:3000/static/media/RDPBack.d0c2f2df.jpg">
-                    <img src={rdpBack} alt="RDP Back" />
-                </a>
+            <div className="RDP-small">
+                <img src={rdpBack} alt="RDP Back" onClick={() => { RDP_Back.current.showModal() }} />
             </div>
         </section>
 
