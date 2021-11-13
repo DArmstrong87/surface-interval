@@ -3,18 +3,46 @@
     flex-wrap: wrap;
     width: 100%;
 }
-
-.dive-images div {
-    display: flex;
-    flex-wrap: wrap;
+.dive-images div{
+    width: 100%;
 }
 
-.dive-images img {
-    width: 32%;
-    height: 10em;
+.diveImagesDiv{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+}
+
+.diveImage{
+    flex-basis: 33%;
+    display: flex;
+    flex-direction: column;
+}
+.diveImage button{
+    margin: auto;
+    width: fit-content;
+    margin: 0.2em auto 0.2em auto;
+}
+
+.diveImage img {
+    width: 100%;
     object-fit: cover;
-    margin: 0.2em;
     cursor: pointer;
+}
+.diveImage img:hover{
+    animation: grow 0.1s linear;
+    transform: scale(110%);
+    border-radius: 10px;
+}
+
+@keyframes grow {
+    from {
+        transform: scale(100%);
+    }
+    to {
+        transform: scale(110%);
+    }
 }
 
 @media (min-width:20em) and (max-width:30em) {

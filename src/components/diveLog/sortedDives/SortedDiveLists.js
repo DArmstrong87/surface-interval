@@ -22,8 +22,9 @@ export const SortedDiveLists = () => {
     // Unique locations and dive sites to avoid duplicates.
     const locations = divesByDate.map((dive) => { return dive.location })
     const sites = divesByDate.map((dive) => { return dive.diveSite })
-    const uniqueLocations = [...new Set(locations)]
-    const uniqueSites = [...new Set(sites)]
+    const uniqueLocations = [...new Set(locations)].sort()
+    const uniqueSites = [...new Set(sites)].sort()
+    // const uniqueLocations = uniqueLocationsSet.sort()
 
     useEffect(
         () => {

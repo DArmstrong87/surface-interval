@@ -1,19 +1,19 @@
 .diveFormContainer {
     display: flex;
     justify-content: center;
-    width: 50%;
+    width: 100%;
     margin: auto;
 }
 
 .diveForm {
     border: 1px black solid;
+    width: 55%;
     color: white;
     padding: 1em;
     margin-bottom: 5%;
     background-color: rgb(37, 100, 160, 0.75);
     background-image: linear-gradient(to bottom, rgba(59, 163, 211, 0.5), rgba(47, 125, 161, 0.75), rgba(3, 7, 12, 0.5));
     border-radius: 10px;
-    width: 70%;
 }
 
 fieldset {
@@ -23,15 +23,16 @@ fieldset {
 fieldset input{
     padding: 5px;
     margin-right: 1em;
-    width: 68%;  
+    width: 50%;  
     height: 25px;
     cursor: pointer;
     align-items:center;
 }
 fieldset label {
     padding-right: 10px;
+    padding-left: 0;
     text-align: right;
-    width: 30%;
+    width: 25%;
 }
 
 .fresh-salt-radios{
@@ -52,7 +53,7 @@ fieldset label {
 }
 
 .date {
-    width: 68%;
+    width: 50%;
 }
 
 .submit-cancel-buttons {
@@ -78,7 +79,8 @@ fieldset label {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: nowrap;
-    width: 100%;
+    width: 80%;
+    margin: auto;
 }
 .specialtyColumn{
     flex-direction: column;

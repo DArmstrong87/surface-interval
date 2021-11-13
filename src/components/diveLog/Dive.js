@@ -33,7 +33,7 @@ export const Dive = () => {
                 .then(images => {
                     setDiveImages(images)
                 })
-        }, [diveId]
+        }, [diveId, images]
     )
 
     useEffect(
@@ -107,15 +107,17 @@ export const Dive = () => {
                         <h3 className='diveNumber'>Photos</h3>
                         <div className="dive-images">
                             <SRLWrapper options={options}>
-                                {images.map(image => {
-                                    return <>
-                                        <img src={image.imageUrl} alt={`Location: ${dive.location}, ${dive.diveSite} ${dive.date}`} onClick={(event) => shiftClick(event, image.id)} />
-                                        {/* <button className="x" onClick={() => { deleteImage(image.id) }}>X</button> */}
-                                    </>
-                                })}
+                                <div className="diveImagesDiv">
+                                    {images.map(image => {
+                                        return <>
+                                            <div className="diveImage">
+                                                <img src={image.imageUrl} alt={`Location: ${dive.location}, ${dive.diveSite} ${dive.date}`} />
+                                            </div>
+                                        </>
+                                    })}
+                                </div>
                             </SRLWrapper>
                         </div>
-                        <p>Shift+Click to delete</p>
                     </> : ''
                     }
 
