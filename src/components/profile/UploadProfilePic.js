@@ -27,11 +27,17 @@ export const ProfilePicUpload = () => {
         patch.profilePicUrl = res?.data?.secure_url
         setProfilePatch(patch)
       })
+      .then(setProfilePatch({ profilePicUrl: '' }))
   }
 
   const handleSubmit = () => {
     updateProfilePic(user, profilePatch, setUser)
     setProfileUpload(false)
+  }
+
+  const resetForm = () => {
+    setProfileUpload(false)
+    setProfilePatch({ profilePicUrl: '' })
   }
 
   return (
@@ -63,8 +69,9 @@ export const ProfilePicUpload = () => {
           </fieldset>
 
           <div className="cert-buttons">
-            <button onClick={handleSubmit}>Save</button>⚓
-            <button onClick={() => setProfileUpload(false)}>Cancel</button>
+            {profilePatch.profilePicUrl ? <><button onClick={handleSubmit}>Save</button>
+              ⚓</> : ""}
+            <button onClick={resetForm}>Cancel</button>
           </div>
         </div>
       </>
