@@ -9,6 +9,8 @@ import { SpecialtyStats } from "./SpecialtyStats";
 
 export const DiveLog = () => {
     const [view, setView] = useState({ condensed: true })
+    const [specialty, setSpecialty] = useState("")
+    console.log(specialty)
 
     return (<>
         <article className='diveLogArticle'>
@@ -18,7 +20,7 @@ export const DiveLog = () => {
             </section>
             <div className="diveStatsDiv">
                 <DiveStats />
-                <SpecialtyStats />
+                <SpecialtyStats setSpecialty={setSpecialty}/>
                 <Link to="/logdive">
                     <button className="logDive">
                         Log Dive<br />
@@ -42,7 +44,7 @@ export const DiveLog = () => {
             <label htmlFor="expanded">Expanded</label>
         </div>
 
-        {view.condensed ? <SortedDiveLists /> : ''}
+        {view.condensed ? <SortedDiveLists specialty={specialty}/> : ''}
         {view.expanded ? <DiveList /> : ''}
 
     </>)
