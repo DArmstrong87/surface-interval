@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router"
 import { Link } from "react-router-dom"
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox"
-import { deleteImage, deleteSingleDive, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
+import { deleteSingleDive, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
 import "./Dive.css"
 
 export const Dive = () => {
@@ -46,12 +46,6 @@ export const Dive = () => {
     const index = dives.indexOf(dives.find(singleDive => singleDive.id === dive.id))
 
     const options = { buttons: { showDownloadButton: false } }
-
-    const shiftClick = (event, id) => {
-        if (event.shiftKey) {
-            deleteImage(id)
-        }
-    }
 
     return (
         <><SimpleReactLightbox>

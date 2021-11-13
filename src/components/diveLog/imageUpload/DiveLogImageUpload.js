@@ -43,9 +43,10 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
         if (e.code === "Enter") {
             const array = e.target.value.split(",")
             console.log(array)
-            for (const image in array) {
+            for (const url of array) {
+                // debugger
                 const image = {
-                    imageUrl: e.target.value,
+                    imageUrl: url,
                     diveId: currentDive
                 }
                 postImages(image)
