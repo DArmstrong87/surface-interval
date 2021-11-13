@@ -3,7 +3,7 @@ import { getDivesByDate, getDivesByParam, deleteDive, getDivesAlphabetical, getD
 import { Link } from "react-router-dom"
 import "./SortedDives.css"
 
-export const SortedDiveLists = () => {
+export const SortedDiveLists = ({ specialty }) => {
     const [divesByDate, setDivesByDate] = useState([])
     const [images, setImages] = useState([])
     const [toggleState, setToggle] = useState({ all: true })
@@ -22,17 +22,26 @@ export const SortedDiveLists = () => {
     // Unique locations and dive sites to avoid duplicates.
     const locations = divesByDate.map((dive) => { return dive.location })
     const sites = divesByDate.map((dive) => { return dive.diveSite })
-    const uniqueLocations = [...new Set(locations)]
-    const uniqueSites = [...new Set(sites)]
+    const uniqueLocations = [...new Set(locations)].sort()
+    const uniqueSites = [...new Set(sites)].sort()
 
     useEffect(
         () => {
-            getDivesByDate(dateOrder)
-                .then(dives => {
-                    setDivesByDate(dives)
-                })
+            if (specialty !== "") {
+                setPropertyandParam({ property: specialty, param: true })
+                setToggle({ specialty: true })
+                getDivesByParam(obj)
+                    .then(dives => {
+                        setDivesByParam(dives)
+                    })
+            } else {
+                getDivesByDate(dateOrder)
+                    .then(dives => {
+                        setDivesByDate(dives)
+                    })
+            }
         },
-        [divesByDate.length, dateOrder]
+        [divesByDate.length, dateOrder, specialty]
     )
 
     useEffect(
@@ -90,6 +99,7 @@ export const SortedDiveLists = () => {
                 .then(images => setImages(images))
         }, []
     )
+
     const findDives = () => {
         if (toggleState.all) return divesByDate
         if (toggleState.date) return divesByDate
@@ -97,6 +107,7 @@ export const SortedDiveLists = () => {
         if (toggleState.location) return divesByParam
         if (toggleState.diveSite) return divesByParam
         if (toggleState.depth) return divesByDepth
+        if (toggleState.specialty) return divesByParam
         else if (toggleState.time) return divesByTime
     }
     const dives = findDives()

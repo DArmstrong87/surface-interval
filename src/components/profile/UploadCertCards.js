@@ -59,6 +59,11 @@ export const CertCardUpload = () => {
             .then(() => setCert({ userId: user.id }));
         setToggleUpload(false)
     }
+    const resetForm = (e) => {
+        e.preventDefault()
+        setToggleUpload(false)
+        setCert({ userId: user.id })
+    }
 
     const options = { buttons: { showDownloadButton: false } }
 
@@ -86,9 +91,11 @@ export const CertCardUpload = () => {
                                     <div className="cert-card">
                                         <img src={certCard?.frontImageUrl} alt="New Cert Front" />
                                     </div>
-                                    <div className="cert-card">
-                                        <img src={certCard?.backImageUrl} alt="New Cert Back" />
-                                    </div>
+                                    {certCard.backImageUrl ?
+                                        <div className="cert-card">
+                                            <img src={certCard?.backImageUrl} alt="New Cert Back" />
+                                        </div>
+                                        : ""}
                                 </section>
                             </article> : ''}
                         <fieldset>
@@ -109,31 +116,39 @@ export const CertCardUpload = () => {
                         </fieldset>
                         <fieldset className="upload-certs-container">
                             <div className="cert-inputs">
-                                <div>
-                                    <input className="fileUpload" name="fileUpload" type="file" onChange={(event) => {
-                                        setFront(event.target.files)
-                                    }
-                                    } />
-                                    <button className="upload-certs"
-                                        onClick={uploadFront}>
-                                        Upload Front
-                                    </button>
-                                </div>
-                                <div>
-                                    <input className="fileUpload" name="fileUpload" type="file" onChange={(event) => {
-                                        setBack(event.target.files)
-                                    }
-                                    } />
-                                    <button className="upload-certs"
-                                        onClick={uploadBack}>
-                                        Upload Back
-                                    </button>
-                                </div>
+
+                                {certCard.frontImageUrl ? "" :
+                                    <div>
+                                        <input className="fileUpload" name="fileUpload" type="file" onChange={(event) => {
+                                            setFront(event.target.files)
+                                        }
+                                        } />
+                                        <button className="upload-certs"
+                                            onClick={uploadFront}>
+                                            Upload Front
+                                        </button>
+                                    </div>
+                                }
+                                {certCard.frontImageUrl && !certCard.backImageUrl ?
+                                    <div>
+                                        <input className="fileUpload" name="fileUpload" type="file" onChange={(event) => {
+                                            setBack(event.target.files)
+                                        }
+                                        } />
+                                        <button className="upload-certs"
+                                            onClick={uploadBack}>
+                                            Upload Back
+                                        </button>
+                                    </div>
+                                    :
+                                    certCard.backImageUrl ? "" : ""}
                             </div>
                         </fieldset>
                         <div className="cert-buttons">
-                            <button onClick={handleSubmit}>Submit</button>⚓
-                            <button onClick={() => setToggleUpload(false)}>Cancel</button>
+                            {certCard.frontImageUrl && certCard.backImageUrl ?
+                                <button onClick={handleSubmit}>Submit</button>
+                                : ""}
+                            ⚓<button onClick={resetForm}>Cancel</button>
                         </div>
                     </div>
                 </>
@@ -148,17 +163,20 @@ export const CertCardUpload = () => {
                                         <div className="cardHeader">
                                             <h2 className="cardTitle" >{card.name}</h2>
                                         </div>
-                                        <div className="cert-card">
-                                            <img src={card.frontImageUrl} alt={`${card.name} Cert`} />
+                                        <div>
+
+                                            <div className="cert-card">
+                                                <img src={card.frontImageUrl} alt={`${card.name} Cert`} />
+                                            </div>
+                                            <div className="cert-card">
+                                                <img src={card.backImageUrl} alt={`${card.name} Cert`} />
+                                            </div>
+                                            <p className="cardDetails"><i>Date Issued: {card.dateIssued}</i>
+                                                <button className="certButton"
+                                                    onClick={() => { deleteCard(card.id, setCards) }}>
+                                                    Delete</button>
+                                            </p>
                                         </div>
-                                        <div className="cert-card">
-                                            <img src={card.backImageUrl} alt={`${card.name} Cert`} />
-                                        </div>
-                                        <p className="cardDetails"><i>Date Issued: {card.dateIssued}</i>
-                                            <button className="certButton"
-                                                onClick={() => { deleteCard(card.id, setCards) }}>
-                                                Delete</button>
-                                        </p>
                                     </section>
 
                                 </>

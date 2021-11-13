@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { GetDiveStats } from "../application/ApiManager"
 import "./DiveStats.css"
 
-export const SpecialtyStats = () => {
+
+export const SpecialtyStats = ({ setSpecialty }) => {
     const diveStats = GetDiveStats()
 
     return (<>
@@ -15,45 +17,87 @@ export const SpecialtyStats = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><b>Altitude</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isAltitude')
+                            }}>Altitude</button></td>
                         <td>{diveStats.altitude}</td>
-                        <td><b>Night</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isNight')
+                            }}>Night</button></td>
                         <td>{diveStats.night}</td>
                     </tr>
                     <tr>
-                        <td><b>Cave</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isCave')
+                            }}>Cave</button></td>
                         <td>{diveStats.cave}</td>
-                        <td><b>EANx32</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isN32')
+                            }}>EANx32</button></td>
                         <td>{diveStats.n32}</td>
                     </tr>
                     <tr>
-                        <td><b>Deep</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isDeep')
+                            }}>Deep</button></td>
                         <td>{diveStats.deep}</td>
-                        <td><b>EANx36</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isN36')
+                            }}>EANx36</button></td>
                         <td>{diveStats.n36}</td>
                     </tr>
                     <tr>
-                        <td><b>Drift</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isDrift')
+                            }}>Drift</button></td>
                         <td>{diveStats.drift}</td>
-                        <td><b>Rebreather</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isRebreather')
+                            }}>Rebreather</button></td>
                         <td>{diveStats.rebreather}</td>
                     </tr>
                     <tr>
-                        <td><b>Drysuit</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isDry')
+                            }}>Drysuit</button></td>
                         <td>{diveStats.dry}</td>
-                        <td><b>Search & Recovery</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isSearch')
+                            }}>Search & Recovery</button></td>
                         <td>{diveStats.search}</td>
                     </tr>
                     <tr>
-                        <td><b>Full Face Mask</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isFFM')
+                            }}>Full Face Mask</button></td>
                         <td>{diveStats.ffm}</td>
-                        <td><b>Sidemount</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isSidemount')
+                            }}>Sidemount</button></td>
                         <td>{diveStats.sidemount}</td>
                     </tr>
                     <tr>
-                        <td><b>Navigation</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isNav')
+                            }}>Navigation</button></td>
                         <td>{diveStats.nav}</td>
-                        <td><b>Wreck</b></td>
+                        <td><button className="specialtyButton"
+                            onClick={() => {
+                                setSpecialty('isWreck')
+                            }}>Wreck</button></td>
                         <td>{diveStats.wreck}</td>
                     </tr>
                 </tbody>

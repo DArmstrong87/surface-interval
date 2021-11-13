@@ -22,11 +22,9 @@
     text-align: center;
 }
 
-
 .diveStatsTable {
     background-color: rgba(37, 100, 160);
     background-image: linear-gradient(to bottom, rgb(72, 197, 255), rgba(47, 125, 161, 0.75), rgb(19, 51, 82, 0.5));
-
     color: white;
     border: 1px solid black;
     margin: auto;
@@ -36,4 +34,13 @@
 .diveStatsTable td {
     border: 1px solid black;
     padding: 0.2em 0.4em 0.2em 0.4em;
+}
+
+.specialtyButton {
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 0;
+    border-radius: 0;
 }

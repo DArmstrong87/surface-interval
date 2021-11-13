@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router"
 import { Link } from "react-router-dom"
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox"
-import { deleteImage, deleteSingleDive, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
+import { deleteSingleDive, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
 import "./Dive.css"
 
 export const Dive = () => {
@@ -33,7 +33,7 @@ export const Dive = () => {
                 .then(images => {
                     setDiveImages(images)
                 })
-        }, [diveId]
+        }, [diveId, images]
     )
 
     useEffect(
@@ -46,12 +46,6 @@ export const Dive = () => {
     const index = dives.indexOf(dives.find(singleDive => singleDive.id === dive.id))
 
     const options = { buttons: { showDownloadButton: false } }
-
-    const shiftClick = (event, id) => {
-        if (event.shiftKey) {
-            deleteImage(id)
-        }
-    }
 
     return (
         <><SimpleReactLightbox>
@@ -107,15 +101,17 @@ export const Dive = () => {
                         <h3 className='diveNumber'>Photos</h3>
                         <div className="dive-images">
                             <SRLWrapper options={options}>
-                                {images.map(image => {
-                                    return <>
-                                        <img src={image.imageUrl} alt={`Location: ${dive.location}, ${dive.diveSite} ${dive.date}`} onClick={(event) => shiftClick(event, image.id)} />
-                                        {/* <button className="x" onClick={() => { deleteImage(image.id) }}>X</button> */}
-                                    </>
-                                })}
+                                <div className="diveImagesDiv">
+                                    {images.map(image => {
+                                        return <>
+                                            <div className="diveImage">
+                                                <img src={image.imageUrl} alt={`Location: ${dive.location}, ${dive.diveSite} ${dive.date}`} />
+                                            </div>
+                                        </>
+                                    })}
+                                </div>
                             </SRLWrapper>
                         </div>
-                        <p>Shift+Click to delete</p>
                     </> : ''
                     }
 

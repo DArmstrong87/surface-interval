@@ -212,10 +212,10 @@ export const submitDive = (event, diveCopy) => {
     }
     return fetch("https://surface-interval-api-ferdk.ondigitalocean.app/dives", fetchOption)
 }
-export const postImages = (diveImages) => {
+export const postImages = (diveImage) => {
     const newImage = {
-        diveId: diveImages.diveId,
-        imageUrl: diveImages.imageUrl
+        diveId: diveImage.diveId,
+        imageUrl: diveImage.imageUrl
     }
     const fetchOption = {
         method: "POST",

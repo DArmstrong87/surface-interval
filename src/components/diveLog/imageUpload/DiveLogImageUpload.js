@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import "./ImageUpload.css"
-import { getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager'
+import { deleteImage, getAllDiveImages, getDiveImages, postImages } from '../../application/ApiManager'
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox'
 
 export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) => {
@@ -37,21 +37,53 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
                     getAllDiveImages()
                         .then(images => setAllDiveImages(images))
                 })
-
         }
     }
+    const handleUrlUpload = (e) => {
+        if (e.code === "Enter") {
+            const array = e.target.value.split(",")
+            console.log(array)
+            for (const url of array) {
+                // debugger
+                const image = {
+                    imageUrl: url,
+                    diveId: currentDive
+                }
+                postImages(image)
+                    .then(() => {
+                        getAllDiveImages()
+                            .then(images => setAllDiveImages(images))
+                    })
+
+            }
+        }
+    }
+
+    const handleImgDelete = (id) => {
+        deleteImage(id)
+        getAllDiveImages()
+            .then(images => setAllDiveImages(images))
+    }
+
+
     const options = { buttons: { showDownloadButton: false } }
 
     return (
         <SimpleReactLightbox>
             <div>
                 <h2 className='diveNumber'>Photos</h2>
-                <section className="preview-images">
+                <section className="dive-images">
                     <SRLWrapper options={options}>
-                        {postedImages.map(image => {
-                            return <img src={image.imageUrl} alt="divelog" />
-
-                        })}
+                        <div className="diveImagesDiv">
+                            {postedImages.map(image => {
+                                return <>
+                                    <div className="diveImage">
+                                        <img src={image.imageUrl} alt="divelog" />
+                                        <button onClick={() => handleImgDelete(image.id)}>Delete</button>
+                                    </div>
+                                </>
+                            })}
+                        </div>
                     </SRLWrapper>
                 </section >
 
@@ -63,6 +95,11 @@ export const DiveLogImageUpload = ({ setDiveImages, diveImages, currentDive }) =
                     <button className="upload-photos" onClick={uploadImage}>
                         Upload Photos
                     </button>
+                </fieldset>
+                <fieldset className="upload-images-container">
+                    <label htmlFor="urlUpload">Upload from Url</label>
+                    <textarea name="urlUpload" placeholder='Separate multiple urls with a comma' rows="7" cols="30"
+                        onKeyPress={handleUrlUpload} />
                 </fieldset>
             </div >
         </SimpleReactLightbox>
