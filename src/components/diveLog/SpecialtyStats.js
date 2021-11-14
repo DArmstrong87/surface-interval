@@ -1,8 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { GetDiveStats } from "../application/ApiManager"
 import "./DiveStats.css"
-
 
 export const SpecialtyStats = ({ setSpecialty }) => {
     const diveStats = GetDiveStats()
