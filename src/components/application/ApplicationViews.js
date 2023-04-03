@@ -1,5 +1,5 @@
 import React from "react"
-import { Route } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Dive } from "../diveLog/Dive"
 import { DiveLog } from "../diveLog/DiveLog"
 import { EditDive } from "../diveLog/EditDive"
@@ -13,44 +13,37 @@ import { Gearset } from "../gear/Gearset"
 import { DiverProfile } from "../profile/DiverProfile"
 import { Home } from "./Home"
 
+
 export const ApplicationViews = () => {
     return (
         <>
-            <Route exact path="/">
-                <Home />
-            </Route>
-            <Route path="/divelog">
-                <DiveLog />
-            </Route>
-            <Route path="/logdive">
-                <LogNewDive />
-            </Route>
-            <Route path="/dives/edit/:diveId(\d+)">
-                <EditDive />
-            </Route>
-            <Route path="/dives/:diveId(\d+)">
-                <Dive />
-            </Route>
-            <Route path="/diveplanner">
-                <DivePlanner />
-            </Route>
-            <Route exact path="/gear">
-                <Gear />
-            </Route>
-            <Route exact path="/gear/:gearId(\d+)">
-                <Gearset />
-            </Route>
-            <Route path="/addgear">
-                <CreateGearSet />
-            </Route>
-            <Route path="/gear/edit/:gearId(\d+)">
-                <EditGearSet />
-            </Route>
-            <Route path="/profile">
-                <DiverProfile />
-            </Route>
-            <Route path="/photoGallery">
-                <PhotoGallery />
-            </Route>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+
+                    <Route path="/divelog" element={<DiveLog />} />
+
+                    <Route path="/logdive" element={<LogNewDive />} />
+
+                    <Route path="/dives/edit/:diveId(\d+)" element={<EditDive />} />
+
+                    <Route path="/dives/:diveId(\d+)" element={<Dive />} />
+
+                    <Route path="/diveplanner" element={<DivePlanner />} />
+
+                    <Route exact path="/gear" element={<Gear />} />
+
+                    <Route exact path="/gear/:gearId(\d+)" element={<Gearset />} />
+
+                    <Route path="/addgear" element={<CreateGearSet />} />
+
+                    <Route path="/gear/edit/:gearId(\d+)" element={<EditGearSet />} />
+
+                    <Route path="/profile" element={<DiverProfile />} />
+
+                    <Route path="/photoGallery" element={<PhotoGallery />} />
+
+                </Routes>
+            </BrowserRouter>
         </>)
 }

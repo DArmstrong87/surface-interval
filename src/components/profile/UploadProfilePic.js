@@ -10,10 +10,12 @@ export const ProfilePicUpload = () => {
   const [user, setUser] = useState({})
   const [profilePatch, setProfilePatch] = useState({ profilePicUrl: '' })
 
-  useEffect(() =>
-    getCurrentUser()
-      .then((data) => setUser(data[0])
-      ), []
+  useEffect(() => {
+    async function getAndSetUser() {
+      getCurrentUser().then((data) => setUser(data[0]))
+    }
+    getAndSetUser()
+  }, []
   )
 
   const uploadImage = () => {

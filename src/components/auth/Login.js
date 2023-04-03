@@ -1,31 +1,30 @@
 import React, { useRef, useState } from "react";
 import "./Login.css"
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router";
+import { existingUserCheck } from "../application/ApiManager";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export const Login = () => {
     const [email, set] = useState("")
     const existDialog = useRef()
-    const history = useHistory()
-
-    const existingUserCheck = () => {
-        return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/users?email=${email}`)
-            .then(res => res.json())
-            .then(user => user.length ? user[0] : false)
-    }
+    const navigate = useNavigate()
 
     const handleLogin = (e) => {
         e.preventDefault()
-        existingUserCheck()
+        existingUserCheck(email)
             .then(exists => {
-                if (exists) {
-                    localStorage.setItem("si_user", exists.id)
-                    history.push("/")
+                if (exists !== null) {
+                    console.log('user exists');
+                    localStorage.setItem("si_user", exists.id);
+                    return <Navigate to="/" replace={true} />
+                    // navigate("/")
                 } else {
                     existDialog.current.showModal()
                 }
             })
     }
+
 
     return (
         <main className="container--login">

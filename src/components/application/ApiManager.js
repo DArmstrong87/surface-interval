@@ -1,83 +1,92 @@
 import { useEffect, useState } from "react"
 
+const API_BASE_URL = "http://localhost:8088"
+
+
 // ---------------------------------- GETTERS ----------------------------------
 // --------- User
 export const getCurrentUser = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/users?&userId=${user}`)
+    return fetch(`${API_BASE_URL}/users?&userId=${user}`)
         .then(res => res.json())
+}
+
+export const existingUserCheck = (email) => {
+    return fetch(`${API_BASE_URL}/users?email=${email}`)
+        .then(res => res.json())
+        .then(user => user.length > 0 ? user[0] : false)
 }
 
 // --------- Dives
 export const getMyDives = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}`)
+    return fetch(`${API_BASE_URL}/dives?&userId=${user}`)
         .then(res => res.json())
 }
 export const getDivesAlphabetical = (obj) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_sort=${obj.property}&_order=${obj.order}`)
+    return fetch(`${API_BASE_URL}/dives?&userId=${user}&_sort=${obj.property}&_order=${obj.order}`)
         .then(res => res.json())
 }
 
 export const getDivesByParam = (obj) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&${obj.property}=${obj.param}`)
+    return fetch(`${API_BASE_URL}/dives?&userId=${user}&${obj.property}=${obj.param}`)
         .then(res => res.json())
 }
 
 export const getDivesByDepth = (order) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?_sort=depth&userId=${user}&_order=${order}`)
+    return fetch(`${API_BASE_URL}/dives?_sort=depth&userId=${user}&_order=${order}`)
         .then(res => res.json())
 }
 
 export const getDivesByDate = (order) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?_sort=date&userId=${user}&_order=${order}`)
+    return fetch(`${API_BASE_URL}/dives?_sort=date&userId=${user}&_order=${order}`)
         .then(res => res.json())
 }
 
 export const getDivesByTime = (order) => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?_sort=time&userId=${user}&_order=${order}`)
+    return fetch(`${API_BASE_URL}/dives?_sort=time&userId=${user}&_order=${order}`)
         .then(res => res.json())
 }
 
 export const getCurrentDive = (id) => {
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${id}`)
+    return fetch(`${API_BASE_URL}/dives/${id}`)
         .then(res => res.json())
 }
 export const getDiveImages = (num) => {
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages?&diveId=${num}`)
+    return fetch(`${API_BASE_URL}/diveImages?&diveId=${num}`)
         .then(res => res.json())
 }
 export const getAllDiveImages = () => {
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages`)
+    return fetch(`${API_BASE_URL}/diveImages`)
         .then(res => res.json())
 }
 export const getDivesAndImages = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_embed=diveImages&_sort=date`)
+    return fetch(`${API_BASE_URL}/dives?&userId=${user}&_embed=diveImages&_sort=date`)
         .then(res => res.json())
 }
 
 // --------- Gear
 export const getMyGear = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear?&userId=${user}`)
+    return fetch(`${API_BASE_URL}/gear?&userId=${user}`)
         .then(res => res.json())
 }
 
 export const getCurrentGearSet = (id) => {
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`)
+    return fetch(`${API_BASE_URL}/gear/${id}`)
         .then(res => res.json())
 }
 
 // --------- Cert Cards
 export const getMyCards = () => {
     const user = localStorage.getItem('si_user')
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards?&userId=${user}&_sort=dateIssued`)
+    return fetch(`${API_BASE_URL}/certCards?&userId=${user}&_sort=dateIssued`)
         .then(res => res.json())
 }
 
@@ -142,21 +151,21 @@ export const GetDiveStats = () => {
 
     useEffect(() => {
         const user = localStorage.getItem('si_user')
-        fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_sort=date&_order=desc`)
+        fetch(`${API_BASE_URL}/dives?&userId=${user}&_sort=date&_order=desc`)
             .then(res => res.json())
             .then((data) => setRecent(data))
     }, []
     )
     useEffect(() => {
         const user = localStorage.getItem('si_user')
-        fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_sort=depth&_order=desc`)
+        fetch(`${API_BASE_URL}/dives?&userId=${user}&_sort=depth&_order=desc`)
             .then(res => res.json())
             .then((data) => setDeep(data))
     }, []
     )
     useEffect(() => {
         const user = localStorage.getItem('si_user')
-        fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives?&userId=${user}&_sort=time&_order=desc`)
+        fetch(`${API_BASE_URL}/dives?&userId=${user}&_sort=time&_order=desc`)
             .then(res => res.json())
             .then((data) => setLongest(data))
     }, []
@@ -210,7 +219,7 @@ export const submitDive = (event, diveCopy) => {
         },
         body: JSON.stringify(newDive)
     }
-    return fetch("https://surface-interval-api-ferdk.ondigitalocean.app/dives", fetchOption)
+    return fetch(`${API_BASE_URL}/dives`, fetchOption)
 }
 export const postImages = (diveImage) => {
     const newImage = {
@@ -224,7 +233,7 @@ export const postImages = (diveImage) => {
         },
         body: JSON.stringify(newImage)
     }
-    return fetch("https://surface-interval-api-ferdk.ondigitalocean.app/diveImages", fetchOption)
+    return fetch(`${API_BASE_URL}/diveImages`, fetchOption)
 }
 
 export const submitGear = (event, gearCopy) => {
@@ -291,7 +300,7 @@ export const submitGear = (event, gearCopy) => {
         body: JSON.stringify(newGear)
     }
 
-    return fetch("https://surface-interval-api-ferdk.ondigitalocean.app/gear", fetchOption)
+    return fetch(`${API_BASE_URL}/gear`, fetchOption)
 }
 
 export const postCertCard = (cert) => {
@@ -302,7 +311,7 @@ export const postCertCard = (cert) => {
         },
         body: JSON.stringify(cert)
     }
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards`, fetchOption)
+    return fetch(`${API_BASE_URL}/certCards`, fetchOption)
 }
 
 // ---------------------------------- PUT METHODS ----------------------------------
@@ -368,7 +377,7 @@ export const saveGear = (event, currentGear, gearId) => {
         body: JSON.stringify(updatedGear)
     }
 
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${gearId}`, fetchOption)
+    return fetch(`${API_BASE_URL}/gear/${gearId}`, fetchOption)
 }
 
 export const saveDive = (event, currentDive, diveId) => {
@@ -410,7 +419,7 @@ export const saveDive = (event, currentDive, diveId) => {
         body: JSON.stringify(updateDive)
     }
 
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${diveId}`, fetchOption)
+    return fetch(`${API_BASE_URL}/dives/${diveId}`, fetchOption)
 }
 
 // ---------------------------------- PATCH METHODS ----------------------------------
@@ -424,7 +433,7 @@ export const updateProfilePic = (user, patch, setUser) => {
         body: JSON.stringify(patch)
     }
 
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/users/${user.id}`, fetchOption)
+    return fetch(`${API_BASE_URL}/users/${user.id}`, fetchOption)
         .then(() =>
             getCurrentUser()
                 .then((data) => setUser(data[0])
@@ -434,7 +443,7 @@ export const updateProfilePic = (user, patch, setUser) => {
 
 // ---------------------------------- DELETE METHODS ----------------------------------
 export const deleteGear = (id, setGear) => {
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/gear/${id}`, {
+    return fetch(`${API_BASE_URL}/gear/${id}`, {
         method: "DELETE"
     })
         .then(() => {
@@ -444,13 +453,13 @@ export const deleteGear = (id, setGear) => {
         )
 }
 export const deleteImage = (id) => {
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/diveImages/${id}`, {
+    return fetch(`${API_BASE_URL}/diveImages/${id}`, {
         method: "DELETE"
     })
 }
 
 export const deleteDive = (id, setDives) => {
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${id}`, {
+    return fetch(`${API_BASE_URL}/dives/${id}`, {
         method: "DELETE"
     })
         .then(() => {
@@ -462,7 +471,7 @@ export const deleteDive = (id, setDives) => {
         )
 }
 export const deleteSingleDive = (id) => {
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/dives/${id}`, {
+    return fetch(`${API_BASE_URL}/dives/${id}`, {
         method: "DELETE"
     })
 }
@@ -471,7 +480,7 @@ export const deleteCard = (id, setCards) => {
     const fetchOption = {
         method: "DELETE",
     }
-    return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/certCards/${id}`, fetchOption)
+    return fetch(`${API_BASE_URL}/certCards/${id}`, fetchOption)
         .then(() =>
             getMyCards()
                 .then((data) => setCards(data)

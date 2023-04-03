@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { submitGear } from "../application/ApiManager";
 import "../diveLog/LogNewDive.css";
 import { Backups } from "./additonalGear/Backups";
@@ -12,7 +12,7 @@ import "./CreateGear.css"
 import { EssentialGear } from "./EssentialGear";
 
 export const CreateGearSet = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const [gearCopy, setNewGear] = useState({ userId: parseInt(localStorage.getItem('si_user')), })
 
     return (<>
@@ -43,12 +43,12 @@ export const CreateGearSet = () => {
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit"
                         onClick={(event) => submitGear(event, gearCopy)
-                            .then(history.push("/gear"))
+                            .then(navigate("/gear"))
                         }>
                         Submit
                     </button>
                     <button className="cancelButton" onClick={() => {
-                        history.push('/gear')
+                        navigate('/gear')
                     }}>
                         Cancel
                     </button>

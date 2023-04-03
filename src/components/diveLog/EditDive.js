@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { getCurrentDive, saveDive } from "../application/ApiManager";
 import { EditConditions } from "./EditConditions";
 import { EditSpecialties } from "./EditSpecialties";
 import { DiveLogImageUpload } from "./imageUpload/DiveLogImageUpload";
 
 export const EditDive = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const { diveId } = useParams()
     const [currentDive, setDive] = useState({
         userId: parseInt(localStorage.getItem('si_user'))
@@ -113,12 +113,12 @@ export const EditDive = () => {
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit"
                         onClick={(event) => saveDive(event, currentDive, diveId)
-                            .then(history.push("/divelog"))
+                            .then(navigate("/divelog"))
                         }>
                         Save Changes
                     </button>
                     <button className="cancelButton" onClick={() => {
-                        history.push('/divelog')
+                        navigate('/divelog')
                     }}>
                         Cancel
                     </button>

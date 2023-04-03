@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useEffect } from "react";
 import { getCurrentGearSet, saveGear } from "../application/ApiManager";
 import "../diveLog/LogNewDive.css";
@@ -13,7 +13,7 @@ import { EditSafety } from "./editGear/EditSafety";
 import { EditTech } from "./editGear/EditTech";
 
 export const EditGearSet = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const { gearId } = useParams()
     const [currentGear, updateGear] = useState({})
 
@@ -54,11 +54,11 @@ export const EditGearSet = () => {
 
                 <fieldset className="submit-cancel-buttons">
                     <button className="submitButton" type="submit"
-                        onClick={(event) => saveGear(event, currentGear, gearId).then(history.push("/gear"))}>
+                        onClick={(event) => saveGear(event, currentGear, gearId).then(navigate("/gear"))}>
                         Save Changes
                     </button>
                     <button className="cancelButton" onClick={() => {
-                        history.goBack()
+                        navigate(-1)
                     }}>Cancel
                     </button>
                 </fieldset>

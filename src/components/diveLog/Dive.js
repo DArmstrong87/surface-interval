@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { Link } from "react-router-dom"
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox"
 import { deleteSingleDive, getCurrentDive, getDiveImages, getDivesByDate } from "../application/ApiManager"
@@ -10,7 +10,7 @@ export const Dive = () => {
     const [dive, setDive] = useState({})
     const [dives, setDives] = useState([])
     const [images, setDiveImages] = useState([])
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const findSpecialties = () => {
         const array = [dive.isAltitude, dive.isDeep, dive.isDrift, dive.isDry, dive.isFFM, dive.isNav, dive.isN32, dive.isN36, dive.isRebreather, dive.isSearch, dive.isSidemount, dive.isWreck]
@@ -117,7 +117,7 @@ export const Dive = () => {
 
                     <div className='edit-delete'>
                         <Link to={`/dives/edit/${dive.id}`}>Edit</Link>
-                        <Link to="#" onClick={() => { deleteSingleDive(dive.id).then(history.goBack()) }}>Delete
+                        <Link to="#" onClick={() => { deleteSingleDive(dive.id).then(navigate(-1)) }}>Delete
                         </Link>
                     </div>
                 </section>

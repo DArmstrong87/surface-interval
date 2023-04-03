@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import "./Register.css"
 
 export const Register = (props) => {
     const [user, setUser] = useState({})
     const conflictDialog = useRef()
 
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const existingUserCheck = () => {
         return fetch(`https://surface-interval-api-ferdk.ondigitalocean.app/users?email=${user.email}`)
@@ -29,7 +29,7 @@ export const Register = (props) => {
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 localStorage.setItem("si_user", createdUser.id)
-                                history.push("/")
+                                navigate("/")
                             }
                         })
                 }
@@ -67,7 +67,7 @@ export const Register = (props) => {
                     </fieldset>
                     <fieldset>
                         <button type="submit"> Register </button>
-                        <button onClick={()=> {history.push("/login")}}> Cancel</button>
+                        <button onClick={()=> {navigate("/login")}}> Cancel</button>
                     </fieldset>
                 </form>
             </section>

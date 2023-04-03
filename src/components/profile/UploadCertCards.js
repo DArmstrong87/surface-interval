@@ -14,17 +14,17 @@ export const CertCardUpload = () => {
     const [certCard, setCert] = useState({ userId: user.id })
     const [toggleUpload, setToggleUpload] = useState(false)
 
-    useEffect(() =>
-        getCurrentUser()
-            .then((data) => setUser(data[0])
-            ), []
+    useEffect(() => {
+        async function getUserAndCards() {
+            getCurrentUser()
+                .then((data) => setUser(data[0]));
+            getMyCards()
+                .then((data) => setCards(data));
+        }
+        getUserAndCards();
+    }, []
     )
 
-    useEffect(() =>
-        getMyCards()
-            .then((data) => setCards(data)
-            ), []
-    )
 
     const uploadFront = () => {
         const imageData = new FormData()

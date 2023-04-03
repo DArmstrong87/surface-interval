@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { getMyDives, submitDive } from "../application/ApiManager";
 import { Specialties } from "./Specialties";
 import './LogNewDive.css'
@@ -9,7 +9,7 @@ import { DiveLogImageUpload } from "./imageUpload/DiveLogImageUpload";
 export const LogNewDive = () => {
     const [dives, setDives] = useState([])
     const [diveCopy, setDive] = useState({ userId: parseInt(localStorage.getItem('si_user')) })
-    const history = useHistory()
+    const navigate = useNavigate()
     const [diveImages, setDiveImages] = useState()
     const currentDive = dives.length + 1
 
@@ -106,12 +106,12 @@ export const LogNewDive = () => {
                     <button className="submitButton" type="submit"
                         onClick={(event) => {
                             submitDive(event, diveCopy)
-                                .then(history.push("/divelog"))
+                                .then(navigate("/divelog"))
                         }}>
                         Submit
                     </button>
                     <button className="cancelButton" onClick={() => {
-                        history.push('/divelog')
+                        navigate('/divelog')
                     }}>
                         Cancel
                     </button>

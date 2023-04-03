@@ -41,7 +41,7 @@ export const SortedDiveLists = ({ specialty }) => {
                     })
             }
         },
-        [divesByDate.length, dateOrder, specialty]
+        [divesByDate.length, dateOrder, specialty, obj]
     )
 
     useEffect(
